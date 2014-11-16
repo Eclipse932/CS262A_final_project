@@ -1,5 +1,6 @@
 package client;
-
+import java.io.*;
+import java.net.*;
 import org.apache.http.*;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -23,14 +24,20 @@ public class ApacheHttpClient1 {
     DefaultHttpClient httpclient = new DefaultHttpClient();
     try {
       // specify the host, protocol, and port
-      HttpHost target = new HttpHost("weather.yahooapis.com", 80, "http");
-       
+      HttpHost target = new HttpHost("127.0.0.1", 4321, "http");
+      DataOutputStream socketOut = new DataOutputStream(client.getOutputStream());
+      DataInputStream  socketIn  = new DataInputStream(client.getInputStream());
+      DataInputStream  console   = new DataInputStream(System.in);
+      System.out.println("Connected to " + host + ". Enter text:");
+
       // specify the get request
       HttpGet getRequest = new HttpGet("/forecastrss?p=80020&u=f");
  
       System.out.println("executing request to " + target);
- 
+      System.out.println("hahahaha1");
+
       HttpResponse httpResponse = httpclient.execute(target, getRequest);
+      System.out.println("hahahaha");
       HttpEntity entity = httpResponse.getEntity();
  
       System.out.println("----------------------------------------");
