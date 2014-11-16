@@ -1,13 +1,8 @@
-package client;
+package server;
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
+import java.util.*;
 
-import java.util.HashMap;
-
-import java.util.List;
-
-import java.util.Map;
 public class TestServer
 {
    public static void main(String args[])
@@ -61,7 +56,8 @@ public class TestServer
          server.close();*/
 
 	ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(client.getInputStream()));
-         System.out.println("" + ois.readObject());
+	HashMap map = (HashMap)  ois.readObject();
+         System.out.println(map.get("A"));
       
 	}
       catch(IOException e)
