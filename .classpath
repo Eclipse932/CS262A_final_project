@@ -9,5 +9,5 @@
 	<classpathentry kind="lib" path="lib/httpclient-cache-4.3.6.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/httpmime-4.3.6.jar"/>
-	<classpathentry kind="output" path="bin"/>
+
 </classpath>
