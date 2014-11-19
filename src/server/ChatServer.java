@@ -34,10 +34,18 @@ public class ChatServer implements Runnable {
 		}
 	}
 
-	public void start() { /* as before */
+	public void start() {
+		if (thread == null)
+	      {  thread = new Thread(this); 
+	         thread.start();
+	      }
 	}
 
-	public void stop() { /* as before */
+	public void stop() { 
+		if (thread != null)
+	      {  thread.stop(); 
+	         thread = null;
+	      }
 	}
 
 	private int findClient(int ID) {

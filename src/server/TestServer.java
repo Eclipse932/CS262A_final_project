@@ -58,6 +58,7 @@ public class TestServer
 	ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(client.getInputStream()));
 	HashMap map = (HashMap)  ois.readObject();
          System.out.println(map.get("A"));
+         
       
 	}
       catch(IOException e)

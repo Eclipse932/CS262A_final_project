@@ -48,9 +48,9 @@ public class TestClient
       {
          Socket           client    = new Socket(host, 4321);
 	
-         DataOutputStream socketOut = new DataOutputStream(client.getOutputStream());
-         DataInputStream  socketIn  = new DataInputStream(client.getInputStream());
-         DataInputStream  console   = new DataInputStream(System.in);
+         //DataOutputStream socketOut = new DataOutputStream(client.getOutputStream());
+         //DataInputStream  socketIn  = new DataInputStream(client.getInputStream());
+         //DataInputStream  console   = new DataInputStream(System.in);
          ObjectOutputStream oout = new ObjectOutputStream(client.getOutputStream());
 	 // write something in the file
          oout.writeObject(map);	  
@@ -58,17 +58,8 @@ public class TestClient
          oout.close();
          System.out.println("Connected to " + host + ". Enter text:");
 	 
-         boolean done = false;
-         String line;
-         while (!done) 
-         {
-            line = console.readLine();
-            if (line.equalsIgnoreCase(".bye"))
-               done = true;
-            socketOut.writeBytes(line + '\n');
-         }
-
-         socketOut.close(); socketIn.close(); client.close();
+         //socketOut.close(); socketIn.close(); 
+         client.close();
       } 
       catch (UnknownHostException e) 
       { System.err.println(host + ": unknown host."); } 
