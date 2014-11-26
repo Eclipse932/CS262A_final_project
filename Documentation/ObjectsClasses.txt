@@ -104,6 +104,7 @@ Lock
 	b.	Enum Mode
 	c.	Time Expiration
 	d.	Integer Owner
+	e.  Time transactionBirthdate
 5.	Methods
 6.	Comments
 	a.	Owner is a transactionID
@@ -123,7 +124,7 @@ LockTable
 1.	Fields
 	c.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
 	a.	Map<TransactionID, startTime> birthdates
-	b.	Map<TransactionID, TransactionID> dependencies
+	b.	TreeMap<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
 	a.	Synchronized getTableLocks(List<Locks>, Integer transactionID)
 	b.	Synchronized releaseTableLocks(List<Locks>, Integer transactionID)
@@ -188,22 +189,31 @@ Synchronized GetReplicaLock(x)
 	javaLock = new javaLock()
 	replicaCondition = lock.newCondition()
 	LockandCondition lc = new LockandCondition(x, replicaCondition)
-	Thread rungetTableLock = new Thread(lc)
+	Add lc to appropriate heap
+	priorityQueueManagerConditionVariable.signal()
 	replicaCondition.await()
 	
-		
+
+Thread rungetTableLock = new Thread(lc)
+
 lc is a lock and condition
 
+Synchronized runforqueuemanager(){
+	while (true)
+		WakeNextLock(heap)
+		thisconditionvariable.await()
+}
+
+
 Synchronized GetTableLock(LockandCondition lc)
-	Add lc to appropriate heap
 	WakeNextLock(heap)
 	return
 
-RemoveLock(x)
+Synchronized RemoveLock(x)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
-WakeNextLock(heap)
+Synchronized WakeNextLock(heap)
 	y = LockandCondition at top of heap
 If( lock table.rangefory == empty )
 	Remove y from heap
