@@ -184,20 +184,17 @@ LockandCondition
 
 x is the lock.
 
-GetReplicaLock(x)
+Synchronized GetReplicaLock(x)
 	javaLock = new javaLock()
 	replicaCondition = lock.newCondition()
 	LockandCondition lc = new LockandCondition(x, replicaCondition)
-	boolean ready = false;
 	Thread rungetTableLock = new Thread(lc)
-	while( !ready){
-		replicaCondition.await()
-	}
+	replicaCondition.await()
 	
-	
+		
 lc is a lock and condition
 
-GetTableLock(LockandCondition lc)
+Synchronized GetTableLock(LockandCondition lc)
 	Add lc to appropriate heap
 	WakeNextLock(heap)
 	return
@@ -211,13 +208,11 @@ WakeNextLock(heap)
 If( lock table.rangefory == empty )
 	Remove y from heap
 	Put y.l in lock table
-	ready = true
 	y.c.signal()
 	WakeNextLock(heap)
 If( y == read lock and all locks in lock table are read locks)
 	Remove y from heap
 	Put y.l in lock table
-	ready = true
 	y.c.signal()
 	WakeNextLock(heap)
 If( y == read lock and table has write lock z)
