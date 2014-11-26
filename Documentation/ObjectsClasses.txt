@@ -175,29 +175,50 @@ PaxosKVstore
 	a.	replicatedPut(Integer key, Time timestamp, integer data)
 
 
+LockandCondition
+1.	Field
+	a.   Lock l
+	b.   Condition c
+2.	Methods
 
 
+x is the lock.
 
+GetReplicaLock(x)
+	javaLock = new javaLock()
+	replicaCondition = lock.newCondition()
+	LockandCondition lc = new LockandCondition(x, replicaCondition)
+	boolean ready = false;
+	Thread rungetTableLock = new Thread(lc)
+	while( !ready){
+		replicaCondition.await()
+	}
+	
+	
+lc is a lock and condition
 
-X is a lock and a thread
-
-GetTableLock(x)
-	Add x to appropriate heap
+GetTableLock(LockandCondition lc)
+	Add lc to appropriate heap
 	WakeNextLock(heap)
+	return
 
 RemoveLock(x)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
 WakeNextLock(heap)
-	y = lock at top of heap
+	y = LockandCondition at top of heap
 If( lock table.rangefory == empty )
 	Remove y from heap
-	Put y in lock table
+	Put y.l in lock table
+	ready = true
+	y.c.signal()
 	WakeNextLock(heap)
 If( y == read lock and all locks in lock table are read locks)
 	Remove y from heap
-	Put y in lock table
+	Put y.l in lock table
+	ready = true
+	y.c.signal()
 	WakeNextLock(heap)
 If( y == read lock and table has write lock z)
 	If( y older than z)
