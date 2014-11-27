@@ -1,7 +1,7 @@
 TODO
 Figure out how things initialize
 
-ClientApp
+ClientApp - L 
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	Responder entryPoint
@@ -10,7 +10,7 @@ ClientApp
 3.	Comments
 	a.	Client writes the transaction request and the status at the end (ie abort or commit) to the interface log
 
-Log
+Log -L
 1.	Fields
 	a.	List<String> commands
 2.	Methods
@@ -18,7 +18,7 @@ Log
 
 RMI Registry
 
-TransactionIDNamer
+TransactionIDNamer - L 
 1.	Fields
 	a.	Static TransactionIDNamer
 	b.	Static Integer lastGUID()
@@ -29,7 +29,7 @@ TransactionIDNamer
 	b.	Used by Responder to get a transactionID for each transaction
 
 
-Responder
+Responder -M
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	Private Threadpool Transactions
@@ -44,7 +44,7 @@ Responder
 3.	Comments
 	a.	The two threadpools must be the same size
 
-Transaction
+Transaction -M 
 1.	Fields
 	a.	Final Integer (transactionID) ----structure shared with TransactionHeart
 	b.	TransactionHeart myHeart
@@ -56,7 +56,7 @@ Transaction
 3.	Comments
 	a.	transactionID is a big integer
 
-TransactionHeart
+TransactionHeart -M
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	List<Locks> myLocks ----- structure shared with the heart
@@ -67,7 +67,7 @@ TransactionHeart
 	a.	If a transaction misses the fact it’s been killed this isn’t a problem with correctness. It just might do unnecessary work.
 	b.	Makes RMI to Replica – calls keepTransactionAlive
 
-Replica
+Replica J
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	Boolean isLeader
@@ -91,14 +91,14 @@ Replica
 	a.	KeeptransactionAlive only extends an existing lease on a lock. It will not make a new one.
 	b.	We only need a single LeaseKiller for the entire lock table
 
-LeaseDoctor
+LeaseDoctor J
 1.	Fields
 	a.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 3.	Comments
 	a.	Calls extendLease in locktable
 
-Lock
+Lock J
 4.	Fields
 	a.	Integer Key range
 	b.	Enum Mode
@@ -109,7 +109,7 @@ Lock
 6.	Comments
 	a.	Owner is a transactionID
 
-LeaseKiller
+LeaseKiller J
 1.	Fields
 	a.	Heap<Locks> expiringHeap
 	b.	List<Locks> committingWrites --- shared with the WriteWorker
@@ -120,7 +120,7 @@ LeaseKiller
 	b.	The expiringHeap needs to have at least the locks in the Locktable. But it can have more and it just ignores extras when it tries to remove them.
 	c.	If something is committing we add it to committingWrites so it isn’t removed from the Lock Table
 
-LockTable
+LockTable J
 1.	Fields
 	c.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
 	a.	Map<TransactionID, startTime> birthdates
@@ -137,7 +137,7 @@ LockTable
 	i.	Possible solution: give writes priorty over reads
 
 
-LockWorker
+LockWorker J
 1.	Fields
 	a.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
 	b.	
@@ -145,7 +145,14 @@ LockWorker
 3.	Comment
 	a.	Responsible for serving the calls to getLocks from the receiver and calling getTableLocks from the LockTable
 
-TrueTime
+LockandCondition -J
+1.	Field
+	a.   Lock l
+	b.   Condition c
+2.	Methods
+
+
+TrueTime -L
 1.	Fields
 	a.	Double clockError
 2.	Methods
@@ -153,35 +160,32 @@ TrueTime
 	b.	Static Boolean Before(TimeInterval t)
 	c.	Static Boolean After(TimeInterval t)
 
-TimeInterval
+TimeInterval -L
 1.	Fields
 	a.	Time Earliest
 	b.	Time latest
 
-WriteWorker
+WriteWorker -M
 2.	Field
 	a.	List<String> Actions
 	b.	Log  dataLog --- shared with WriteWorker, ReadWorker, and Replica
 3.	Methods
 
-ReadWorker
+ReadWorker -M
 1.	Field
 	a.	List<String> Actions
 	b.	Log  dataLog --- shared with WriteWorker, ReadWorker, and Replica
 	c.	
 
-PaxosKVstore
+PaxosKVstore -M
 1.	Field
 2.	Methods
 	a.	replicatedPut(Integer key, Time timestamp, integer data)
 
 
-LockandCondition
-1.	Field
-	a.   Lock l
-	b.   Condition c
-2.	Methods
-
+-------------------------
+Psuedocode for Locks
+-------------------------
 
 x is the lock.
 
