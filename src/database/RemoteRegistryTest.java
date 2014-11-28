@@ -14,6 +14,8 @@ public class RemoteRegistryTest {
 
 	RemoteRegistry me;
 	RemoteRegistryIntf obj;
+	
+	
 
 	public RemoteRegistryTest() {
 	}
@@ -49,7 +51,7 @@ public class RemoteRegistryTest {
 	}
 
 	@Test
-	public void RegisterName() {
+	public void TestLocalRegisterName() {
 		try {
 			this.obj.registerNetworkName("//128.32.14.28/fish1", "fish1");
 		} catch (RemoteException e) {
@@ -67,7 +69,7 @@ public class RemoteRegistryTest {
 	}
 
 	@Test
-	public void UnRegisterName() {
+	public void TestLocalUnRegisterName() {
 		try {
 			this.obj.registerNetworkName("//128.32.14.28/fish1", "fish1");
 		} catch (RemoteException e) {

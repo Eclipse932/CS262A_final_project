@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class RemoteRegistry extends UnicastRemoteObject implements
 		RemoteRegistryIntf {
 
+	static String TERRATEST = "128.32.48.222";
 	HashMap<String, String> RemoteNameToNetworkName;
 
 	public RemoteRegistry() throws RemoteException {
@@ -52,44 +53,45 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 	}
 
 	public static void main(String args[]) throws Exception {
-//		System.out.println("RemoteRegistry server started");
-//		try { // special exception handler for registry creation
-//			LocateRegistry.createRegistry(1099);
-//			System.out.println("java RMI registry created.");
-//		} catch (RemoteException e) {
-//			// do nothing, error means registry already exists
-//			System.out.println("java RMI registry already exists.");
-//		}
+		System.out.println("RemoteRegistry server started");
+		try { // special exception handler for registry creation
+			LocateRegistry.createRegistry(1099);
+			System.out.println("java RMI registry created.");
+		} catch (RemoteException e) {
+			// do nothing, error means registry already exists
+			System.out.println("java RMI registry already exists.");
+		}
+
+		RemoteRegistry me = new RemoteRegistry();
+
+		// Bind this objects instance to the name "RemoteRegistry"
+		Naming.rebind("//" +  TERRATEST + "/RemoteRegistry", me);
+		System.out.println("RemoteRegistry bound in local registry");
+	}
+}
+	
+//	System.out.println("RemoteRegistry server started");
+//	try { // special exception handler for registry creation
+//		LocateRegistry.createRegistry(1099);
+//		System.out.println("java RMI registry created.");
+//	} catch (RemoteException e) {
+//		// do nothing, error means registry already exists
+//		System.out.println("java RMI registry already exists.");
+//	}
 //
-//		RemoteRegistry me = new RemoteRegistry();
-//
-//		// Bind this objects instance to the name "RemoteRegistry"
-//		Naming.rebind("//localhost/RemoteRegistry", me);
-//		System.out.println("RemoteRegistry bound in local registry");
+//	try{
+//	RemoteRegistry me = new RemoteRegistry();
+//	Naming.rebind("//localhost/RemoteRegistry", me);
+//	} catch (RemoteException e) {
+//		System.out.println("Error, unable to bind.");
+//	}
+//			
+//try {
+//	RemoteRegistryIntf obj = (RemoteRegistryIntf)Naming.lookup("//localhost/RemoteRegistry");
+//} catch (RemoteException e) {
+//	System.out.println("Error, unable to startup.");
+//}
 //	}
 //	
-	System.out.println("RemoteRegistry server started");
-	try { // special exception handler for registry creation
-		LocateRegistry.createRegistry(1099);
-		System.out.println("java RMI registry created.");
-	} catch (RemoteException e) {
-		// do nothing, error means registry already exists
-		System.out.println("java RMI registry already exists.");
-	}
-
-	try{
-	RemoteRegistry me = new RemoteRegistry();
-	Naming.rebind("//localhost/RemoteRegistry", me);
-	} catch (RemoteException e) {
-		System.out.println("Error, unable to bind.");
-	}
-			
-try {
-	RemoteRegistryIntf obj = (RemoteRegistryIntf)Naming.lookup("//localhost/RemoteRegistry");
-} catch (RemoteException e) {
-	System.out.println("Error, unable to startup.");
-}
-	}
-	
-}
-	
+//}
+//	
