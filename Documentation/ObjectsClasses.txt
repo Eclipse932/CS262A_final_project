@@ -108,12 +108,12 @@ LeaseDoctor J
 3.	Comments
 	a.	Calls extendLease in locktable
 
-Lock J -- the class is called LeaseLock in the project to avoid with Java Lock class
+Lock J -- the class is called LeaseLock in the project to avoid with Java Lock class; I choose long to represent Time class
 4.	Fields
 	a.	Integer Key range
-	b.	Enum Mode
-	c.	Time Expiration
-	d.	Integer Owner
+	b.	Enum AccessMode
+	c.	Time Expiration 
+	d.	Integer Owner ---- I use long to represent transactionID
 	e.  Time transactionBirthdate
 5.	Methods
 6.	Comments
@@ -157,7 +157,7 @@ LockWorker J
 
 LockandCondition -J
 1.	Field
-	a.   Lock l
+	a.   LeaseLock l
 	b.   Condition c
 2.	Methods
 
@@ -247,7 +247,7 @@ If( y == read lock and table has write lock z)
 		WakeNextLock(heap)
 	If( z older than y)
 		Return
-If( y == write lock and table has any mode lock z)
+If( y == write lock and table has any access mode lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
