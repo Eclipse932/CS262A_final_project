@@ -21,7 +21,7 @@ RMI Registry
 TransactionIDNamer - L 
 1.	Fields
 	a.	Static TransactionIDNamer
-	b.	Static Integer lastGUID()
+	b.	Static Integer lastGUID() --- "the transactionID should ideally be a long" comment by Jane
 2.	Methods
 	a.	Integer createNewGUID()
 3.	Comments
@@ -108,7 +108,7 @@ LeaseDoctor J
 3.	Comments
 	a.	Calls extendLease in locktable
 
-Lock J
+Lock J -- the class is called LeaseLock in the project to avoid with Java Lock class
 4.	Fields
 	a.	Integer Key range
 	b.	Enum Mode
