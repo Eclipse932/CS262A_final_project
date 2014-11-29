@@ -44,6 +44,16 @@ Responder -M
 3.	Comments
 	a.	The two threadpools must be the same size
 
+ListOfStringsAsTheArgumentToPRWTransaction
+	This is a miniature language - not a class. Values within a string are delimited by spaces.
+
+	declare <variable name> <integer constant initial value>
+	read <variable name> <memory address to be read from>
+	write <variable name> <memory address to be written to>
+	add <variable name sum> <variable name addend> <variable name addend>
+	addc <variable name sum> <variable name> <integer constant addend>
+
+
 Transaction -M 
 1.	Fields
 	a.	Final Integer (transactionID) ----structure shared with TransactionHeart

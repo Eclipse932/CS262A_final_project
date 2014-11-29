@@ -15,8 +15,6 @@ public class RemoteRegistryTest {
 	RemoteRegistry me;
 	RemoteRegistryIntf obj;
 	
-	
-
 	public RemoteRegistryTest() {
 	}
 

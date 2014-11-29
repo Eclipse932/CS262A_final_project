@@ -15,7 +15,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 	HashMap<String, String> RemoteNameToNetworkName;
 
 	public RemoteRegistry() throws RemoteException {
-		super(0);
+		super();
 		this.RemoteNameToNetworkName = new HashMap<String, String>();
 	}
 
