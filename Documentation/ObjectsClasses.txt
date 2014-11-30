@@ -69,8 +69,8 @@ Transaction -M
 TransactionHeart -M
 1.	Fields
 	a.	String RMIRegistryAddress
-	b.	List<Locks> myLocks ----- structure shared with the heart
-	c.	Boolean alive ----- shared with heart
+	b.	List<Locks> myLocks ----- structure shared with Transaction
+	c.	Boolean alive ----- shared with Transaction
 	d.	Set<Replica> Leaders --- shared with responder and Transaction
 2.	Methods
 3.	Comments
@@ -87,12 +87,15 @@ Replica J
 	====================================================The above fields are configured when a new replica is started up==============================
 	a.	Log DataLog --- shared with WriteWorker, ReadWorker, and Replica
 	c.	Set<Replica> Leaders --- we need a way to find the set of leader replicas
+	
 	d.	ThreadPool WriteWorkers
 	e.	ThreadPool ReadWorkers
 	f.	ThreadPool LockWorkers
 	g.	ThreadPool LeaseDoctors
+	=======Seems there is no way to control the number of threads RMI forked off for each kind of job; so I will not include the four above fields in Replica====
 	h.	Thread LeaseKiller
-	i.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
+	i.	List<Locks> committingWrites --- shared with the WriteWorkers and LeaseKiller
+	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 	a.	Boolean keepTransactionAlive(List<Locks> locks)
 	b.	getReplicaLocks( List<Locks>, Integer transactionID) --- if we find a dependency we initiate wound wait in this method
@@ -112,21 +115,21 @@ LeaseDoctor J
 3.	Comments
 	a.	Calls extendLease in locktable
 
-Lock J -- the class is called LeaseLock in the project to avoid with Java Lock class; I choose long to represent Time class
+Lock J  -- the class is called LeaseLock in the project to avoid with Java Lock class; I choose long to represent Time class
 4.	Fields
 	a.	Integer Key 
 	b.	Enum AccessMode
 	c.	Time Expiration 
 	d.	Integer Owner ---- I use long to represent transactionID
-	e.  Time transactionBirthdate
 5.	Methods
 6.	Comments
 	a.	Owner is a transactionID
 
 LeaseKiller J
 1.	Fields
-	a.	Heap<Locks> expiringHeap
-	b.	List<Locks> committingWrites --- shared with the WriteWorker
+	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the LockTable, so I decide to just let the leaseKiller 
+										go through the lock table
+	b.	List<Locks> committingWrites --- shared with the WriteWorker through Replica commitWrites field
 	c.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 3.	Comment
@@ -136,8 +139,8 @@ LeaseKiller J
 
 LockTable J
 1.	Fields
-	c.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
-	a.	Map<TransactionID, startTime> birthdates
+	a.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
+	c.	Map<TransactionID, startTime> birthdates 
 	b.	TreeMap<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
 	a.	Synchronized getTableLocks(List<Locks>, Integer transactionID)
@@ -159,11 +162,14 @@ LockWorker J
 3.	Comment
 	a.	Responsible for serving the calls to getLocks from the receiver and calling getTableLocks from the LockTable
 
-LockandCondition -J
+LockandCondition implements Comparable-J
 1.	Field
 	a.   LeaseLock l
 	b.   Condition c
+	c.  Time TransactionBirthdate -- use Long object to represent the time
 2.	Methods
+3. comments
+	a. should support comparing based on transactionBirthdate field
 
 
 TrueTime -L
@@ -183,13 +189,13 @@ WriteWorker -M
 2.	Field
 	a.	List<String> Actions
 	b.	Log  dataLog --- shared with WriteWorker, ReadWorker, and Replica
+	c.  List<Locks> committingWrites --- shared with the LeaseKiller through Replica commitWrites field
 3.	Methods
 
 ReadWorker -M
 1.	Field
 	a.	List<String> Actions
 	b.	Log  dataLog --- shared with WriteWorker, ReadWorker, and Replica
-	c.	
 
 PaxosKVstore -M
 1.	Field
