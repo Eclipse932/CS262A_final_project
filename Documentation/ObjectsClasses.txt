@@ -83,7 +83,8 @@ Replica J
 	b.	Boolean isLeader
 	c.  Integer startOfKeyRange;
 	d.  Integer endOfKeyRange;
-	
+	e.  String name;
+	====================================================The above fields are configured when a new replica is started up==============================
 	a.	Log DataLog --- shared with WriteWorker, ReadWorker, and Replica
 	c.	Set<Replica> Leaders --- we need a way to find the set of leader replicas
 	d.	ThreadPool WriteWorkers
