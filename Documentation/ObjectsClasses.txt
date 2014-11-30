@@ -127,8 +127,8 @@ Lock J  -- the class is called LeaseLock in the project to avoid with Java Lock 
 
 LeaseKiller J
 1.	Fields
-	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the LockTable, so I decide to just let the leaseKiller 
-										go through the lock table
+	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the lockMap and possibly the waitingMap, 
+	so I decide to just let the leaseKiller go through the two maps
 	b.	List<Locks> committingWrites --- shared with the WriteWorker through Replica commitWrites field
 	c.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
