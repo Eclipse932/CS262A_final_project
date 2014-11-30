@@ -3,6 +3,7 @@ package database;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
+import java.util.Set;
 
 public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
@@ -19,5 +20,11 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		//TODO implement this
 		return "";
 	}
-
+	
+	//added by Jane; we need a method to get reference to the leader replica(s) from the remote registry
+	public Set<Replica> getLeaderReplica(){
+		//not implemented yet
+		return null;
+	}
+	
 }

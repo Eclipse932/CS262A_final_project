@@ -81,8 +81,11 @@ Replica J
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	Boolean isLeader
+	c.  Integer startOfKeyRange;
+	d.  Integer endOfKeyRange;
+	
 	a.	Log DataLog --- shared with WriteWorker, ReadWorker, and Replica
-	c.	Set<Replica> Leaders
+	c.	Set<Replica> Leaders --- we need a way to find the set of leader replicas
 	d.	ThreadPool WriteWorkers
 	e.	ThreadPool ReadWorkers
 	f.	ThreadPool LockWorkers
@@ -110,7 +113,7 @@ LeaseDoctor J
 
 Lock J -- the class is called LeaseLock in the project to avoid with Java Lock class; I choose long to represent Time class
 4.	Fields
-	a.	Integer Key range
+	a.	Integer Key 
 	b.	Enum AccessMode
 	c.	Time Expiration 
 	d.	Integer Owner ---- I use long to represent transactionID
