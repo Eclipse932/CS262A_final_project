@@ -7,3 +7,10 @@
 /Responder.class
 /ResponderIntf.class
 /ResponderTest.class
+/AccessMode.class
+/LeaseKiller.class
+/LeaseLock.class
+/LockAndCondition.class
+/LockTable.class
+/Log.class
+/Replica.class

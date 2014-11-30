@@ -11,11 +11,14 @@ import java.util.HashMap;
 public class RemoteRegistry extends UnicastRemoteObject implements
 		RemoteRegistryIntf {
 
-	static String TERRATEST = "128.32.48.222";
+	//static String TERRATEST = "128.32.48.222";
+	static String TERRATEST = "localhost";
 	HashMap<String, String> RemoteNameToNetworkName;
 
+	static int objectPortOnTerratest = 1050;
+	
 	public RemoteRegistry() throws RemoteException {
-		super();
+		super(objectPortOnTerratest);
 		this.RemoteNameToNetworkName = new HashMap<String, String>();
 	}
 
@@ -63,7 +66,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		}
 
 		RemoteRegistry me = new RemoteRegistry();
-
+		
 		// Bind this objects instance to the name "RemoteRegistry"
 		Naming.rebind("//" +  TERRATEST + "/RemoteRegistry", me);
 		System.out.println("RemoteRegistry bound in local registry");
