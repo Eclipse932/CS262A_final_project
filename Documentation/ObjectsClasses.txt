@@ -274,3 +274,20 @@ If( y == write lock and table has write lock z)
  	else 
  		return
  		
+
+How to start a server
+ 		
+Initialization: The RemoteRegistry must be completely empty.
+
+    Start local RMI Server (you do this by calling the constructor on a UnicastRemoteObjec)t
+    Bind server instance to remote name given as command line argument to the local rmi registry. That machine's ip address is also given as a command line argument, so this local name looks like "//localIPaddress/localname"
+    Acquire remote object for RemoteRegistry. We know where to find it and it's always available on the Terratest server.
+    Use the RemoteRegistry to lookup and get network names for entities this server depends on (i.e. Client app depends on a responder, responder depends on the leader) It's crucial that this not be a cycle. If the remote object you need has not already been registered in the RemoteRegistry, wait a few seconds (sleep) and try again. Keep trying until you get the full network name of the remote object you need.
+    Use the full network name to get an actual remote object for your dependency (e.g. Responder gets a remote object for the Leader). Use the remote object to finish initializing your server.
+    When your Server is completely ready to go, register the network name "//localIPaddress/localname" as "remotename".
+
+
+Important rules:
+
+    Only register your server in the RemoteRegistry after it is completely ready to start fielding requests. Otherwise a client may find the server and start making requests before your server has been initialized.
+ 		
