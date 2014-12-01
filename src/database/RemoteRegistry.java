@@ -22,7 +22,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		this.RemoteNameToNetworkName = new HashMap<String, String>();
 	}
 
-	public boolean hasRemoteName(String RemoteObjectName){
+	public synchronized boolean hasRemoteName(String RemoteObjectName){
 		if(RemoteNameToNetworkName.containsKey(RemoteObjectName)){
 			return true;
 		} else {
@@ -30,7 +30,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		}
 	}
 	
-	public boolean registerNetworkName(String NetworkName,
+	public synchronized boolean registerNetworkName(String NetworkName,
 			String RemoteObjectName) throws RemoteException {
 		if (RemoteNameToNetworkName.containsValue(NetworkName)) {
 			return false;
@@ -40,7 +40,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		}
 	}
 
-	public boolean unRegisterRemoteName(
+	public synchronized boolean unRegisterRemoteName(
 			String RemoteObjectName) throws RemoteException {
 		if(RemoteNameToNetworkName.containsKey(RemoteObjectName)) {
 			RemoteNameToNetworkName.remove(RemoteObjectName);
@@ -50,7 +50,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		}
 	}
 
-	public String getNetworkName(String RemoteObjectName)
+	public synchronized String getNetworkName(String RemoteObjectName)
 			throws RemoteException {
 		return RemoteNameToNetworkName.get(RemoteObjectName);
 	}
