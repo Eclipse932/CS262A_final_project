@@ -68,13 +68,46 @@ public class ResponderTest {
 		try {
 			commandReturn = this.obj.PRWTransaction(commands);
 			System.out.println(commandReturn);
-		} catch (RemoteException r) {
-			fail("Remote exception in testWriteOnlyTransaction");
+		} catch (Exception e) {
+			System.out.println(e);
+			fail("Exception in testWriteOnlyTransaction");
 		}
 
 		assertTrue(commandReturn.equals(COMMIT) || commandReturn.equals(ABORT));
 	}
 
+	@Test
+	public void testNullTransaction() {
+		List<String> commands = null;
+		boolean BTRE = false;
+		try{
+			this.obj.PRWTransaction(commands);
+		} catch (RemoteException r) {
+			System.out.println(r);
+			fail("Remote Exception in testNullTransaction");
+		} catch (BadTransactionRequestException b) {
+			BTRE = true;
+		}
+		assertTrue(BTRE);
+	}
+	
+	@Test
+	public void testBadTransactionCommand() {
+		List<String> commands = new ArrayList<String>();
+		commands.add("");
+		boolean BTRE = false;
+		try{
+			this.obj.PRWTransaction(commands);
+		} catch (RemoteException r) {
+			System.out.println(r);
+			fail("Remote Exception in testNullTransaction");
+		} catch (BadTransactionRequestException b) {
+			BTRE = true;
+		}
+		assertTrue(BTRE);
+	}
+	
+	
 	@Test
 	public void testAddTransaction() {
 		List<String> commands = (List<String>) new ArrayList<String>();
@@ -89,8 +122,9 @@ public class ResponderTest {
 		try {
 			commandReturn = this.obj.PRWTransaction(commands);
 			System.out.println(commandReturn);
-		} catch (RemoteException r) {
-			fail("Remote exception in testAddTransaction");
+		} catch (Exception e) {
+			System.out.println(e);
+			fail("Exception in testAddTransaction");
 		}
 
 		assertTrue(commandReturn.equals(COMMIT) || commandReturn.equals(ABORT));
@@ -108,8 +142,9 @@ public class ResponderTest {
 		try {
 			commandReturn = this.obj.PRWTransaction(commands);
 			System.out.println(commandReturn);
-		} catch (RemoteException r) {
-			fail("Remote exception in testAddcTransaction");
+		} catch (Exception e) {
+			System.out.println(e);
+			fail("Exception in testAddcTransaction");
 		}
 
 		assertTrue(commandReturn.equals(COMMIT) || commandReturn.equals(ABORT));

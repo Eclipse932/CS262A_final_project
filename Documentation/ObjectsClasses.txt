@@ -52,6 +52,7 @@ ListOfStringsAsTheArgumentToPRWTransaction
 	write <variable name> <memory address to be written to>
 	add <variable name sum> <variable name addend> <variable name addend>
 	addc <variable name sum> <variable name> <integer constant addend>
+	wait <integer time to sleep in milliseconds>
 
 
 Transaction -M 

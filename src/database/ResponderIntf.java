@@ -23,7 +23,7 @@ import java.util.Set;
 
 public interface ResponderIntf extends Remote {
 
-	public String PRWTransaction(List<String> Actions) throws RemoteException;
+	public String PRWTransaction(List<String> Actions) throws RemoteException, BadTransactionRequestException;
 	
 	//added by Jane; we need a method to get reference to the leader replica(s) from the remote registry
 	//public Set<Replica> getLeaderReplica();
