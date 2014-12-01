@@ -253,13 +253,24 @@ If( y == read lock and table has write lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
-	Put y in lock table
+		Put y in lock table
 		WakeNextLock(heap)
 	If( z older than y)
 		Return
-If( y == write lock and table has any access mode lock z)
+If( y == write lock and table has write lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
-	Put y in lock table
+		Put y in lock table
 		return
+ 	if (z older than y)
+ 		return
+ if (y == write lock and all locks in lock table are read locks)
+ 	if y is older than any lock in the lock table
+ 		kill the transactions which hold the lock
+ 		remove y from heap
+ 		put y in lock table
+ 		return
+ 	else 
+ 		return
+ 		
