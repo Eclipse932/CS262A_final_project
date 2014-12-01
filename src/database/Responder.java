@@ -85,22 +85,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.exit(1);
 		}
 
-		// Register this Responder
-		boolean registrationStatus = false;
-		try {
-			registrationStatus = terraTestRemoteRegistry.registerNetworkName(
-					"//" + myIP + "/" + myRemoteName, myRemoteName);
-		} catch (RemoteException e) {
-			System.out.println("Unable to register " + myRemoteName);
-			e.printStackTrace();
-			System.exit(1);
-		}
-		if (registrationStatus == false) {
-			System.out.println("Error, RemoteName:" + myRemoteName
-					+ " has already been taken");
-			System.exit(1);
-		}
-
 		// Use the remoteRegistry to lookup the leader's networkname
 		String leaderNetworkName = null;
 		boolean firstIteration = true;
@@ -131,6 +115,23 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		} catch (Exception e) {
 			System.out.println("Unable to acquire the leader's remote object");
 			System.out.println(e);
+			System.exit(1);
+		}
+		
+		// Register this Responder
+		// Note that this must be done last, only after the Responder server is ready to field requests.
+		boolean registrationStatus = false;
+		try {
+			registrationStatus = terraTestRemoteRegistry.registerNetworkName(
+					"//" + myIP + "/" + myRemoteName, myRemoteName);
+		} catch (RemoteException e) {
+			System.out.println("Unable to register " + myRemoteName);
+			e.printStackTrace();
+			System.exit(1);
+		}
+		if (registrationStatus == false) {
+			System.out.println("Error, RemoteName:" + myRemoteName
+					+ " has already been taken");
 			System.exit(1);
 		}
 
