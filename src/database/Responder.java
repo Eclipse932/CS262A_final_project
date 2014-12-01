@@ -60,7 +60,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println(r);
 			System.exit(1);
 		}
-		// Bind this object's instance to the local name on the local RMI server
+		// Bind this object's instance to the local name on the local RMI registry
 		try {
 			Naming.rebind("//" + myIP + "/" + myRemoteName, me);
 		} catch (Exception e) {
@@ -118,7 +118,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.exit(1);
 		}
 		
-		// Register this Responder
+		// Register this Responder with the RemoteRegistry
 		// Note that this must be done last, only after the Responder server is ready to field requests.
 		boolean registrationStatus = false;
 		try {
