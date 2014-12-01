@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.LinkedList;
 
-public class Replica extends UnicastRemoteObject{
+public class Replica extends UnicastRemoteObject implements ReplicaIntf{
 	String RMIRegistryAddress;
 	boolean isLeader;
 	int startOfKeyRange;

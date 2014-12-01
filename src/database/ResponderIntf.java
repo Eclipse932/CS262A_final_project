@@ -26,5 +26,5 @@ public interface ResponderIntf extends Remote {
 	public String PRWTransaction(List<String> Actions) throws RemoteException;
 	
 	//added by Jane; we need a method to get reference to the leader replica(s) from the remote registry
-	public Set<Replica> getLeaderReplica();
+	//public Set<Replica> getLeaderReplica();
 }
