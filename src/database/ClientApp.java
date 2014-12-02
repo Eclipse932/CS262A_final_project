@@ -31,11 +31,13 @@ public class ClientApp {
 		String TERRATEST = "128.32.48.222";
 
 		try {
-			RemoteRegistryIntf RR = (RemoteRegistryIntf)Naming.lookup("//" + TERRATEST + "/RemoteRegistry");
-			RR.getNetworkName(RemoteObjectName)
-			obj = (ResponderIntf) Naming.lookup("//localhost/Responder");
-			commandReturn = obj.PRWTransaction(commands);
-			System.out.println(commandReturn);
+			RemoteRegistryIntf RRI = (RemoteRegistryIntf)Naming.lookup("//" + TERRATEST + "/RemoteRegistry");
+			RRI.registerNetworkName("//128.32.14.28/Responder0", "Responder0");
+			String NN = RRI.getNetworkName(responderName);
+			//obj = (ResponderIntf) Naming.lookup(NN);
+			//commandReturn = obj.PRWTransaction(commands);
+			
+			System.out.println(NN);
 		} catch (RemoteException e) {
 			System.out.println("Error, unable to startup.");
 		}catch (Exception e) {
@@ -43,16 +45,15 @@ public class ClientApp {
 			fail("Exception in testAddTransaction");
 		} 
 		
-		assertTrue(commandReturn.equals("commit") || commandReturn.equals("abort"));
+		//assertTrue(commandReturn.equals("commit") || commandReturn.equals("abort"));
 	}
 	public static void main(String[]args){
+		String argsTemp = "Responder0";
 		try {
-			getInput();
+			getInput(argsTemp);
 		} catch (MalformedURLException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		getInput(args[0]);
 	}
 }
