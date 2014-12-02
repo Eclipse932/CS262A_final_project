@@ -19,3 +19,7 @@
 /BadTransactionRequestException.class
 /TrueTime.class
 /TTinterval.class
+/ClientApp.class
+/Transaction.class
+/TransactionHeart.class
+/TransactionIdNamer.class
