@@ -6,6 +6,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -24,35 +25,32 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		super();
 	}
 
-	public synchronized ReplicaIntf getLeader(){
+	public synchronized ReplicaIntf getLeader() {
 		return this.leader;
 	}
-	
+
 	private synchronized void setLeader(ReplicaIntf newLeader) {
 		this.leader = newLeader;
 	}
-	
-	private String processActions(List<String> actions, Transaction meTransaction) throws BadTransactionRequestException {
-		
-HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 
-		
-		
+	private String processActions(List<String> actions,
+			Transaction meTransaction) throws BadTransactionRequestException{
+
+		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
+		ArrayList<Integer[]> writeBufferQueue = new ArrayList<Integer[]>();
+
 		if (actions == null) {
 			BadTransactionRequestException b = new BadTransactionRequestException(
 					"Null list of arguments");
 			throw b;
 		}
-		
-		
-		
-		
+
 		for (String action : actions) {
 
-			if (!meTransaction.isAlive()){
+			if (!meTransaction.isAlive()) {
 				return "abort";
 			}
-			
+
 			// Parse Action
 			String[] elements = action.split(" ");
 			if (elements.length < 1) {
@@ -121,7 +119,13 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 					throw b;
 				}
 
-				String variableName = elements[1];
+				if (!variableTable.containsKey(elements[1])) {
+					BadTransactionRequestException b = new BadTransactionRequestException(
+							"write is trying to access a variable that doesn't exist");
+					throw b;
+				}
+				Integer currentValueOfVariable = variableTable.get(elements[1]);
+
 				Integer memAddr = null;
 				try {
 					memAddr = Integer.parseInt(elements[2]);
@@ -131,7 +135,9 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 					throw b;
 				}
 
-				// TODO Implement what we do with write
+				Integer[] bufferingWrite = { currentValueOfVariable, memAddr };
+				writeBufferQueue.add(bufferingWrite);
+				// Note that this queue is processed at the end of this function
 
 				// add <variable name sum> <variable name addend> <variable name
 				// addend>
@@ -209,15 +215,15 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 							"Argument 1 of wait does not parse as an integer");
 					throw b;
 				}
-				
-				try{
+
+				try {
 					Thread.sleep(waitTime);
-				} catch(InterruptedException i){
+				} catch (InterruptedException i) {
 					BadTransactionRequestException b = new BadTransactionRequestException(
 							"Interrupted Exception caught during Thread.sleep in wait.");
 					throw b;
 				}
-				
+
 				// Invalid command
 			} else {
 				BadTransactionRequestException b = new BadTransactionRequestException(
@@ -226,11 +232,33 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 			}
 
 		}
-	
-		// TODO Implement this
-		return "";
+
+		// Perform buffered Writes
+		HashMap<Integer, Integer> addrToVariableValue = new HashMap<Integer, Integer>();
+		for (Integer[] bufferedWrite : writeBufferQueue) {
+
+			Integer variableValue = bufferedWrite[0];
+			Integer memAddr = bufferedWrite[1];
+			addrToVariableValue.put(memAddr, variableValue);
+		}
+
+		String commitStatus = "";
+		try {
+			leader.RWTcommit(meTransaction.getTransactionID(),
+					meTransaction.getMyLocks(), addrToVariableValue);
+		} catch (RemoteException r) {
+			System.out
+					.println("Remote Exception while trying to commit Transaction "
+							+ meTransaction.getTransactionID());
+			System.out.println("Returning \"abort\"");
+			System.out.println(r);
+			return "abort";
+
+		}
+
+		return commitStatus;
 	}
-	
+
 	// Paxos Read Write Transaction
 	// Returns "commit" if the transaction is succesful and "abort" if the
 	// transaction failed.
@@ -239,32 +267,33 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 	public String PRWTransaction(List<String> actions)
 			throws BadTransactionRequestException, RemoteException {
 
-		//TODO Get this transaction's transactionID
+		// TODO Get this transaction's transactionID
 		Integer myTransactionID = null;
-		Transaction meTransaction = new Transaction(myTransactionID, this, TrueTime.now());
-		
-		//TODO Start a transactionHeart for this transaction
+		Transaction meTransaction = new Transaction(myTransactionID, this,
+				TrueTime.now());
+
+		// TODO Start a transactionHeart for this transaction
 		TransactionHeart myHeart = new TransactionHeart(meTransaction);
 		Thread myHeartThread = new Thread(myHeart);
 		myHeartThread.start();
-		
+
 		String transactionReturnStatus;
-		try{
-			transactionReturnStatus = processActions( actions, meTransaction);
-		} catch (BadTransactionRequestException b){
-			//TODO kill the transactionHeart
+		try {
+			transactionReturnStatus = processActions(actions, meTransaction);
+		} catch (BadTransactionRequestException b) {
+			// TODO kill the transactionHeart
 			throw b;
 		}
 
-		//TODO kill the transactionHeart
-		
+		// TODO kill the transactionHeart
+
 		return transactionReturnStatus;
 	}
 
 	// arg0 = this computer's ip address
 	// arg1 = the remoteName of this Responder process (e.g. Responder6)
 	public static void main(String[] args) {
-		
+
 		if (args.length != 2) {
 			System.out.println("Incorrect number of command line arguments.");
 			System.out.println("Correct form: IPaddress myRemoteName");
@@ -348,7 +377,7 @@ HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 
 		// Use the leader's networkname to get its remote object
 		try {
-			me.setLeader( (ReplicaIntf) Naming.lookup(leaderNetworkName) );
+			me.setLeader((ReplicaIntf) Naming.lookup(leaderNetworkName));
 		} catch (Exception e) {
 			System.out.println("Unable to acquire the leader's remote object");
 			System.out.println(e);
