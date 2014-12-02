@@ -24,23 +24,35 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		super();
 	}
 
-	// Paxos Read Write Transaction
-	// Returns "commit" if the transaction is succesful and "abort" if the
-	// transaction failed.
-	// If the list of actions given to this function is ill formed it throws a
-	// BadTransactionRequestException
-	public String PRWTransaction(List<String> Actions)
-			throws BadTransactionRequestException, RemoteException {
+	public synchronized ReplicaIntf getLeader(){
+		return this.leader;
+	}
+	
+	private synchronized void setLeader(ReplicaIntf newLeader) {
+		this.leader = newLeader;
+	}
+	
+	private String processActions(List<String> actions, Transaction meTransaction) throws BadTransactionRequestException {
+		
+HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 
-		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
-
-		if (Actions == null) {
+		
+		
+		if (actions == null) {
 			BadTransactionRequestException b = new BadTransactionRequestException(
 					"Null list of arguments");
 			throw b;
 		}
-		for (String action : Actions) {
+		
+		
+		
+		
+		for (String action : actions) {
 
+			if (!meTransaction.isAlive()){
+				return "abort";
+			}
+			
 			// Parse Action
 			String[] elements = action.split(" ");
 			if (elements.length < 1) {
@@ -214,9 +226,39 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			}
 
 		}
-
-		// TODO implement this
+	
+		// TODO Implement this
 		return "";
+	}
+	
+	// Paxos Read Write Transaction
+	// Returns "commit" if the transaction is succesful and "abort" if the
+	// transaction failed.
+	// If the list of actions given to this function is ill formed it throws a
+	// BadTransactionRequestException
+	public String PRWTransaction(List<String> actions)
+			throws BadTransactionRequestException, RemoteException {
+
+		//TODO Get this transaction's transactionID
+		Integer myTransactionID = null;
+		Transaction meTransaction = new Transaction(myTransactionID, this, TrueTime.now());
+		
+		//TODO Start a transactionHeart for this transaction
+		TransactionHeart myHeart = new TransactionHeart(meTransaction);
+		Thread myHeartThread = new Thread(myHeart);
+		myHeartThread.start();
+		
+		String transactionReturnStatus;
+		try{
+			transactionReturnStatus = processActions( actions, meTransaction);
+		} catch (BadTransactionRequestException b){
+			//TODO kill the transactionHeart
+			throw b;
+		}
+
+		//TODO kill the transactionHeart
+		
+		return transactionReturnStatus;
 	}
 
 	// arg0 = this computer's ip address
@@ -306,7 +348,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		// Use the leader's networkname to get its remote object
 		try {
-			leader = (ReplicaIntf) Naming.lookup(leaderNetworkName);
+			me.setLeader( (ReplicaIntf) Naming.lookup(leaderNetworkName) );
 		} catch (Exception e) {
 			System.out.println("Unable to acquire the leader's remote object");
 			System.out.println(e);

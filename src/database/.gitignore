@@ -17,3 +17,5 @@
 /RemoteRegistryTestLocal.class
 /ReplicaIntf.class
 /BadTransactionRequestException.class
+/TrueTime.class
+/TTinterval.class

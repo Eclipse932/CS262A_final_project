@@ -42,6 +42,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf{
 		this.leaderSet = leaderSet;
 	}
 	
-	
+	public boolean keepTransactionAlive(List<LeaseLock> locks) throws RemoteException {
+		//TODO implement this method
+		return false;
+	}
 	
 }
