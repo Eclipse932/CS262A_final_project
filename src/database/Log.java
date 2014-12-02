@@ -3,9 +3,10 @@ import java.util.*;
 
 //log should provide a synchronized method interface
 public class Log {
-	protected List<String> commands;
+	static List<String> commands;
 	
-	public boolean Append(String action){
+	public static boolean Append(String action){
+		commands.add(action);
 		return true;
 	}
 }
