@@ -12,23 +12,23 @@ public class Transaction {
 //	e.	Set<Replica> Leaders --- shared with responder and TransactionHeart
 	
 	
-	Integer transactionID = null;
+	Long transactionID = null;
 	ArrayList<LeaseLock> myLocks = new ArrayList<LeaseLock>();
 	boolean alive = true;
 	Responder myResponder;
 	TTinterval myBirthDate;
 			
-	public Transaction(Integer transactionIDinput, Responder myResponder, TTinterval birthdate){
+	public Transaction(Long transactionIDinput, Responder myResponder, TTinterval birthdate){
 		this.transactionID = transactionIDinput;
 		this.myResponder = myResponder;
 		this.myBirthDate = birthdate;
 	}
 
-	public synchronized Integer getTransactionID() {
+	public synchronized Long getTransactionID() {
 		return transactionID;
 	}
 
-	public synchronized void setTransactionID(Integer transactionID) {
+	public synchronized void setTransactionID(Long transactionID) {
 		this.transactionID = transactionID;
 	}
 
