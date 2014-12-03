@@ -10,8 +10,6 @@ import java.util.LinkedList;
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
 	boolean isLeader;
-	int startOfKeyRange;
-	int endOfKeyRange;
 	String name;
 
 	Log dataLog;
@@ -21,14 +19,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	LockTable lockTable;
 	List<LeaseLock> committingWrites;
 
-	public Replica(String RMIRegistryAddress, boolean isLeader,
-			int startOfKeyRange, int endOfKeyRange, String name)
+	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
 			throws RemoteException {
 		super();
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
-		this.startOfKeyRange = startOfKeyRange;
-		this.endOfKeyRange = endOfKeyRange;
 		this.name = name;
 		this.lockTable = new LockTable();
 		this.committingWrites = new LinkedList<LeaseLock>();
