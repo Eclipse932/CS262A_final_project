@@ -205,9 +205,6 @@ PaxosKVstore -M
 -------------------------
 Psuedocode for Locks
 -------------------------
-
-x is the LeaseLock.
-
 Replica:
 
 RMI blocking method getReplicaLock
