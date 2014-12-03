@@ -95,8 +95,8 @@ Replica J
 	static field
 	Duration leaseLockInterval = 10 milliseconds
 2.	Methods
-	a.	Boolean keepTransactionAlive(List<Locks> locks) -J
-	b.	getReplicaLock(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method -J
+	a.	Instant keepTransactionAlive(List<Locks> locks) -J a null return value means we fail to extend the lock lease
+	b.	Instant getReplicaLock(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method -J
 	c.	RWTread( List<String> Keys) -M
 	d.	RWTcommit(Time commitTimestamp, Integer transactionID, List<String> actions) -M
 
@@ -135,7 +135,7 @@ LockTable J
 2.	Methods
 	a.	Synchronized getTableLock(LeaseLock lock)
 	b.	Synchronized releaseTableLocks(List<LeaseLock> locks)
-	c.	Synchronized extendLease(List<LeaseLock> locks)
+	c.	Instant Synchronized extendLease(List<LeaseLock> locks)
 3.	Comments
 	a.	Wound wait is addressed inside the call to getTableLocks: if a lock is already held, check the dependencies and potentially kill a younger process.
 	b.	In the implementation of getTableLocks use monitors and make a condition variable for every lock that is currently held. Add to “dependencies”. 

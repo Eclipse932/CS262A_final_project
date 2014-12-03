@@ -2,6 +2,7 @@ package database;
 
 import java.rmi.RemoteException;
 import java.util.List;
+import java.time.Instant;
 
 public class TransactionHeart implements Runnable {
 
@@ -31,10 +32,11 @@ public class TransactionHeart implements Runnable {
 
 			ReplicaIntf leader = myPairedTransaction.myResponder.getLeader();
 
-			boolean renewStatus = false;
+			Instant newLeaseEnd = null;
 			try {
-				renewStatus = leader.keepTransactionAlive(myPairedTransaction
+				newLeaseEnd = leader.keepTransactionAlive(myPairedTransaction
 						.getMyLocks());
+				//TODO change the expirationTime in lock in Transaction
 			} catch (RemoteException r) {
 				System.out
 						.println("Remote Exception in transactionHeart in thread "
@@ -45,7 +47,7 @@ public class TransactionHeart implements Runnable {
 				myPairedTransaction.setAlive(false);
 			}
 			
-			if(renewStatus == false) {
+			if(newLeaseEnd == null) {
 				myPairedTransaction.setAlive(false);
 			}
 

@@ -16,13 +16,13 @@ public class LockTable {
 		this.waitingLocks = new HashMap<Integer, PriorityQueue<LockAndCondition>>();
 	}
 	
-	synchronized boolean extendLockLeases(List<LeaseLock> locks) {
-		boolean result = true;
+	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
+		Instant newLeaseEnd = null; 
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
-				return false;
+				return null;
 			}else {
 				boolean isFound = false;
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
@@ -31,10 +31,10 @@ public class LockTable {
 						
 					}
 				}
-				if (!isFound) return false;
+				if (!isFound) return null;
 			}
 		}
-		return result;
+		return null;
 	}
 	
 }

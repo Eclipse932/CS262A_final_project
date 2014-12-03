@@ -46,7 +46,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.leader = leader;
 	}
 
-	public boolean keepTransactionAlive(List<LeaseLock> locks)
+	public Instant keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
 		return lockTable.extendLockLeases(locks);
 	}
