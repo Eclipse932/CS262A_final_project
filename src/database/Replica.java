@@ -13,7 +13,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String name;
 
 	Log dataLog;
-	Replica leaderSet;
+	Replica leader;
 
 	Thread leaseKiller;
 	LockTable lockTable;
@@ -37,8 +37,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.dataLog = dataLog;
 	}
 
-	public void setLeaderSet(Replica leaderSet) {
-		this.leaderSet = leaderSet;
+	public void setLeaderSet(Replica leader) {
+		this.leader = leader;
 	}
 
 	public boolean keepTransactionAlive(List<LeaseLock> locks)
@@ -52,5 +52,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		// TODO implement this method
 		return "abort";
 	}
+	
+	
+	
+	
 
 }

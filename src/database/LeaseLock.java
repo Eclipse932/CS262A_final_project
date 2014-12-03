@@ -11,7 +11,7 @@ public class LeaseLock {
 	Instant expirationTime;
 	int lockedKey;
 	
-	public LeaseLock(long ownerTransactionID, AccessMode mode, Instant expirationTime, int lockedKey) {
+	public LeaseLock(Long ownerTransactionID, AccessMode mode, Instant expirationTime, int lockedKey) {
 		this.ownerTransactionID = ownerTransactionID;
 		this.mode = mode;
 		this.expirationTime = expirationTime;

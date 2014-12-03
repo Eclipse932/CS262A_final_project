@@ -5,7 +5,7 @@ public class LockAndCondition implements Comparable {
 	Object leaseLockCondition;
 	Long transactionBirthDate;
 	
-	public LockAndCondition(LeaseLock leaseLock, Object leaseLockCondition, long transactionBirthDate) {
+	public LockAndCondition(LeaseLock leaseLock, Object leaseLockCondition, Long transactionBirthDate) {
 		this.leaseLock = leaseLock;
 		this.leaseLockCondition = leaseLockCondition;
 		this.transactionBirthDate = transactionBirthDate;
