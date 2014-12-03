@@ -70,9 +70,9 @@ Transaction -M
 TransactionHeart -M
 1.	Fields
 	a.	String RMIRegistryAddress
-	b.	List<Locks> myLocks ----- structure shared with Transaction
+	b.	List<LeaseLock> myLocks ----- structure shared with Transaction
 	c.	Boolean alive ----- shared with Transaction
-	d.	Set<Replica> Leaders --- shared with responder and Transaction
+	d.	Replica leader --- shared with responder and Transaction
 2.	Methods
 3.	Comments
 	a.	If a transaction misses the fact it’s been killed this isn’t a problem with correctness. It just might do unnecessary work.
@@ -91,6 +91,9 @@ Replica J
 	h.	Thread LeaseKiller
 	i.	List<Locks> committingWrites --- shared with the WriteWorkers and LeaseKiller
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
+	
+	static field
+	Duration leaseLockInterval = 10 milliseconds
 2.	Methods
 	a.	Boolean keepTransactionAlive(List<Locks> locks) -J
 	b.	getReplicaLock(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method -J

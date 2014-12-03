@@ -2,9 +2,11 @@ package database;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
+import java.time.Duration;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
@@ -17,6 +19,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	Thread leaseKiller;
 	LockTable lockTable;
 	List<LeaseLock> committingWrites;
+	
+	// the lock lease interval is 10 milliseconds across replicas.
+	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(10);
 
 	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
 			throws RemoteException {
