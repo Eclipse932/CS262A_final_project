@@ -130,9 +130,9 @@ LockTable J
 	c.	HashMap<TransactionID, startTime> birthdates 
 	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
-	a.	Synchronized getTableLocks(LeaseLock lock)
-	b.	Synchronized releaseTableLocks(LeaseLock lock)
-	c.	Synchronized extendLease(LeaseLock lock)
+	a.	Synchronized getTableLock(LeaseLock lock)
+	b.	Synchronized releaseTableLocks(List<LeaseLock> locks)
+	c.	Synchronized extendLease(List<LeaseLock> locks)
 3.	Comments
 	a.	Wound wait is addressed inside the call to getTableLocks: if a lock is already held, check the dependencies and potentially kill a younger process.
 	b.	In the implementation of getTableLocks use monitors and make a condition variable for every lock that is currently held. Add to “dependencies”. 
