@@ -22,7 +22,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	List<LeaseLock> committingWrites;
 	
 	// the lock lease interval is 10 milliseconds across replicas.
-	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(10);
+	static Duration LOCK_LEASE_INTERVAL = Duration.ofSeconds(10);
 
 	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
 			throws RemoteException {
@@ -46,7 +46,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.leader = leader;
 	}
 
-	public boolean keepTransactionAlive(List<LeaseLock> locks)
+	public Instant keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
 		return lockTable.extendLockLeases(locks);
 	}
