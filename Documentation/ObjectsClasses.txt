@@ -85,7 +85,8 @@ Replica J
 	c.  String name;
 	==================================================The above fields are configured when a new replica is started up==============================
 	a.	Log DataLog --- shared with WriteWorker, ReadWorker, and Replica
-	c.	Set<Replica> Leaders --- we need a way to find the set of leader replicas
+	c.	Replica Leader --- we need a way to find the leader replica
+	========== the leader also needs to know all non-leader replicas ===============
 	
 	d.	ThreadPool WriteWorkers
 	e.	ThreadPool ReadWorkers
@@ -97,7 +98,7 @@ Replica J
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 	a.	Boolean keepTransactionAlive(List<Locks> locks)
-	b.	getReplicaLocks(LeaseLock lock, Integer transactionID) --- if we find a dependency we initiate wound wait in this method
+	b.	getReplicaLocks(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method
 	c.	RWTread( List<String> Keys)
 	d.	RWTcommit(Time commitTimestamp, Integer transactionID, List<String> actions)
 	e.	Private killTransaction(Integer transactionID)
@@ -127,7 +128,7 @@ Lock J  -- the class is called LeaseLock in the project to avoid with Java Lock 
 LeaseKiller J
 1.	Fields
 	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the lockMap and possibly the waitingMap, 
-	so I decide to just let the leaseKiller go through the two maps
+	so I decide to just let the leaseKiller go through the lockMap
 	b.	List<Locks> committingWrites --- shared with the WriteWorker through Replica commitWrites field
 	c.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
@@ -138,13 +139,13 @@ LeaseKiller J
 
 LockTable J
 1.	Fields
-	a.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
-	c.	Map<TransactionID, startTime> birthdates 
-	b.	TreeMap<Integer, Heap<LockandCondition>> waitingLocks
+	a.	Map<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
+	c.	HashMap<TransactionID, startTime> birthdates 
+	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
-	a.	Synchronized getTableLocks(List<Locks>, Integer transactionID)
-	b.	Synchronized releaseTableLocks(List<Locks>, Integer transactionID)
-	c.	Synchronized extendLease(List<Locks> Locks)
+	a.	Synchronized getTableLocks(LeaseLock lock)
+	b.	Synchronized releaseTableLocks(LeaseLock lock)
+	c.	Synchronized extendLease(LeaseLock lock)
 3.	Comments
 	a.	Wound wait is addressed inside the call to getTableLocks: if a lock is already held, check the dependencies and potentially kill a younger process.
 	b.	In the implementation of getTableLocks use monitors and make a condition variable for every lock that is currently held. Add to “dependencies”. 
@@ -155,8 +156,7 @@ LockTable J
 
 LockWorker J
 1.	Fields
-	a.	TreeMap<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
-	b.	
+	a.	LockTable lockTable ---- shared with LeaseKiller, Replica
 2.	Methods
 3.	Comment
 	a.	Responsible for serving the calls to getLocks from the receiver and calling getTableLocks from the LockTable
