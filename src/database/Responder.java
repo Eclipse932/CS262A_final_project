@@ -115,8 +115,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				//Also the expiration time for the lock created here is given as null and must
 				//be set by the leader.
 				LeaseLock lockForRead = new LeaseLock(meTransaction.getTransactionID(), AccessMode.READ, null, memAddr);
+				Instant leaseLockExpiration = null;
 				try {
-					leader.getReplicaLock(lockForRead);
+					leaseLockExpiration = leader.getReplicaLock(lockForRead);
 				} catch (RemoteException r){
 					System.out
 					.println("Remote Exception while trying to acquire LeaseLock in"
@@ -125,6 +126,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					System.out.println(r);
 					return "abort";
 				}
+				
+				//Add this lock to the transaction's list of locks.
+				lockForRead.expirationTime = leaseLockExpiration;
+				ArrayList<LeaseLock> listTheLock = new ArrayList<LeaseLock>();
+				listTheLock.add(lockForRead);
+				meTransaction.addLocks(listTheLock);
 				
 				//Get the value from the database and associate it with the variable
 				//Note that I don't require that this variable already be declared
@@ -167,10 +174,11 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 							"Argument 2 of write does not parse as an integer");
 					throw b;
 				}
-
+				
 				Integer[] bufferingWrite = { currentValueOfVariable, memAddr };
 				writeBufferQueue.add(bufferingWrite);
-				// Note that this queue is processed at the end of this function
+				// Note that we acquire write locks and process
+				// this queue at the end of this function
 
 				// add <variable name sum> <variable name addend> <variable name
 				// addend>
@@ -266,15 +274,39 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		}
 
-		// Perform buffered Writes
+		// We don't want to acquire a write lock multiple times for the same value.
+		
+		// Perform buffered Writes and acquire locks for writes
 		HashMap<Integer, Integer> addrToVariableValue = new HashMap<Integer, Integer>();
 		for (Integer[] bufferedWrite : writeBufferQueue) {
-
 			Integer variableValue = bufferedWrite[0];
 			Integer memAddr = bufferedWrite[1];
 			addrToVariableValue.put(memAddr, variableValue);
+			//Note that doing puts in order through the queue will correctly overwrite older values
+			//if multiple writes attempted to write the same memory address
 		}
 
+		
+		// Acquire write locks for these memory addresses and add them to the transaction
+		for(Integer lockKey : addrToVariableValue.keySet()){
+			LeaseLock ll = new LeaseLock(meTransaction.getTransactionID(), AccessMode.WRITE, null, lockKey);
+			Instant expirationTime = null;
+			try {
+				expirationTime = leader.getReplicaLock(ll);
+			} catch (RemoteException r){
+				System.out
+				.println("Remote Exception while trying to acquire Write lock in Transaction "
+						+ meTransaction.getTransactionID());
+				System.out.println("Returning \"abort\"");
+				System.out.println(r);
+				return "abort";
+			}
+			ll.expirationTime = expirationTime;
+			ArrayList<LeaseLock> addThisLockList = new ArrayList<LeaseLock>();
+			addThisLockList.add(ll);
+			meTransaction.addLocks(addThisLockList);
+		}
+		
 		String commitStatus = "";
 		try {
 			leader.RWTcommit(meTransaction.getTransactionID(),
@@ -286,14 +318,13 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println("Returning \"abort\"");
 			System.out.println(r);
 			return "abort";
-
 		}
-
+		
 		return commitStatus;
 	}
 
 	// Paxos Read Write Transaction
-	// Returns "commit" if the transaction is succesful and "abort" if the
+	// Returns "commit" if the transaction is successful and "abort" if the
 	// transaction failed.
 	// If the list of actions given to this function is ill formed it throws a
 	// BadTransactionRequestException

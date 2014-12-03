@@ -45,6 +45,9 @@ public class TransactionHeart implements Runnable {
 				myPairedTransaction.setAlive(false);
 			}
 			
+			//TODO use the Instant returned by the extendLease method to update the lease expirationtimes.
+			//If that value is null, that means the extend lease operation failed.
+			
 			if(renewStatus == false) {
 				myPairedTransaction.setAlive(false);
 			}
