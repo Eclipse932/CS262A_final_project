@@ -1,13 +1,11 @@
 package database;
 
-import java.util.concurrent.locks.Condition;
-
 public class LockAndCondition implements Comparable {
 	LeaseLock leaseLock;
-	Condition leaseLockCondition;
+	Object leaseLockCondition;
 	Long transactionBirthDate;
 	
-	public LockAndCondition(LeaseLock leaseLock, Condition leaseLockCondition, long transactionBirthDate) {
+	public LockAndCondition(LeaseLock leaseLock, Object leaseLockCondition, long transactionBirthDate) {
 		this.leaseLock = leaseLock;
 		this.leaseLockCondition = leaseLockCondition;
 		this.transactionBirthDate = transactionBirthDate;
