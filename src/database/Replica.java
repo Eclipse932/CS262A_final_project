@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
 import java.time.Duration;
+import java.time.Instant;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
@@ -58,10 +59,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
-	public boolean getReplicaLock(LeaseLock lock) throws RemoteException {
+	public Instant getReplicaLock(LeaseLock lock) throws RemoteException {
 		// TODO implement this method
 		
-		return false;
+		return null;
 	}
 		
 	public Integer RWTread( Integer databaseKey) throws RemoteException	{
