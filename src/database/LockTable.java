@@ -28,13 +28,19 @@ public class LockTable {
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equals(lock)) {
 						isFound = true;
-						
+						if (newLeaseEnd == null) {
+							//here we're being sloppy and not using TrueTime
+							newLeaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL);
+						}
+						sameKeyLock.expirationTime = newLeaseEnd;
 					}
 				}
 				if (!isFound) return null;
 			}
 		}
-		return null;
+		return newLeaseEnd;
 	}
+	
+	
 	
 }

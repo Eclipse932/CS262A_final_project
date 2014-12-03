@@ -133,7 +133,6 @@ LockTable J
 	c.	HashMap<TransactionID, startTime> birthdates 
 	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
-	a.	Synchronized getTableLock(LeaseLock lock)
 	b.	Synchronized releaseTableLocks(List<LeaseLock> locks)
 	c.	Instant Synchronized extendLease(List<LeaseLock> locks)
 3.	Comments
@@ -223,8 +222,6 @@ Runnable LockWorker {
 		}
 	}
 }
-
-
 
 Synchronized RemoveLock(x)
 	Remove lock from lock table
