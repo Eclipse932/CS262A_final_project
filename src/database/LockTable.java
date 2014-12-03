@@ -19,12 +19,19 @@ public class LockTable {
 	synchronized boolean extendLockLeases(List<LeaseLock> locks) {
 		boolean result = true;
 		for (LeaseLock lock: locks) {
-			List<LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
+			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
 				return false;
 			}else {
-				
+				boolean isFound = false;
+				for (LeaseLock sameKeyLock: sameKeyLocks) {
+					if (sameKeyLock.equals(lock)) {
+						isFound = true;
+						
+					}
+				}
+				if (!isFound) return false;
 			}
 		}
 		return result;

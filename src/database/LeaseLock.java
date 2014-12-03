@@ -27,5 +27,13 @@ public class LeaseLock {
 		}
 	}
 	
+	
+	
+	 public int hashCode() { 
+		 	int hash = 1;
+		    return (int) ((hash * 31 + ownerTransactionID) * 31 + lockedKey) * 31 + mode.hashCode();
+		   
+	 }
+
 
 }
