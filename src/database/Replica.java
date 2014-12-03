@@ -56,11 +56,16 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		// TODO implement this method
 		return "abort";
 	}
-	
-	
-	
-	
 
-
-	
+	// A true return value indicates that the locks have been acquired, false
+	// means that this transaction must abort
+	public boolean getReplicaLock(LeaseLock lock) throws RemoteException {
+		// TODO implement this method
+		return false;
+	}
+		
+	public Integer RWTread( Integer databaseKey) throws RemoteException	{
+		// TODO implement this method
+		return null;
+	}
 }

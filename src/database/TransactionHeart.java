@@ -40,7 +40,7 @@ public class TransactionHeart implements Runnable {
 						.println("Remote Exception in transactionHeart in thread "
 								+ Thread.currentThread());
 				System.out
-						.println("Setting alive in associated thread to false");
+						.println("Setting alive in associated transaction to false");
 				System.out.println(r);
 				myPairedTransaction.setAlive(false);
 			}
@@ -50,7 +50,7 @@ public class TransactionHeart implements Runnable {
 			}
 
 		}
-
+		return;
 	}
 
 }
