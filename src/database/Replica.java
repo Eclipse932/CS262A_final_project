@@ -47,10 +47,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return false;
 	}
 
-	public String RWTcommit(Integer transactionID, List<LeaseLock> heldLocks,
+	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
 			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
 		// TODO implement this method
 		return "abort";
 	}
 
+
+	
 }

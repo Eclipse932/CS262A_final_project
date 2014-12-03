@@ -268,7 +268,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			throws BadTransactionRequestException, RemoteException {
 
 		// TODO Get this transaction's transactionID
-		Integer myTransactionID = null;
+		Long myTransactionID = null;
 		Transaction meTransaction = new Transaction(myTransactionID, this,
 				TrueTime.now());
 
