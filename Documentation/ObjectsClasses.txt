@@ -88,32 +88,19 @@ Replica J
 	c.	Replica Leader --- we need a way to find the leader replica
 	========== the leader also needs to know all non-leader replicas ===============
 	
-	d.	ThreadPool WriteWorkers
-	e.	ThreadPool ReadWorkers
-	f.	ThreadPool LockWorkers
-	g.	ThreadPool LeaseDoctors
-	=======Seems there is no way to control the number of threads RMI forked off for each kind of job; so I will not include the four above fields in Replica====
 	h.	Thread LeaseKiller
 	i.	List<Locks> committingWrites --- shared with the WriteWorkers and LeaseKiller
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
-	a.	Boolean keepTransactionAlive(List<Locks> locks)
-	b.	getReplicaLocks(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method
-	c.	RWTread( List<String> Keys)
-	d.	RWTcommit(Time commitTimestamp, Integer transactionID, List<String> actions)
-	e.	Private killTransaction(Integer transactionID)
-	f.	Private startWriteWorker(List<String> Actions)
-	g.	Private startReadWorker(List<String> Actions)
+	a.	Boolean keepTransactionAlive(List<Locks> locks) -J
+	b.	getReplicaLock(LeaseLock lock) --- if we find a dependency we initiate wound wait in this method -J
+	c.	RWTread( List<String> Keys) -M
+	d.	RWTcommit(Time commitTimestamp, Integer transactionID, List<String> actions) -M
+
 3.	Comment
 	a.	KeeptransactionAlive only extends an existing lease on a lock. It will not make a new one.
 	b.	We only need a single LeaseKiller for the entire lock table
 
-LeaseDoctor J
-1.	Fields
-	a.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
-2.	Methods
-3.	Comments
-	a.	Calls extendLease in locktable
 
 Lock J  -- the class is called LeaseLock in the project to avoid with Java Lock class; I choose long to represent Time class
 4.	Fields
@@ -240,7 +227,7 @@ Synchronized RemoveLock(x)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
-WakeNextLock(heap)
+Synchronized WakeNextLock(heap)
 	y = LockandCondition at top of heap
 If( lock table.rangefory == empty )
 	Remove y from heap
