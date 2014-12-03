@@ -16,6 +16,18 @@ public class LockTable {
 		this.waitingLocks = new HashMap<Integer, PriorityQueue<LockAndCondition>>();
 	}
 	
-	
+	synchronized boolean extendLockLeases(List<LeaseLock> locks) {
+		boolean result = true;
+		for (LeaseLock lock: locks) {
+			List<LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
+			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
+			if (sameKeyLocks == null) {
+				return false;
+			}else {
+				
+			}
+		}
+		return result;
+	}
 	
 }

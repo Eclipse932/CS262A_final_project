@@ -18,4 +18,14 @@ public class LeaseLock {
 		this.lockedKey = lockedKey;
 	}
 	
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof LeaseLock)) {
+			return false;
+		} else {
+			LeaseLock lock = (LeaseLock) obj;
+			return ownerTransactionID.equals(lock.ownerTransactionID) && (mode == lock.mode) && (lockedKey == lock.lockedKey);
+		}
+	}
+	
+
 }

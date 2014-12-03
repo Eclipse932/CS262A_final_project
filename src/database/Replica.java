@@ -41,14 +41,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.dataLog = dataLog;
 	}
 
-	public void setLeaderSet(Replica leader) {
+	public void setLeader(Replica leader) {
 		this.leader = leader;
 	}
 
 	public boolean keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
-		// TODO implement this method
-		return false;
+		return lockTable.extendLockLeases(locks);
 	}
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
@@ -61,6 +60,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// means that this transaction must abort
 	public boolean getReplicaLock(LeaseLock lock) throws RemoteException {
 		// TODO implement this method
+		
 		return false;
 	}
 		
