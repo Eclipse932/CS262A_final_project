@@ -13,7 +13,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String name;
 
 	Log dataLog;
-	Set<Replica> leaderSet;
+	Replica leaderSet;
 
 	Thread leaseKiller;
 	LockTable lockTable;
@@ -37,7 +37,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.dataLog = dataLog;
 	}
 
-	public void setLeaderSet(Set<Replica> leaderSet) {
+	public void setLeaderSet(Replica leaderSet) {
 		this.leaderSet = leaderSet;
 	}
 

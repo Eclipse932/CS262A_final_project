@@ -6,7 +6,7 @@ enum AccessMode {
 	READ,WRITE
 }
 public class LeaseLock {
-	long ownerTransactionID;
+	Long ownerTransactionID;
 	AccessMode mode;
 	Instant expirationTime;
 	int lockedKey;

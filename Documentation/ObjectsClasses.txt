@@ -97,7 +97,7 @@ Replica J
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 	a.	Boolean keepTransactionAlive(List<Locks> locks)
-	b.	getReplicaLocks( List<Locks>, Integer transactionID) --- if we find a dependency we initiate wound wait in this method
+	b.	getReplicaLocks(LeaseLock lock, Integer transactionID) --- if we find a dependency we initiate wound wait in this method
 	c.	RWTread( List<String> Keys)
 	d.	RWTcommit(Time commitTimestamp, Integer transactionID, List<String> actions)
 	e.	Private killTransaction(Integer transactionID)
@@ -244,14 +244,14 @@ WakeNextLock(heap)
 	y = LockandCondition at top of heap
 If( lock table.rangefory == empty )
 	Remove y from heap
-	Put y.l in lock table
+	Put y.l in lock table; set the expirationTime in y.l
 	synchronized(c) {
 		y.o.notify()
 	}
 	WakeNextLock(heap)
 If( y == read lock and all locks in lock table are read locks)
 	Remove y from heap
-	Put y.l in lock table
+	Put y.l in lock table; set the expirationTime in y.l
 	synchronized(c) {
 		y.o.notify()
 	}
@@ -260,7 +260,7 @@ If( y == read lock and table has write lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
-		Put y in lock table
+		Put y.l in lock table; set the expirationTime in y.l
 		synchronized(c) {
 			y.o.notify()
 		}
@@ -271,7 +271,7 @@ If( y == write lock and table has write lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
-		Put y in lock table
+		Put y.l in lock table; set the expirationTime in y.l
 		synchronized(c) {
 			y.o.notify()
 		}
@@ -282,7 +282,7 @@ If( y == write lock and table has write lock z)
  	if y is older than any lock in the lock table
  		kill the transactions which hold the lock
  		remove y from heap
- 		put y in lock table
+ 		put y.l in lock table; set the expirationTime in y.l
  		synchronized(c) {
 			y.o.notify()
 		}
