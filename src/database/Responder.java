@@ -6,6 +6,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 	private static ReplicaIntf leader;
+	private static TransactionIdNamerIntf TIdNamer;
+	//TODO figure out where this server is running
 
 	public Responder() throws RemoteException {
 		super();
@@ -108,7 +111,37 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					throw b;
 				}
 
-				// TODO Implement what we do with read
+				//Attempt to acquire lock. Note that this may take a long time
+				//Also the expiration time for the lock created here is given as null and must
+				//be set by the leader.
+				LeaseLock lockForRead = new LeaseLock(meTransaction.getTransactionID(), AccessMode.READ, null, memAddr);
+				try {
+					leader.getReplicaLock(lockForRead);
+				} catch (RemoteException r){
+					System.out
+					.println("Remote Exception while trying to acquire LeaseLock in"
+							+ meTransaction.getTransactionID());
+					System.out.println("Returning \"abort\"");
+					System.out.println(r);
+					return "abort";
+				}
+				
+				//Get the value from the database and associate it with the variable
+				//Note that I don't require that this variable already be declared
+				Integer valueAtMemAddr = null;
+				try {
+					valueAtMemAddr = leader.RWTread(memAddr);
+				} catch (RemoteException r){
+					System.out
+					.println("Remote Exception while trying to read " + memAddr + " in"
+							+ meTransaction.getTransactionID());
+					System.out.println("Returning \"abort\"");
+					System.out.println(r);
+					return "abort";
+				}
+				
+				variableTable.put(variableName, valueAtMemAddr);
+				
 
 				// write <variable name> <memory address to be written to>
 			} else if (command.equals("write")) {
@@ -267,12 +300,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	public String PRWTransaction(List<String> actions)
 			throws BadTransactionRequestException, RemoteException {
 
-		// TODO Get this transaction's transactionID
-		Long myTransactionID = null;
+		// Get this transaction's GUID transactionID
+		Long myTransactionID = TIdNamer.createNewGUID() ;
 		Transaction meTransaction = new Transaction(myTransactionID, this,
 				TrueTime.now());
 
-		// TODO Start a transactionHeart for this transaction
+		// Start a transactionHeart for this transaction
 		TransactionHeart myHeart = new TransactionHeart(meTransaction);
 		Thread myHeartThread = new Thread(myHeart);
 		myHeartThread.start();
@@ -281,11 +314,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		try {
 			transactionReturnStatus = processActions(actions, meTransaction);
 		} catch (BadTransactionRequestException b) {
-			// TODO kill the transactionHeart
+			meTransaction.setAlive(false);
 			throw b;
 		}
 
-		// TODO kill the transactionHeart
+		//Kills the transactionHeart
+		meTransaction.setAlive(false);
 
 		return transactionReturnStatus;
 	}

@@ -1,16 +1,21 @@
 package database;
 
-public class TransactionIdNamer {
+import java.rmi.server.UnicastRemoteObject;
+import java.rmi.RemoteException;
+
+public class TransactionIdNamer extends UnicastRemoteObject implements TransactionIdNamerIntf{
 	static TransactionIdNamer TIDN;
 	static long lastGUID;
-	static long count;
+	static Long count;
 	
-	public TransactionIdNamer(){
+	public TransactionIdNamer() throws RemoteException{
 		TIDN = this;
-		this.count = 0;
+		this.count = new Long(0);
 	}
 	
-	protected synchronized long createNewGUID(){
+	//Matt: Note that this needs to be synchronized but it can't be synchronized in the interface
+	// I'm not sure if this is a problem...
+	public synchronized Long createNewGUID() throws RemoteException{
 		count++;
 		return count;
 	}
