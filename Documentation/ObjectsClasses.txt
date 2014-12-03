@@ -82,10 +82,8 @@ Replica J
 1.	Fields
 	a.	String RMIRegistryAddress
 	b.	Boolean isLeader
-	c.  Integer startOfKeyRange;
-	d.  Integer endOfKeyRange;
-	e.  String name;
-	====================================================The above fields are configured when a new replica is started up==============================
+	c.  String name;
+	==================================================The above fields are configured when a new replica is started up==============================
 	a.	Log DataLog --- shared with WriteWorker, ReadWorker, and Replica
 	c.	Set<Replica> Leaders --- we need a way to find the set of leader replicas
 	
@@ -166,7 +164,7 @@ LockWorker J
 LockandCondition implements Comparable-J
 1.	Field
 	a.   LeaseLock l
-	b.   Condition c
+	b.   Object o
 	c.  Time TransactionBirthdate -- use Long object to represent the time
 2.	Methods
 3. comments
@@ -208,53 +206,67 @@ PaxosKVstore -M
 Psuedocode for Locks
 -------------------------
 
-x is the lock.
+x is the LeaseLock.
 
-Synchronized GetReplicaLock(x)
-	javaLock = new javaLock()
-	replicaCondition = lock.newCondition()
-	LockandCondition lc = new LockandCondition(x, replicaCondition)
-	Add lc to appropriate heap
-	priorityQueueManagerConditionVariable.signal()
-	replicaCondition.await()
-	
+Replica:
 
-Thread rungetTableLock = new Thread(lc)
+RMI blocking method getReplicaLock
 
-lc is a lock and condition
+getReplicaLock(leaseLock) {
+	Object o = new Object();
+	synchronized(o) {
+		LockandCondition lc = new LockandCondtion(leaseLock, o)
+		Thread t = new Thread(new LockWorker(lc, lockTable))
+		t.start()
+		o.wait()
+	}
 
-Synchronized runforqueuemanager(){
-	while (true)
-		WakeNextLock(heap)
-		thisconditionvariable.await()
+}
+
+Runnable LockWorker {
+	LockandCondition lc;
+	LockTable lockTable;
+
+	public void run {
+		synchronized(lc.o) {
+			sychronized on (lockTable) {
+				add lc to the heap
+				wakeNextLock(heap)
+			}
+		}
+	}
 }
 
 
-Synchronized GetTableLock(LockandCondition lc)
-	WakeNextLock(heap)
-	return
 
 Synchronized RemoveLock(x)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
-Synchronized WakeNextLock(heap)
+WakeNextLock(heap)
 	y = LockandCondition at top of heap
 If( lock table.rangefory == empty )
 	Remove y from heap
 	Put y.l in lock table
-	y.c.signal()
+	synchronized(c) {
+		y.o.notify()
+	}
 	WakeNextLock(heap)
 If( y == read lock and all locks in lock table are read locks)
 	Remove y from heap
 	Put y.l in lock table
-	y.c.signal()
+	synchronized(c) {
+		y.o.notify()
+	}
 	WakeNextLock(heap)
 If( y == read lock and table has write lock z)
 	If( y older than z)
 		Kill z
 		Remove y from heap
 		Put y in lock table
+		synchronized(c) {
+			y.o.notify()
+		}
 		WakeNextLock(heap)
 	If( z older than y)
 		Return
@@ -263,6 +275,9 @@ If( y == write lock and table has write lock z)
 		Kill z
 		Remove y from heap
 		Put y in lock table
+		synchronized(c) {
+			y.o.notify()
+		}
 		return
  	if (z older than y)
  		return
@@ -271,6 +286,9 @@ If( y == write lock and table has write lock z)
  		kill the transactions which hold the lock
  		remove y from heap
  		put y in lock table
+ 		synchronized(c) {
+			y.o.notify()
+		}
  		return
  	else 
  		return
