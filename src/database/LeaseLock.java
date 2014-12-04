@@ -18,6 +18,14 @@ public class LeaseLock {
 		this.lockedKey = lockedKey;
 	}
 	
+	public synchronized Instant getExpirationTime() {
+		return expirationTime;
+	}
+
+	public synchronized void setExpirationTime(Instant expirationTime) {
+		this.expirationTime = expirationTime;
+	}
+
 	public boolean equals(Object obj) {
 		if (obj == null || !(obj instanceof LeaseLock)) {
 			return false;
