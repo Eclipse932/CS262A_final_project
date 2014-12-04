@@ -18,6 +18,30 @@ public class LeaseLock {
 		this.lockedKey = lockedKey;
 	}
 	
+	public synchronized Long getOwnerTransactionID() {
+		return ownerTransactionID;
+	}
+
+	public synchronized void setOwnerTransactionID(Long ownerTransactionID) {
+		this.ownerTransactionID = ownerTransactionID;
+	}
+
+	public synchronized AccessMode getMode() {
+		return mode;
+	}
+
+	public synchronized void setMode(AccessMode mode) {
+		this.mode = mode;
+	}
+
+	public synchronized int getLockedKey() {
+		return lockedKey;
+	}
+
+	public synchronized void setLockedKey(int lockedKey) {
+		this.lockedKey = lockedKey;
+	}
+
 	public synchronized Instant getExpirationTime() {
 		return expirationTime;
 	}

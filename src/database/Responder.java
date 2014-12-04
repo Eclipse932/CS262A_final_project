@@ -22,7 +22,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 	private static ReplicaIntf leader;
 	private static TransactionIdNamerIntf TIdNamer;
-	//TODO figure out where this server is running
+
+	// TODO figure out where this server is running
 
 	public Responder() throws RemoteException {
 		super();
@@ -37,10 +38,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	}
 
 	private String processActions(List<String> actions,
-			Transaction meTransaction) throws BadTransactionRequestException{
+			Transaction meTransaction) throws BadTransactionRequestException {
 
 		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
-		ArrayList<Integer[]> writeBufferQueue = new ArrayList<Integer[]>();
+		HashMap<Integer, Integer> writeCache = new HashMap<Integer, Integer>();
 
 		if (actions == null) {
 			BadTransactionRequestException b = new BadTransactionRequestException(
@@ -111,44 +112,103 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					throw b;
 				}
 
-				//Attempt to acquire lock. Note that this may take a long time
-				//Also the expiration time for the lock created here is given as null and must
-				//be set by the leader.
-				LeaseLock lockForRead = new LeaseLock(meTransaction.getTransactionID(), AccessMode.READ, null, memAddr);
-				Instant leaseLockExpiration = null;
-				try {
-					leaseLockExpiration = leader.getReplicaLock(lockForRead);
-				} catch (RemoteException | InterruptedException r){
+				// Use this to check if we already have a read or write lock on
+				// the value
+				HashMap<Integer, LeaseLock> copiedLocks = meTransaction
+						.deepCopyMyLocks();
+
+				// First check if we already have this memAddr in the
+				// writeBuffer
+				if (writeCache.containsKey(memAddr)) {
+					variableTable.put(variableName, writeCache.get(memAddr));
+				} else if (!copiedLocks.containsKey(memAddr)) {
+
+					// Attempt to acquire lock. Note that this may take a long
+					// time
+					// Also the expiration time for the lock created here is
+					// given as null and must
+					// be set by the leader.
+					LeaseLock lockForRead = new LeaseLock(
+							meTransaction.getTransactionID(), AccessMode.READ,
+							null, memAddr);
+					Instant leaseLockExpiration = null;
+					try {
+						leaseLockExpiration = leader
+								.getReplicaLock(lockForRead);
+					} catch (RemoteException | InterruptedException r) {
+						System.out
+								.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
+										+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					// Add this lock to the transaction's list of locks.
+					lockForRead.setExpirationTime(leaseLockExpiration);
+					ArrayList<LeaseLock> listTheLock = new ArrayList<LeaseLock>();
+					listTheLock.add(lockForRead);
+					meTransaction.addLocks(listTheLock);
+
+					// Get the value from the database and associate it with the
+					// variable
+					// Note that I don't require that this variable already be
+					// declared
+					Integer valueAtMemAddr = null;
+					try {
+						valueAtMemAddr = leader.RWTread(memAddr);
+					} catch (RemoteException r) {
+						System.out
+								.println("Remote Exception while trying to read "
+										+ memAddr
+										+ " in"
+										+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					variableTable.put(variableName, valueAtMemAddr);
+				} else if (copiedLocks.containsKey(memAddr)
+						&& copiedLocks.get(memAddr).getMode() == AccessMode.READ) {
+
+					// Don't attempt to acquire a new lock.
+					// Still read from database because we might have lost the
+					// old value
+
+					// Get the value from the database and associate it with the
+					// variable
+					// Note that I don't require that this variable already be
+					// declared
+					Integer valueAtMemAddr = null;
+					try {
+						valueAtMemAddr = leader.RWTread(memAddr);
+					} catch (RemoteException r) {
+						System.out
+								.println("Remote Exception while trying to read "
+										+ memAddr
+										+ " in"
+										+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					variableTable.put(variableName, valueAtMemAddr);
+
+				} else if ((copiedLocks.containsKey(memAddr) && copiedLocks
+						.get(memAddr).getMode() == AccessMode.WRITE)) {
+					// This should not happen because in this implementation
+					// write locks are only acquired just before commit
 					System.out
-					.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
-							+ meTransaction.getTransactionID());
-					System.out.println("Returning \"abort\"");
-					System.out.println(r);
+							.println("Error: A read operation in transaction "
+									+ meTransaction.getTransactionID()
+									+ " is attempting to read after we already acquired"
+									+ " a write lock on that memory address ");
+					System.out.println("Aborting");
 					return "abort";
+
 				}
-				
-				//Add this lock to the transaction's list of locks.
-				lockForRead.expirationTime = leaseLockExpiration;
-				ArrayList<LeaseLock> listTheLock = new ArrayList<LeaseLock>();
-				listTheLock.add(lockForRead);
-				meTransaction.addLocks(listTheLock);
-				
-				//Get the value from the database and associate it with the variable
-				//Note that I don't require that this variable already be declared
-				Integer valueAtMemAddr = null;
-				try {
-					valueAtMemAddr = leader.RWTread(memAddr);
-				} catch (RemoteException r){
-					System.out
-					.println("Remote Exception while trying to read " + memAddr + " in"
-							+ meTransaction.getTransactionID());
-					System.out.println("Returning \"abort\"");
-					System.out.println(r);
-					return "abort";
-				}
-				
-				variableTable.put(variableName, valueAtMemAddr);
-				
 
 				// write <variable name> <memory address to be written to>
 			} else if (command.equals("write")) {
@@ -174,11 +234,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 							"Argument 2 of write does not parse as an integer");
 					throw b;
 				}
-				
-				Integer[] bufferingWrite = { currentValueOfVariable, memAddr };
-				writeBufferQueue.add(bufferingWrite);
-				// Note that we acquire write locks and process
-				// this queue at the end of this function
+
+				writeCache.put(memAddr, currentValueOfVariable);
+				// Note that we acquire write locks and commit this structure
+				// at the end of the transaction.
 
 				// add <variable name sum> <variable name addend> <variable name
 				// addend>
@@ -274,43 +333,53 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		}
 
-		// We don't want to acquire a write lock multiple times for the same value.
-		
-		// Perform buffered Writes and acquire locks for writes
-		HashMap<Integer, Integer> addrToVariableValue = new HashMap<Integer, Integer>();
-		for (Integer[] bufferedWrite : writeBufferQueue) {
-			Integer variableValue = bufferedWrite[0];
-			Integer memAddr = bufferedWrite[1];
-			addrToVariableValue.put(memAddr, variableValue);
-			//Note that doing puts in order through the queue will correctly overwrite older values
-			//if multiple writes attempted to write the same memory address
-		}
 
-		
-		// Acquire write locks for these memory addresses and add them to the transaction
-		for(Integer lockKey : addrToVariableValue.keySet()){
-			LeaseLock ll = new LeaseLock(meTransaction.getTransactionID(), AccessMode.WRITE, null, lockKey);
-			Instant expirationTime = null;
-			try {
-				expirationTime = leader.getReplicaLock(ll);
-			} catch (RemoteException | InterruptedException r){
-				System.out
-				.println("Remote Exception or Interruped Exception while trying to acquire Write lock in Transaction "
-						+ meTransaction.getTransactionID());
-				System.out.println("Returning \"abort\"");
-				System.out.println(r);
-				return "abort";
+		// Unecessary line, but this name is more informative for the role of
+		// the map from here on
+		HashMap<Integer, Integer> addrToVariableValue = writeCache;
+
+		// Acquire write locks for these memory addresses and add them to the
+		// transaction
+		ArrayList<LeaseLock> addThisLockList = new ArrayList<LeaseLock>();
+		HashMap<Integer, LeaseLock> localCopyOfLocks = meTransaction
+				.deepCopyMyLocks();
+
+		for (Integer lockKey : addrToVariableValue.keySet()) {
+			if (localCopyOfLocks.containsKey(lockKey)
+					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.READ) {
+				// Upgrade the lock to a read lock
+				meTransaction.upgradeReadLockToWrite(lockKey);
+			} else if (localCopyOfLocks.containsKey(lockKey)
+					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.WRITE) {
+				// do nothing, most certainly don't get a new lock
+				// Although it's hard to think of a case where this would happen
+			} else if (!localCopyOfLocks.containsKey(lockKey)) {
+				LeaseLock ll = new LeaseLock(meTransaction.getTransactionID(),
+						AccessMode.WRITE, null, lockKey);
+				Instant expirationTime = null;
+				try {
+					expirationTime = leader.getReplicaLock(ll);
+				} catch (RemoteException | InterruptedException r) {
+					System.out
+							.println("Remote Exception or Interrupted Exception while trying to acquire Write lock in Transaction "
+									+ meTransaction.getTransactionID());
+					System.out.println("Returning \"abort\"");
+					System.out.println(r);
+					return "abort";
+				}
+				ll.setExpirationTime(expirationTime);
+				addThisLockList.add(ll);
 			}
-			ll.expirationTime = expirationTime;
-			ArrayList<LeaseLock> addThisLockList = new ArrayList<LeaseLock>();
-			addThisLockList.add(ll);
-			meTransaction.addLocks(addThisLockList);
 		}
+		meTransaction.addLocks(addThisLockList);
+
+		// TODO check to make sure I didn't miss anything in this method
+		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(meTransaction.deepCopyMyLocks().values());
 		
 		String commitStatus = "";
 		try {
 			leader.RWTcommit(meTransaction.getTransactionID(),
-					meTransaction.getMyLocks(), addrToVariableValue);
+					listOfLocks, addrToVariableValue);
 		} catch (RemoteException r) {
 			System.out
 					.println("Remote Exception while trying to commit Transaction "
@@ -319,7 +388,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println(r);
 			return "abort";
 		}
-		
+
 		return commitStatus;
 	}
 
@@ -332,7 +401,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			throws BadTransactionRequestException, RemoteException {
 
 		// Get this transaction's GUID transactionID
-		Long myTransactionID = TIdNamer.createNewGUID() ;
+		Long myTransactionID = TIdNamer.createNewGUID();
 		Transaction meTransaction = new Transaction(myTransactionID, this,
 				TrueTime.now());
 
@@ -349,7 +418,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			throw b;
 		}
 
-		//Kills the transactionHeart
+		// Kills the transactionHeart
 		meTransaction.setAlive(false);
 
 		return transactionReturnStatus;

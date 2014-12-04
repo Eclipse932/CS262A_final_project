@@ -1,8 +1,10 @@
 package database;
 
 import java.rmi.RemoteException;
+import java.util.HashMap;
 import java.util.List;
 import java.time.Instant;
+import java.util.ArrayList;
 
 public class TransactionHeart implements Runnable {
 
@@ -33,10 +35,12 @@ public class TransactionHeart implements Runnable {
 			ReplicaIntf leader = myPairedTransaction.myResponder.getLeader();
 
 			Instant newLeaseEnd = null;
+			HashMap<Integer, LeaseLock> currentlyHeldLocksMap = myPairedTransaction
+					.deepCopyMyLocks();
+			ArrayList<LeaseLock> currentlyHeldLocks = new ArrayList<LeaseLock>(currentlyHeldLocksMap.values());
+			
 			try {
-				newLeaseEnd = leader.keepTransactionAlive(myPairedTransaction
-						.getMyLocks());
-				//TODO change the expirationTime in lock in Transaction
+				newLeaseEnd = leader.keepTransactionAlive(currentlyHeldLocks);
 			} catch (RemoteException r) {
 				System.out
 						.println("Remote Exception in transactionHeart in thread "
@@ -46,13 +50,27 @@ public class TransactionHeart implements Runnable {
 				System.out.println(r);
 				myPairedTransaction.setAlive(false);
 			}
-			//TODO use the Instant returned by the extendLease method to update the lease expirationtimes.
-			//If that value is null, that means the extend lease operation failed.
-
+			
+			//If the leader returns a value of null, that means the extend lease operation failed.
 			if(newLeaseEnd == null) {
 				myPairedTransaction.setAlive(false);
+				break;
 			}
-
+			
+			//Use the Instant returned by the extendLease method to update the lease expirationtimes.
+			boolean willBreak = false;
+			for(LeaseLock newTimeLock : currentlyHeldLocks ){
+				try{
+					myPairedTransaction.changeLockExp(newTimeLock.getLockedKey(), newLeaseEnd);
+				} catch (BadTransactionRequestException b){
+					//Abort
+					System.out.println(b);
+					System.out.println("aborting transaction ");
+					myPairedTransaction.setAlive(false);
+					willBreak = true;
+				}
+			}
+			if(willBreak) break;
 		}
 		return;
 	}
