@@ -70,6 +70,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
+			if (transactionBirthDate == null) return null;
 			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
 			LockWorker lockWorker = new LockWorker(lockTable, lc);
 			Thread lockWorkerThread = new Thread(lockWorker);

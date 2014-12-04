@@ -18,6 +18,9 @@ public class LockTable {
 	
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
 		Instant newLeaseEnd = null; 
+		if (locks.size() == 0 || transactionBirthdates.get(((LeaseLock) locks.get(0)).ownerTransactionID) == null){
+			return null;
+		}
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
@@ -60,5 +63,8 @@ public class LockTable {
 		return ;
 	}
 	
+	 synchronized boolean validateTableLock(List<LeaseLock> locks) {
+		return false;
+	}
 	
 }

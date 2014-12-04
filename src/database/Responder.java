@@ -376,19 +376,20 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		// TODO check to make sure I didn't miss anything in this method
 		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(meTransaction.deepCopyMyLocks().values());
 		
-		String commitStatus = null;
-		try {
-			commitStatus = leader.RWTcommit(meTransaction.getTransactionID(),
-					listOfLocks, addrToVariableValue);
-		} catch (RemoteException r) {
-			System.out
-					.println("Remote Exception while trying to commit Transaction "
-							+ meTransaction.getTransactionID());
-			System.out.println("Returning \"abort\"");
-			System.out.println(r);
-			return "abort";
+		String commitStatus = "abort";
+		if (meTransaction.isAlive()) {
+			try {
+				commitStatus = leader.RWTcommit(meTransaction.getTransactionID(),
+						listOfLocks, addrToVariableValue);
+			} catch (RemoteException r) {
+				System.out
+				.println("Remote Exception while trying to commit Transaction "
+						+ meTransaction.getTransactionID());
+				System.out.println("Returning \"abort\"");
+				System.out.println(r);
+				return "abort";
+			}
 		}
-
 		return commitStatus;
 	}
 
