@@ -201,7 +201,7 @@ RMI blocking method getReplicaLock
 getReplicaLock(leaseLock) {
 	Object o = new Object();
 	synchronized(o) {
-		LockandCondition lc = new LockandCondtion(leaseLock, o)
+		LockandCondition lc = new LockandCondtion(leaseLock, o, transactionBirthdate);
 		Thread t = new Thread(new LockWorker(lc, lockTable))
 		t.start()
 		o.wait()
