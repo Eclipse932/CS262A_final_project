@@ -59,12 +59,15 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException {
+	public Instant getReplicaLock(LeaseLock lock) throws RemoteException, InterruptedException {
 		// TODO implement this method
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
 			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
+			Thread lockWorkerThread = new Thread(new LockWorker(lockTable));
+			lockWorkerThread.start();
+			leaseLockCondition.wait();
 		}
 		return null;
 	}

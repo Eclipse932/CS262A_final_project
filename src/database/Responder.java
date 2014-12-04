@@ -118,9 +118,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				Instant leaseLockExpiration = null;
 				try {
 					leaseLockExpiration = leader.getReplicaLock(lockForRead);
-				} catch (RemoteException r){
+				} catch (RemoteException | InterruptedException r){
 					System.out
-					.println("Remote Exception while trying to acquire LeaseLock in"
+					.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
 							+ meTransaction.getTransactionID());
 					System.out.println("Returning \"abort\"");
 					System.out.println(r);
@@ -293,9 +293,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			Instant expirationTime = null;
 			try {
 				expirationTime = leader.getReplicaLock(ll);
-			} catch (RemoteException r){
+			} catch (RemoteException | InterruptedException r){
 				System.out
-				.println("Remote Exception while trying to acquire Write lock in Transaction "
+				.println("Remote Exception or Interruped Exception while trying to acquire Write lock in Transaction "
 						+ meTransaction.getTransactionID());
 				System.out.println("Returning \"abort\"");
 				System.out.println(r);
