@@ -41,6 +41,8 @@ public class LockTable {
 		return newLeaseEnd;
 	}
 	
-	
+	synchronized Instant getTransactionBirthDate(LeaseLock lock) {
+		return transactionBirthdates.get(lock.ownerTransactionID);
+	}
 	
 }

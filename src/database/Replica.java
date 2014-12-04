@@ -63,8 +63,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		// TODO implement this method
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
-			
-			LockAndCondition = new LockAndCondition(lock, leaseLockCondition, )
+			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
+			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
 		}
 		return null;
 	}

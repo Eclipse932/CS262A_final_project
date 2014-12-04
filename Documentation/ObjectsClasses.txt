@@ -266,7 +266,9 @@ If( y == write lock and table has write lock z)
  	if (z older than y)
  		return
  if (y == write lock and all locks in lock table are read locks)
- 	if y is older than any lock in the lock table
+ 	if y is older than any lock in the lock table 
+ 		(in case where there is a lock x with the same transactionID and lockedKey in the table as y;
+ 		 y needs to be older than all other locks)
  		kill the transactions which hold the lock
  		remove y from heap
  		put y.l in lock table; set the expirationTime in y.l
