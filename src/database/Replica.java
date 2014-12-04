@@ -62,6 +62,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		*/
 		return "abort";
 	}
+	
+	public Instant beginTransaction(long transactionID) throws RemoteException{
+		//TODO implement this
+		
+		return null;
+	}
 
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort

@@ -145,6 +145,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					}
 
 					// Add this lock to the transaction's list of locks.
+					// This must happen AFTER we've acquired the lock in the
+					// leader's lock table
 					lockForRead.setExpirationTime(leaseLockExpiration);
 					ArrayList<LeaseLock> listTheLock = new ArrayList<LeaseLock>();
 					listTheLock.add(lockForRead);
@@ -333,7 +335,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		}
 
-
 		// Unecessary line, but this name is more informative for the role of
 		// the map from here on
 		HashMap<Integer, Integer> addrToVariableValue = writeCache;
@@ -347,8 +348,29 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		for (Integer lockKey : addrToVariableValue.keySet()) {
 			if (localCopyOfLocks.containsKey(lockKey)
 					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.READ) {
-				// Upgrade the lock to a read lock
+
+				// Note that this is a copy, not the actual lock held in this
+				// transaction
+				LeaseLock ll = localCopyOfLocks.get(lockKey);
+				ll.setMode(AccessMode.WRITE);
+
+				Instant expirationTime = null;
+				try {
+					expirationTime = leader.getReplicaLock(ll); //upgrade
+				} catch (RemoteException | InterruptedException r) {
+					System.out
+							.println("Remote Exception or Interrupted Exception while trying to acquire (upgrading) Write lock in Transaction "
+									+ meTransaction.getTransactionID());
+					System.out.println("Returning \"abort\"");
+					System.out.println(r);
+					return "abort";
+				}
+				ll.setExpirationTime(expirationTime);
+				
+
+				// Upgrade the lock in this transaction's list to a Write lock
 				meTransaction.upgradeReadLockToWrite(lockKey);
+
 			} else if (localCopyOfLocks.containsKey(lockKey)
 					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.WRITE) {
 				// do nothing, most certainly don't get a new lock
@@ -368,23 +390,27 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					return "abort";
 				}
 				ll.setExpirationTime(expirationTime);
-				addThisLockList.add(ll);
+				addThisLockList.add(ll);  //batch the write locks we'll be getting
 			}
 		}
 		meTransaction.addLocks(addThisLockList);
+		//Add the batched write locks to this transaction's list of locks
+		//Note that this MUST happen after we already acquire the write locks
 
 		// TODO check to make sure I didn't miss anything in this method
-		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(meTransaction.deepCopyMyLocks().values());
-		
+		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(
+				meTransaction.deepCopyMyLocks().values());
+
 		String commitStatus = "abort";
 		if (meTransaction.isAlive()) {
 			try {
-				commitStatus = leader.RWTcommit(meTransaction.getTransactionID(),
-						listOfLocks, addrToVariableValue);
+				commitStatus = leader.RWTcommit(
+						meTransaction.getTransactionID(), listOfLocks,
+						addrToVariableValue);
 			} catch (RemoteException r) {
 				System.out
-				.println("Remote Exception while trying to commit Transaction "
-						+ meTransaction.getTransactionID());
+						.println("Remote Exception while trying to commit Transaction "
+								+ meTransaction.getTransactionID());
 				System.out.println("Returning \"abort\"");
 				System.out.println(r);
 				return "abort";
@@ -403,8 +429,18 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		// Get this transaction's GUID transactionID
 		Long myTransactionID = TIdNamer.createNewGUID();
+
+		Instant birthdateOnLeader = null;
+
+		try {
+			birthdateOnLeader = leader.beginTransaction(myTransactionID);
+		} catch (RemoteException r) {
+			System.out.println(r);
+			return "abort";
+		}
+
 		Transaction meTransaction = new Transaction(myTransactionID, this,
-				TrueTime.now());
+				birthdateOnLeader);
 
 		// Start a transactionHeart for this transaction
 		TransactionHeart myHeart = new TransactionHeart(meTransaction);

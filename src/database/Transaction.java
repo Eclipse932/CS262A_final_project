@@ -17,13 +17,13 @@ public class Transaction {
 	HashMap<Integer, LeaseLock> myLocks = new HashMap<Integer, LeaseLock>();
 	boolean alive = true;
 	Responder myResponder;
-	TTinterval myBirthDate;
+	Instant myBirthDateOnLeader;
 
 	public Transaction(Long transactionIDinput, Responder myResponder,
-			TTinterval birthdate) {
+			Instant birthdateOnLeader) {
 		this.transactionID = transactionIDinput;
 		this.myResponder = myResponder;
-		this.myBirthDate = birthdate;
+		this.myBirthDateOnLeader = birthdateOnLeader;
 	}
 
 	public synchronized Long getTransactionID() {
