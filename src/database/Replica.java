@@ -61,7 +61,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// means that this transaction must abort
 	public Instant getReplicaLock(LeaseLock lock) throws RemoteException {
 		// TODO implement this method
-		
+		Object leaseLockCondition = new Object();
+		synchronized (leaseLockCondition) {
+			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
+			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
+		}
 		return null;
 	}
 		

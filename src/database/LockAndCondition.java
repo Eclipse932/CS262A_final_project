@@ -1,11 +1,13 @@
 package database;
 
+import java.time.Instant;
+
 public class LockAndCondition implements Comparable {
 	LeaseLock leaseLock;
 	Object leaseLockCondition;
-	Long transactionBirthDate;
+	Instant transactionBirthDate;
 	
-	public LockAndCondition(LeaseLock leaseLock, Object leaseLockCondition, Long transactionBirthDate) {
+	public LockAndCondition(LeaseLock leaseLock, Object leaseLockCondition, Instant transactionBirthDate) {
 		this.leaseLock = leaseLock;
 		this.leaseLockCondition = leaseLockCondition;
 		this.transactionBirthDate = transactionBirthDate;
@@ -13,7 +15,14 @@ public class LockAndCondition implements Comparable {
 	
 	public int compareTo(Object otherLC) {
 		LockAndCondition other = (LockAndCondition) otherLC;
-		return this.transactionBirthDate.compareTo(other.transactionBirthDate);
+		
+		int result = this.transactionBirthDate.compareTo(other.transactionBirthDate);
+		if (result != 0) {
+			return result;
+		} else {
+			//break ties on TransactionID
+			return this.leaseLock.ownerTransactionID.compareTo(other.leaseLock.ownerTransactionID);
+		}
 		
 	}
 

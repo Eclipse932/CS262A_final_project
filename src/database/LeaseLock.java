@@ -55,7 +55,7 @@ public class LeaseLock {
 			return false;
 		} else {
 			LeaseLock lock = (LeaseLock) obj;
-			return ownerTransactionID.equals(lock.ownerTransactionID) && (mode == lock.mode) && (lockedKey == lock.lockedKey);
+			return ownerTransactionID.equals(lock.ownerTransactionID) && (lockedKey == lock.lockedKey);
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class LeaseLock {
 	
 	 public int hashCode() { 
 		 	int hash = 1;
-		    return (int) ((hash * 31 + ownerTransactionID) * 31 + lockedKey) * 31 + mode.hashCode();
+		    return (int) ((hash * 31 + ownerTransactionID) * 31 + lockedKey);
 		   
 	 }
 
