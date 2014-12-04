@@ -146,6 +146,8 @@ LockTable J
 LockWorker J
 1.	Fields
 	a.	LockTable lockTable ---- shared with LeaseKiller, Replica
+	b. LockAndCondition lc
+	c. Instant lockLeaseEnd -- the placeholder for return value of getReplicaLock
 2.	Methods
 3.	Comment
 	a.	Responsible for serving the calls to getLocks from the receiver and calling getTableLocks from the LockTable
@@ -192,7 +194,7 @@ PaxosKVstore -M
 
 
 -------------------------
-Psuedocode for Locks
+Pseudocode for Locks
 -------------------------
 Replica:
 

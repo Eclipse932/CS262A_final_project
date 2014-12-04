@@ -45,6 +45,6 @@ public class LockTable {
 		return transactionBirthdates.get(lock.ownerTransactionID);
 	}
 	
-	synchronized 
+	
 	
 }

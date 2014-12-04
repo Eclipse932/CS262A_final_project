@@ -65,11 +65,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
 			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
-			Thread lockWorkerThread = new Thread(new LockWorker(lockTable));
+			LockWorker lockWorker = new LockWorker(lockTable, lc);
+			Thread lockWorkerThread = new Thread(lockWorker);
 			lockWorkerThread.start();
 			leaseLockCondition.wait();
+			return lockWorker.lockLeaseEnd;
 		}
-		return null;
 	}
 		
 	public Integer RWTread( Integer databaseKey) throws RemoteException	{
