@@ -50,6 +50,10 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 		}
 	}
 
+	public synchronized void reset() throws RemoteException{
+		this.RemoteNameToNetworkName.clear();
+	}
+	
 	public synchronized String getNetworkName(String RemoteObjectName)
 			throws RemoteException {
 		return RemoteNameToNetworkName.get(RemoteObjectName);

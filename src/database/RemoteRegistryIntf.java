@@ -16,4 +16,6 @@ public interface RemoteRegistryIntf extends Remote {
 	public boolean hasRemoteName(String RemoteObjectName)
 			throws RemoteException;
 	
+	public void reset() throws RemoteException;
+	
 }
