@@ -6,9 +6,9 @@ import java.util.List;
 import java.time.Instant;
 
 public class LockTable {
-	private Map<Integer, List<LeaseLock>> lockMap;
-	private Map<Long, Instant> transactionBirthdates;
-	private Map<Integer, PriorityQueue<LockAndCondition>> waitingLocks;
+	Map<Integer, List<LeaseLock>> lockMap;
+	Map<Long, Instant> transactionBirthdates;
+	Map<Integer, PriorityQueue<LockAndCondition>> waitingLocks;
 	
 	public LockTable() {
 		this.lockMap = new HashMap<Integer, List<LeaseLock>>();
@@ -22,6 +22,7 @@ public class LockTable {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
+				transactionBirthdates.remove(lock.ownerTransactionID);
 				return null;
 			}else {
 				boolean isFound = false;
@@ -35,7 +36,10 @@ public class LockTable {
 						sameKeyLock.expirationTime = newLeaseEnd;
 					}
 				}
-				if (!isFound) return null;
+				if (!isFound) {
+					transactionBirthdates.remove(lock.ownerTransactionID);
+					return null;
+				}
 			}
 		}
 		return newLeaseEnd;
@@ -45,6 +49,16 @@ public class LockTable {
 		return transactionBirthdates.get(lock.ownerTransactionID);
 	}
 	
+	synchronized void wakeUpNextLock() {
+		
+		return;
+	}
+	
+	synchronized void releaseTableLocks(List<LeaseLock> locks) {
+		
+		//transactionBirthdates.remove(lock.ownerTransactionID);
+		return ;
+	}
 	
 	
 }

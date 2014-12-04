@@ -133,8 +133,10 @@ LockTable J
 	c.	HashMap<TransactionID, startTime> birthdates 
 	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
 2.	Methods
-	b.	Synchronized releaseTableLocks(List<LeaseLock> locks)
+	a.  boolean Synchronized validateTableLocks(List<LeaseLock> locks)
+	b.	void Synchronized releaseTableLocks(List<LeaseLock> locks)
 	c.	Instant Synchronized extendLease(List<LeaseLock> locks)
+	d.  synchronized Instant getTransactionBirthDate(LeaseLock lock)
 3.	Comments
 	a.	Wound wait is addressed inside the call to getTableLocks: if a lock is already held, check the dependencies and potentially kill a younger process.
 	b.	In the implementation of getTableLocks use monitors and make a condition variable for every lock that is currently held. Add to “dependencies”. 
@@ -147,7 +149,6 @@ LockWorker J
 1.	Fields
 	a.	LockTable lockTable ---- shared with LeaseKiller, Replica
 	b. LockAndCondition lc
-	c. Instant lockLeaseEnd -- the placeholder for return value of getReplicaLock
 2.	Methods
 3.	Comment
 	a.	Responsible for serving the calls to getLocks from the receiver and calling getTableLocks from the LockTable
@@ -157,6 +158,7 @@ LockandCondition implements Comparable-J
 	a.   LeaseLock l
 	b.   Object o
 	c.  Time TransactionBirthdate -- use Long object to represent the time
+	d. Instant lockLeaseEnd -- the placeholder for return value of getReplicaLock
 2.	Methods
 3. comments
 	a. should support comparing based on transactionBirthdate field
@@ -217,15 +219,17 @@ Runnable LockWorker {
 
 	public void run {
 		synchronized(lc.o) {
-			sychronized on (lockTable) {
+			synchronized on (lockTable) {
 				add lc to the heap
 				wakeNextLock(heap)
 			}
 		}
 	}
 }
+boolean synchronized validateTableLock(List<LeaseLock> locks)
 
-Synchronized RemoveLock(x)
+
+boolean synchronized ReleaseTableLock(List<LeaseLock> locks)
 	Remove lock from lock table
 	WakeNextLock(heap)
 

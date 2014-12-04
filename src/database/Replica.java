@@ -54,6 +54,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
 			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
 		// TODO implement this method
+		/*commit needs to :
+		 * 1. validate the heldLocks against locks in LockTable, if not all valid, return "abort"; else
+		 * 2. add the LeaseLocks to commitingWrites so that LeaseKiller won't remove locks from lockTable 
+		 * 3. commit through Raft
+		 * 4. release all locks in the lockTable and remove TransactionBirthDate through releaseLocks
+		*/
 		return "abort";
 	}
 
@@ -69,7 +75,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Thread lockWorkerThread = new Thread(lockWorker);
 			lockWorkerThread.start();
 			leaseLockCondition.wait();
-			return lockWorker.lockLeaseEnd;
+			return lc.lockLeaseEnd;
 		}
 	}
 		
