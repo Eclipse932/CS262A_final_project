@@ -42,9 +42,9 @@ public class TransactionIdNamer extends UnicastRemoteObject implements
 		}
 		
 		
-		Responder me = null;
+		TransactionIdNamer me = null;
 		try {
-			me = new Responder();
+			me = new TransactionIdNamer();
 		} catch (RemoteException r) {
 			System.out.println("Unable to start local TransactionIdNamer server");
 			System.out.println(r);
