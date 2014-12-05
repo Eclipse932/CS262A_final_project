@@ -3,6 +3,7 @@ package database;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.Duration;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.LinkedList;
@@ -19,10 +20,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	Thread leaseKiller;
 	LockTable lockTable;
-	List<LeaseLock> committingWrites;
+	Map<Long, List<LeaseLock>> committingWrites;
 	
 	// the lock lease interval is 10 milliseconds across replicas.
-	static Duration LOCK_LEASE_INTERVAL = Duration.ofSeconds(10);
+	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
 	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
 			throws RemoteException {
@@ -30,8 +31,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
 		this.name = name;
-		this.lockTable = new LockTable();
-		this.committingWrites = new LinkedList<LeaseLock>();
+		this.lockTable = new LockTable(committingWrites);
+		this.committingWrites = new HashMap<Long, List<LeaseLock>>();
 		this.leaseKiller = new Thread(new LeaseKiller(lockTable,
 				committingWrites));
 		leaseKiller.start();
@@ -55,18 +56,20 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
 		// TODO implement this method
 		/*commit needs to :
-		 * 1. validate the heldLocks against locks in LockTable, if not all valid, return "abort"; else
-		 * 2. add the LeaseLocks to commitingWrites so that LeaseKiller won't remove locks from lockTable 
-		 * 3. commit through Raft
-		 * 4. release all locks in the lockTable and remove TransactionBirthDate through releaseLocks
+		 * 1. validate the heldLocks against locks in LockTable：
+		 * 	if not all valid, return false and abort; else
+			add the LeaseLocks to committingWrites so that LeaseKiller and wakeUpNextLock won't remove locks from lockTable and return true
+		 * 2. commit through Raft, set transaction status to "commit"
+		 * 3. release all locks in the lockTable, remove TransactionBirthDate and remove the entry in committingWrites through releaseLockss
 		*/
 		return "abort";
 	}
 	
 	public Instant beginTransaction(long transactionID) throws RemoteException{
 		//TODO implement this
-		
-		return null;
+		Instant transactionBirthDate = Instant.now();
+		lockTable.setTransactionBirthDate(transactionID, transactionBirthDate);
+		return transactionBirthDate;
 	}
 
 	// A true return value indicates that the locks have been acquired, false

@@ -9,11 +9,13 @@ public class LockTable {
 	Map<Integer, List<LeaseLock>> lockMap;
 	Map<Long, Instant> transactionBirthdates;
 	Map<Integer, PriorityQueue<LockAndCondition>> waitingLocks;
+	Map<Long, List<LeaseLock>> committingWrites;
 	
-	public LockTable() {
+	public LockTable(Map<Long, List<LeaseLock>> committingWrites) {
 		this.lockMap = new HashMap<Integer, List<LeaseLock>>();
 		this.transactionBirthdates = new HashMap<Long, Instant>();
 		this.waitingLocks = new HashMap<Integer, PriorityQueue<LockAndCondition>>();
+		this.committingWrites = committingWrites;
 	}
 	
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
@@ -25,7 +27,6 @@ public class LockTable {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
-				transactionBirthdates.remove(lock.ownerTransactionID);
 				return null;
 			}else {
 				boolean isFound = false;
@@ -40,7 +41,6 @@ public class LockTable {
 					}
 				}
 				if (!isFound) {
-					transactionBirthdates.remove(lock.ownerTransactionID);
 					return null;
 				}
 			}
@@ -50,6 +50,10 @@ public class LockTable {
 	
 	synchronized Instant getTransactionBirthDate(LeaseLock lock) {
 		return transactionBirthdates.get(lock.ownerTransactionID);
+	}
+	
+	synchronized void setTransactionBirthDate(Long transactionID, Instant transactionBirthDate) {
+		transactionBirthdates.put(transactionID, transactionBirthDate);
 	}
 	
 	synchronized void wakeUpNextLock() {
@@ -63,8 +67,9 @@ public class LockTable {
 		return ;
 	}
 	
-	 synchronized boolean validateTableLock(List<LeaseLock> locks) {
+	 synchronized boolean validateTableLock(List<LeaseLock> locks, Long ownerTransationID) {
 		return false;
 	}
+	 
 	
 }
