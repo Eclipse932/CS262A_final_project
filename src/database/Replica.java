@@ -62,7 +62,15 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		 * 2. commit through Raft, set transaction status to "commit"
 		 * 3. release all locks in the lockTable, remove TransactionBirthDate and remove the entry in committingWrites through releaseLockss
 		*/
-		return "abort";
+		boolean result = lockTable.validateTableLock(heldLocks, transactionID);
+		if (result == false) {
+			return "abort";
+		} else {
+			//committing through Raft protocol
+			lockTable.releaseTableLocks(heldLocks, transactionID);
+			return "abort or commit depending on the result of Raft";
+		}
+		
 	}
 	
 	public Instant beginTransaction(long transactionID) throws RemoteException{

@@ -19,10 +19,13 @@ public class LockTable {
 	}
 	
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
-		Instant newLeaseEnd = null; 
-		if (locks.size() == 0 || transactionBirthdates.get(((LeaseLock) locks.get(0)).ownerTransactionID) == null){
-			return null;
-		}
+		Instant newLeaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL); 
+		if (locks.size() == 0) return newLeaseEnd;
+		Long transactionID = ((LeaseLock) locks.get(0)).ownerTransactionID;
+		//the following check should not be required, but just to be more safe
+		if (committingWrites.containsKey(transactionID)) return newLeaseEnd;
+		//if transactionBirthDate is no longer found, it shows the transaction is already aborted
+		if (transactionBirthdates.get(transactionID)== null) return null;
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
@@ -33,11 +36,8 @@ public class LockTable {
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equals(lock)) {
 						isFound = true;
-						if (newLeaseEnd == null) {
-							//here we're being sloppy and not using TrueTime
-							newLeaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL);
-						}
 						sameKeyLock.expirationTime = newLeaseEnd;
+						break;
 					}
 				}
 				if (!isFound) {
@@ -61,15 +61,60 @@ public class LockTable {
 		return;
 	}
 	
-	synchronized void releaseTableLocks(List<LeaseLock> locks) {
-		
-		//transactionBirthdates.remove(lock.ownerTransactionID);
+	synchronized void releaseTableLocks(List<LeaseLock> locks, Long ownerTransactionID) {
+		transactionBirthdates.remove(ownerTransactionID);
+		for (LeaseLock lock: locks) {
+			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
+			if (sameKeyLocks != null) {
+				for (LeaseLock sameKeyLock: sameKeyLocks) {
+					if (sameKeyLock.equals(lock)) {
+						sameKeyLocks.remove(sameKeyLock);
+						break;
+					}
+				}
+			}
+		}
+		committingWrites.remove(ownerTransactionID);
 		return ;
 	}
 	
-	 synchronized boolean validateTableLock(List<LeaseLock> locks, Long ownerTransationID) {
-		return false;
+	 synchronized boolean validateTableLock(List<LeaseLock> locks, Long ownerTransactionID) {
+		//if transactionBirthDate is no longer found, it shows the transaction is already aborted
+		if (transactionBirthdates.get(ownerTransactionID)== null) {
+			releaseTableLocks(locks, ownerTransactionID);
+			return false;
+		}
+		for (LeaseLock lock: locks) {
+			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
+			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
+			if (sameKeyLocks == null) {
+				releaseTableLocks(locks, ownerTransactionID);
+				return false;
+			}else {
+				boolean isFound = false;
+				for (LeaseLock sameKeyLock: sameKeyLocks) {
+					if (sameKeyLock.equalForValidatingLocks(lock)) {
+						isFound = true;
+						if (sameKeyLock.expirationTime.isBefore(Instant.now())) {
+							releaseTableLocks(locks, ownerTransactionID);
+							return false;
+						}
+						break;
+					}
+				}
+				if (!isFound) {
+					releaseTableLocks(locks, ownerTransactionID);
+					return false;
+				}
+			}
+		}
+		committingWrites.put(ownerTransactionID, locks);
+		return true;
 	}
+	 
+	/* public static void main(String[] args) {
+		
+	 }*/
 	 
 	
 }

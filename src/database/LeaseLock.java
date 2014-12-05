@@ -59,7 +59,14 @@ public class LeaseLock {
 		}
 	}
 	
-	
+	public boolean equalForValidatingLocks(Object obj) {
+		if (obj == null || !(obj instanceof LeaseLock)) {
+			return false;
+		} else {
+			LeaseLock lock = (LeaseLock) obj;
+			return ownerTransactionID.equals(lock.ownerTransactionID) && (lockedKey == lock.lockedKey) && (mode == lock.mode);
+		}
+	}
 	
 	 public int hashCode() { 
 		 	int hash = 1;
