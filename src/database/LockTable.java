@@ -68,14 +68,13 @@ public class LockTable {
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (transactionBirthdates.get(sameKeyLock.ownerTransactionID) == null) {
 						sameKeyLocks.remove(sameKeyLock);
-						wakeUpNextLock(sameKeyLock.lockedKey);
 					}
 					else if (sameKeyLock.expirationTime.isBefore(cleanUpStartTime)) {
 						sameKeyLocks.remove(sameKeyLock);
 						transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
-						wakeUpNextLock(sameKeyLock.lockedKey);
 					}
 				}
+				wakeUpNextLock(sameKeyLocks.get(0).lockedKey);
 			}
 		}
 	}
