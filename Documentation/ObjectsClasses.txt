@@ -89,7 +89,7 @@ Replica J
 	========== the leader also needs to know all non-leader replicas ===============
 	
 	h.	Thread LeaseKiller
-	i.	List<Locks> committingWrites --- shared with the WriteWorkers and LeaseKiller
+	i.	Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 	
 	static field
@@ -119,7 +119,7 @@ LeaseKiller J
 1.	Fields
 	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the lockMap and possibly the waitingMap, 
 	so I decide to just let the leaseKiller go through the lockMap
-	b.	List<Locks> committingWrites --- shared with the WriteWorker through Replica commitWrites field
+	b.	Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
 	c.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 3.	Comment
@@ -132,11 +132,13 @@ LockTable J
 	a.	Map<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
 	c.	HashMap<TransactionID, startTime> birthdates 
 	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
+	d. Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
 2.	Methods
 	a.  boolean Synchronized validateTableLocks(List<LeaseLock> locks)
 	b.	void Synchronized releaseTableLocks(List<LeaseLock> locks)
 	c.	Instant Synchronized extendLease(List<LeaseLock> locks)
 	d.  synchronized Instant getTransactionBirthDate(LeaseLock lock)
+	e.  synchronized setTransactionBirthDate(LeaseLock lock
 3.	Comments
 	a.	Wound wait is addressed inside the call to getTableLocks: if a lock is already held, check the dependencies and potentially kill a younger process.
 	b.	In the implementation of getTableLocks use monitors and make a condition variable for every lock that is currently held. Add to “dependencies”. 
@@ -226,8 +228,6 @@ Runnable LockWorker {
 		}
 	}
 }
-boolean synchronized validateTableLock(List<LeaseLock> locks)
-
 
 boolean synchronized ReleaseTableLock(List<LeaseLock> locks)
 	Remove lock from lock table
