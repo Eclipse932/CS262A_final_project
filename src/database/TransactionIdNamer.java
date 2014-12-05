@@ -10,7 +10,7 @@ public class TransactionIdNamer extends UnicastRemoteObject implements
 	//static TransactionIdNamer TIDN;
 	//static long lastGUID;
 	static Long count;
-	static int objectPortOnTerratest = 1050;
+	static int objectPortOnTerratest = 1049;
 	static String myRemoteName = "TransactionIdNamer";
 	static String myIP = "128.32.48.222"; //terratest
 
