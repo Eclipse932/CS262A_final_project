@@ -4,19 +4,37 @@ import java.time.Instant;
 
 public class TrueTime {
 
+	private static long epsilonNanos = 1000; 
+	// TODO replace this with a value determined from ptpd
+	
 	protected double clockError;
-	public static TTinterval now(){
-		//TODO implement this
-		return null;
+
+	//returns TTinterval: [earliest, latest]
+	public static TTinterval now() {
+		Instant thisMoment = Instant.now();
+		TTinterval retVal = new TTinterval(thisMoment.minusNanos(epsilonNanos),
+				thisMoment.plusNanos(epsilonNanos));
+		return retVal;
 	}
-	
-	public static boolean after( Instant t ){
-		//TODO implement this
-		return false;
+
+	//returns true if t has definitely passed
+	public static boolean after(Instant t) {
+		Instant thisMoment = Instant.now();
+		if (thisMoment.minusNanos(epsilonNanos).isAfter(t)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
-	public static boolean before( Instant t){
-		//TODO implement this
-		return false;
+
+	//returns true if t has definitely not arrived
+	public static boolean before(Instant t) {
+		Instant thisMoment = Instant.now();
+		if (thisMoment.plusNanos(epsilonNanos).isBefore(t)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 }
