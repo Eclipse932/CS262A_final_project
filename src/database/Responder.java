@@ -18,6 +18,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// private ArrayList<TransactionHeart> TransactionHearts
 
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
+	private static String TRANSACTIONIDNAMERIP = "128.32.48.222";
 
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 	private static ReplicaIntf leader;
@@ -554,6 +555,20 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println(e);
 			System.exit(1);
 		}
+		
+		// Acquire the TransactionIdNamer on terratest
+		System.out.println("Trying to contact terratest.eecs.berkeley.edu for TransactionIdNamer");
+		try {
+			TIdNamer = (TransactionIdNamerIntf) Naming.lookup("//"
+					+ TRANSACTIONIDNAMERIP+ "/TransactionIdNamer");
+		} catch (Exception e) {
+			System.out.println("Error, terratest.eecs.berkeley.edu.");
+			System.out
+					.println("Please check to make sure you're connected to the internet.");
+			System.out.println(e);
+			System.exit(1);
+		}
+		
 
 		// Register this Responder with the RemoteRegistry
 		// Note that this must be done last, only after the Responder server is
