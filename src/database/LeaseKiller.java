@@ -1,18 +1,24 @@
 package database;
 
-import java.util.List;
-import java.util.Map;
+import java.time.Duration;
 
 public class LeaseKiller implements Runnable {
 	LockTable lockTable;
-	Map<Long, List<LeaseLock>> committingWrites;
-	public LeaseKiller(LockTable lockTable, Map<Long, List<LeaseLock>>committingWrites) {
+	long cleanUpInterval = 2000;
+	
+	public LeaseKiller(LockTable lockTable) {
 		this.lockTable = lockTable;
-		this.committingWrites = committingWrites;
 	}
 	
 	public void run() {
-		
+		while (true) {
+			try{
+				Thread.sleep(2000);
+			} catch(InterruptedException e) {
+				System.out.println("LeaseKiller was unable to sleep");
+			}
+			lockTable.cleanUpLockTable();
+		}
 	}
 
 }

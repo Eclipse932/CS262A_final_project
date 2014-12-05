@@ -89,7 +89,6 @@ Replica J
 	========== the leader also needs to know all non-leader replicas ===============
 	
 	h.	Thread LeaseKiller
-	i.	Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
 	j.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 	
 	static field
@@ -119,8 +118,7 @@ LeaseKiller J
 1.	Fields
 	//a.	Heap<Locks> expiringHeap -- it actually doesn't save any time because we still need to lock the lockMap and possibly the waitingMap, 
 	so I decide to just let the leaseKiller go through the lockMap
-	b.	Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
-	c.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
+	a.	LockTable myLockTable ---- shared with LeaseKiller, LockWorker, and leaseDoctor 
 2.	Methods
 3.	Comment
 	a.	Responsible for checking to see if leases have expired before of timeout. Will remove lock from lock structure
@@ -132,7 +130,7 @@ LockTable J
 	a.	Map<Integer, List<Lock>> lockMap ---- shared with LeaseKiller, LockWorker
 	c.	HashMap<TransactionID, startTime> birthdates 
 	b.	Map<Integer, Heap<LockandCondition>> waitingLocks
-	d. Map<TransactionID, List<LeaseLocks> committingWrites --- shared with the LockTable and WriteWorker through Replica 
+	d. Map<TransactionID, List<LeaseLocks> committingWrites --- keeping track of the committing writes
 2.	Methods
 	a.  boolean Synchronized validateTableLocks(List<LeaseLock> locks)
 	b.	void Synchronized releaseTableLocks(List<LeaseLock> locks)
@@ -233,8 +231,8 @@ boolean synchronized ReleaseTableLock(List<LeaseLock> locks)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
-Synchronized WakeNextLock(heap)
-	y = LockandCondition at top of heap
+Synchronized WakeNextLock(lockedKey)
+	y = LockandCondition at top of heap of that lockedKey
 If( lock table.rangefory == empty )
 	Remove y from heap
 	Put y.l in lock table; set the expirationTime in y.l

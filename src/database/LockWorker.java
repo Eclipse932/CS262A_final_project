@@ -15,7 +15,7 @@ public class LockWorker implements Runnable{
 					lockTable.waitingLocks.put(leaseLockCondition.leaseLock.lockedKey, waitingQueue);
 				}
 				waitingQueue.add(leaseLockCondition);
-				lockTable.wakeUpNextLock();
+				lockTable.wakeUpNextLock(leaseLockCondition.leaseLock.lockedKey);
 			}
 		}
 	}

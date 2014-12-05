@@ -11,11 +11,11 @@ public class LockTable {
 	Map<Integer, PriorityQueue<LockAndCondition>> waitingLocks;
 	Map<Long, List<LeaseLock>> committingWrites;
 	
-	public LockTable(Map<Long, List<LeaseLock>> committingWrites) {
+	public LockTable() {
 		this.lockMap = new HashMap<Integer, List<LeaseLock>>();
 		this.transactionBirthdates = new HashMap<Long, Instant>();
 		this.waitingLocks = new HashMap<Integer, PriorityQueue<LockAndCondition>>();
-		this.committingWrites = committingWrites;
+		this.committingWrites = new HashMap<Long, List<LeaseLock>>();
 	}
 	
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
@@ -56,9 +56,28 @@ public class LockTable {
 		transactionBirthdates.put(transactionID, transactionBirthDate);
 	}
 	
-	synchronized void wakeUpNextLock() {
-		
+	synchronized void wakeUpNextLock(Integer key) {
+		//TODO
 		return;
+	}
+	
+	synchronized void cleanUpLockTable() {
+		Instant cleanUpStartTime  = Instant.now();
+		for (List<LeaseLock> sameKeyLocks: lockMap.values()) {
+			if (sameKeyLocks != null && sameKeyLocks.size() > 0) {
+				for (LeaseLock sameKeyLock: sameKeyLocks) {
+					if (transactionBirthdates.get(sameKeyLock.ownerTransactionID) == null) {
+						sameKeyLocks.remove(sameKeyLock);
+						wakeUpNextLock(sameKeyLock.lockedKey);
+					}
+					else if (sameKeyLock.expirationTime.isBefore(cleanUpStartTime)) {
+						sameKeyLocks.remove(sameKeyLock);
+						transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
+						wakeUpNextLock(sameKeyLock.lockedKey);
+					}
+				}
+			}
+		}
 	}
 	
 	synchronized void releaseTableLocks(List<LeaseLock> locks, Long ownerTransactionID) {
@@ -69,6 +88,7 @@ public class LockTable {
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equals(lock)) {
 						sameKeyLocks.remove(sameKeyLock);
+						wakeUpNextLock(sameKeyLock.lockedKey);
 						break;
 					}
 				}
@@ -84,6 +104,7 @@ public class LockTable {
 			releaseTableLocks(locks, ownerTransactionID);
 			return false;
 		}
+		Instant validateStartTime = Instant.now();
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
@@ -95,7 +116,7 @@ public class LockTable {
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equalForValidatingLocks(lock)) {
 						isFound = true;
-						if (sameKeyLock.expirationTime.isBefore(Instant.now())) {
+						if (sameKeyLock.expirationTime.isBefore(validateStartTime)) {
 							releaseTableLocks(locks, ownerTransactionID);
 							return false;
 						}
@@ -112,8 +133,12 @@ public class LockTable {
 		return true;
 	}
 	 
-	/* public static void main(String[] args) {
-		
+	 /*public static void main(String[] args) {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		map.put(0, null);
+		for (Integer value: map.values()) {
+			System.out.println(value == null);
+		}
 	 }*/
 	 
 	
