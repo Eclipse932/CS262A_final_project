@@ -231,6 +231,7 @@ boolean synchronized ReleaseTableLock(List<LeaseLock> locks)
 	Remove lock from lock table
 	WakeNextLock(heap)
 
+//also need to take care of committingWrites
 Synchronized WakeNextLock(lockedKey)
 	y = LockandCondition at top of heap of that lockedKey
 If( lock table.rangefory == empty )

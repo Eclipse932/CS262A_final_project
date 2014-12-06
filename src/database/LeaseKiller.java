@@ -1,6 +1,5 @@
 package database;
 
-import java.time.Duration;
 
 public class LeaseKiller implements Runnable {
 	LockTable lockTable;

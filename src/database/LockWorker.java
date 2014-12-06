@@ -4,24 +4,24 @@ import java.util.PriorityQueue;
 
 public class LockWorker implements Runnable{
 	LockTable lockTable;
-	LockAndCondition leaseLockCondition;
+	LockAndCondition leaseLockAndCondition;
 	
 	public void run() {
-		synchronized(leaseLockCondition.leaseLockCondition) {
+		synchronized(leaseLockAndCondition.leaseLockCondition) {
 			synchronized(lockTable) {
-				PriorityQueue<LockAndCondition> waitingQueue = lockTable.waitingLocks.get(leaseLockCondition.leaseLock.lockedKey);
+				PriorityQueue<LockAndCondition> waitingQueue = lockTable.waitingLocks.get(leaseLockAndCondition.leaseLock.lockedKey);
 				if (waitingQueue == null) {
 					waitingQueue = new PriorityQueue<LockAndCondition>();
-					lockTable.waitingLocks.put(leaseLockCondition.leaseLock.lockedKey, waitingQueue);
+					lockTable.waitingLocks.put(leaseLockAndCondition.leaseLock.lockedKey, waitingQueue);
 				}
-				waitingQueue.add(leaseLockCondition);
-				lockTable.wakeUpNextLock(leaseLockCondition.leaseLock.lockedKey);
+				waitingQueue.add(leaseLockAndCondition);
+				lockTable.wakeUpNextLock(leaseLockAndCondition.leaseLock.lockedKey);
 			}
 		}
 	}
 	
 	public LockWorker(LockTable lockTable, LockAndCondition leaseLockCondition) {
 		this.lockTable = lockTable;
-		this.leaseLockCondition = leaseLockCondition;
+		this.leaseLockAndCondition = leaseLockCondition;
 	}
 }

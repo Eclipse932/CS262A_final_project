@@ -1,4 +1,5 @@
 package database;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Map;
 import java.util.HashMap;
@@ -57,24 +58,72 @@ public class LockTable {
 	}
 	
 	synchronized void wakeUpNextLock(Integer key) {
-		//TODO
-		return;
+		PriorityQueue<LockAndCondition> queue = waitingLocks.get(key);
+		if (queue != null && queue.size() > 0) {
+			List<LeaseLock> sameKeyLocks = lockMap.get(key);
+			if (sameKeyLocks == null) {
+				sameKeyLocks = new LinkedList<LeaseLock>();
+				lockMap.put(key, sameKeyLocks);
+				wakeUpNextLockHelper(queue, sameKeyLocks);
+				wakeUpNextLock(key);
+			} else if (sameKeyLocks.size() == 0){
+				wakeUpNextLockHelper(queue, sameKeyLocks);
+				wakeUpNextLock(key);
+			} else {
+				LockAndCondition nextLockHolderCandidate = queue.peek();
+				if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ && sameKeyLocks.size() >= 1 && sameKeyLocks.get(0).mode == AccessMode.READ) {
+					wakeUpNextLockHelper(queue, sameKeyLocks);
+					wakeUpNextLock(key);
+				} else if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ && sameKeyLocks.size() == 1) {
+					LeaseLock currentLockHolder = sameKeyLocks.get(0);
+					 
+				} 
+			}
+		}
+	}
+	
+	/*a return result of 0 indicates it's the same transaction trying to upgrade a read lock to a write lock;
+	 *a return result of >0 indicates the currentLockHolder is younger than the waiting transaction and should be killed
+	 *a return result of <0 indicates the currentLockHolder is older than the waiting transaction and the waiting transaction should be waiting
+	*/
+	int wakeUpNextLockCompareHelper(LeaseLock currentLockHolder, LockAndCondition nextLockHolderCandidate) {
+		Instant currentLockHolderBirthdate = transactionBirthdates.get(currentLockHolder.ownerTransactionID);
+		int result = currentLockHolderBirthdate.compareTo(nextLockHolderCandidate.transactionBirthDate);
+		if (result != 0) {
+			return result;
+		} else {
+			//break ties on TransactionID
+			return currentLockHolder.ownerTransactionID.compareTo(nextLockHolderCandidate.leaseLock.ownerTransactionID);
+		}
+	}
+	
+	
+	void wakeUpNextLockHelper(PriorityQueue<LockAndCondition> queue, List<LeaseLock> sameKeyLocks) {
+		LockAndCondition nextLockHolderCandidate = queue.poll();
+		sameKeyLocks.add(nextLockHolderCandidate.leaseLock);
+		Instant leaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL);
+		nextLockHolderCandidate.leaseLock.expirationTime = leaseEnd;
+		nextLockHolderCandidate.lockLeaseEnd = leaseEnd;
+		synchronized(nextLockHolderCandidate.leaseLockCondition) {
+			nextLockHolderCandidate.leaseLockCondition.notify();
+		}
 	}
 	
 	synchronized void cleanUpLockTable() {
 		Instant cleanUpStartTime  = Instant.now();
 		for (List<LeaseLock> sameKeyLocks: lockMap.values()) {
 			if (sameKeyLocks != null && sameKeyLocks.size() > 0) {
+				int lockedKey = sameKeyLocks.get(0).lockedKey;
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (transactionBirthdates.get(sameKeyLock.ownerTransactionID) == null) {
 						sameKeyLocks.remove(sameKeyLock);
 					}
-					else if (sameKeyLock.expirationTime.isBefore(cleanUpStartTime)) {
+					else if (sameKeyLock.expirationTime.isBefore(cleanUpStartTime) && !committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
 						sameKeyLocks.remove(sameKeyLock);
 						transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
 					}
 				}
-				wakeUpNextLock(sameKeyLocks.get(0).lockedKey);
+				wakeUpNextLock(lockedKey);
 			}
 		}
 	}
