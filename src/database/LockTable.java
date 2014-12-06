@@ -1,4 +1,5 @@
 package database;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Map;
@@ -64,23 +65,61 @@ public class LockTable {
 			if (sameKeyLocks == null) {
 				sameKeyLocks = new LinkedList<LeaseLock>();
 				lockMap.put(key, sameKeyLocks);
-				wakeUpNextLockHelper(queue, sameKeyLocks);
-				wakeUpNextLock(key);
+				wakeUpNextLockHelper(queue, sameKeyLocks, key);
 			} else if (sameKeyLocks.size() == 0){
-				wakeUpNextLockHelper(queue, sameKeyLocks);
-				wakeUpNextLock(key);
+				wakeUpNextLockHelper(queue, sameKeyLocks, key);
 			} else {
 				LockAndCondition nextLockHolderCandidate = queue.peek();
 				if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ && sameKeyLocks.size() >= 1 && sameKeyLocks.get(0).mode == AccessMode.READ) {
-					wakeUpNextLockHelper(queue, sameKeyLocks);
-					wakeUpNextLock(key);
+					wakeUpNextLockHelper(queue, sameKeyLocks, key);
 				} else if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ && sameKeyLocks.size() == 1) {
 					LeaseLock currentLockHolder = sameKeyLocks.get(0);
-					 
-				} 
+					int compareResult = wakeUpNextLockCompareHelper(currentLockHolder, nextLockHolderCandidate);
+					if (compareResult < 0 ) {
+						return;
+					} else if (compareResult > 0) {
+						if (!committingWrites.containsKey(currentLockHolder.ownerTransactionID)) {
+							//kill currentLockHolder
+							sameKeyLocks.remove(currentLockHolder);
+							transactionBirthdates.remove(currentLockHolder.ownerTransactionID);
+							wakeUpNextLockHelper(queue, sameKeyLocks, key);
+						}else return;
+					} else {
+						System.out.println("a transaction tries to upgrade from a write lock to a read lock: something goes wrong");
+						return;
+					}
+				} else if (nextLockHolderCandidate.leaseLock.mode == AccessMode.WRITE && sameKeyLocks.size() == 1 && sameKeyLocks.get(0).mode == AccessMode.WRITE) {
+					LeaseLock currentLockHolder = sameKeyLocks.get(0);
+					int compareResult = wakeUpNextLockCompareHelper(currentLockHolder, nextLockHolderCandidate);
+					if (compareResult < 0 ) {
+						return;
+					} else if (compareResult > 0) {
+						if (!committingWrites.containsKey(currentLockHolder.ownerTransactionID)) {
+							//kill currentLockHolder
+							sameKeyLocks.remove(currentLockHolder);
+							transactionBirthdates.remove(currentLockHolder.ownerTransactionID);
+							wakeUpNextLockHelper(queue, sameKeyLocks, key);
+						}else return;
+					} else {
+						System.out.println("a transaction should not try to acquire a write lock it already holds; this case should never happen");
+						return;
+					}
+				} else if (nextLockHolderCandidate.leaseLock.mode == AccessMode.WRITE && sameKeyLocks.size() >=1) {
+					LeaseLock toBeUpgrade = null;
+					int finalCompareResult = Integer.MIN_VALUE;
+					for (LeaseLock sameKeyLock: sameKeyLocks) {
+						int currentResult = wakeUpNextLockCompareHelper(sameKeyLock, nextLockHolderCandidate);
+						if (currentResult )
+					}
+				} else {
+					System.out.println("this case should never happen");
+					return;
+				}
 			}
 		}
 	}
+	
+	
 	
 	/*a return result of 0 indicates it's the same transaction trying to upgrade a read lock to a write lock;
 	 *a return result of >0 indicates the currentLockHolder is younger than the waiting transaction and should be killed
@@ -98,7 +137,7 @@ public class LockTable {
 	}
 	
 	
-	void wakeUpNextLockHelper(PriorityQueue<LockAndCondition> queue, List<LeaseLock> sameKeyLocks) {
+	void wakeUpNextLockHelper(PriorityQueue<LockAndCondition> queue, List<LeaseLock> sameKeyLocks, Integer key) {
 		LockAndCondition nextLockHolderCandidate = queue.poll();
 		sameKeyLocks.add(nextLockHolderCandidate.leaseLock);
 		Instant leaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL);
@@ -106,6 +145,9 @@ public class LockTable {
 		nextLockHolderCandidate.lockLeaseEnd = leaseEnd;
 		synchronized(nextLockHolderCandidate.leaseLockCondition) {
 			nextLockHolderCandidate.leaseLockCondition.notify();
+		}
+		if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ) {
+			wakeUpNextLock(key);
 		}
 	}
 	
