@@ -18,6 +18,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	Thread leaseKiller;
 	LockTable lockTable;
+	Object serializedCommitLock;
 	
 	// the lock lease interval is 10 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
@@ -29,6 +30,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.isLeader = isLeader;
 		this.name = name;
 		this.lockTable = new LockTable();
+		this.serializedCommitLock = new Object();
 		this.leaseKiller = new Thread(new LeaseKiller(lockTable));
 		leaseKiller.start();
 
@@ -54,16 +56,18 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		 * 1. validate the heldLocks against locks in LockTable：
 		 * 	if not all valid, return false and abort; else
 			add the LeaseLocks to committingWrites so that LeaseKiller and wakeUpNextLock won't remove locks from lockTable and return true
-		 * 2. commit through Raft, set transaction status to "commit"
+		 * 2. commit through paxos, set transaction status to "commit"
 		 * 3. release all locks in the lockTable, remove TransactionBirthDate and remove the entry in committingWrites through releaseLockss
 		*/
-		boolean result = lockTable.validateTableLock(heldLocks, transactionID);
-		if (result == false) {
-			return "abort";
-		} else {
-			//committing through Raft protocol
-			lockTable.releaseTableLocks(heldLocks, transactionID);
-			return "abort or commit depending on the result of Raft";
+		synchronized(serializedCommitLock) {
+			boolean result = lockTable.validateTableLock(heldLocks, transactionID);
+			if (result == false) {
+				return "abort";
+			} else {
+				//committing through paxos protocol
+				lockTable.releaseTableLocks(heldLocks, transactionID);
+				return "abort or commit depending on the result of Raft";
+			}
 		}
 		
 	}
@@ -96,4 +100,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		// TODO implement this method
 		return null;
 	}
+	
+	
 }
