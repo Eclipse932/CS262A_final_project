@@ -151,6 +151,11 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
+					
+					//Check to see if the transaction has been aborted
+					if(leaseLockExpiration == null) {
+						return "abort";
+					}
 
 					// Add this lock to the transaction's list of locks.
 					// This must happen AFTER we've acquired the lock in the
@@ -343,6 +348,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		}
 
+		//Perform buffered writes
+				
 		// Unecessary line, but this name is more informative for the role of
 		// the map from here on
 		HashMap<Integer, Integer> addrToVariableValue = writeCache;
@@ -373,9 +380,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					System.out.println(r);
 					return "abort";
 				}
+
+				//Check to see if the transaction has been aborted
+				if(expirationTime == null) {
+					return "abort";
+				}
+				
 				ll.setExpirationTime(expirationTime);
 				
-
 				// Upgrade the lock in this transaction's list to a Write lock
 				meTransaction.upgradeReadLockToWrite(lockKey);
 
@@ -397,6 +409,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					System.out.println(r);
 					return "abort";
 				}
+				
+				//Check to see if the transaction has been aborted
+				if(expirationTime == null) {
+					return "abort";
+				}
+				
 				ll.setExpirationTime(expirationTime);
 				addThisLockList.add(ll);  //batch the write locks we'll be getting
 			}
