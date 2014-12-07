@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public interface ReplicaIntf extends Remote{
 	
@@ -19,5 +20,14 @@ public interface ReplicaIntf extends Remote{
 	public Integer RWTread( Integer databaseKey) throws RemoteException;
 	
 	public Instant beginTransaction(long transactionID) throws RemoteException;
+	
+	//called by leader, served by replica
+	//returns true if the replica was simulated as responsive
+	public boolean prepare(Long sequenceNumber, Integer memAddr, Integer value) throws RemoteException;
+	
+	//requests data from the specified argument up to the newest sn (this includes the new value)!
+	//called by replica, served by leader
+	public ConcurrentHashMap<Integer,ValueAndTimestamp> requestSequenceData(Long replicaExpectedSn, Long leaderNewSequenceNumber ) throws RemoteException;
+	
 }
 
