@@ -3,8 +3,10 @@ package database;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.time.Instant;
 import java.time.Duration;
 
@@ -15,17 +17,23 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	Log dataLog;
 	Replica leader;
+	ArrayList<ReplicaIntf> replicas = null; // Only initialized to something
+											// other than null in main if this
+											// is the leader
+
+	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
 
 	Thread leaseKiller;
 	LockTable lockTable;
 	Object serializedCommitLock;
-	
+
 	// the lock lease interval is 10 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
 	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
 			throws RemoteException {
 		super();
+		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
 		this.name = name;
@@ -51,29 +59,67 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
 			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
-		// TODO implement this method
-		/*commit needs to :
-		 * 1. validate the heldLocks against locks in LockTable：
-		 * 	if not all valid, return false and abort; else
-			add the LeaseLocks to committingWrites so that LeaseKiller and wakeUpNextLock won't remove locks from lockTable and return true
-		 * 2. commit through paxos, set transaction status to "commit"
-		 * 3. release all locks in the lockTable, remove TransactionBirthDate and remove the entry in committingWrites through releaseLockss
-		*/
-		synchronized(serializedCommitLock) {
-			boolean result = lockTable.validateTableLock(heldLocks, transactionID);
+		/*
+		 * commit needs to : 1. validate the heldLocks against locks in
+		 * LockTable： if not all valid, return false and abort; else add the
+		 * LeaseLocks to committingWrites so that LeaseKiller and wakeUpNextLock
+		 * won't remove locks from lockTable and return true 2. commit through
+		 * paxos, set transaction status to "commit" 3. release all locks in the
+		 * lockTable, remove TransactionBirthDate and remove the entry in
+		 * committingWrites through releaseLockss
+		 */
+		synchronized (serializedCommitLock) {
+			boolean result = lockTable.validateTableLock(heldLocks,
+					transactionID);
 			if (result == false) {
+				lockTable.releaseTableLocks(heldLocks, transactionID);
 				return "abort";
 			} else {
-				//committing through paxos protocol
+
+				Instant timestamp = Instant.now();
+
+				for (Integer memAddr : memaddrToValue.keySet()) {
+					try {
+						paxosWrite(timestamp, memAddr,
+								memaddrToValue.get(memAddr));
+					} catch (RemoteException r) {
+						System.out
+								.println("Unable to perform paxosWrite on timestamp: "
+										+ timestamp
+										+ " memAddr: "
+										+ memAddr
+										+ " value: "
+										+ memaddrToValue.get(memAddr));
+						System.out.println("Aborting transaction "
+								+ transactionID);
+						System.out.println(r);
+						lockTable.releaseTableLocks(heldLocks, transactionID);
+						return "abort";
+					}
+				}
+				while (!TrueTime.after(timestamp)) {
+					try {
+						Thread.sleep(1); // Experiment with this value
+					} catch (InterruptedException i) {
+						System.out.println(i);
+					}
+				}
+
+				// If we fall through the error cases, that means we successfully wrote!
 				lockTable.releaseTableLocks(heldLocks, transactionID);
-				return "abort or commit depending on the result of Raft";
+				return "commit";
 			}
 		}
-		
+
 	}
-	
-	public Instant beginTransaction(long transactionID) throws RemoteException{
-		//TODO implement this
+
+	// TODO implement this method
+	private void paxosWrite() throws RemoteException {
+
+	}
+
+	public Instant beginTransaction(long transactionID) throws RemoteException {
+		// TODO implement this
 		Instant transactionBirthDate = Instant.now();
 		lockTable.setTransactionBirthDate(transactionID, transactionBirthDate);
 		return transactionBirthDate;
@@ -81,13 +127,17 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException, InterruptedException {
+	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
+			InterruptedException {
 		// TODO implement this method
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
-			Instant transactionBirthDate = lockTable.getTransactionBirthDate(lock);
-			if (transactionBirthDate == null) return null;
-			LockAndCondition lc= new LockAndCondition(lock, leaseLockCondition, transactionBirthDate);
+			Instant transactionBirthDate = lockTable
+					.getTransactionBirthDate(lock);
+			if (transactionBirthDate == null)
+				return null;
+			LockAndCondition lc = new LockAndCondition(lock,
+					leaseLockCondition, transactionBirthDate);
 			LockWorker lockWorker = new LockWorker(lockTable, lc);
 			Thread lockWorkerThread = new Thread(lockWorker);
 			lockWorkerThread.start();
@@ -95,13 +145,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			return lc.lockLeaseEnd;
 		}
 	}
-		
-	public Integer RWTread( Integer databaseKey) throws RemoteException	{
+
+	public Integer RWTread(Integer databaseKey) throws RemoteException {
 		// TODO implement this method
 		return null;
 	}
-	
-	
-	
-	
+
 }
