@@ -87,9 +87,10 @@ public class LockTable {
 					LeaseLock toBeUpgrade = null;
 					int finalCompareResult = Integer.MIN_VALUE;
 					for (LeaseLock sameKeyLock: sameKeyLocks) {
+						if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID))
 						int currentResult = wakeUpNextLockCompareHelper(sameKeyLock, nextLockHolderCandidate);
 						if (currentResult == 0) {
-							if (transactionBirthdates.con)
+							if (transactionBirthdates.containsKey)
 							toBeUpgrade = sameKeyLock;
 						}
 						if (transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID) && !committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
@@ -161,19 +162,20 @@ public class LockTable {
 		for (List<LeaseLock> sameKeyLocks: lockMap.values()) {
 			if (sameKeyLocks != null && sameKeyLocks.size() > 0) {
 				int lockedKey = sameKeyLocks.get(0).lockedKey;
-				boolean modified = false;
+				List<LeaseLock> toBeRemovedLocks = new LinkedList<LeaseLock>();
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID)) {
-						modified = true;
-						sameKeyLocks.remove(sameKeyLock);
+						toBeRemovedLocks.add(sameKeyLock);
 					}
 					else if (sameKeyLock.expirationTime.isBefore(cleanUpStartTime) && !committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
-						modified = true;
-						sameKeyLocks.remove(sameKeyLock);
+						toBeRemovedLocks.add(sameKeyLock);
 						transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
 					}
 				}
-				if (modified) wakeUpNextLock(lockedKey);
+				for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
+					sameKeyLocks.remove(toBeRemovedLock);
+				}
+				if (toBeRemovedLocks.size() > 0) wakeUpNextLock(lockedKey);
 			}
 		}
 	}
@@ -183,12 +185,16 @@ public class LockTable {
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			if (sameKeyLocks != null) {
+				List<LeaseLock> toBeRemovedLocks = new LinkedList<LeaseLock>();
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equals(lock)) {
-						sameKeyLocks.remove(sameKeyLock);
+						toBeRemovedLocks.add(sameKeyLock);
 						wakeUpNextLock(sameKeyLock.lockedKey);
 						break;
 					}
+				}
+				for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
+					sameKeyLocks.remove(toBeRemovedLock);
 				}
 			}
 		}
