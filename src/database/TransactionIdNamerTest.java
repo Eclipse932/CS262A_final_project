@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +20,7 @@ public class TransactionIdNamerTest {
 
 		try {
 			this.obj = (TransactionIdNamerIntf) Naming.lookup("//" + TERRATEST
-					+ "/RemoteRegistry");
+					+ "/TransactionIdNamer");
 		} catch (RemoteException e) {
 			System.out.println("Error, terratest.eecs.berkeley.edu ");
 		}
