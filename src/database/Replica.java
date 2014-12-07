@@ -26,10 +26,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	Long paxosSequenceNumber = new Long(0); // This value should only be used by
 											// the leader
 
-	ConcurrentHashMap<Long, MemAddrAndValueAndTimestamp> sequenceToUpdates; //TODO does this need to be concurrent?
-	
+	Integer[] sequenceToMemAddr;
 	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
-
+	static int SEQUENCETRACKINGRANGE = 400;
+	
 	Thread leaseKiller;
 	LockTable lockTable;
 	Object serializedCommitLock;
@@ -51,7 +51,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
-		this.sequenceToUpdates = new ConcurrentHashMap<Long, MemAddrAndValueAndTimestamp>()
+		this.sequenceToMemAddr = new Integer[SEQUENCETRACKINGRANGE];
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
 		this.name = name;
@@ -141,7 +141,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	// TODO implement this method
-	private boolean paxosWrite() throws RemoteException {
+	private boolean paxosWrite(Integer memAddr, Integer value, Instant timestamp ) throws RemoteException {
 		synchronized (paxosSequenceNumber) {
 			Long sn = this.getPaxosSequenceNumber() + 1;
 			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
@@ -152,7 +152,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						hasPromised = contactReplica.prepare(sn, key, value);
+						hasPromised = contactReplica.prepare(sn, memAddr, value);
 					} catch (RemoteException r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
@@ -170,7 +170,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			for (ReplicaIntf participatingReplica : quorum) {
 				try {
 					participatingReplica
-							.paxosSlaveDuplicate(sn, key, value);
+							.paxosSlaveDuplicate(sn, memAddr, value);
 				} catch (RemoteException r) {
 					System.out
 							.println("Aborting - unable to paxosSlaveDuplicate with Replica "
@@ -182,12 +182,16 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			
 			//Make the increment in sequence number official
 			this.incrementPaxosSequenceNumber();
-		}
 		
-		//TODO Update the local dataMap.
-		// Update the sequencenumber to keyandvalue table in leader too.
-		// HOW DO WE TRUNCATE THE SEQUNCENUMBER TO KEY AND VALUE???
-
+		
+		//Update the local dataMap.
+		ValueAndTimestamp vat = new ValueAndTimestamp(value, timestamp);
+		dataMap.put(memAddr, vat);
+		
+		//Update the sequencenumber array
+		int arraySpot = (int) (sn % SEQUENCETRACKINGRANGE);
+		sequenceToMemAddr[arraySpot] = memAddr;
+		}
 		return true;
 	}
 
