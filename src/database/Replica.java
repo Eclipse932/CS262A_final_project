@@ -167,8 +167,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						hasPromised = contactReplica
-								.prepare(sn);
+						hasPromised = contactReplica.prepare(sn);
 					} catch (RemoteException r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
@@ -196,7 +195,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					return false;
 				}
 				if (!successfulDuplication) {
-					//I don't know how this could happen, but leave the check in to be safe.
+					// I don't know how this could happen, but leave the check
+					// in to be safe.
 					System.out
 							.println("Aborting - Duplication falied with Replica "
 									+ participatingReplica);
@@ -219,8 +219,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return true;
 	}
 
-	public boolean prepare(Long sequenceNumber)
-			throws RemoteException {
+	public boolean prepare(Long sequenceNumber) throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
 		if (sequenceNumber == expectedReplicaSequenceNumber) {
@@ -247,6 +246,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 
 				if (freshMemAddrToValue == null) {
+					// This is how the leader signifies that it was given bad
+					// arguments.
 					System.out
 							.println("leader.requestSequenceData returned null. "
 									+ "Returning false in prepare");
@@ -274,19 +275,43 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// If we fell through we must have succeeded.
 			return true;
 		}
-
 	}
 
 	public ConcurrentHashMap<Integer, ValueAndTimestamp> requestSequenceData(
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
-		// TODO implement this method
+
+		if (!((leaderNewSequenceNumber - replicaExpectedSn) <= 1)) {
+			System.out
+					.println("Incorrect arguments given to requestSequenceData");
+			System.out.println("Returning null");
+			return null;
+		}
+
+		//All the data the replica needs to get up to date is in the sequenceToMemAddr array
+		if (((leaderNewSequenceNumber - replicaExpectedSn) <= SEQUENCETRACKINGRANGE)) {
+			ConcurrentHashMap<Integer, ValueAndTimestamp> missingDataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
+
+			for (Long i = replicaExpectedSn; i < leaderNewSequenceNumber; i++) {
+				int sequenceAddr = (int) (i % SEQUENCETRACKINGRANGE);
+				Integer memAddr = sequenceToMemAddr[sequenceAddr];
+				missingDataMap.put(memAddr, dataMap.get(memAddr));
+			}
+			return missingDataMap;
+			
+		} else {
+			// give a snapshot, i.e. the entire dataMap
+			// Note that no other threads are capable of modifying the dataMap right now:
+			// The leader is currently blocked on a function call to replica.prepare() in paxosWrite where it has
+			// exclusive access to the only code that modifies the dataMap.
+			return dataMap;
+		}
 
 	}
 
 	public boolean paxosSlaveDuplicate(Long sequenceNumber, Integer memAddr,
 			Integer value, Instant timestamp) throws RemoteException {
-		
+
 		this.setReplicaSequenceNumber(sequenceNumber);
 		this.dataMap.put(memAddr, new ValueAndTimestamp(value, timestamp));
 		return true;
