@@ -105,7 +105,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					}
 				}
 
-				// If we fall through the error cases, that means we successfully wrote!
+				// If we fall through the error cases, that means we
+				// successfully wrote!
 				lockTable.releaseTableLocks(heldLocks, transactionID);
 				return "commit";
 			}
@@ -146,9 +147,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 	}
 
+	// It is the calling Responder's responsibility to have acquired the read
+	// lock for this databasekey
 	public Integer RWTread(Integer databaseKey) throws RemoteException {
-		// TODO implement this method
-		return null;
+		return dataMap.get(databaseKey).getValue();
 	}
 
 }
