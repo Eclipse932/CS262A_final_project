@@ -65,6 +65,10 @@ public class Transaction {
 			this.myLocks.put(aLock.getLockedKey(), aLock);
 		}
 	}
+	
+	public synchronized void addLock(LeaseLock myLock) {
+		this.myLocks.put(myLock.getLockedKey(), myLock);
+	}
 
 	public synchronized void upgradeReadLockToWrite(Integer lockKey)
 			throws BadTransactionRequestException {

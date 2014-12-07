@@ -161,9 +161,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// This must happen AFTER we've acquired the lock in the
 					// leader's lock table
 					lockForRead.setExpirationTime(leaseLockExpiration);
-					ArrayList<LeaseLock> listTheLock = new ArrayList<LeaseLock>();
-					listTheLock.add(lockForRead);
-					meTransaction.addLocks(listTheLock);
+					meTransaction.addLock(lockForRead);
 
 					// Get the value from the database and associate it with the
 					// variable
