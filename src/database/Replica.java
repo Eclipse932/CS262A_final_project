@@ -224,13 +224,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
 		if (sequenceNumber == expectedReplicaSequenceNumber) {
 			// This replica is up-to-date
-
-			if (paxosFailRate < Math.random()) {
-				// Inject a network failure
-				return false;
-			} else {
-				return true;
-			}
+			// Fall through to error injection
 		} else {
 
 			if ((sequenceNumber - expectedReplicaSequenceNumber) <= SEQUENCETRACKINGRANGE) {
@@ -271,10 +265,17 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					return false;
 				}
 			}
+		}
 
-			// If we fell through we must have succeeded.
+		// If we fell through we decide whether or not to inject a network
+		// failure
+		if (paxosFailRate < Math.random()) {
+			// Inject a network failure
+			return false;
+		} else {
 			return true;
 		}
+
 	}
 
 	public ConcurrentHashMap<Integer, ValueAndTimestamp> requestSequenceData(
@@ -288,7 +289,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			return null;
 		}
 
-		//All the data the replica needs to get up to date is in the sequenceToMemAddr array
+		// All the data the replica needs to get up to date is in the
+		// sequenceToMemAddr array
 		if (((leaderNewSequenceNumber - replicaExpectedSn) <= SEQUENCETRACKINGRANGE)) {
 			ConcurrentHashMap<Integer, ValueAndTimestamp> missingDataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 
@@ -298,11 +300,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				missingDataMap.put(memAddr, dataMap.get(memAddr));
 			}
 			return missingDataMap;
-			
+
 		} else {
 			// give a snapshot, i.e. the entire dataMap
-			// Note that no other threads are capable of modifying the dataMap right now:
-			// The leader is currently blocked on a function call to replica.prepare() in paxosWrite where it has
+			// Note that no other threads are capable of modifying the dataMap
+			// right now:
+			// The leader is currently blocked on a function call to
+			// replica.prepare() in paxosWrite where it has
 			// exclusive access to the only code that modifies the dataMap.
 			return dataMap;
 		}
@@ -348,7 +352,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// It is the calling Responder's responsibility to have acquired the read
 	// lock for this databasekey
 	public Integer RWTread(Integer databaseKey) throws RemoteException {
-		return dataMap.get(databaseKey).getValue();
+		if (dataMap.contains(databaseKey)) {
+			return dataMap.get(databaseKey).getValue();
+		} else {
+			// If this value is not in the database, return null. The responder
+			// will check for this and turn nulls into zeroes.
+			return null;
+		}
+
 	}
 
 	public static void main(String[] args) {

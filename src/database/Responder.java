@@ -181,7 +181,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						return "abort";
 					}
 
-					variableTable.put(variableName, valueAtMemAddr);
+					//If this memAddr has not been written before, default to reading a zero
+					if(valueAtMemAddr == null){
+						variableTable.put(variableName, 0);
+					} else {
+						variableTable.put(variableName, valueAtMemAddr);
+					}
 				} else if (copiedLocks.containsKey(memAddr)
 						&& copiedLocks.get(memAddr).getMode() == AccessMode.READ) {
 
