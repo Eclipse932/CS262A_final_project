@@ -21,6 +21,17 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 											// other than null in main if this
 											// is the leader
 
+	Long paxosSequenceNumber = new Long(0); // This value should only be used by
+											// the leader
+
+	private Long getPaxosSequenceNumber() {
+		return paxosSequenceNumber;
+	}
+
+	private Long incrementPaxosSequenceNumber() {
+		return ++this.paxosSequenceNumber;
+	}
+
 	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
 
 	Thread leaseKiller;
@@ -77,10 +88,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			} else {
 
 				Instant timestamp = Instant.now();
+				String returnStatus = "";
 
 				for (Integer memAddr : memaddrToValue.keySet()) {
 					try {
-						paxosWrite(timestamp, memAddr,
+						result = paxosWrite(timestamp, memAddr,
 								memaddrToValue.get(memAddr));
 					} catch (RemoteException r) {
 						System.out
@@ -97,26 +109,74 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						return "abort";
 					}
 				}
-				while (!TrueTime.after(timestamp)) {
-					try {
-						Thread.sleep(1); // Experiment with this value
-					} catch (InterruptedException i) {
-						System.out.println(i);
-					}
-				}
 
-				// If we fall through the error cases, that means we
-				// successfully wrote!
-				lockTable.releaseTableLocks(heldLocks, transactionID);
-				return "commit";
+				if (result == false) {
+					lockTable.releaseTableLocks(heldLocks, transactionID);
+					return "abort";
+				} else {
+
+					while (!TrueTime.after(timestamp)) {
+						try {
+							Thread.sleep(1); // Experiment with this value
+						} catch (InterruptedException i) {
+							System.out.println(i);
+						}
+					}
+
+					// If we fall through the error cases, that means we
+					// successfully wrote!
+					lockTable.releaseTableLocks(heldLocks, transactionID);
+					return "commit";
+				}
 			}
 		}
 
 	}
 
 	// TODO implement this method
-	private void paxosWrite() throws RemoteException {
+	private boolean paxosWrite() throws RemoteException {
+		synchronized (paxosSequenceNumber) {
+			Long sn = this.getPaxosSequenceNumber() + 1;
+			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
+			boolean hasPromised = false;
+			int majority = (this.replicas.size() / 2) + 1;
 
+			while (quorum.size() < majority) {
+				quorum.clear();
+				for (ReplicaIntf contactReplica : replicas) {
+					try {
+						hasPromised = contactReplica.prepare(sn, key, value);
+					} catch (RemoteException r) {
+						System.out
+								.println("Aborting - unable to prepare Replica "
+										+ contactReplica);
+						System.out.println(r);
+						return false;
+					}
+					if (hasPromised) {
+						quorum.add(contactReplica);
+					}
+				}
+			}
+
+
+			for (ReplicaIntf participatingReplica : quorum) {
+				try {
+					participatingReplica
+							.paxosSlaveDuplicate(sn, key, value);
+				} catch (RemoteException r) {
+					System.out
+							.println("Aborting - unable to paxosSlaveDuplicate with Replica "
+									+ participatingReplica);
+					System.out.println(r);
+					return false;
+				}
+			}
+			
+			//Make the increment in sequence number official
+			this.incrementPaxosSequenceNumber();
+			return true;
+		}
 	}
 
 	public Instant beginTransaction(long transactionID) throws RemoteException {
