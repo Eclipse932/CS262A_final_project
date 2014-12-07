@@ -168,7 +168,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
 						hasPromised = contactReplica
-								.prepare(sn, memAddr, value);
+								.prepare(sn);
 					} catch (RemoteException r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
@@ -183,9 +183,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			}
 
 			for (ReplicaIntf participatingReplica : quorum) {
+
+				boolean successfulDuplication = false;
 				try {
-					participatingReplica
-							.paxosSlaveDuplicate(sn, memAddr, value);
+					successfulDuplication = participatingReplica
+							.paxosSlaveDuplicate(sn, memAddr, value, timestamp);
 				} catch (RemoteException r) {
 					System.out
 							.println("Aborting - unable to paxosSlaveDuplicate with Replica "
@@ -193,6 +195,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					System.out.println(r);
 					return false;
 				}
+				if (!successfulDuplication) {
+					//I don't know how this could happen, but leave the check in to be safe.
+					System.out
+							.println("Aborting - Duplication falied with Replica "
+									+ participatingReplica);
+					return false;
+				}
+
 			}
 
 			// Make the increment in sequence number official
@@ -209,7 +219,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return true;
 	}
 
-	public boolean prepare(Long sequenceNumber, Integer memAddr, Integer value)
+	public boolean prepare(Long sequenceNumber)
 			throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
@@ -217,11 +227,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// This replica is up-to-date
 
 			if (paxosFailRate < Math.random()) {
-				// Inject a network failure - so don't increment the replica's
-				// sequence number
+				// Inject a network failure
 				return false;
 			} else {
-				this.setReplicaSequenceNumber(expectedReplicaSequenceNumber);
 				return true;
 			}
 		} else {
@@ -231,8 +239,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				// local dataMap
 				ConcurrentHashMap<Integer, ValueAndTimestamp> freshMemAddrToValue = null;
 				try {
-					freshMemAddrToValue = leader.requestSequenceData(expectedReplicaSequenceNumber,
-							sequenceNumber);
+					freshMemAddrToValue = leader.requestSequenceData(
+							expectedReplicaSequenceNumber, sequenceNumber);
 				} catch (RemoteException r) {
 					System.out.println(r);
 					return false;
@@ -245,7 +253,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					return false;
 				}
 				for (Integer freshMemAddr : freshMemAddrToValue.keySet()) {
-					dataMap.put(freshMemAddr, freshMemAddrToValue.get(freshMemAddr));
+					dataMap.put(freshMemAddr,
+							freshMemAddrToValue.get(freshMemAddr));
 				}
 
 			} else {
@@ -262,18 +271,25 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 			}
 
-			//If we fell through we must have succeeded.
-			this.setReplicaSequenceNumber(expectedReplicaSequenceNumber);
+			// If we fell through we must have succeeded.
 			return true;
 		}
 
-	}	
+	}
 
 	public ConcurrentHashMap<Integer, ValueAndTimestamp> requestSequenceData(
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
 		// TODO implement this method
 
+	}
+
+	public boolean paxosSlaveDuplicate(Long sequenceNumber, Integer memAddr,
+			Integer value, Instant timestamp) throws RemoteException {
+		
+		this.setReplicaSequenceNumber(sequenceNumber);
+		this.dataMap.put(memAddr, new ValueAndTimestamp(value, timestamp));
+		return true;
 	}
 
 	public Instant beginTransaction(long transactionID) throws RemoteException {
