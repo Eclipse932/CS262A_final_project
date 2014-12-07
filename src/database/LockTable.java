@@ -85,19 +85,34 @@ public class LockTable {
 					wakeUpNextLockOnlyOneCurrentLockHolderHelper(sameKeyLocks, queue, key);
 				} else if (nextLockHolderCandidate.leaseLock.mode == AccessMode.WRITE && sameKeyLocks.size() >=1) {
 					LeaseLock toBeUpgrade = null;
-					int finalCompareResult = Integer.MIN_VALUE;
+					int finalCompareResult = Integer.MAX_VALUE;
+					List<LeaseLock> toBeRemovedLocks = new LinkedList<LeaseLock>();
 					for (LeaseLock sameKeyLock: sameKeyLocks) {
-						if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID))
-						int currentResult = wakeUpNextLockCompareHelper(sameKeyLock, nextLockHolderCandidate);
-						if (currentResult == 0) {
-							if (transactionBirthdates.containsKey)
-							toBeUpgrade = sameKeyLock;
-						}
-						if (transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID) && !committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
-							finalCompareResult = Math.max(finalCompareResult, currentResult);
+						if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID)) {
+							toBeRemovedLocks.add(sameKeyLock);
+						} else {
+							if (committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
+								finalCompareResult = -1;
+							} else {
+								int currentResult = wakeUpNextLockCompareHelper(sameKeyLock, nextLockHolderCandidate);
+								finalCompareResult = Math.min(finalCompareResult, currentResult);
+								if (currentResult == 0) toBeUpgrade = sameKeyLock;
+							}
 						}
 					}
-					
+					for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
+						sameKeyLocks.remove(toBeRemovedLock);
+					}
+					if (finalCompareResult > 0) {
+						for (LeaseLock sameKeyLock: sameKeyLocks) {
+							if (!sameKeyLock.equals(toBeUpgrade)) transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
+						}
+						sameKeyLocks.clear();
+						wakeUpNextLockHelper(queue, sameKeyLocks, key);
+					} else if (finalCompareResult == 0) {
+						sameKeyLocks.remove(toBeUpgrade);
+						wakeUpNextLockHelper(queue, sameKeyLocks, key);
+					} else return;
 				} else {
 					System.out.println("this case should never happen");
 					return;
