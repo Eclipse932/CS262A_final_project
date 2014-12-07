@@ -24,6 +24,15 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	Long paxosSequenceNumber = new Long(0); // This value should only be used by
 											// the leader
 
+	ConcurrentHashMap<Long, MemAddrAndValueAndTimestamp> sequenceToUpdates; //TODO does this need to be concurrent?
+	
+	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
+
+	Thread leaseKiller;
+	LockTable lockTable;
+	Object serializedCommitLock;
+
+	
 	private Long getPaxosSequenceNumber() {
 		return paxosSequenceNumber;
 	}
@@ -32,12 +41,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return ++this.paxosSequenceNumber;
 	}
 
-	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
-
-	Thread leaseKiller;
-	LockTable lockTable;
-	Object serializedCommitLock;
-
+	
 	// the lock lease interval is 10 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
@@ -45,6 +49,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
+		this.sequenceToUpdates = new ConcurrentHashMap<Long, MemAddrAndValueAndTimestamp>()
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
 		this.name = name;
@@ -175,8 +180,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			
 			//Make the increment in sequence number official
 			this.incrementPaxosSequenceNumber();
-			return true;
 		}
+		
+		//TODO Update the local dataMap.
+		// Update the sequencenumber to keyandvalue table in leader too.
+		// HOW DO WE TRUNCATE THE SEQUNCENUMBER TO KEY AND VALUE???
+
+		return true;
 	}
 
 	public Instant beginTransaction(long transactionID) throws RemoteException {
