@@ -43,6 +43,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 		HashMap<Integer, Integer> writeCache = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> readCache = new HashMap<Integer, Integer>();
 
 		if (actions == null) {
 			BadTransactionRequestException b = new BadTransactionRequestException(
@@ -122,7 +123,13 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				// writeBuffer
 				if (writeCache.containsKey(memAddr)) {
 					variableTable.put(variableName, writeCache.get(memAddr));
-				} else if (!copiedLocks.containsKey(memAddr)) {
+				} 
+				// Next check if we already have this memAddr in the readCache
+				// Note that this must happen after we check the writeCache.
+				else if(readCache.containsKey(memAddr)){
+					variableTable.put(variableName, readCache.get(memAddr));
+				}
+				else if (!copiedLocks.containsKey(memAddr)) {
 
 					// Attempt to acquire lock. Note that this may take a long
 					// time
@@ -196,8 +203,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
-
 					variableTable.put(variableName, valueAtMemAddr);
+					readCache.put(memAddr, valueAtMemAddr);
 
 				} else if ((copiedLocks.containsKey(memAddr) && copiedLocks
 						.get(memAddr).getMode() == AccessMode.WRITE)) {

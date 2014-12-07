@@ -7,8 +7,6 @@ public class TrueTime {
 	private static long epsilonNanos = 1000; 
 	// TODO replace this with a value determined from ptpd
 	
-	protected double clockError;
-
 	//returns TTinterval: [earliest, latest]
 	public static TTinterval now() {
 		Instant thisMoment = Instant.now();
