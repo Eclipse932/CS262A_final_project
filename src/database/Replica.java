@@ -14,6 +14,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
 	boolean isLeader;
 	String name;
+	String ipAddress;
+	int numOfReplicas;
 
 	Log dataLog;
 	Replica leader;
