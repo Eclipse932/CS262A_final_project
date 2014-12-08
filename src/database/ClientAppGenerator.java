@@ -68,7 +68,7 @@ public class ClientAppGenerator {
 		
 		for(int i = 1; i<=3 ;i++){
 			try {
-
+				
 				String storeFile = "test-file/client"+i+"/filename.txt";
 				System.out.println(storeFile);
 			    writer = new BufferedWriter(new OutputStreamWriter(
@@ -78,6 +78,9 @@ public class ClientAppGenerator {
 			    
 			    //how many transaction left
 			    int transactionLeft = totalTransaction;
+			    for(int varDeclare =1 ; varDeclare< totalVariable ;varDeclare++){
+			    	writer.write("declare x"+varDeclare + " "+ (int)Math.ceil(Math.random()*10000) +"\n");
+			    }
 			    while(transactionLeft > 0){
 			    
 				    int lengthIn = length; 

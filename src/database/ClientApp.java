@@ -29,7 +29,7 @@ public class ClientApp {
 		BufferedReader br = null;
 		FileInputStream in = null;
 		String line;
-
+		System.out.println("Inside the getInput");
 		try {
 			in = new FileInputStream("test-file/" + testFileName);
 			br = new BufferedReader(new InputStreamReader(in,
@@ -46,6 +46,7 @@ public class ClientApp {
 					}
 					commands.clear();
 				}
+				System.out.println(line);
 				commands.add(line);
 			}
 		} catch (FileNotFoundException e) {

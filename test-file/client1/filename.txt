@@ -1,296 +1,304 @@
-The transaction is the following: 
-addc x2 x7 4297 
+declare x1 5343
+declare x2 6328
+declare x3 1376
+declare x4 2137
+declare x5 2119
+declare x6 1582
+declare x7 4963
+declare x8 6600
+declare x9 3505
+read x7 755459859
+write x4 755459934
+add x9 x7 x3
+addc x6 x2 9400 
+wait 10 
+addc x4 x9 3000 
+wait 10 
+addc x1 x4 6665 
+wait 10 
+write x9 755459930
+add x5 x9 x5
+addc x10 x2 3275 
+wait 10 
+write x3 755459836
+add x4 x4 x3
+addc x7 x7 339 
+wait 10 
+write x3 755459889
+add x10 x8 x4
+addc x4 x7 1859 
+wait 10 
+read x6 755459796
+add x4 x7 x9
+addc x2 x6 7979 
+wait 10 
+add x6 x7 x9
+addc x1 x2 4638 
+wait 10 
+add x4 x8 x3
+addc x9 x6 4087 
+wait 10 
+read x1 755459757
+add x3 x8 x7
+addc x9 x7 8728 
+wait 10 
+add x6 x7 x3
+addc x8 x8 1041 
 wait 10 
-add x7 x5 x4
-addc x9 x9 3035 
-wait 10 
-addc x9 x4 4439 
-wait 10 
-add x7 x3 x2
-addc x9 x6 273 
-wait 10 
-addc x3 x3 587 
-wait 10 
-write x10 1359228997
-add x6 x2 x3
-addc x4 x4 8083 
-wait 10 
-add x3 x3 x5
-addc x1 x3 766 
-wait 10 
-addc x10 x2 4997 
-wait 10 
-write x4 1359228964
-add x1 x9 x7
-addc x7 x4 8294 
-wait 10 
-add x5 x1 x10
-wait 10 
-read x4 1359229020
-write x10 1359228977
-add x10 x1 x9
-wait 10 
-write x10 1359229016
-add x5 x2 x8
-wait 10 
-read x7 1359229045
-write x6 1359229062
-add x3 x10 x10
-wait 10 
-wait 10 
-add x5 x9 x9
-wait 10 
-wait 10 
-write x9 1359229131
-add x3 x3 x3
-wait 10 
-write x10 1359229109
-add x8 x9 x7
-wait 10 
-wait 10 
-add x7 x2 x7
-wait 10 
-add x10 x2 x9
-wait 10 
-add x1 x1 x8
-wait 10 
-write x2 1359228964
-add x3 x2 x9
-wait 10 
-add x1 x7 x2
-wait 10 
-add x7 x6 x5
-wait 10 
-add x10 x3 x7
-wait 10 
-wait 10 
-read x4 1359229138
-add x8 x8 x2
-wait 10 
-read x4 1359229163
-add x7 x9 x7
-wait 10 
-wait 10 
-add x3 x4 x5
-read x8 1359228967
-read x9 1359229125
-read x8 1359229020
-read x3 1359229076
-read x2 1359229056
-read x6 1359229132
-read x1 1359228977
-read x5 1359229109
-read x1 1359228984
-read x5 1359229160
-read x9 1359229109
-read x5 1359228964
-read x4 1359229042
-read x8 1359229115
-read x7 1359229011
-read x2 1359229077
-read x2 1359229098
-read x10 1359229037
-read x3 1359229095
-read x4 1359228993
-read x7 1359229111
-read x3 1359229108
-read x3 1359229101
-read x2 1359229009
-ENDING TRANSACTION--------
-add x9 x7 x1
-addc x9 x8 5254 
-wait 10 
-read x9 1359229118
-write x2 1359229033
-add x10 x8 x8
-addc x5 x9 9539 
-wait 10 
-read x8 1359228987
-write x2 1359228994
-add x4 x3 x3
-addc x4 x7 4096 
-wait 10 
-addc x2 x9 913 
-wait 10 
-write x1 1359229121
-add x3 x7 x6
-addc x4 x5 9930 
-wait 10 
-write x5 1359229026
-add x8 x2 x7
-addc x9 x5 5855 
-wait 10 
-read x6 1359229140
-write x3 1359228991
-add x6 x9 x9
-addc x6 x10 3008 
-wait 10 
-read x10 1359229083
-write x4 1359229140
-add x5 x6 x7
-addc x1 x2 8477 
-wait 10 
-read x6 1359228964
-write x5 1359229120
-add x1 x5 x2
-addc x10 x4 3096 
-wait 10 
-write x6 1359229046
-add x5 x10 x2
-wait 10 
-add x10 x2 x4
-wait 10 
-add x2 x6 x8
-wait 10 
-wait 10 
-read x9 1359229089
-add x2 x10 x7
-wait 10 
-add x1 x1 x2
-wait 10 
-add x5 x1 x5
-wait 10 
-add x7 x3 x6
-wait 10 
-read x4 1359229134
-add x5 x3 x7
-wait 10 
-read x3 1359228998
-add x9 x4 x4
-wait 10 
-add x2 x3 x7
-wait 10 
-wait 10 
-read x9 1359228987
-add x6 x2 x8
-wait 10 
-add x7 x5 x6
-wait 10 
-add x8 x2 x2
-wait 10 
-wait 10 
-add x2 x2 x7
-wait 10 
-wait 10 
-wait 10 
-wait 10 
-wait 10 
-read x10 1359228973
-read x2 1359228993
-read x6 1359229106
-read x2 1359229056
-read x5 1359229125
-read x5 1359229103
-read x9 1359229084
-read x9 1359229123
-read x2 1359229130
-read x9 1359228981
-read x8 1359229103
-read x6 1359229068
-read x7 1359229155
-read x6 1359229128
-read x1 1359229016
-read x4 1359229008
-read x5 1359229153
-read x1 1359229121
-read x9 1359229056
-ENDING TRANSACTION--------
-add x6 x2 x8
-addc x9 x8 6579 
-wait 10 
-addc x2 x9 6373 
-wait 10 
-add x7 x3 x10
-addc x5 x1 698 
-wait 10 
-addc x5 x6 9014 
-wait 10 
-add x8 x8 x3
-addc x2 x3 8994 
-wait 10 
-read x7 1359229063
-write x1 1359229101
-add x6 x3 x6
-addc x6 x5 1981 
-wait 10 
-read x1 1359229015
-write x9 1359229036
-add x3 x7 x5
-addc x5 x4 3901 
-wait 10 
-read x3 1359229105
-write x1 1359229054
-add x6 x6 x5
-addc x1 x10 6690 
-wait 10 
-add x6 x5 x8
-addc x5 x7 3877 
-wait 10 
-wait 10 
-read x4 1359229049
-write x3 1359229035
-add x1 x3 x10
-wait 10 
-wait 10 
-add x4 x10 x9
-wait 10 
-write x7 1359229152
-add x1 x6 x7
-wait 10 
-read x4 1359229077
-write x5 1359229080
-add x2 x4 x3
-wait 10 
-wait 10 
-read x1 1359229018
-write x4 1359229113
-add x9 x7 x8
-wait 10 
-add x2 x7 x1
-wait 10 
-add x10 x1 x9
-wait 10 
-wait 10 
-read x8 1359229146
-write x4 1359228964
-add x9 x2 x10
-wait 10 
-wait 10 
-add x7 x7 x4
-wait 10 
-add x5 x1 x4
-wait 10 
-add x9 x7 x10
-wait 10 
-read x10 1359229075
 add x1 x8 x10
+addc x3 x1 4160 
 wait 10 
-add x1 x9 x9
+addc x1 x8 4096 
 wait 10 
-add x2 x9 x10
+read x10 755459849
+addc x1 x6 4711 
 wait 10 
-read x2 1359229051
-add x1 x1 x1
+addc x6 x10 8316 
+wait 10 
+read x2 755459933
 wait 10 
 wait 10 
-read x3 1359229012
-read x6 1359229021
-read x4 1359229120
-read x10 1359228995
-read x4 1359229134
-read x1 1359229035
-read x2 1359229075
-read x8 1359229143
-read x5 1359228968
-read x9 1359229078
-read x8 1359229093
-read x2 1359229135
-read x7 1359229116
-read x9 1359229054
-read x8 1359229033
-read x6 1359228964
-read x6 1359228990
-read x1 1359229134
-read x10 1359229006
-ENDING TRANSACTION--------
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+ENDING TRANSACTION
+write x7 755459832
+add x5 x10 x2
+addc x10 x8 2899 
+wait 10 
+read x10 755459846
+write x4 755459864
+add x1 x8 x6
+addc x2 x7 105 
+wait 10 
+add x7 x7 x9
+addc x8 x5 1795 
+wait 10 
+addc x4 x2 490 
+wait 10 
+read x6 755459926
+write x3 755459827
+add x8 x1 x10
+addc x4 x4 2383 
+wait 10 
+addc x9 x8 8689 
+wait 10 
+addc x6 x10 420 
+wait 10 
+add x1 x9 x5
+addc x8 x6 7466 
+wait 10 
+read x9 755459856
+write x3 755459934
+add x2 x7 x1
+addc x3 x7 9048 
+wait 10 
+add x1 x8 x5
+addc x5 x5 6982 
+wait 10 
+read x6 755459893
+add x4 x7 x5
+addc x3 x8 3561 
+wait 10 
+read x2 755459943
+add x1 x8 x4
+addc x1 x9 9056 
+wait 10 
+add x10 x7 x7
+addc x4 x5 4934 
+wait 10 
+addc x5 x1 5540 
+wait 10 
+addc x1 x2 8417 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+ENDING TRANSACTION
+addc x6 x9 2923 
+wait 10 
+write x5 755459786
+add x6 x9 x4
+addc x7 x3 3401 
+wait 10 
+read x7 755459860
+write x2 755459935
+add x6 x7 x10
+addc x4 x4 394 
+wait 10 
+add x4 x5 x1
+addc x6 x8 5029 
+wait 10 
+read x2 755459911
+write x3 755459941
+add x10 x5 x6
+addc x7 x8 6618 
+wait 10 
+addc x6 x6 6687 
+wait 10 
+read x2 755459934
+write x9 755459930
+add x6 x8 x2
+addc x4 x1 8082 
+wait 10 
+add x10 x5 x3
+addc x2 x5 3150 
+wait 10 
+read x6 755459837
+add x2 x3 x6
+addc x10 x5 3694 
+wait 10 
+read x2 755459929
+add x1 x8 x4
+addc x3 x1 429 
+wait 10 
+add x1 x6 x5
+addc x4 x5 7290 
+wait 10 
+addc x6 x2 3926 
+wait 10 
+add x2 x6 x2
+addc x1 x5 7395 
+wait 10 
+addc x9 x3 165 
+wait 10 
+addc x5 x3 1487 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+wait 10 
+ENDING TRANSACTION
 FILE END
