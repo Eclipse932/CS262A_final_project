@@ -1,0 +1,56 @@
+Something
+Deadtime: 10
+Conflict: 10
+Transaction length: 50
+
+
+Total variable: 8
+The transaction is the following: 
+write x8
+add x6
+addc x4 
+wait x8 
+wait x7 
+wait x8 
+wait x4 
+read x5
+write x3
+wait x4 
+read x5
+write x8
+read x4
+write x3
+write x8
+read x3
+write x3
+write x3
+write x2
+read x8
+write x7
+write x1
+write x4
+write x5
+write x1
+read x8
+write x6
+write x7
+write x3
+write x7
+write x1
+read x6
+write x4
+write x2
+read x8
+read x1
+read x3
+read x1
+read x4
+read x7
+read x5
+read x7
+read x6
+read x6
+read x8
+read x5
+read x5
+read x6
