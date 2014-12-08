@@ -20,7 +20,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	int numOfReplicas;
 
 	Log dataLog;
-	Replica leader;
+	ReplicaIntf leader;
 	ArrayList<ReplicaIntf> replicas = null; // Only initialized to something
 											// other than null in main if this
 											// is the leader
@@ -432,7 +432,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			
 		} else {
 			//the replica is a non-leader
-			
 			// Use the remoteRegistry to lookup the leader's networkname
 			String leaderNetworkName = null;
 			boolean firstIteration = true;
@@ -458,7 +457,28 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				firstIteration = false;
 			} while (leaderNetworkName == null);
 			
+			try {
+				me.leader = (ReplicaIntf) Naming.lookup(leaderNetworkName);
+			} catch (Exception e) {
+				System.out.println("Unable to acquire the leader's remote object");
+				System.out.println(e);
+				System.exit(1);
+			}
 			
+			boolean registrationStatus = false;
+			try {
+				registrationStatus = terraTestRemoteRegistry.registerNetworkName(
+						"//" + myIpAddress + "/" + myRemoteName, myRemoteName);
+			} catch (RemoteException e) {
+				System.out.println("Unable to register " + myRemoteName);
+				e.printStackTrace();
+				System.exit(1);
+			}
+			if (registrationStatus == false) {
+				System.out.println("Error, RemoteName:" + myRemoteName
+						+ " has already been taken");
+				System.exit(1);
+			}
 			
 		}
 	}
