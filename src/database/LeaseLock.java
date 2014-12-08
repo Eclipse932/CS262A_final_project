@@ -1,11 +1,16 @@
 package database;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 enum AccessMode {
 	READ,WRITE
 }
-public class LeaseLock {
+public class LeaseLock implements Serializable {
+	/**
+	 * Using default.
+	 */
+	private static final long serialVersionUID = 1L;
 	Long ownerTransactionID;
 	AccessMode mode;
 	Instant expirationTime;

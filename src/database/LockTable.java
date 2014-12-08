@@ -63,6 +63,9 @@ public class LockTable {
 		if (queue != null && queue.size() > 0) {
 			List<LeaseLock> sameKeyLocks = lockMap.get(key);
 			LockAndCondition nextLockHolderCandidate = queue.peek();
+			
+			//If the next candidate for control of the lock has been aborted, tell it to abort by 
+			// setting lockLeaseEnd to null and wake it so it can return this information to the calling Responder 
 			if (!transactionBirthdates.containsKey(nextLockHolderCandidate.leaseLock.ownerTransactionID)) {
 				nextLockHolderCandidate = queue.poll();
 				nextLockHolderCandidate.lockLeaseEnd = null;
@@ -70,12 +73,19 @@ public class LockTable {
 					nextLockHolderCandidate.leaseLockCondition.notify();
 				}
 				wakeUpNextLock(key);
+				
+			// Easy case: There are currently no locks in the lock table for this memory address
+			// and there has never been a list of locks here in the history of the system.
 			}else if (sameKeyLocks == null) {
 				sameKeyLocks = new LinkedList<LeaseLock>();
 				lockMap.put(key, sameKeyLocks);
 				wakeUpNextLockHelper(queue, sameKeyLocks, key);
+			
+			// If there has never been a list of locks in the lock table at this memory address
 			} else if (sameKeyLocks.size() == 0){
 				wakeUpNextLockHelper(queue, sameKeyLocks, key);
+			
+			// At least one lock is currently in the lock table
 			} else {
 				if (nextLockHolderCandidate.leaseLock.mode == AccessMode.READ && sameKeyLocks.size() >= 1 && sameKeyLocks.get(0).mode == AccessMode.READ) {
 					wakeUpNextLockHelper(queue, sameKeyLocks, key);

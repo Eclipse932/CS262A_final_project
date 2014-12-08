@@ -36,7 +36,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	Integer[] sequenceToMemAddr;
 	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
-	static int SEQUENCETRACKINGRANGE = 400;
+	static int SEQUENCETRACKINGRANGE = 400; //arbitrary constant
 
 	Thread leaseKiller;
 	LockTable lockTable;
@@ -61,7 +61,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.replicaSequenceNumber = replicaSequenceNumber;
 	}
 
-	// the lock lease interval is 10 milliseconds across replicas.
+	// the lock lease interval is 1000 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
 	public Replica(String RMIRegistryAddress, boolean isLeader, String remoteName, int numOfReplicas, String ipAddress)
@@ -75,6 +75,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.numOfReplicas = numOfReplicas;
 		this.ipAddress = ipAddress;
 		this.dataLog = new Log();
+		//TODO do we need the datalog?
+		
 		if (this.isLeader == true) {
 			leader = this;
 			this.replicas = new ArrayList<ReplicaIntf>();
