@@ -4,13 +4,14 @@ import java.lang.*;
 import java.util.Scanner;
 public class ClientAppGenerator {
 
-	public static void generateTrans(String[] args){
+	public static void generateTrans(String[] args) throws IOException{
 		Writer writer = null;
-		int deadTime, conflict, length, totalVariable;
+		int deadTime, conflict, length, totalVariable, totalTransaction;
 	    deadTime = Integer.parseInt(args[0]);
 	    conflict = Integer.parseInt(args[1]);
 	    length = Integer.parseInt(args[2]);
 	    totalVariable = Integer.parseInt(args[3]);
+	    totalTransaction = Integer.parseInt(args[4]);
 	    System.out.println("deadTime: " + deadTime + " conflict: " + conflict + " length: " + length + " totalVariable: " + totalVariable);
 	    
 	    double temp = 1.0;
@@ -72,82 +73,84 @@ public class ClientAppGenerator {
 				System.out.println(storeFile);
 			    writer = new BufferedWriter(new OutputStreamWriter(
 			          new FileOutputStream(storeFile), "utf-8"));
-			    writer.write("Something\n");
 			    
+			    //writer.write("The transaction is the following: \n");
 			    
-			    writer.write("The transaction is the following: \n");
-				
-					
-					
-				
-			    int lengthIn = length; 
-				int readTotal = ((Double)(lengthIn*readRatio)).intValue();
-				int writeTotal = ((Double)(lengthIn*writeRatio)).intValue();
-				int addTotal = ((Double)(lengthIn*addRatio)).intValue();
-				int addcTotal = ((Double)(lengthIn*addcRatio)).intValue();
-				int waitTotal = ((Double)(lengthIn*waitRatio)).intValue(); 
-			    /*
-			     *  read <variable name> <memory address to be read from>
-				 *  write <variable name> <memory address to be written to>
-				 *  add <variable name sum> <variable name addend> <variable name addend>
-				 *  addc <variable name sum> <variable name> <integer constant addend>
-			  	 *  wait <integer time to sleep in milliseconds>
-			     */
-			    while(readTotal>0 || writeTotal>0 || addTotal>0 || addcTotal>0 || waitTotal>0){
-			    	System.out.println(readTotal+ "\t" + writeTotal +"\t" + addTotal 
-			    			+ "\t" + addcTotal +"\t" + waitTotal);
-			    	int randomNumber = ((Double)(Math.random()*4.0)).intValue();
-			    	switch(randomNumber){
-			    		case 0:	
-			    			if(readTotal>0){
-			    				writer.write("read x"+ variableSelector(totalVariable) + " "+ 
-			    								(i==1?memorySelector(client1Low, client1High):
-			    								(i==2?memorySelector(client2Low, client2High):
-			    								memorySelector(client3Low, client3High)))
-			    								+"\n");
-			    				readTotal--;
-			    				lengthIn--;
-			    			}
-			    				
-			    		case 1: 
-			    			if(writeTotal>0){
-			    				writer.write("write x"+ variableSelector(totalVariable) + " "+ 
-	    								(i==1?memorySelector(client1Low, client1High):
-	    								(i==2?memorySelector(client2Low, client2High):
-	    								memorySelector(client3Low, client3High)))+
-	    								"\n");
-			    				writeTotal--;
-			    				lengthIn--;
-			    			}
-			    				
-			    		case 2: 
-			    			if(addTotal>0){
-			    				writer.write("add x"+ variableSelector(totalVariable) + " x"+variableSelector(totalVariable)+
-			    						" x"+variableSelector(totalVariable)+"\n");
-			    				addTotal--;
-			    				lengthIn--;
-			    			}
-	    						
-			    		case 3: 
-			    			if(addcTotal>0){
-			    				writer.write("addc x"+ variableSelector(totalVariable) + " x"+variableSelector(totalVariable) + " "+ 
-			    						(int)Math.ceil(Math.random()*10000)+" \n");
-			    				addcTotal--;
-			    				lengthIn--;
-			    			}
-	    						
-			    		case 4: 
-			    			if(waitTotal>0){
-			    				writer.write("wait "+ deadTime+ " \n");
-			    				waitTotal--;		
-			    				lengthIn--;
-			    			}
-			    	}
-			    }
-			
+			    //how many transaction left
+			    int transactionLeft = totalTransaction;
+			    while(transactionLeft > 0){
+			    
+				    int lengthIn = length; 
+					int readTotal = ((Double)(lengthIn*readRatio)).intValue();
+					int writeTotal = ((Double)(lengthIn*writeRatio)).intValue();
+					int addTotal = ((Double)(lengthIn*addRatio)).intValue();
+					int addcTotal = ((Double)(lengthIn*addcRatio)).intValue();
+					int waitTotal = ((Double)(lengthIn*waitRatio)).intValue(); 
+				    /*
+				     *  read <variable name> <memory address to be read from>
+					 *  write <variable name> <memory address to be written to>
+					 *  add <variable name sum> <variable name addend> <variable name addend>
+					 *  addc <variable name sum> <variable name> <integer constant addend>
+				  	 *  wait <integer time to sleep in milliseconds>
+				     */
+				    while(readTotal>0 || writeTotal>0 || addTotal>0 || addcTotal>0 || waitTotal>0){
+				    	System.out.println(readTotal+ "\t" + writeTotal +"\t" + addTotal 
+				    			+ "\t" + addcTotal +"\t" + waitTotal);
+				    	int randomNumber = ((Double)(Math.random()*4.0)).intValue();
+				    	switch(randomNumber){
+				    		case 0:	
+				    			if(readTotal>0){
+				    				writer.write("read x"+ variableSelector(totalVariable) + " "+ 
+				    								(i==1?memorySelector(client1Low, client1High):
+				    								(i==2?memorySelector(client2Low, client2High):
+				    								memorySelector(client3Low, client3High)))
+				    								+"\n");
+				    				readTotal--;
+				    				lengthIn--;
+				    			}
+				    				
+				    		case 1: 
+				    			if(writeTotal>0){
+				    				writer.write("write x"+ variableSelector(totalVariable) + " "+ 
+		    								(i==1?memorySelector(client1Low, client1High):
+		    								(i==2?memorySelector(client2Low, client2High):
+		    								memorySelector(client3Low, client3High)))+
+		    								"\n");
+				    				writeTotal--;
+				    				lengthIn--;
+				    			}
+				    				
+				    		case 2: 
+				    			if(addTotal>0){
+				    				writer.write("add x"+ variableSelector(totalVariable) + " x"+variableSelector(totalVariable)+
+				    						" x"+variableSelector(totalVariable)+"\n");
+				    				addTotal--;
+				    				lengthIn--;
+				    			}
+		    						
+				    		case 3: 
+				    			if(addcTotal>0){
+				    				writer.write("addc x"+ variableSelector(totalVariable) + " x"+variableSelector(totalVariable) + " "+ 
+				    						(int)Math.ceil(Math.random()*10000)+" \n");
+				    				addcTotal--;
+				    				lengthIn--;
+				    			}
+		    						
+				    		case 4: 
+				    			if(waitTotal>0){
+				    				writer.write("wait "+ deadTime+ " \n");
+				    				waitTotal--;		
+				    				lengthIn--;
+				    			}
+				    	}
+				    }
+				    writer.write("ENDING TRANSACTION\n");
+				    transactionLeft--;
+			    }	
 			} catch (IOException ex) {
 			  // report
 			} finally {
+				writer.write("FILE END");
 			   try {writer.close();} catch (Exception ex) {}
 			}
 		}
@@ -159,7 +162,7 @@ public class ClientAppGenerator {
 		
 		return (int)Math.ceil(Math.random()*(high-low)+low);
 	}
-	public static void main(String[]args){
+	public static void main(String[]args) throws IOException{
 		generateTrans(args);
 		
 	}
