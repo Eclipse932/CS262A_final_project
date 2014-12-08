@@ -20,8 +20,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	
 	boolean isLeader;
 	/*the name follows the rule:
-	 * the leader has a remote name of Replica0 for non-leader replicas but also has a remote name of Leader for responders
-	 * the replica follows a naming of Replica1, Replica2...Replica*numOfReplicas-1*
+	 * the leader has a remote name of replica0 for non-leader replicas but also has a remote name of Leader for responders
+	 * the replica follows a naming of replica1, replica2...replica*numOfreplicas-1*
 	 */
 	String remoteName;
 	String ipAddress;

@@ -32,7 +32,7 @@ public class RemoteRegistry extends UnicastRemoteObject implements
 	
 	public synchronized boolean registerNetworkName(String NetworkName,
 			String RemoteObjectName) throws RemoteException {
-		if (RemoteNameToNetworkName.containsValue(NetworkName)) {
+		if (RemoteNameToNetworkName.containsKey(RemoteObjectName)) {
 			return false;
 		} else {
 			RemoteNameToNetworkName.put(RemoteObjectName, NetworkName);
