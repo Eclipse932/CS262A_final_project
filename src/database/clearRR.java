@@ -10,7 +10,7 @@ public class clearRR {
 	public static void main(String[] args){
 		
 		RemoteRegistryIntf obj = null;
-		System.out.println("Trying to contact terratest.eecs.berkeley.edu");
+		System.out.println("Trying to reset terratest.eecs.berkeley.edu");
 	
 		try {
 			obj = (RemoteRegistryIntf) Naming.lookup("//" + TERRATEST + "/RemoteRegistry");
@@ -24,6 +24,7 @@ public class clearRR {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		System.out.println("Reset was successful!");
 		
 	}
 	

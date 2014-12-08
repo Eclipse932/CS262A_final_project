@@ -414,7 +414,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		try {
 			Naming.rebind("//" + myIpAddress + "/" + myRemoteName, me);
 		} catch (Exception e) {
-			System.out.println("Unable to bind this Responder to local server");
+			System.out.println("Unable to bind this Replica to local server");
 			System.out.println(e);
 			System.exit(1);
 		}
@@ -452,8 +452,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			}
 			//find all non-leader replicas
 			Set<String> alreadyDetectedReplicaSet = new HashSet<String>();
+			boolean firstIteration = true;
+			
 			do {
-				boolean firstIteration = true;
 				if (!firstIteration) {
 					// Give the leader a chance to register itself and try again
 					System.out.println("Waiting for non-leader replicas to be registered...");
