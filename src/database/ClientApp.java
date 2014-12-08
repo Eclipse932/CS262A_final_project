@@ -12,57 +12,55 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 import java.nio.charset.Charset;
+
 public class ClientApp {
 
 	protected ResponderIntf entryPoint;
 	protected Log InterfaceLog;
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
-	
 
 	public ClientApp() {
 	}
-	
-	public void getInput(String testFileName) throws NotBoundException, IOException{
-		String firstTransaction="write x=1; write y=4;";
-		String secondTransaction= "read x; x++; read  y; y--; write x; write y";
+
+	public void getInput(String testFileName) throws NotBoundException,
+			IOException {
 		List<String> commands = (List<String>) new ArrayList<String>();
 		BufferedReader br = null;
 		FileInputStream in = null;
-		String         line;
-		ResponderIntf obj;
-		String commandReturn = null;
-		String TERRATEST = "128.32.48.222";
-		
-		try{
-			in = new FileInputStream("test-file/"+testFileName);
-			br = new BufferedReader(new InputStreamReader(in, Charset.forName("UTF-8")));
+		String line;
+
+		try {
+			in = new FileInputStream("test-file/" + testFileName);
+			br = new BufferedReader(new InputStreamReader(in,
+					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
-				if(line.equals("ENDING TRANSACTION")){
+				if (line.equals("ENDING TRANSACTION")) {
 					try {
 						entryPoint.PRWTransaction(commands);
 					} catch (RemoteException e) {
 						System.out.println("Error, unable to startup.");
-					}catch (Exception e) {
+					} catch (Exception e) {
 						System.out.println(e);
 						fail("Exception in testAddTransaction");
-					} 
+					}
 					commands.clear();
 				}
 				commands.add(line);
 			}
-		}catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (in != null) {
 				in.close();
 				br.close();
 				br = null;
 				in = null;
 			}
-	    }
-		//assertTrue(commandReturn.equals("commit") || commandReturn.equals("abort"));
+		}
+		// assertTrue(commandReturn.equals("commit") ||
+		// commandReturn.equals("abort"));
 	}
 
 	// Format of arguments: <Responder remote name> , <filename for getInput>
