@@ -15,6 +15,7 @@ import java.time.Instant;
 import java.time.Duration;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
+	private static boolean debugMode = false;
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 	
@@ -220,6 +221,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 			// Update the local dataMap.
 			ValueAndTimestamp vat = new ValueAndTimestamp(value, timestamp);
+			
+			if(Replica.debugMode){
+				System.out.println("Writing value: " + vat + " at memAddr: " + memAddr + "in leader's dataMap");
+			}
 			dataMap.put(memAddr, vat);
 
 			// Update the sequencenumber array
@@ -258,6 +263,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					return false;
 				}
 				for (Integer freshMemAddr : freshMemAddrToValue.keySet()) {
+					
+					if(Replica.debugMode){
+						System.out.println("Writing value: " + freshMemAddrToValue.get(freshMemAddr) + " at memAddr: " + freshMemAddr + "in replica's dataMap");
+					}
 					dataMap.put(freshMemAddr,
 							freshMemAddrToValue.get(freshMemAddr));
 				}
@@ -266,6 +275,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				// The leader will send the entire dataMap data structure to
 				// replace the local one because this replica is too far behind.
 				try {
+					if(Replica.debugMode){
+						System.out.println("Replacing replica's dataMap with leader's because it is out of date.");
+						}
+					
 					this.dataMap = leader.requestSequenceData(
 							expectedReplicaSequenceNumber, sequenceNumber);
 					// requests data from the specified argument up to sn (this
@@ -292,6 +305,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
 
+		if(Replica.debugMode){
+			System.out.println("A replica is asking to be caught up in thread" + Thread.currentThread().getId());
+		}
+		
 		if (!((leaderNewSequenceNumber - replicaExpectedSn) <= 1)) {
 			System.out
 					.println("Incorrect arguments given to requestSequenceData");
@@ -373,21 +390,30 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public static void main(String[] args){
 		// set the paxos fail rate as a probability between 0 and 1
 		Replica.paxosFailRate = Math.random();
-		if (args.length != 4) {
+		if (args.length != 5) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress");
+			System.out.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode");
 			System.exit(1);
 		}
 		String myRemoteName = args[1];
 		String myIpAddress = args[3];
 		boolean leaderOrNot;
+		if (args[4].equals("true")){
+			Replica.debugMode = true;
+		}  else if (args[4].equals("false")) {
+			Replica.debugMode = false;
+		} else {
+			System.out.println("type in debug mode is wrong argument! Default initialization is false");
+			leaderOrNot = false;
+		}
+		
 		if (args[0].equals("true")) {
 			leaderOrNot = true;
 			myRemoteName = "replica0";
 		} else if (args[0].equals("false")) {
 			leaderOrNot = false;
 		} else {
-			System.out.println("type in wrong isLeader argument! Default initialization is non-leader replica");
+			System.out.println("type in isLeader is wrong argument! Default initialization is non-leader replica");
 			leaderOrNot = false;
 		}
 		
@@ -491,6 +517,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				firstIteration = false;
 			} while (me.replicas.size() < (me.numOfReplicas - 1));
+			System.out.println("Found all non-leader replicas in remote registry.");
+			
 			
 			registrationStatus = false;
 			try {
