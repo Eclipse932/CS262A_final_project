@@ -383,7 +383,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		boolean leaderOrNot;
 		if (args[0].equals("true")) {
 			leaderOrNot = true;
-			myRemoteName = "Replica0";
+			myRemoteName = "replica0";
 		} else if (args[0].equals("false")) {
 			leaderOrNot = false;
 		} else {
@@ -466,14 +466,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				for (int i = 1; i < me.numOfReplicas; i++) {
 					String replicaNetworkName = null;
-					String replicaRemoteName = "Replica"+i;
+					String replicaRemoteName = "replica"+i;
 					if (!alreadyDetectedReplicaSet.contains(replicaRemoteName)) {
 						try {
 							replicaNetworkName = Replica.terraTestRemoteRegistry
 									.getNetworkName(replicaRemoteName);
 						} catch (Exception e) {
 							System.out
-							.println("Unable to connect to RemoteRegistry during lookup of Replica" + i + " NetworkName");
+							.println("Unable to connect to RemoteRegistry during lookup of replica" + i + " NetworkName");
 							System.exit(1);
 						}
 						try {
@@ -483,7 +483,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 								alreadyDetectedReplicaSet.add(replicaRemoteName);
 							}
 						} catch (Exception e) {
-							System.out.println("Unable to acquire Replica" + i + " remote object");
+							System.out.println("Unable to acquire replica" + i + " remote object");
 							System.out.println(e);
 							System.exit(1);
 						}
@@ -495,7 +495,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			registrationStatus = false;
 			try {
 				registrationStatus = Replica.terraTestRemoteRegistry.registerNetworkName(
-						"//" + myIpAddress + "/" + myRemoteName, "Leader");
+						"//" + myIpAddress + "/" + myRemoteName, "leader");
 			} catch (RemoteException e) {
 				System.out.println("Unable to register " + myRemoteName);
 				e.printStackTrace();
@@ -526,7 +526,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				try {
 					leaderNetworkName = Replica.terraTestRemoteRegistry
-							.getNetworkName("Replica0");
+							.getNetworkName("replica0");
 				} catch (Exception e) {
 					System.out
 							.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");

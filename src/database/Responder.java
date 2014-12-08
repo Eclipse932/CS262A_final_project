@@ -567,7 +567,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			}
 			try {
 				leaderNetworkName = terraTestRemoteRegistry
-						.getNetworkName("Leader");
+						.getNetworkName("leader");
 			} catch (Exception e) {
 				System.out
 						.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");
