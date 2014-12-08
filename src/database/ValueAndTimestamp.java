@@ -1,9 +1,14 @@
 package database;
 
+import java.io.Serializable;
 import java.time.Instant;
 
-public class ValueAndTimestamp {
+public class ValueAndTimestamp implements Serializable{
 
+	/**
+	 * Default serialization id
+	 */
+	private static final long serialVersionUID = 1L;
 	Integer value;
 	Instant timestamp;
 	
