@@ -4,7 +4,9 @@ import java.time.Instant;
 
 public class TrueTime {
 
-	private static long epsilonNanos = 1000; 
+	
+	//NTP error should be on the order of milliseconds
+	private static long epsilonNanos = 10000; 
 	// TODO replace this with a value determined from ptpd
 	
 	//returns TTinterval: [earliest, latest]
