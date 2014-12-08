@@ -568,6 +568,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");
 				System.exit(1);
 			}
+			firstIteration = false;
 		} while (leaderNetworkName == null);
 
 		// Use the leader's networkname to get its remote object

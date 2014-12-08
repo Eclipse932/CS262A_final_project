@@ -1,6 +1,8 @@
 package database;
 
+import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.time.Duration;
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
 	boolean isLeader;
-	String name;
+	String remoteName;
 	String ipAddress;
 	int numOfReplicas;
 
@@ -62,28 +64,28 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// the lock lease interval is 10 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
-	public Replica(String RMIRegistryAddress, boolean isLeader, String name)
+	public Replica(String RMIRegistryAddress, boolean isLeader, String remoteName, int numOfReplicas, String ipAddress)
 			throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 		this.sequenceToMemAddr = new Integer[SEQUENCETRACKINGRANGE];
 		this.RMIRegistryAddress = RMIRegistryAddress;
 		this.isLeader = isLeader;
-		this.name = name;
-		this.lockTable = new LockTable();
-		this.serializedCommitLock = new Object();
-		this.leaseKiller = new Thread(new LeaseKiller(lockTable));
-		leaseKiller.start();
-
+		this.remoteName = remoteName;
+		this.numOfReplicas = numOfReplicas;
+		this.ipAddress = ipAddress;
+		this.dataLog = new Log();
+		if (this.isLeader == true) {
+			leader = this;
+			this.replicas = new ArrayList<ReplicaIntf>();
+			this.lockTable = new LockTable();
+			this.serializedCommitLock = new Object();
+			this.leaseKiller = new Thread(new LeaseKiller(lockTable));
+			leaseKiller.start();
+			
+		} 
 	}
 
-	public void setLog(Log dataLog) {
-		this.dataLog = dataLog;
-	}
-
-	public void setLeader(Replica leader) {
-		this.leader = leader;
-	}
 
 	public Instant keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
@@ -318,7 +320,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	public Instant beginTransaction(long transactionID) throws RemoteException {
-		// TODO implement this
 		Instant transactionBirthDate = Instant.now();
 		lockTable.setTransactionBirthDate(transactionID, transactionBirthDate);
 		return transactionBirthDate;
@@ -328,7 +329,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// means that this transaction must abort
 	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
 			InterruptedException {
-		// TODO implement this method
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable
@@ -351,10 +351,105 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return dataMap.get(databaseKey).getValue();
 	}
 
-	public static void main(String[] args) {
-		// TODO IMPLEMENT THIS
+	public static void main(String[] args){
 		// set the paxos fail rate as a probability between 0 and 1
+		paxosFailRate = Math.random();
+		if (args.length != 5) {
+			System.out.println("Incorrect number of command line arguments.");
+			System.out.println("Correct form: RMIRegistryAddress, isLeader, remoteName, numOfReplicas, ipAddress");
+			System.exit(1);
+		}
+		String myRemoteName = args[2];
+		String myIpAddress = args[4];
+		boolean leaderOrNot;
+		if (args[1] == "true") {
+			leaderOrNot = true;
+			myRemoteName = "Replica0";
+		} else if (args[1] == "false") {
+			leaderOrNot = false;
+		} else {
+			System.out.println("type in wrong isLeader argument! Default initialization is non-leader replica");
+			leaderOrNot = false;
+		}
+		
+		System.out.println("Attempting to start local RMI Server for "
+				+ myRemoteName + " at " + myIpAddress);
+		try { // special exception handler for registry creation
+			LocateRegistry.createRegistry(1099);
+			System.out.println("java RMI registry created.");
+		} catch (RemoteException e) {
+			// do nothing, error means registry already exists
+			System.out.println("java RMI registry already exists.");
+		}
 
+		Replica me = null;
+		try {
+			Replica replica = new Replica(args[0], leaderOrNot, myRemoteName, Integer.parseInt(args[3]), myIpAddress);
+		} catch (RemoteException r) {
+			System.out.println("Unable to start local server");
+			System.out.println(r);
+			System.exit(1);
+		}
+		// Bind this object's instance to the local name on the local RMI
+		// registry
+		try {
+			Naming.rebind("//" + myIpAddress + "/" + myRemoteName, me);
+		} catch (Exception e) {
+			System.out.println("Unable to bind this Responder to local server");
+			System.out.println(e);
+			System.exit(1);
+		}
+		System.out.println(myRemoteName
+				+ " successfully bound in local registry");
+
+		// Acquire remoteRegistry to first register this responder and second to
+		// lookup the leader.
+		System.out.println("Trying to contact terratest.eecs.berkeley.edu");
+		RemoteRegistryIntf terraTestRemoteRegistry = null;
+		try {
+			terraTestRemoteRegistry = (RemoteRegistryIntf) Naming.lookup("//"
+					+ args[0] + "/RemoteRegistry");
+		} catch (Exception e) {
+			System.out.println("Error, terratest.eecs.berkeley.edu.");
+			System.out
+					.println("Please check to make sure you're connected to the internet.");
+			System.out.println(e);
+			System.exit(1);
+		}
+		
+		if (me.isLeader == true) {
+			
+		} else {
+			//the replica is a non-leader
+			
+			// Use the remoteRegistry to lookup the leader's networkname
+			String leaderNetworkName = null;
+			boolean firstIteration = true;
+
+			do {
+				if (!firstIteration) {
+					// Give the leader a chance to register itself and try again
+					System.out.println("Waiting for leader replica to be registered...");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException i) {
+						System.out.println("Thread sleep in non-leader initialization has been interupted");
+					}
+				}
+				try {
+					leaderNetworkName = terraTestRemoteRegistry
+							.getNetworkName("Replica0");
+				} catch (Exception e) {
+					System.out
+							.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");
+					System.exit(1);
+				}
+				firstIteration = false;
+			} while (leaderNetworkName == null);
+			
+			
+			
+		}
 	}
 
 }
