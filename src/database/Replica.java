@@ -381,10 +381,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		String myRemoteName = args[1];
 		String myIpAddress = args[3];
 		boolean leaderOrNot;
-		if (args[0] == "true") {
+		if (args[0].equals("true")) {
 			leaderOrNot = true;
 			myRemoteName = "Replica0";
-		} else if (args[0] == "false") {
+		} else if (args[0].equals("false")) {
 			leaderOrNot = false;
 		} else {
 			System.out.println("type in wrong isLeader argument! Default initialization is non-leader replica");
