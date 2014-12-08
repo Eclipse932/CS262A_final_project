@@ -61,7 +61,7 @@ public class ClientApp {
 		}
 		// assertTrue(commandReturn.equals("commit") ||
 		// commandReturn.equals("abort"));
-	}
+	}	
 
 	// Format of arguments: <Responder remote name> , <filename for getInput>
 	public static void main(String[] args) {

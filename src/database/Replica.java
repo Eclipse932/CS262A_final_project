@@ -403,7 +403,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 		Replica me = null;
 		try {
-			Replica replica = new Replica(leaderOrNot, myRemoteName, Integer.parseInt(args[2]), myIpAddress);
+			me = new Replica(leaderOrNot, myRemoteName, Integer.parseInt(args[2]), myIpAddress);
 		} catch (RemoteException r) {
 			System.out.println("Unable to start local server");
 			System.out.println(r);
