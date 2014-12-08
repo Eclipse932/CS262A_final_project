@@ -4,30 +4,14 @@ import java.lang.*;
 import java.util.Scanner;
 public class ClientAppGenerator {
 
-	public static void generateTrans(){
+	public static void generateTrans(String[] args){
 		Writer writer = null;
 		int deadTime, conflict, length, totalVariable;
-	    String s;
-	    String information = "";
-	    Scanner in = new Scanner(System.in);
-	 
-	    System.out.println("Enter a Deadtime: ");
-	    s = in.nextLine();
-	    deadTime = Integer.parseInt(s);
-	    information += "Deadtime: " + s +"\n";
-	    System.out.println("Enter conflict (in percent): ");
-	    s = in.nextLine();
-	    conflict = Integer.parseInt(s);
-	    information += "Conflict: " + s+"\n";
-	    System.out.println("Enter transaction length: ");
-	    s = in.nextLine();
-	    length = Integer.parseInt(s);
-	    information += "Transaction length: " + s+"\n\n\n";
-	    System.out.println("Enter a total variable: ");
-	    s = in.nextLine();
-	    totalVariable = Integer.parseInt(s);
-	    information += "Total variable: " + s +"\n";
-	    
+	    deadTime = Integer.parseInt(args[0]);
+	    conflict = Integer.parseInt(args[1]);
+	    length = Integer.parseInt(args[2]);
+	    totalVariable = Integer.parseInt(args[3]);
+	    System.out.println("deadTime: " + deadTime + " conflict: " + conflict + " length: " + length + " totalVariable: " + totalVariable);
 	    
 	    double temp = 1.0;
 		double readRatio = 0.0;
@@ -176,7 +160,7 @@ public class ClientAppGenerator {
 		return (int)Math.ceil(Math.random()*(high-low)+low);
 	}
 	public static void main(String[]args){
-		generateTrans();
+		generateTrans(args);
 		
 	}
 	
