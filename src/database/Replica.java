@@ -7,7 +7,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.time.Instant;
 import java.time.Duration;
@@ -15,6 +17,10 @@ import java.time.Duration;
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String RMIRegistryAddress;
 	boolean isLeader;
+	/*the name follows the rule:
+	 * the leader has a remote name of Replica0 for non-leader replicas but also has a remote name of Leader for responders
+	 * the replica follows a naming of Replica1, Replica2...Replica*numOfReplicas-1*
+	 */
 	String remoteName;
 	String ipAddress;
 	int numOfReplicas;
@@ -85,7 +91,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			
 		} 
 	}
-
+	
 
 	public Instant keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
@@ -429,6 +435,76 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 		
 		if (me.isLeader == true) {
+			boolean registrationStatus = false;
+			try {
+				registrationStatus = terraTestRemoteRegistry.registerNetworkName(
+						"//" + myIpAddress + "/" + myRemoteName, myRemoteName);
+			} catch (RemoteException e) {
+				System.out.println("Unable to register " + myRemoteName);
+				e.printStackTrace();
+				System.exit(1);
+			}
+			if (registrationStatus == false) {
+				System.out.println("Error, RemoteName:" + myRemoteName
+						+ " has already been taken");
+				System.exit(1);
+			}
+			//find all non-leader replicas
+			Set<String> alreadyDetectedReplicaSet = new HashSet<String>();
+			do {
+				boolean firstIteration = true;
+				if (!firstIteration) {
+					// Give the leader a chance to register itself and try again
+					System.out.println("Waiting for non-leader replicas to be registered...");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException i) {
+						System.out.println("Thread sleep in non-leader initialization has been interupted");
+					}
+				}
+				for (int i = 1; i < me.numOfReplicas; i++) {
+					String replicaNetworkName = null;
+					String replicaRemoteName = "Replica"+i;
+					if (!alreadyDetectedReplicaSet.contains(replicaRemoteName)) {
+						try {
+							replicaNetworkName =terraTestRemoteRegistry
+									.getNetworkName(replicaRemoteName);
+						} catch (Exception e) {
+							System.out
+							.println("Unable to connect to RemoteRegistry during lookup of Replica" + i + " NetworkName");
+							System.exit(1);
+						}
+						try {
+							if (replicaNetworkName != null) {
+								ReplicaIntf replica = (ReplicaIntf) Naming.lookup(replicaNetworkName);
+								me.replicas.add(replica);
+								alreadyDetectedReplicaSet.add(replicaRemoteName);
+							}
+						} catch (Exception e) {
+							System.out.println("Unable to acquire Replica" + i + " remote object");
+							System.out.println(e);
+							System.exit(1);
+						}
+					}
+				}
+				firstIteration = false;
+			} while (me.replicas.size() < (me.numOfReplicas - 1));
+			
+			registrationStatus = false;
+			try {
+				registrationStatus = terraTestRemoteRegistry.registerNetworkName(
+						"//" + myIpAddress + "/" + myRemoteName, "Leader");
+			} catch (RemoteException e) {
+				System.out.println("Unable to register " + myRemoteName);
+				e.printStackTrace();
+				System.exit(1);
+			}
+			if (registrationStatus == false) {
+				System.out.println("Error, RemoteName:" + myRemoteName
+						+ " has already been taken");
+				System.exit(1);
+			}
+			
 			
 		} else {
 			//the replica is a non-leader
