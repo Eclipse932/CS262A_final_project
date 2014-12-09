@@ -400,9 +400,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		if (dataMap.contains(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {
-			// If this value is not in the database, return null. The responder
-			// will check for this and turn nulls into zeroes.
-			return null;
+			// If this value is not in the database, return 0. The responder
+			// should check for null returns, but we are evidently missing this somewhere
+			// because without a 0 return we get a bug.
+			return 0;
 		}
 
 	}
