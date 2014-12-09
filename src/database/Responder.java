@@ -186,12 +186,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						return "abort";
 					}
 
-					//If this memAddr has not been written before, default to reading a zero
+					//If this memAddr has not been written before by any transaction, default to reading a zero
 					if(valueAtMemAddr == null){
 						variableTable.put(variableName, 0);
 					} else {
 						variableTable.put(variableName, valueAtMemAddr);
 					}
+					readCache.put(memAddr, valueAtMemAddr);
+					
 				} else if (copiedLocks.containsKey(memAddr)
 						&& copiedLocks.get(memAddr).getMode() == AccessMode.READ) {
 
@@ -216,7 +218,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
-					variableTable.put(variableName, valueAtMemAddr);
+					
+					//If this memAddr has not been written before by any transaction, default to reading a zero
+					if(valueAtMemAddr == null){
+						variableTable.put(variableName, 0);
+					} else {
+						variableTable.put(variableName, valueAtMemAddr);
+					}
+					
 					readCache.put(memAddr, valueAtMemAddr);
 
 				} else if ((copiedLocks.containsKey(memAddr) && copiedLocks
@@ -324,6 +333,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				if(Responder.debugMode){
 					System.out.println("Starting debug of addc");
 					System.out.println("command parses as: " + "addc space " + sumName + " space " + addendOneName + " space " + addendTwo);
+					System.out.println("also variableTable.get(addendOneName) gives" + variableTable.get(addendOneName));
 				}
 				
 				
