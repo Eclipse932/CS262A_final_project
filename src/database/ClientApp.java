@@ -29,24 +29,27 @@ public class ClientApp {
 		BufferedReader br = null;
 		FileInputStream in = null;
 		String line;
-
+		System.out.println("Inside the getInput");
 		try {
 			in = new FileInputStream("test-file/" + testFileName);
 			br = new BufferedReader(new InputStreamReader(in,
 					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
+				System.out.println(line);
 				if (line.equals("ENDING TRANSACTION")) {
 					try {
 						entryPoint.PRWTransaction(commands);
 					} catch (RemoteException e) {
 						System.out.println("Error, unable to startup.");
 					} catch (Exception e) {
+						e.printStackTrace();
 						System.out.println(e);
-						fail("Exception in testAddTransaction");
+						System.exit(1);
 					}
 					commands.clear();
+				}else{
+					commands.add(line);
 				}
-				commands.add(line);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -130,6 +133,7 @@ public class ClientApp {
 
 		try {
 			me.getInput(inputFilename);
+			System.out.println("IT'S DONE");
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();

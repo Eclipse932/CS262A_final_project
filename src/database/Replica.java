@@ -15,13 +15,16 @@ import java.time.Instant;
 import java.time.Duration;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
+	public static boolean debugMode = false;
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
-	
+
 	boolean isLeader;
-	/*the name follows the rule:
-	 * the leader has a remote name of Replica0 for non-leader replicas but also has a remote name of Leader for responders
-	 * the replica follows a naming of Replica1, Replica2...Replica*numOfReplicas-1*
+	/*
+	 * the name follows the rule: the leader has a remote name of replica0 for
+	 * non-leader replicas but also has a remote name of Leader for responders
+	 * the replica follows a naming of replica1,
+	 * replica2...replica*numOfreplicas-1*
 	 */
 	String remoteName;
 	String ipAddress;
@@ -44,7 +47,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	Integer[] sequenceToMemAddr;
 	ConcurrentHashMap<Integer, ValueAndTimestamp> dataMap;
-	static int SEQUENCETRACKINGRANGE = 400; //arbitrary constant
+	static int SEQUENCETRACKINGRANGE = 400; // arbitrary constant
 
 	Thread leaseKiller;
 	LockTable lockTable;
@@ -72,8 +75,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// the lock lease interval is 1000 milliseconds across replicas.
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
-	public Replica(boolean isLeader, String remoteName, int numOfReplicas, String ipAddress)
-			throws RemoteException {
+	public Replica(boolean isLeader, String remoteName, int numOfReplicas,
+			String ipAddress) throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 		this.sequenceToMemAddr = new Integer[SEQUENCETRACKINGRANGE];
@@ -82,8 +85,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		this.numOfReplicas = numOfReplicas;
 		this.ipAddress = ipAddress;
 		this.dataLog = new Log();
-		//TODO do we need the datalog?
-		
+		// TODO do we need the datalog?
+
 		if (this.isLeader == true) {
 			leader = this;
 			this.replicas = new ArrayList<ReplicaIntf>();
@@ -91,10 +94,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			this.serializedCommitLock = new Object();
 			this.leaseKiller = new Thread(new LeaseKiller(lockTable));
 			leaseKiller.start();
-			
-		} 
+
+		}
 	}
-	
 
 	public Instant keepTransactionAlive(List<LeaseLock> locks)
 			throws RemoteException {
@@ -220,6 +222,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 			// Update the local dataMap.
 			ValueAndTimestamp vat = new ValueAndTimestamp(value, timestamp);
+
+			if (Replica.debugMode) {
+				System.out.println("Writing value: " + vat + " at memAddr: "
+						+ memAddr + "in leader's dataMap");
+			}
 			dataMap.put(memAddr, vat);
 
 			// Update the sequencenumber array
@@ -233,6 +240,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
 		if (sequenceNumber == expectedReplicaSequenceNumber) {
+			if (Replica.debugMode) {
+				System.out.println("expectedReplicaSequenceNumber "
+						+ expectedReplicaSequenceNumber + ", sequenceNumber: "
+						+ sequenceNumber + "in replica prepare");
+			}
+
 			// This replica is up-to-date
 			// Fall through to error injection
 		} else {
@@ -258,6 +271,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					return false;
 				}
 				for (Integer freshMemAddr : freshMemAddrToValue.keySet()) {
+
+					if (Replica.debugMode) {
+						System.out.println("Writing value: "
+								+ freshMemAddrToValue.get(freshMemAddr)
+								+ " at memAddr: " + freshMemAddr
+								+ "in replica's dataMap");
+					}
 					dataMap.put(freshMemAddr,
 							freshMemAddrToValue.get(freshMemAddr));
 				}
@@ -266,6 +286,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				// The leader will send the entire dataMap data structure to
 				// replace the local one because this replica is too far behind.
 				try {
+					if (Replica.debugMode) {
+						System.out
+								.println("Replacing replica's dataMap with leader's because it is out of date.");
+					}
+
 					this.dataMap = leader.requestSequenceData(
 							expectedReplicaSequenceNumber, sequenceNumber);
 					// requests data from the specified argument up to sn (this
@@ -291,6 +316,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public ConcurrentHashMap<Integer, ValueAndTimestamp> requestSequenceData(
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
+
+		if (Replica.debugMode) {
+			// System.out.println("A replica is asking to be caught up in thread"
+			// + Thread.currentThread().getId());
+		}
 
 		if (!((leaderNewSequenceNumber - replicaExpectedSn) <= 1)) {
 			System.out
@@ -327,6 +357,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Integer value, Instant timestamp) throws RemoteException {
 
 		this.setReplicaSequenceNumber(sequenceNumber);
+		
+		if (Replica.debugMode) {
+			System.out.println("Writing value: "
+					+ new ValueAndTimestamp(value, timestamp)
+					+ " at memAddr: " + memAddr
+					+ "in replica's dataMap");
+		}
 		this.dataMap.put(memAddr, new ValueAndTimestamp(value, timestamp));
 		return true;
 	}
@@ -363,34 +400,47 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		if (dataMap.contains(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {
-			// If this value is not in the database, return null. The responder
-			// will check for this and turn nulls into zeroes.
-			return null;
+			// If this value is not in the database, return 0. The responder
+			// should check for null returns, but we are evidently missing this somewhere
+			// because without a 0 return we get a bug.
+			return 0;
 		}
 
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		// set the paxos fail rate as a probability between 0 and 1
 		Replica.paxosFailRate = Math.random();
-		if (args.length != 4) {
+		if (args.length != 5) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress");
+			System.out
+					.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode");
 			System.exit(1);
 		}
 		String myRemoteName = args[1];
 		String myIpAddress = args[3];
 		boolean leaderOrNot;
+		if (args[4].equals("true")) {
+			Replica.debugMode = true;
+		} else if (args[4].equals("false")) {
+			Replica.debugMode = false;
+		} else {
+			System.out
+					.println("type in debug mode is wrong argument! Default initialization is false");
+			leaderOrNot = false;
+		}
+
 		if (args[0].equals("true")) {
 			leaderOrNot = true;
 			myRemoteName = "replica0";
 		} else if (args[0].equals("false")) {
 			leaderOrNot = false;
 		} else {
-			System.out.println("type in wrong isLeader argument! Default initialization is non-leader replica");
+			System.out
+					.println("type in isLeader is wrong argument! Default initialization is non-leader replica");
 			leaderOrNot = false;
 		}
-		
+
 		System.out.println("Attempting to start local RMI Server for "
 				+ myRemoteName + " at " + myIpAddress);
 		try { // special exception handler for registry creation
@@ -403,7 +453,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 		Replica me = null;
 		try {
-			me = new Replica(leaderOrNot, myRemoteName, Integer.parseInt(args[2]), myIpAddress);
+			me = new Replica(leaderOrNot, myRemoteName,
+					Integer.parseInt(args[2]), myIpAddress);
 		} catch (RemoteException r) {
 			System.out.println("Unable to start local server");
 			System.out.println(r);
@@ -425,8 +476,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		// lookup the leader.
 		System.out.println("Trying to contact terratest.eecs.berkeley.edu");
 		try {
-			Replica.terraTestRemoteRegistry = (RemoteRegistryIntf) Naming.lookup("//"
-					+ Replica.REMOTEREGISTRYIP + "/RemoteRegistry");
+			Replica.terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
+					.lookup("//" + Replica.REMOTEREGISTRYIP + "/RemoteRegistry");
 		} catch (Exception e) {
 			System.out.println("Error, terratest.eecs.berkeley.edu.");
 			System.out
@@ -434,12 +485,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			System.out.println(e);
 			System.exit(1);
 		}
-		
+
 		if (me.isLeader == true) {
 			boolean registrationStatus = false;
 			try {
-				registrationStatus = Replica.terraTestRemoteRegistry.registerNetworkName(
-						"//" + myIpAddress + "/" + myRemoteName, myRemoteName);
+				registrationStatus = Replica.terraTestRemoteRegistry
+						.registerNetworkName("//" + myIpAddress + "/"
+								+ myRemoteName, myRemoteName);
 			} catch (RemoteException e) {
 				System.out.println("Unable to register " + myRemoteName);
 				e.printStackTrace();
@@ -450,40 +502,46 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						+ " has already been taken");
 				System.exit(1);
 			}
-			//find all non-leader replicas
+			// find all non-leader replicas
 			Set<String> alreadyDetectedReplicaSet = new HashSet<String>();
 			boolean firstIteration = true;
-			
+
 			do {
 				if (!firstIteration) {
 					// Give the leader a chance to register itself and try again
-					System.out.println("Waiting for non-leader replicas to be registered...");
+					System.out
+							.println("Waiting for non-leader replicas to be registered...");
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException i) {
-						System.out.println("Thread sleep in non-leader initialization has been interupted");
+						System.out
+								.println("Thread sleep in non-leader initialization has been interupted");
 					}
 				}
 				for (int i = 1; i < me.numOfReplicas; i++) {
 					String replicaNetworkName = null;
-					String replicaRemoteName = "replica"+i;
+					String replicaRemoteName = "replica" + i;
 					if (!alreadyDetectedReplicaSet.contains(replicaRemoteName)) {
 						try {
 							replicaNetworkName = Replica.terraTestRemoteRegistry
 									.getNetworkName(replicaRemoteName);
 						} catch (Exception e) {
 							System.out
-							.println("Unable to connect to RemoteRegistry during lookup of replica" + i + " NetworkName");
+									.println("Unable to connect to RemoteRegistry during lookup of replica"
+											+ i + " NetworkName");
 							System.exit(1);
 						}
 						try {
 							if (replicaNetworkName != null) {
-								ReplicaIntf replica = (ReplicaIntf) Naming.lookup(replicaNetworkName);
+								ReplicaIntf replica = (ReplicaIntf) Naming
+										.lookup(replicaNetworkName);
 								me.replicas.add(replica);
-								alreadyDetectedReplicaSet.add(replicaRemoteName);
+								alreadyDetectedReplicaSet
+										.add(replicaRemoteName);
 							}
 						} catch (Exception e) {
-							System.out.println("Unable to acquire replica" + i + " remote object");
+							System.out.println("Unable to acquire replica" + i
+									+ " remote object");
 							System.out.println(e);
 							System.exit(1);
 						}
@@ -491,11 +549,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				firstIteration = false;
 			} while (me.replicas.size() < (me.numOfReplicas - 1));
-			
+			System.out
+					.println("Found all non-leader replicas in remote registry.");
+
 			registrationStatus = false;
 			try {
-				registrationStatus = Replica.terraTestRemoteRegistry.registerNetworkName(
-						"//" + myIpAddress + "/" + myRemoteName, "leader");
+				registrationStatus = Replica.terraTestRemoteRegistry
+						.registerNetworkName("//" + myIpAddress + "/"
+								+ myRemoteName, "leader");
 			} catch (RemoteException e) {
 				System.out.println("Unable to register " + myRemoteName);
 				e.printStackTrace();
@@ -506,10 +567,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						+ " has already been taken");
 				System.exit(1);
 			}
-			
-			
+
 		} else {
-			//the replica is a non-leader
+			// the replica is a non-leader
 			// Use the remoteRegistry to lookup the leader's networkname
 			String leaderNetworkName = null;
 			boolean firstIteration = true;
@@ -517,11 +577,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			do {
 				if (!firstIteration) {
 					// Give the leader a chance to register itself and try again
-					System.out.println("Waiting for leader replica to be registered...");
+					System.out
+							.println("Waiting for leader replica to be registered...");
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException i) {
-						System.out.println("Thread sleep in non-leader initialization has been interupted");
+						System.out
+								.println("Thread sleep in non-leader initialization has been interupted");
 					}
 				}
 				try {
@@ -534,19 +596,21 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				firstIteration = false;
 			} while (leaderNetworkName == null);
-			
+
 			try {
 				me.leader = (ReplicaIntf) Naming.lookup(leaderNetworkName);
 			} catch (Exception e) {
-				System.out.println("Unable to acquire the leader's remote object");
+				System.out
+						.println("Unable to acquire the leader's remote object");
 				System.out.println(e);
 				System.exit(1);
 			}
-			
+
 			boolean registrationStatus = false;
 			try {
-				registrationStatus = Replica.terraTestRemoteRegistry.registerNetworkName(
-						"//" + myIpAddress + "/" + myRemoteName, myRemoteName);
+				registrationStatus = Replica.terraTestRemoteRegistry
+						.registerNetworkName("//" + myIpAddress + "/"
+								+ myRemoteName, myRemoteName);
 			} catch (RemoteException e) {
 				System.out.println("Unable to register " + myRemoteName);
 				e.printStackTrace();
@@ -557,7 +621,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						+ " has already been taken");
 				System.exit(1);
 			}
-			
+
 		}
 	}
 

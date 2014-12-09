@@ -16,7 +16,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 	// private ArrayList<Transaction> Transactions;
 	// private ArrayList<TransactionHeart> TransactionHearts
-
+	public static boolean debugMode = false;
+	
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static String TRANSACTIONIDNAMERIP = "128.32.48.222";
 
@@ -53,6 +54,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		for (String action : actions) {
 
+			if(Responder.debugMode){
+				System.out.println(action);
+			}
+			
 			if (!meTransaction.isAlive()) {
 				return "abort";
 			}
@@ -95,6 +100,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					variableTable.put(variableName, initialValue);
 				}
 
+				//TODO read is unable to handle the case where the replica returns null for an uninitialized variable
+				//TODO refactor this section. This could probably help the above TODO
+				
+				
 				// read <variable name> <memory address to be read from>
 			} else if (command.equals("read")) {
 				if (elements.length != 3) {
@@ -181,12 +190,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						return "abort";
 					}
 
-					//If this memAddr has not been written before, default to reading a zero
+					//If this memAddr has not been written before by any transaction, default to reading a zero
 					if(valueAtMemAddr == null){
 						variableTable.put(variableName, 0);
 					} else {
 						variableTable.put(variableName, valueAtMemAddr);
 					}
+					readCache.put(memAddr, valueAtMemAddr);
+					
 				} else if (copiedLocks.containsKey(memAddr)
 						&& copiedLocks.get(memAddr).getMode() == AccessMode.READ) {
 
@@ -211,7 +222,15 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
-					variableTable.put(variableName, valueAtMemAddr);
+					
+					//If this memAddr has not been written before by any transaction, default to reading a zero
+					if(valueAtMemAddr == null){
+						variableTable.put(variableName, 0);
+					} else {
+						variableTable.put(variableName, valueAtMemAddr);
+					}
+					
+					
 					readCache.put(memAddr, valueAtMemAddr);
 
 				} else if ((copiedLocks.containsKey(memAddr) && copiedLocks
@@ -271,6 +290,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String addendOneName = elements[2];
 				String addendTwoName = elements[3];
 
+
+				if(Responder.debugMode){
+					System.out.println("Starting debug of add");
+					System.out.println("command parses as: " + "add space " + sumName + " space " + addendOneName + " space " + addendTwoName);
+				}
+				
 				// Get the addends from the variableTable and write their sum to
 				// the table
 				if (variableTable.containsKey(sumName)
@@ -298,14 +323,25 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String sumName = elements[1];
 				String addendOneName = elements[2];
 				Integer addendTwo = null;
+				
+
 				try {
 					addendTwo = Integer.parseInt(elements[3]);
 				} catch (NumberFormatException n) {
 					BadTransactionRequestException b = new BadTransactionRequestException(
 							"Argument 3 of addc does not parse as an integer");
 					throw b;
+				} catch (Exception e){
+					throw e;
 				}
 
+				if(Responder.debugMode){
+					System.out.println("Starting debug of addc");
+					System.out.println("command parses as: " + "addc space " + sumName + " space " + addendOneName + " space " + addendTwo);
+					System.out.println("also variableTable.get(addendOneName) gives" + variableTable.get(addendOneName));
+				}
+				
+				
 				if (variableTable.containsKey(sumName)
 						&& variableTable.containsKey(addendOneName)) {
 					Integer sum = variableTable.get(addendOneName) + addendTwo;
@@ -482,25 +518,37 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		} catch (BadTransactionRequestException b) {
 			meTransaction.setAlive(false);
 			throw b;
+		} finally {
+			// Kills the transactionHeart
+			meTransaction.setAlive(false);
 		}
 
-		// Kills the transactionHeart
-		meTransaction.setAlive(false);
+		
 
 		return transactionReturnStatus;
 	}
 
 	// arg0 = this computer's ip address
 	// arg1 = the remoteName of this Responder process (e.g. Responder6)
+	// arg2 = debug mode on or off
 	public static void main(String[] args) {
 
-		if (args.length != 2) {
+		if (args.length != 3) {
 			System.out.println("Incorrect number of command line arguments.");
 			System.out.println("Correct form: IPaddress myRemoteName");
 			System.exit(1);
 		}
 		String myIP = args[0];
 		String myRemoteName = args[1];
+		if (args[2].equals("true")) {
+			Responder.debugMode = true;
+		} else if (args[2].equals("false")) {
+			Responder.debugMode = false;
+		} else {
+			System.out
+					.println("type in isLeader is wrong argument! Default initialization is non-leader replica");
+			Responder.debugMode = false;
+		}
 
 		// TODO Fix the bug where if this exits after registering itself with
 		// the

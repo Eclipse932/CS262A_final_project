@@ -16,6 +16,13 @@ public class LeaseLock implements Serializable {
 	Instant expirationTime;
 	int lockedKey;
 	
+	@Override
+	public String toString() {
+		return "LeaseLock [ownerTransactionID=" + ownerTransactionID
+				+ ", mode=" + mode + ", expirationTime=" + expirationTime
+				+ ", lockedKey=" + lockedKey + "]";
+	}
+
 	public LeaseLock(Long ownerTransactionID, AccessMode mode, Instant expirationTime, int lockedKey) {
 		this.ownerTransactionID = ownerTransactionID;
 		this.mode = mode;
