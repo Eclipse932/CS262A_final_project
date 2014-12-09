@@ -1,5 +1,4 @@
 package database;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Map;
@@ -261,14 +260,6 @@ public class LockTable {
 		committingWrites.put(ownerTransactionID, locks);
 		return true;
 	}
-	 
-	 /*public static void main(String[] args) {
-		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-		map.put(0, null);
-		for (Integer value: map.values()) {
-			System.out.println(value == null);
-		}
-	 }*/
 	 
 	
 }
