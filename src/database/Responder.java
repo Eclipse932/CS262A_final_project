@@ -482,10 +482,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		} catch (BadTransactionRequestException b) {
 			meTransaction.setAlive(false);
 			throw b;
+		} finally {
+			// Kills the transactionHeart
+			meTransaction.setAlive(false);
 		}
 
-		// Kills the transactionHeart
-		meTransaction.setAlive(false);
+		
 
 		return transactionReturnStatus;
 	}
