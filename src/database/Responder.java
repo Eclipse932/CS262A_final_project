@@ -276,6 +276,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String addendOneName = elements[2];
 				String addendTwoName = elements[3];
 
+
+				if(Responder.debugMode){
+					System.out.println("Starting debug of add");
+					System.out.println("command parses as: " + "add space " + sumName + " space " + addendOneName + " space " + addendTwoName);
+				}
+				
 				// Get the addends from the variableTable and write their sum to
 				// the table
 				if (variableTable.containsKey(sumName)
@@ -303,6 +309,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String sumName = elements[1];
 				String addendOneName = elements[2];
 				Integer addendTwo = null;
+				
+
 				try {
 					addendTwo = Integer.parseInt(elements[3]);
 				} catch (NumberFormatException n) {
@@ -313,6 +321,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					throw e;
 				}
 
+				if(Responder.debugMode){
+					System.out.println("Starting debug of addc");
+					System.out.println("command parses as: " + "addc space " + sumName + " space " + addendOneName + " space " + addendTwo);
+				}
+				
+				
 				if (variableTable.containsKey(sumName)
 						&& variableTable.containsKey(addendOneName)) {
 					Integer sum = variableTable.get(addendOneName) + addendTwo;
@@ -513,7 +527,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		String myRemoteName = args[1];
 		if (args[2].equals("true")) {
 			Responder.debugMode = true;
-			myRemoteName = "replica0";
 		} else if (args[2].equals("false")) {
 			Responder.debugMode = false;
 		} else {
