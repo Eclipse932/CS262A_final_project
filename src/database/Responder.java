@@ -100,6 +100,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					variableTable.put(variableName, initialValue);
 				}
 
+				//TODO read is unable to handle the case where the replica returns null for an uninitialized variable
+				//TODO refactor this section. This could probably help the above TODO
+				
+				
 				// read <variable name> <memory address to be read from>
 			} else if (command.equals("read")) {
 				if (elements.length != 3) {
@@ -225,6 +229,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					} else {
 						variableTable.put(variableName, valueAtMemAddr);
 					}
+					
 					
 					readCache.put(memAddr, valueAtMemAddr);
 
