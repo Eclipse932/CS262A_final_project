@@ -42,8 +42,9 @@ public class ClientApp {
 					} catch (RemoteException e) {
 						System.out.println("Error, unable to startup.");
 					} catch (Exception e) {
+						e.printStackTrace();
 						System.out.println(e);
-						fail("Exception in testAddTransaction");
+						System.exit(1);
 					}
 					commands.clear();
 				}else{
