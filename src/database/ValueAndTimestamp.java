@@ -24,6 +24,13 @@ public class ValueAndTimestamp implements Serializable{
 	}
 
 
+	@Override
+	public String toString() {
+		return "ValueAndTimestamp [value=" + value + ", timestamp=" + timestamp
+				+ "]";
+	}
+
+
 	public void setValue(Integer value) {
 		this.value = value;
 	}
