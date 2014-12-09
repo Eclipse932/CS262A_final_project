@@ -16,7 +16,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 	// private ArrayList<Transaction> Transactions;
 	// private ArrayList<TransactionHeart> TransactionHearts
-
+	public static boolean debugMode = false;
+	
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static String TRANSACTIONIDNAMERIP = "128.32.48.222";
 
@@ -53,6 +54,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		for (String action : actions) {
 
+			if(Responder.debugMode){
+				System.out.println(action);
+			}
+			
 			if (!meTransaction.isAlive()) {
 				return "abort";
 			}
@@ -496,15 +501,26 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 	// arg0 = this computer's ip address
 	// arg1 = the remoteName of this Responder process (e.g. Responder6)
+	// arg2 = debug mode on or off
 	public static void main(String[] args) {
 
-		if (args.length != 2) {
+		if (args.length != 3) {
 			System.out.println("Incorrect number of command line arguments.");
 			System.out.println("Correct form: IPaddress myRemoteName");
 			System.exit(1);
 		}
 		String myIP = args[0];
 		String myRemoteName = args[1];
+		if (args[2].equals("true")) {
+			Responder.debugMode = true;
+			myRemoteName = "replica0";
+		} else if (args[2].equals("false")) {
+			Responder.debugMode = false;
+		} else {
+			System.out
+					.println("type in isLeader is wrong argument! Default initialization is non-leader replica");
+			Responder.debugMode = false;
+		}
 
 		// TODO Fix the bug where if this exits after registering itself with
 		// the
