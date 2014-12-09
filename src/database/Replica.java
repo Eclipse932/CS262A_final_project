@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.time.Duration;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
-	private static boolean debugMode = false;
+	public static boolean debugMode = false;
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 

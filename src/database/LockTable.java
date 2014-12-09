@@ -21,6 +21,11 @@ public class LockTable {
 	}
 	
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
+		if (Replica.debugMode) {
+			System.out.println("extendingLockLeases for " + locks);
+		}
+		
+		
 		Instant newLeaseEnd = Instant.now().plus(Replica.LOCK_LEASE_INTERVAL); 
 		if (locks.size() == 0) return newLeaseEnd;
 		Long transactionID = ((LeaseLock) locks.get(0)).ownerTransactionID;
@@ -59,6 +64,10 @@ public class LockTable {
 	}
 	
 	synchronized void wakeUpNextLock(Integer key) {
+		if (Replica.debugMode) {
+			System.out.println("Calling waking up next lock for key: " + key);
+		}
+		
 		PriorityQueue<LockAndCondition> queue = waitingLocks.get(key);
 		if (queue != null && queue.size() > 0) {
 			List<LeaseLock> sameKeyLocks = lockMap.get(key);
@@ -206,6 +215,11 @@ public class LockTable {
 	}
 	
 	synchronized void releaseTableLocks(List<LeaseLock> locks, Long ownerTransactionID) {
+		if (Replica.debugMode) {
+			System.out.println("Calling realeaseTableLocks for Transaction: " + ownerTransactionID);
+			System.out.println("It has locks: " + locks);
+		}
+		
 		transactionBirthdates.remove(ownerTransactionID);
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
