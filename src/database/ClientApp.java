@@ -133,6 +133,7 @@ public class ClientApp {
 
 		try {
 			me.getInput(inputFilename);
+			System.out.println("IT'S DONE");
 		} catch (Exception e) {
 			System.out.println(e);
 			e.printStackTrace();
