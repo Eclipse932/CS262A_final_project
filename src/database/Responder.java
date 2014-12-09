@@ -304,6 +304,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					BadTransactionRequestException b = new BadTransactionRequestException(
 							"Argument 3 of addc does not parse as an integer");
 					throw b;
+				} catch (Exception e){
+					throw e;
 				}
 
 				if (variableTable.containsKey(sumName)
