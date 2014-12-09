@@ -35,6 +35,7 @@ public class ClientApp {
 			br = new BufferedReader(new InputStreamReader(in,
 					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
+				System.out.println(line);
 				if (line.equals("ENDING TRANSACTION")) {
 					try {
 						entryPoint.PRWTransaction(commands);
@@ -45,9 +46,9 @@ public class ClientApp {
 						fail("Exception in testAddTransaction");
 					}
 					commands.clear();
+				}else{
+					commands.add(line);
 				}
-				System.out.println(line);
-				commands.add(line);
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

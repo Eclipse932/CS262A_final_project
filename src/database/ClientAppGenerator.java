@@ -78,11 +78,8 @@ public class ClientAppGenerator {
 			    
 			    //how many transaction left
 			    int transactionLeft = totalTransaction;
-			    for(int varDeclare =1 ; varDeclare< totalVariable ;varDeclare++){
-			    	writer.write("declare x"+varDeclare + " "+ (int)Math.ceil(Math.random()*10000) +"\n");
-			    }
 			    while(transactionLeft > 0){
-			    
+			    	
 				    int lengthIn = length; 
 					int readTotal = ((Double)(lengthIn*readRatio)).intValue();
 					int writeTotal = ((Double)(lengthIn*writeRatio)).intValue();
@@ -96,6 +93,10 @@ public class ClientAppGenerator {
 					 *  addc <variable name sum> <variable name> <integer constant addend>
 				  	 *  wait <integer time to sleep in milliseconds>
 				     */
+				    for(int varDeclare =1 ; varDeclare <= totalVariable ;varDeclare++){
+				    	writer.write("declare x"+varDeclare + " "+ (int)Math.ceil(Math.random()*10000) +"\n");
+				    }
+					
 				    while(readTotal>0 || writeTotal>0 || addTotal>0 || addcTotal>0 || waitTotal>0){
 				    	System.out.println(readTotal+ "\t" + writeTotal +"\t" + addTotal 
 				    			+ "\t" + addcTotal +"\t" + waitTotal);
@@ -153,7 +154,6 @@ public class ClientAppGenerator {
 			} catch (IOException ex) {
 			  // report
 			} finally {
-				writer.write("FILE END");
 			   try {writer.close();} catch (Exception ex) {}
 			}
 		}
