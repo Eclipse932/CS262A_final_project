@@ -118,6 +118,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			boolean result = lockTable.validateTableLock(heldLocks,
 					transactionID);
 			if (result == false) {
+				lockTable.releaseTableLocks(heldLocks, transactionID);
 				return "abort";
 			} else {
 

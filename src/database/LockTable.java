@@ -108,9 +108,6 @@ public class LockTable {
 					for (LeaseLock sameKeyLock: sameKeyLocks) {
 						if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID)) {
 							toBeRemovedLocks.add(sameKeyLock);
-							if (Replica.debugMode) {
-								System.out.println("transaction " + sameKeyLock.ownerTransactionID+ " already aborted");
-							}
 						} else {
 							if (committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
 								finalCompareResult = -1;
@@ -123,13 +120,14 @@ public class LockTable {
 									System.out.println("currentCompareResult : " + currentResult + ";transaction " + sameKeyLock.ownerTransactionID);
 								}
 							}
-							if (Replica.debugMode) {
-								System.out.println("finalCompareResult : " + finalCompareResult + ";transaction " + sameKeyLock.ownerTransactionID);
-							}
 						}
 					}
 					for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
 						sameKeyLocks.remove(toBeRemovedLock);
+					}
+
+					if (Replica.debugMode) {
+						System.out.println("finalCompareResult : " + finalCompareResult);
 					}
 					if (finalCompareResult >= 0) {
 						for (LeaseLock sameKeyLock: sameKeyLocks) {
@@ -214,6 +212,9 @@ public class LockTable {
 				}
 				for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
 					sameKeyLocks.remove(toBeRemovedLock);
+					if (Replica.debugMode) {
+						System.out.println("transaction " + toBeRemovedLock.ownerTransactionID+ " already aborted in lease killer");
+					}
 				}
 				if (toBeRemovedLocks.size() > 0) wakeUpNextLock(lockedKey);
 			}
@@ -230,27 +231,26 @@ public class LockTable {
 		for (LeaseLock lock: locks) {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			if (sameKeyLocks != null) {
-				List<LeaseLock> toBeRemovedLocks = new LinkedList<LeaseLock>();
+				LeaseLock toBeRemovedLock = null;
 				for (LeaseLock sameKeyLock: sameKeyLocks) {
 					if (sameKeyLock.equals(lock)) {
-						toBeRemovedLocks.add(sameKeyLock);
-						wakeUpNextLock(sameKeyLock.lockedKey);
+						toBeRemovedLock = sameKeyLock;
 						break;
 					}
 				}
-				for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
+				if (toBeRemovedLock != null) {
 					sameKeyLocks.remove(toBeRemovedLock);
+					wakeUpNextLock(toBeRemovedLock.lockedKey);
 				}
 			}
 		}
 		committingWrites.remove(ownerTransactionID);
-		return ;
+		return;
 	}
 	
 	 synchronized boolean validateTableLock(List<LeaseLock> locks, Long ownerTransactionID) {
 		//if transactionBirthDate is no longer found, it shows the transaction is already aborted
 		if (!transactionBirthdates.containsKey(ownerTransactionID)) {
-			releaseTableLocks(locks, ownerTransactionID);
 			return false;
 		}
 		Instant validateStartTime = Instant.now();
@@ -266,14 +266,12 @@ public class LockTable {
 					if (sameKeyLock.equalForValidatingLocks(lock)) {
 						isFound = true;
 						if (sameKeyLock.expirationTime.isBefore(validateStartTime)) {
-							releaseTableLocks(locks, ownerTransactionID);
 							return false;
 						}
 						break;
 					}
 				}
 				if (!isFound) {
-					releaseTableLocks(locks, ownerTransactionID);
 					return false;
 				}
 			}
