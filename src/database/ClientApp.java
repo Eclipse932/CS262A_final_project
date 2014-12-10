@@ -1,5 +1,5 @@
 package database;
-
+import java.time.Instant;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -35,10 +35,14 @@ public class ClientApp {
 			br = new BufferedReader(new InputStreamReader(in,
 					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
+				//System.out.println(line);
 				if (line.equals("ENDING TRANSACTION")) {
 					try {
+						System.out.println("Beginning Transaction");
+						System.out.println(Instant.now());
 						entryPoint.PRWTransaction(commands);
+						System.out.println("Ending Transaction");
+						System.out.println(Instant.now());
 					} catch (RemoteException e) {
 						System.out.println("Error, unable to startup.");
 					} catch (Exception e) {

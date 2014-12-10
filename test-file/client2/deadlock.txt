@@ -1,0 +1,3 @@
+declare x16 6789
+read x1 56
+write x1 56

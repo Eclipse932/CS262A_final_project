@@ -1,0 +1,3 @@
+declare x1 6789
+read x1 56
+wait 2000
