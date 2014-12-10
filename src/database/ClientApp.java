@@ -1,7 +1,7 @@
 package database;
 import java.time.Instant;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+//import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.fail;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -40,7 +40,7 @@ public class ClientApp {
 					try {
 						System.out.println("Beginning Transaction");
 						System.out.println(Instant.now());
-						entryPoint.PRWTransaction(commands);
+						System.out.println("Return: \t"+entryPoint.PRWTransaction(commands));
 						System.out.println("Ending Transaction");
 						System.out.println(Instant.now());
 					} catch (RemoteException e) {
