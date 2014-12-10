@@ -240,6 +240,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public boolean prepare(Long sequenceNumber) throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
+		if(debugMode){
+			System.out.println("prepare is called with sequenceNumber " + sequenceNumber + " and expectedReplicaSequenceNumber " + expectedReplicaSequenceNumber);
+		}
+		
 		if (sequenceNumber == expectedReplicaSequenceNumber) {
 			if (Replica.debugMode) {
 				System.out.println("expectedReplicaSequenceNumber "
@@ -323,9 +327,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// + Thread.currentThread().getId());
 		}
 
-		if (!((leaderNewSequenceNumber - replicaExpectedSn) <= 1)) {
+		if (!( (leaderNewSequenceNumber - replicaExpectedSn) >= 1)) {
 			System.out
-					.println("Incorrect arguments given to requestSequenceData");
+					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber" + leaderNewSequenceNumber + " replicaExpectedSn " + replicaExpectedSn);
 			System.out.println("Returning null");
 			return null;
 		}
@@ -486,7 +490,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			System.out.println(e);
 			System.exit(1);
 		}
-
 		if (me.isLeader == true) {
 			boolean registrationStatus = false;
 			try {
@@ -574,7 +577,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// Use the remoteRegistry to lookup the leader's networkname
 			String leaderNetworkName = null;
 			boolean firstIteration = true;
-
+			System.out.println(firstIteration);
 			do {
 				if (!firstIteration) {
 					// Give the leader a chance to register itself and try again
