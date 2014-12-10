@@ -258,7 +258,6 @@ public class LockTable {
 			List <LeaseLock> sameKeyLocks = lockMap.get(lock.lockedKey);
 			//if no entry, it shows the lock has already been removed by LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
-				releaseTableLocks(locks, ownerTransactionID);
 				return false;
 			}else {
 				boolean isFound = false;
