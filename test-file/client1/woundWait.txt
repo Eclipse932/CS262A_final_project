@@ -1,4 +1,6 @@
 declare x1 2
+declare x2 2
+read x1 56
 wait 10000
-write x1 56
+write x2 56
 ENDING TRANSACTION
