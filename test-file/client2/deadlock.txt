@@ -1,4 +1,5 @@
-declare x16 1
+declare x1 1
+declare x2 1
 read x1 56
-write x1 56
+write x2 56
 ENDING TRANSACTION
