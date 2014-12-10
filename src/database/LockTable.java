@@ -108,6 +108,9 @@ public class LockTable {
 					for (LeaseLock sameKeyLock: sameKeyLocks) {
 						if (!transactionBirthdates.containsKey(sameKeyLock.ownerTransactionID)) {
 							toBeRemovedLocks.add(sameKeyLock);
+							if (Replica.debugMode) {
+								System.out.println("transaction " + sameKeyLock.ownerTransactionID+ " already aborted");
+							}
 						} else {
 							if (committingWrites.containsKey(sameKeyLock.ownerTransactionID)) {
 								finalCompareResult = -1;
@@ -115,6 +118,13 @@ public class LockTable {
 								int currentResult = wakeUpNextLockCompareHelper(sameKeyLock, nextLockHolderCandidate);
 								finalCompareResult = Math.min(finalCompareResult, currentResult);
 								if (currentResult == 0) toBeUpgrade = sameKeyLock;
+								
+								if (Replica.debugMode) {
+									System.out.println("currentCompareResult : " + currentResult + ";transaction " + sameKeyLock.ownerTransactionID);
+								}
+							}
+							if (Replica.debugMode) {
+								System.out.println("finalCompareResult : " + finalCompareResult + ";transaction " + sameKeyLock.ownerTransactionID);
 							}
 						}
 					}
