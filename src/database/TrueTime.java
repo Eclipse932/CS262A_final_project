@@ -5,9 +5,8 @@ import java.time.Instant;
 public class TrueTime {
 
 	
-	//NTP error should be on the order of milliseconds
-	private static long epsilonNanos = 10000; 
-	// TODO replace this with a value determined from ptpd
+	//Computed PTP error
+	private static long epsilonNanos = 640000; 
 	
 	//returns TTinterval: [earliest, latest]
 	public static TTinterval now() {
