@@ -1,7 +1,5 @@
 package database;
 
-import static org.junit.Assert.fail;
-
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -10,7 +8,6 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
