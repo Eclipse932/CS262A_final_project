@@ -31,7 +31,7 @@ public class ClientApp {
 		String line;
 		System.out.println("Inside the getInput");
 		try {
-			in = new FileInputStream("test-file/" + testFileName);
+			in = new FileInputStream(testFileName);
 			br = new BufferedReader(new InputStreamReader(in,
 					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {

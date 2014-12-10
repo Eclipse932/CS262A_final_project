@@ -1,6 +1,6 @@
 package database;
 
-import static org.junit.Assert.fail;
+//import static org.junit.Assert.fail;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -529,8 +529,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	}
 
 	// arg0 = this computer's ip address
-	// arg1 = the remoteName of this Responder process (e.g. Responder6)
-	// arg2 = debug mode on or off
+	// arg1 = the remoteName of this Responder process (e.g. responder6)
+	// arg2 = debug mode true or false
 	public static void main(String[] args) {
 
 		if (args.length != 3) {

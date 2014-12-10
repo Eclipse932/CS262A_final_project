@@ -240,11 +240,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public boolean prepare(Long sequenceNumber) throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
-		if(debugMode){
-			System.out.println("prepare is called with sequenceNumber " + sequenceNumber + " and expectedReplicaSequenceNumber " + expectedReplicaSequenceNumber);
-		}
 		
-		if (sequenceNumber == expectedReplicaSequenceNumber) {
+		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
 			if (Replica.debugMode) {
 				System.out.println("expectedReplicaSequenceNumber "
 						+ expectedReplicaSequenceNumber + ", sequenceNumber: "
@@ -322,12 +319,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
 
-		if (Replica.debugMode) {
-			// System.out.println("A replica is asking to be caught up in thread"
-			// + Thread.currentThread().getId());
-		}
-
-		if (!( (leaderNewSequenceNumber - replicaExpectedSn) >= 1)) {
+		
+		if (!((leaderNewSequenceNumber - replicaExpectedSn) >= 1)) {
 			System.out
 					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber" + leaderNewSequenceNumber + " replicaExpectedSn " + replicaExpectedSn);
 			System.out.println("Returning null");
