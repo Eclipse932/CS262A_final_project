@@ -1,0 +1,4 @@
+declare x1 2
+wait 10000
+write x1 56
+ENDING TRANSACTION

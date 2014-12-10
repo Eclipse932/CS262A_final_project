@@ -1,7 +1,7 @@
 package database;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import java.time.Instant;
+//import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.fail;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -35,10 +35,14 @@ public class ClientApp {
 			br = new BufferedReader(new InputStreamReader(in,
 					Charset.forName("UTF-8")));
 			while ((line = br.readLine()) != null) {
-				System.out.println(line);
+				//System.out.println(line);
 				if (line.equals("ENDING TRANSACTION")) {
 					try {
-						entryPoint.PRWTransaction(commands);
+						System.out.println("Beginning Transaction");
+						System.out.println(Instant.now());
+						System.out.println("Return: \t"+entryPoint.PRWTransaction(commands));
+						System.out.println("Ending Transaction");
+						System.out.println(Instant.now());
 					} catch (RemoteException e) {
 						System.out.println("Error, unable to startup.");
 					} catch (Exception e) {
