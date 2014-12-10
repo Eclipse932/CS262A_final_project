@@ -131,14 +131,11 @@ public class LockTable {
 					for (LeaseLock toBeRemovedLock: toBeRemovedLocks) {
 						sameKeyLocks.remove(toBeRemovedLock);
 					}
-					if (finalCompareResult > 0) {
+					if (finalCompareResult >= 0) {
 						for (LeaseLock sameKeyLock: sameKeyLocks) {
 							if (!sameKeyLock.equals(toBeUpgrade)) transactionBirthdates.remove(sameKeyLock.ownerTransactionID);
 						}
 						sameKeyLocks.clear();
-						wakeUpNextLockHelper(queue, sameKeyLocks, key);
-					} else if (finalCompareResult == 0) {
-						sameKeyLocks.remove(toBeUpgrade);
 						wakeUpNextLockHelper(queue, sameKeyLocks, key);
 					} else return;
 				} else {
