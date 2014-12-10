@@ -1,3 +1,4 @@
-declare x16 6789
+declare x16 1
 read x1 56
 write x1 56
+ENDING TRANSACTION
