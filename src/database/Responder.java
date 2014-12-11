@@ -366,13 +366,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 							"Argument 1 of wait does not parse as an integer");
 					throw b;
 				}
-
-				try {
-					Thread.sleep(waitTime);
-				} catch (InterruptedException i) {
-					BadTransactionRequestException b = new BadTransactionRequestException(
-							"Interrupted Exception caught during Thread.sleep in wait.");
-					throw b;
+				if( waitTime > 0){
+					try {
+						Thread.sleep(waitTime);
+					} catch (InterruptedException i) {
+						BadTransactionRequestException b = new BadTransactionRequestException(
+								"Interrupted Exception caught during Thread.sleep in wait.");
+						throw b;
+					}
 				}
 
 				// Invalid command
