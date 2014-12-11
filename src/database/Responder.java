@@ -533,7 +533,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		if (args.length != 3) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: IPaddress myRemoteName");
+			System.out.println("Correct form: IPaddress myRemoteName debugMode");
 			System.exit(1);
 		}
 		String myIP = args[0];
