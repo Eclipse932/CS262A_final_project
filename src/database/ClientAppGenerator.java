@@ -16,7 +16,7 @@ public class ClientAppGenerator {
 	    totalClient = Integer.parseInt(args[5]);
 	    System.out.println("deadTime: " + deadTime + " low address: " + lowAddress 
 	    		+" high address: "+highAddress+ " length: " + length + 
-	    		" totalVariable: " + totalVariable);
+	    		"totalTransaction " + totalTransaction + " totalVariable: " + totalVariable);
 	    
 	    double temp = 1.0;
 		double readRatio = 0.0;
@@ -61,7 +61,7 @@ public class ClientAppGenerator {
 		for(int i = 1; i<=totalClient ;i++){
 			try {
 				
-				String storeFile = "test-file/client"+i+"/filename.txt";
+				String storeFile = "../test-file/client"+i+"/filename.txt";
 				System.out.println(storeFile);
 			    writer = new BufferedWriter(new OutputStreamWriter(
 			          new FileOutputStream(storeFile), "utf-8"));
