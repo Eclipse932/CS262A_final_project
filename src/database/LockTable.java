@@ -146,22 +146,24 @@ public class LockTable {
 	
 	void wakeUpNextLockOnlyOneCurrentLockHolderHelper(List<LeaseLock> sameKeyLocks, PriorityQueue<LockAndCondition> queue, Integer key) {
 		LeaseLock currentLockHolder = sameKeyLocks.get(0);
-		int compareResult = wakeUpNextLockCompareHelper(currentLockHolder, queue.peek());
-		if (compareResult < 0 ) {
-			if (!transactionBirthdates.containsKey(currentLockHolder.ownerTransactionID)){
-				sameKeyLocks.remove(currentLockHolder);
-				wakeUpNextLockHelper(queue, sameKeyLocks, key);
-			} else return;
-		} else if (compareResult > 0) {
-			if (!committingWrites.containsKey(currentLockHolder.ownerTransactionID)) {
-				//kill currentLockHolder
-				sameKeyLocks.remove(currentLockHolder);
-				transactionBirthdates.remove(currentLockHolder.ownerTransactionID);
-				wakeUpNextLockHelper(queue, sameKeyLocks, key);
-			}else return;
+		if (!transactionBirthdates.containsKey(currentLockHolder.ownerTransactionID)){
+			sameKeyLocks.remove(currentLockHolder);
+			wakeUpNextLockHelper(queue, sameKeyLocks, key);
 		} else {
-			System.out.println("this case should never happen");
-			return;
+			int compareResult = wakeUpNextLockCompareHelper(currentLockHolder, queue.peek());
+			if (compareResult < 0 ) {
+				return;
+			} else if (compareResult > 0) {
+				if (!committingWrites.containsKey(currentLockHolder.ownerTransactionID)) {
+					//kill currentLockHolder
+					sameKeyLocks.remove(currentLockHolder);
+					transactionBirthdates.remove(currentLockHolder.ownerTransactionID);
+					wakeUpNextLockHelper(queue, sameKeyLocks, key);
+				}else return;
+			} else {
+				System.out.println("this case should never happen");
+				return;
+			}
 		}
 	}
 	
@@ -171,7 +173,9 @@ public class LockTable {
 	*/
 	int wakeUpNextLockCompareHelper(LeaseLock currentLockHolder, LockAndCondition nextLockHolderCandidate) {
 		Instant currentLockHolderBirthdate = transactionBirthdates.get(currentLockHolder.ownerTransactionID);
-		System.out.println("currentLockHolderBirthdate: " + currentLockHolderBirthdate + "nextLockHolderCandidate :" + nextLockHolderCandidate);
+		if (Replica.debugMode) {
+			System.out.println("currentLockHolderBirthdate: " + currentLockHolderBirthdate + "nextLockHolderCandidate :" + nextLockHolderCandidate);
+		}
 		int result = currentLockHolderBirthdate.compareTo(nextLockHolderCandidate.transactionBirthDate);
 		if (result != 0) {
 			return result;
