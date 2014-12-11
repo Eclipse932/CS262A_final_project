@@ -171,6 +171,7 @@ public class LockTable {
 	*/
 	int wakeUpNextLockCompareHelper(LeaseLock currentLockHolder, LockAndCondition nextLockHolderCandidate) {
 		Instant currentLockHolderBirthdate = transactionBirthdates.get(currentLockHolder.ownerTransactionID);
+		System.out.println("currentLockHolderBirthdate: " + currentLockHolderBirthdate + "nextLockHolderCandidate :" + nextLockHolderCandidate);
 		int result = currentLockHolderBirthdate.compareTo(nextLockHolderCandidate.transactionBirthDate);
 		if (result != 0) {
 			return result;
@@ -278,6 +279,5 @@ public class LockTable {
 		committingWrites.put(ownerTransactionID, locks);
 		return true;
 	}
-	 
 	
 }
