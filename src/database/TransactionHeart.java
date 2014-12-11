@@ -19,18 +19,18 @@ public class TransactionHeart implements Runnable {
 	@Override
 	public void run() {
 
-		System.out.println("Transaction Heart alive in thread "
-				+ Thread.currentThread());
-
+//		System.out.println("Transaction Heart alive in thread "
+//				+ Thread.currentThread());
+ 
 		while (myPairedTransaction.isAlive()) {
 			try {
 				Thread.sleep(leaseRenewInterval);
 			} catch (InterruptedException i) {
 				System.out.println("TransactionHeart was unable to sleep");
 			}
-			System.out.println("Transaction Heart in thread "
-					+ Thread.currentThread() + "should be"
-					+ " renewing its transaction now");
+//			System.out.println("Transaction Heart in thread "
+//					+ Thread.currentThread() + "should be"
+//					+ " renewing its transaction now");
 
 			ReplicaIntf leader = myPairedTransaction.myResponder.getLeader();
 
