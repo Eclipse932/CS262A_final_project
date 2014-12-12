@@ -15,9 +15,11 @@ public interface ReplicaIntf extends Remote {
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
 			HashMap<Integer, Integer> memaddrToValue, String replicationMode) throws RemoteException;
 
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
-			InterruptedException;
+	public Instant getReplicaLock(LeaseLock lock, String replicationMode) throws RemoteException,
+			InterruptedException, Exception;
 
+	public void updateLockTableState(int numOfReplicasFromLeader) throws Exception;
+	
 	public Integer RWTread(Integer databaseKey) throws RemoteException;
 
 	public Instant beginTransaction(long transactionID) throws RemoteException;

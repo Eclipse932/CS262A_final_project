@@ -31,7 +31,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	int numOfReplicas;
 
 	boolean otherReplicasFoundForByz;
-	
+
 	Log dataLog;
 	ReplicaIntf leader;
 	ArrayList<ReplicaIntf> replicas = null; // Only initialized to something
@@ -39,7 +39,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 											// is the leader
 
 	ArrayList<ReplicaIntf> replicasForByzCommunication = new ArrayList<ReplicaIntf>();
-	
+
 	// Start both sequence numbers at -1 so they will be incremented to zero for
 	// the first sequence use.
 	Long leaderSequenceNumber = new Long(-1); // This value should only be used
@@ -132,7 +132,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				for (Integer memAddr : memaddrToValue.keySet()) {
 					try {
 						result = replicateWrite(memAddr,
-								memaddrToValue.get(memAddr), timestamp, replicationMode);
+								memaddrToValue.get(memAddr), timestamp,
+								replicationMode);
 					} catch (RemoteException r) {
 						System.out
 								.println("Unable to perform paxosWrite on timestamp: "
@@ -172,34 +173,34 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	}
 
-	
-	private boolean replicateWrite(Integer memAddr, Integer value, Instant timestamp, String replicationMode)
-			throws RemoteException {
-		
+	private boolean replicateWrite(Integer memAddr, Integer value,
+			Instant timestamp, String replicationMode) throws RemoteException {
+
 		synchronized (leaderSequenceNumber) {
 			Long sn = this.getLeaderSequenceNumber() + 1;
 			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
 			boolean hasPromised = false;
 			int paxosMajority = (this.replicas.size() / 2) + 1;
-			int byzMajority = ( (this.replicas.size() * 2) / 3 ) + 1;
+			int byzMajority = ((this.replicas.size() * 2) / 3) + 1;
 			int majority;
-			
-			if(replicationMode.equals("pax")){
+
+			if (replicationMode.equals("pax")) {
 				majority = paxosMajority;
 			} else {
 				majority = byzMajority;
 			}
-			
+
 			while (quorum.size() < majority) {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						if(replicationMode.equals("pax")){
+						if (replicationMode.equals("pax")) {
 							hasPromised = contactReplica.paxosPrepare(sn);
 						} else {
-							try{
-								hasPromised = contactReplica.byzPrepare(sn, this.numOfReplicas);
-							} catch (Exception e){
+							try {
+								hasPromised = contactReplica.byzPrepare(sn,
+										this.numOfReplicas);
+							} catch (Exception e) {
 								System.out.println("Problem in byzPrepare");
 								System.out.println(e);
 							}
@@ -259,55 +260,58 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 		return true;
 	}
-	
-	public void emmulateByzCommunication() throws RemoteException{
-		//Do some busy work
+
+	public void emmulateByzCommunication() throws RemoteException {
+		// Do some busy work
 		int j = 0;
-		for(int i = 0; i < 1000; i++){
-			j = j % 7; 
+		for (int i = 0; i < 1000; i++) {
+			j = j % 7;
 		}
 	}
-	
 
-	public boolean byzPrepare(Long sequenceNumber, int numOfReplicasFromLeader) throws Exception {
-	
-		//First eummulate the byzantine communication between all replicas
-		
-		if( ! this.otherReplicasFoundForByz){
-			
+	public boolean byzPrepare(Long sequenceNumber, int numOfReplicasFromLeader)
+			throws Exception {
+
+		// First eummulate the byzantine communication between all replicas
+
+		if (!this.otherReplicasFoundForByz) {
+
 			RemoteRegistryIntf terraTestRemoteRegistry = null;
-			
+
 			// Acquire remoteRegistry to lookup the other replicas.
-			System.out.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
+			System.out
+					.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
 			System.out.println("You should see this message once!");
 			try {
-				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming.lookup("//"
-						+ REMOTEREGISTRYIP + "/RemoteRegistry");
+				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
+						.lookup("//" + REMOTEREGISTRYIP + "/RemoteRegistry");
 			} catch (Exception e) {
 				throw e;
 			}
-			
-			for(int i = 1; i <= (numOfReplicasFromLeader -1); i++) {
+
+			for (int i = 1; i <= (numOfReplicasFromLeader - 1); i++) {
 				String contactReplicaRemoteName = "replica" + i;
 				String networkNameForContactReplica = "";
 				ReplicaIntf remoteObjectForContactReplica = null;
-				
-				if(contactReplicaRemoteName.equals(this.remoteName)){
+
+				if (contactReplicaRemoteName.equals(this.remoteName)) {
 					continue;
 				} else {
-					networkNameForContactReplica = terraTestRemoteRegistry.getNetworkName(contactReplicaRemoteName);
-					remoteObjectForContactReplica = (ReplicaIntf) Naming.lookup(networkNameForContactReplica);
-					this.replicasForByzCommunication.add(remoteObjectForContactReplica);
+					networkNameForContactReplica = terraTestRemoteRegistry
+							.getNetworkName(contactReplicaRemoteName);
+					remoteObjectForContactReplica = (ReplicaIntf) Naming
+							.lookup(networkNameForContactReplica);
+					this.replicasForByzCommunication
+							.add(remoteObjectForContactReplica);
 				}
 			}
 		}
-		
-		for(ReplicaIntf contactReplica:this.replicasForByzCommunication ){
+
+		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
 			contactReplica.emmulateByzCommunication();
 		}
 
-		
-		//THIS CODE HAS BEEN COPIED FROM PAXOSPREPARE
+		// THIS CODE HAS BEEN COPIED FROM PAXOSPREPARE
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
 
 		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
@@ -381,11 +385,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		} else {
 			return true;
 		}
-		
-		
-		//return false;
+
+		// return false;
 	}
-	
+
 	public boolean paxosPrepare(Long sequenceNumber) throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
@@ -522,10 +525,61 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return transactionBirthDate;
 	}
 
+	
+	public void updateLockTableState(int numOfReplicasFromLeader) throws Exception{
+		if (!this.otherReplicasFoundForByz) {
+
+			RemoteRegistryIntf terraTestRemoteRegistry = null;
+
+			// Acquire remoteRegistry to lookup the other replicas.
+			System.out
+					.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
+			System.out.println("You should see this message once!");
+			try {
+				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
+						.lookup("//" + REMOTEREGISTRYIP + "/RemoteRegistry");
+			} catch (Exception e) {
+				throw e;
+			}
+
+			for (int i = 1; i <= (numOfReplicasFromLeader - 1); i++) {
+				String contactReplicaRemoteName = "replica" + i;
+				String networkNameForContactReplica = "";
+				ReplicaIntf remoteObjectForContactReplica = null;
+
+				if (contactReplicaRemoteName.equals(this.remoteName)) {
+					continue;
+				} else {
+					networkNameForContactReplica = terraTestRemoteRegistry
+							.getNetworkName(contactReplicaRemoteName);
+					remoteObjectForContactReplica = (ReplicaIntf) Naming
+							.lookup(networkNameForContactReplica);
+					this.replicasForByzCommunication
+							.add(remoteObjectForContactReplica);
+				}
+			}
+		}
+
+		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
+			contactReplica.emmulateByzCommunication();
+		}
+	}
+	
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
-			InterruptedException {
+	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
+			throws RemoteException, InterruptedException, Exception {
+
+		if (replicationMode.equals("byz")) {
+			for(ReplicaIntf contactReplica : replicas){
+				try {
+					contactReplica.updateLockTableState(this.numOfReplicas);
+				} catch (Exception e){
+					throw e;
+				}
+			}
+		}
+
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable

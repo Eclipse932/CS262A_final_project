@@ -148,8 +148,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					Instant leaseLockExpiration = null;
 					try {
 						leaseLockExpiration = leader
-								.getReplicaLock(lockForRead);
-					} catch (RemoteException | InterruptedException r) {
+								.getReplicaLock(lockForRead, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
 										+ meTransaction.getTransactionID());
@@ -412,8 +412,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 				Instant expirationTime = null;
 				try {
-					expirationTime = leader.getReplicaLock(ll); // upgrade
-				} catch (RemoteException | InterruptedException r) {
+					expirationTime = leader.getReplicaLock(ll, replicationMode); // upgrade
+				} catch (Exception r) {
 					System.out
 							.println("Remote Exception or Interrupted Exception while trying to acquire (upgrading) Write lock in Transaction "
 									+ meTransaction.getTransactionID());
@@ -441,8 +441,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						AccessMode.WRITE, null, lockKey);
 				Instant expirationTime = null;
 				try {
-					expirationTime = leader.getReplicaLock(ll);
-				} catch (RemoteException | InterruptedException r) {
+					expirationTime = leader.getReplicaLock(ll, replicationMode);
+				} catch (Exception r) {
 					System.out
 							.println("Remote Exception or Interrupted Exception while trying to acquire Write lock in Transaction "
 									+ meTransaction.getTransactionID());
@@ -558,9 +558,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// arg2 = debug mode true or false
 	public static void main(String[] args) {
 
-		if (args.length != 3) {
+		if (args.length != 4) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: IPaddress myRemoteName");
+			System.out.println("Correct form: IPaddress myRemoteName debug(True | False)");
 			System.exit(1);
 		}
 		String myIP = args[0];
