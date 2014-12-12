@@ -273,7 +273,42 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				// Note that we acquire write locks and commit this structure
 				// at the end of the transaction.
 
-				// add <variable name sum> <variable name addend> <variable name
+				// sub <variable name difference> <variable name minuend> <variable name subtrahend>
+				// FOR CLARIFICATION: difference = minuend - subtrahend
+			} else if (command.equals("sub")) {
+				if (elements.length != 4) {
+					BadTransactionRequestException b = new BadTransactionRequestException(
+							"sub has the wrong number of arguments\n"
+									+ "correct form: <variable name difference> <variable name minuend> <variable name subtrahend>");
+					throw b;
+				}
+
+				String differenceName = elements[1];
+				String minuendName = elements[2];
+				String subtrahendName = elements[3];
+
+
+				if(Responder.debugMode){
+					System.out.println("Starting debug of sub");
+					System.out.println("command parses as: " + "sub space " + differenceName + " space " + subtrahendName + " space " + minuendName);
+				}
+				
+				// Get the terms from the variableTable and write their difference to
+				// the table
+				if (variableTable.containsKey(differenceName)
+						&& variableTable.containsKey(minuendName)
+						&& variableTable.containsKey(subtrahendName)) {
+					Integer difference = variableTable.get(minuendName)
+							- variableTable.get(subtrahendName);
+					variableTable.put(differenceName, difference);
+				} else {
+					BadTransactionRequestException b = new BadTransactionRequestException(
+							"One of the arguments to sub has not already been declared.");
+					throw b;
+				}
+				
+				
+				// add <variable name sum> <variable name addend> <variable name addend>
 				// addend>
 			} else if (command.equals("add")) {
 				if (elements.length != 4) {
