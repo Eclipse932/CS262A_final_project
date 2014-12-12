@@ -17,8 +17,6 @@ public interface ReplicaIntf extends Remote {
 
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode) throws RemoteException,
 			InterruptedException, Exception;
-
-	public void updateLockTableState(int numOfReplicasFromLeader) throws Exception;
 	
 	public Integer RWTread(Integer databaseKey) throws RemoteException;
 

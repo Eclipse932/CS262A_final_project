@@ -469,7 +469,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			throws RemoteException, InterruptedException, Exception {
 
 		if (replicationMode.equals("byz")) {
-			emulateLeaderByzReplicateState();
+			try{
+				emulateLeaderByzReplicateState();
+			} catch (Exception e){
+				throw e;
+			}
 		}
 
 		Object leaseLockCondition = new Object();
