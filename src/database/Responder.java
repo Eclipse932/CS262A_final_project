@@ -175,10 +175,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// declared
 					Integer valueAtMemAddr = null;
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr);
-					} catch (RemoteException r) {
+						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+					} catch (Exception r) {
 						System.out
-								.println("Remote Exception while trying to read "
+								.println("Exception while trying to read "
 										+ memAddr
 										+ " in"
 										+ meTransaction.getTransactionID());
@@ -209,8 +209,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// declared
 					Integer valueAtMemAddr = null;
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr);
-					} catch (RemoteException r) {
+						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Remote Exception while trying to read "
 										+ memAddr

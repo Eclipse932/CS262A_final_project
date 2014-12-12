@@ -494,7 +494,16 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// It is the calling Responder's responsibility to have acquired the read
 	// lock for this databasekey
-	public Integer RWTread(Integer databaseKey) throws RemoteException {
+	public Integer RWTread(Integer databaseKey, String replicationMode) throws Exception {
+		
+		if (replicationMode.equals("byz")) {
+			try {
+				emulateLeaderByzReplicateState();
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		
 		if (dataMap.contains(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {

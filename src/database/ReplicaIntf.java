@@ -18,7 +18,7 @@ public interface ReplicaIntf extends Remote {
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode) throws RemoteException,
 			InterruptedException, Exception;
 	
-	public Integer RWTread(Integer databaseKey) throws RemoteException;
+	public Integer RWTread(Integer databaseKey, String replicationMode) throws Exception;
 
 	public Instant beginTransaction(long transactionID) throws RemoteException;
 	
