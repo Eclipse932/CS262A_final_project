@@ -513,7 +513,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// because without a 0 return we get a bug.
 			return 0;
 		}
-
 	}
 
 	public static void main(String[] args) {
