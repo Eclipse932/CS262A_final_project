@@ -178,12 +178,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	// actually sending the data. Also we (incorrectly) don't bother checking to
 	// see if we have a majority. This means the emulation is a bit of an
 	// under-effort.
-	private void emulateLeaderByzReplicateState() throws Exception {
+	public void emulateLeaderByzReplicateState() throws Exception {
 		synchronized (leaderSequenceNumber) {
 
 			for (ReplicaIntf contactReplica : replicas) {
 				try {
-					contactReplica.emulateByzCommunication();
+					contactReplica.byzSlaveTalkToEveryone(this.numOfReplicas);
 				} catch (Exception e) {
 					throw e;
 				}
@@ -278,9 +278,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 	}
 
-	private void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
+	public void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
 			throws Exception {
-		// First eummulate the byzantine communication between all replicas
+		// First emulate the byzantine communication between all replicas
 
 		if (!this.otherReplicasFoundForByz) {
 
@@ -462,45 +462,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return transactionBirthDate;
 	}
 
-	public void updateLockTableState(int numOfReplicasFromLeader)
-			throws Exception {
-		if (!this.otherReplicasFoundForByz) {
-
-			RemoteRegistryIntf terraTestRemoteRegistry = null;
-
-			// Acquire remoteRegistry to lookup the other replicas.
-			System.out
-					.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
-			System.out.println("You should see this message once!");
-			try {
-				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
-						.lookup("//" + REMOTEREGISTRYIP + "/RemoteRegistry");
-			} catch (Exception e) {
-				throw e;
-			}
-
-			for (int i = 1; i <= (numOfReplicasFromLeader - 1); i++) {
-				String contactReplicaRemoteName = "replica" + i;
-				String networkNameForContactReplica = "";
-				ReplicaIntf remoteObjectForContactReplica = null;
-
-				if (contactReplicaRemoteName.equals(this.remoteName)) {
-					continue;
-				} else {
-					networkNameForContactReplica = terraTestRemoteRegistry
-							.getNetworkName(contactReplicaRemoteName);
-					remoteObjectForContactReplica = (ReplicaIntf) Naming
-							.lookup(networkNameForContactReplica);
-					this.replicasForByzCommunication
-							.add(remoteObjectForContactReplica);
-				}
-			}
-		}
-
-		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
-			contactReplica.emulateByzCommunication();
-		}
-	}
 
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
@@ -508,13 +469,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			throws RemoteException, InterruptedException, Exception {
 
 		if (replicationMode.equals("byz")) {
-			for (ReplicaIntf contactReplica : replicas) {
-				try {
-					contactReplica.updateLockTableState(this.numOfReplicas);
-				} catch (Exception e) {
-					throw e;
-				}
-			}
+			emulateLeaderByzReplicateState();
 		}
 
 		Object leaseLockCondition = new Object();

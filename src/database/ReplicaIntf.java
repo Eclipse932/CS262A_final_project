@@ -26,6 +26,9 @@ public interface ReplicaIntf extends Remote {
 	
 	public void emulateByzCommunication() throws RemoteException;
 
+	public void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
+			throws Exception; 
+	
 	// called by leader, served by replica
 	// returns true if the replica was simulated as responsive
 	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader, String replicationMode)
