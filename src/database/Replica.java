@@ -80,7 +80,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
 	public Replica(boolean isLeader, String remoteName, int numOfReplicas,
-			String ipAddress) throws RemoteException {
+			String ipAddress, String replicationMode) throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 		this.sequenceToMemAddr = new Integer[SEQUENCETRACKINGRANGE];
@@ -94,7 +94,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		if (this.isLeader == true) {
 			leader = this;
 			this.replicas = new ArrayList<ReplicaIntf>();
-			this.lockTable = new LockTable();
+			this.lockTable = new LockTable(replicationMode, this);
 			this.serializedCommitLock = new Object();
 			this.leaseKiller = new Thread(new LeaseKiller(lockTable));
 			leaseKiller.start();
@@ -510,10 +510,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public static void main(String[] args) {
 		// set the paxos fail rate as a probability between 0 and 1
 		Replica.paxosFailRate = Math.random();
-		if (args.length != 5) {
+		if (args.length != 6) {
 			System.out.println("Incorrect number of command line arguments.");
 			System.out
-					.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode");
+					.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode, replicationMode(byz | pax)");
 			System.exit(1);
 		}
 		String myRemoteName = args[1];
@@ -553,7 +553,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		Replica me = null;
 		try {
 			me = new Replica(leaderOrNot, myRemoteName,
-					Integer.parseInt(args[2]), myIpAddress);
+					Integer.parseInt(args[2]), myIpAddress, args[5]);
 		} catch (RemoteException r) {
 			System.out.println("Unable to start local server");
 			System.out.println(r);
