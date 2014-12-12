@@ -173,6 +173,24 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	}
 
+	// Note that this is almost exactly like replicateWrite, except we don't
+	// want to bother with
+	// actually sending the data. Also we (incorrectly) don't bother checking to
+	// see if we have a majority. This means the emulation is a bit of an
+	// under-effort.
+	private void emulateLeaderByzReplicateState() throws Exception {
+		synchronized (leaderSequenceNumber) {
+
+			for (ReplicaIntf contactReplica : replicas) {
+				try {
+					contactReplica.emulateByzCommunication();
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+		}
+	}
+
 	private boolean replicateWrite(Integer memAddr, Integer value,
 			Instant timestamp, String replicationMode) throws RemoteException {
 
@@ -252,7 +270,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return true;
 	}
 
-	public void emmulateByzCommunication() throws RemoteException {
+	public void emulateByzCommunication() throws RemoteException {
 		// Do some busy work
 		int j = 0;
 		for (int i = 0; i < 1000; i++) {
@@ -298,7 +316,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 
 		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
-			contactReplica.emmulateByzCommunication();
+			contactReplica.emulateByzCommunication();
 		}
 
 	}
@@ -480,7 +498,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 
 		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
-			contactReplica.emmulateByzCommunication();
+			contactReplica.emulateByzCommunication();
 		}
 	}
 

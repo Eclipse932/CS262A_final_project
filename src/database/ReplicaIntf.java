@@ -24,7 +24,7 @@ public interface ReplicaIntf extends Remote {
 
 	public Instant beginTransaction(long transactionID) throws RemoteException;
 	
-	public void emmulateByzCommunication() throws RemoteException;
+	public void emulateByzCommunication() throws RemoteException;
 
 	// called by leader, served by replica
 	// returns true if the replica was simulated as responsive
