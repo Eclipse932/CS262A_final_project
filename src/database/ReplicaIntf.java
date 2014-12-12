@@ -28,11 +28,8 @@ public interface ReplicaIntf extends Remote {
 
 	// called by leader, served by replica
 	// returns true if the replica was simulated as responsive
-	public boolean byzPrepare(Long sequenceNumber, int numOfReplicasFromLeader)
+	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader, String replicationMode)
 			throws Exception;
-	
-	public boolean paxosPrepare(Long sequenceNumber)
-			throws RemoteException;
 
 	// called by leader, served by replica
 	// returns true if the replica updated it's local dataMap

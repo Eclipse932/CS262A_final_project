@@ -194,18 +194,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						if (replicationMode.equals("pax")) {
-							hasPromised = contactReplica.paxosPrepare(sn);
-						} else {
-							try {
-								hasPromised = contactReplica.byzPrepare(sn,
-										this.numOfReplicas);
-							} catch (Exception e) {
-								System.out.println("Problem in byzPrepare");
-								System.out.println(e);
-							}
-						}
-					} catch (RemoteException r) {
+						hasPromised = contactReplica.prepare(sn,
+								this.numOfReplicas, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
 										+ contactReplica);
@@ -269,9 +260,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 	}
 
-	public boolean byzPrepare(Long sequenceNumber, int numOfReplicasFromLeader)
+	private void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
 			throws Exception {
-
 		// First eummulate the byzantine communication between all replicas
 
 		if (!this.otherReplicasFoundForByz) {
@@ -311,85 +301,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			contactReplica.emmulateByzCommunication();
 		}
 
-		// THIS CODE HAS BEEN COPIED FROM PAXOSPREPARE
-		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
-
-		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
-			if (Replica.debugMode) {
-				System.out.println("expectedReplicaSequenceNumber "
-						+ expectedReplicaSequenceNumber + ", sequenceNumber: "
-						+ sequenceNumber + "in replica prepare");
-			}
-
-			// This replica is up-to-date
-			// Fall through to error injection
-		} else {
-
-			if ((sequenceNumber - expectedReplicaSequenceNumber) <= SEQUENCETRACKINGRANGE) {
-				// The leader will send the missing values to copy into the
-				// local dataMap
-				ConcurrentHashMap<Integer, ValueAndTimestamp> freshMemAddrToValue = null;
-				try {
-					freshMemAddrToValue = leader.requestSequenceData(
-							expectedReplicaSequenceNumber, sequenceNumber);
-				} catch (RemoteException r) {
-					System.out.println(r);
-					return false;
-				}
-
-				if (freshMemAddrToValue == null) {
-					// This is how the leader signifies that it was given bad
-					// arguments.
-					System.out
-							.println("leader.requestSequenceData returned null. "
-									+ "Returning false in prepare");
-					return false;
-				}
-				for (Integer freshMemAddr : freshMemAddrToValue.keySet()) {
-
-					if (Replica.debugMode) {
-						System.out.println("Writing value: "
-								+ freshMemAddrToValue.get(freshMemAddr)
-								+ " at memAddr: " + freshMemAddr
-								+ "in replica's dataMap");
-					}
-					dataMap.put(freshMemAddr,
-							freshMemAddrToValue.get(freshMemAddr));
-				}
-
-			} else {
-				// The leader will send the entire dataMap data structure to
-				// replace the local one because this replica is too far behind.
-				try {
-					if (Replica.debugMode) {
-						System.out
-								.println("Replacing replica's dataMap with leader's because it is out of date.");
-					}
-
-					this.dataMap = leader.requestSequenceData(
-							expectedReplicaSequenceNumber, sequenceNumber);
-					// requests data from the specified argument up to sn (this
-					// includes the new value)!
-				} catch (RemoteException r) {
-					System.out.println(r);
-					return false;
-				}
-			}
-		}
-
-		// If we fell through we decide whether or not to inject a network
-		// failure
-		if (paxosFailRate < Math.random()) {
-			// Inject a network failure
-			return false;
-		} else {
-			return true;
-		}
-
-		// return false;
 	}
 
-	public boolean paxosPrepare(Long sequenceNumber) throws RemoteException {
+	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader,
+			String replicationMode) throws Exception {
+
+		if (replicationMode.equals("byz")) {
+			byzSlaveTalkToEveryone(numOfReplicasFromLeader);
+		}
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
 
@@ -525,8 +444,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return transactionBirthDate;
 	}
 
-	
-	public void updateLockTableState(int numOfReplicasFromLeader) throws Exception{
+	public void updateLockTableState(int numOfReplicasFromLeader)
+			throws Exception {
 		if (!this.otherReplicasFoundForByz) {
 
 			RemoteRegistryIntf terraTestRemoteRegistry = null;
@@ -564,17 +483,17 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			contactReplica.emmulateByzCommunication();
 		}
 	}
-	
+
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
 			throws RemoteException, InterruptedException, Exception {
 
 		if (replicationMode.equals("byz")) {
-			for(ReplicaIntf contactReplica : replicas){
+			for (ReplicaIntf contactReplica : replicas) {
 				try {
 					contactReplica.updateLockTableState(this.numOfReplicas);
-				} catch (Exception e){
+				} catch (Exception e) {
 					throw e;
 				}
 			}
