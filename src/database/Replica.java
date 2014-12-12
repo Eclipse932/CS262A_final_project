@@ -30,15 +30,19 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String ipAddress;
 	int numOfReplicas;
 
+	boolean otherReplicasFoundForByz;
+	
 	Log dataLog;
 	ReplicaIntf leader;
 	ArrayList<ReplicaIntf> replicas = null; // Only initialized to something
 											// other than null in main if this
 											// is the leader
 
+	ArrayList<ReplicaIntf> replicasForByzCommunication = new ArrayList<ReplicaIntf>();
+	
 	// Start both sequence numbers at -1 so they will be incremented to zero for
 	// the first sequence use.
-	Long paxosSequenceNumber = new Long(-1); // This value should only be used
+	Long leaderSequenceNumber = new Long(-1); // This value should only be used
 												// by
 												// the leader
 
@@ -56,12 +60,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	private static double paxosFailRate = 0.01; // Default value. Set this in
 												// main.
 
-	private Long getPaxosSequenceNumber() {
-		return paxosSequenceNumber;
+	private Long getLeaderSequenceNumber() {
+		return leaderSequenceNumber;
 	}
 
-	private Long incrementPaxosSequenceNumber() {
-		return ++this.paxosSequenceNumber;
+	private Long incrementLeaderSequenceNumber() {
+		return ++this.leaderSequenceNumber;
 	}
 
 	private Long getReplicaSequenceNumber() {
@@ -104,7 +108,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
-			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
+			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
+			throws RemoteException {
 		/*
 		 * commit needs to : 1. validate the heldLocks against locks in
 		 * LockTable： if not all valid, return false and abort; else add the
@@ -123,12 +128,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			} else {
 
 				Instant timestamp = Instant.now();
-				String returnStatus = "";
 
 				for (Integer memAddr : memaddrToValue.keySet()) {
 					try {
-						result = paxosWrite(memAddr,
-								memaddrToValue.get(memAddr), timestamp);
+						result = replicateWrite(memAddr,
+								memaddrToValue.get(memAddr), timestamp, replicationMode);
 					} catch (RemoteException r) {
 						System.out
 								.println("Unable to perform paxosWrite on timestamp: "
@@ -168,19 +172,38 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	}
 
-	private boolean paxosWrite(Integer memAddr, Integer value, Instant timestamp)
+	
+	private boolean replicateWrite(Integer memAddr, Integer value, Instant timestamp, String replicationMode)
 			throws RemoteException {
-		synchronized (paxosSequenceNumber) {
-			Long sn = this.getPaxosSequenceNumber() + 1;
+		
+		synchronized (leaderSequenceNumber) {
+			Long sn = this.getLeaderSequenceNumber() + 1;
 			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
 			boolean hasPromised = false;
-			int majority = (this.replicas.size() / 2) + 1;
-
+			int paxosMajority = (this.replicas.size() / 2) + 1;
+			int byzMajority = ( (this.replicas.size() * 2) / 3 ) + 1;
+			int majority;
+			
+			if(replicationMode.equals("pax")){
+				majority = paxosMajority;
+			} else {
+				majority = byzMajority;
+			}
+			
 			while (quorum.size() < majority) {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						hasPromised = contactReplica.prepare(sn);
+						if(replicationMode.equals("pax")){
+							hasPromised = contactReplica.paxosPrepare(sn);
+						} else {
+							try{
+								hasPromised = contactReplica.byzPrepare(sn, this.numOfReplicas);
+							} catch (Exception e){
+								System.out.println("Problem in byzPrepare");
+								System.out.println(e);
+							}
+						}
 					} catch (RemoteException r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
@@ -219,7 +242,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			}
 
 			// Make the increment in sequence number official
-			this.incrementPaxosSequenceNumber();
+			this.incrementLeaderSequenceNumber();
 
 			// Update the local dataMap.
 			ValueAndTimestamp vat = new ValueAndTimestamp(value, timestamp);
@@ -236,11 +259,137 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 		return true;
 	}
+	
+	public void emmulateByzCommunication() throws RemoteException{
+		//Do some busy work
+		int j = 0;
+		for(int i = 0; i < 1000; i++){
+			j = j % 7; 
+		}
+	}
+	
 
-	public boolean prepare(Long sequenceNumber) throws RemoteException {
+	public boolean byzPrepare(Long sequenceNumber, int numOfReplicasFromLeader) throws Exception {
+	
+		//First eummulate the byzantine communication between all replicas
+		
+		if( ! this.otherReplicasFoundForByz){
+			
+			RemoteRegistryIntf terraTestRemoteRegistry = null;
+			
+			// Acquire remoteRegistry to lookup the other replicas.
+			System.out.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
+			System.out.println("You should see this message once!");
+			try {
+				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming.lookup("//"
+						+ REMOTEREGISTRYIP + "/RemoteRegistry");
+			} catch (Exception e) {
+				throw e;
+			}
+			
+			for(int i = 1; i <= (numOfReplicasFromLeader -1); i++) {
+				String contactReplicaRemoteName = "replica" + i;
+				String networkNameForContactReplica = "";
+				ReplicaIntf remoteObjectForContactReplica = null;
+				
+				if(contactReplicaRemoteName.equals(this.remoteName)){
+					continue;
+				} else {
+					networkNameForContactReplica = terraTestRemoteRegistry.getNetworkName(contactReplicaRemoteName);
+					remoteObjectForContactReplica = (ReplicaIntf) Naming.lookup(networkNameForContactReplica);
+					this.replicasForByzCommunication.add(remoteObjectForContactReplica);
+				}
+			}
+		}
+		
+		for(ReplicaIntf contactReplica:this.replicasForByzCommunication ){
+			contactReplica.emmulateByzCommunication();
+		}
+
+		
+		//THIS CODE HAS BEEN COPIED FROM PAXOSPREPARE
+		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
+
+		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
+			if (Replica.debugMode) {
+				System.out.println("expectedReplicaSequenceNumber "
+						+ expectedReplicaSequenceNumber + ", sequenceNumber: "
+						+ sequenceNumber + "in replica prepare");
+			}
+
+			// This replica is up-to-date
+			// Fall through to error injection
+		} else {
+
+			if ((sequenceNumber - expectedReplicaSequenceNumber) <= SEQUENCETRACKINGRANGE) {
+				// The leader will send the missing values to copy into the
+				// local dataMap
+				ConcurrentHashMap<Integer, ValueAndTimestamp> freshMemAddrToValue = null;
+				try {
+					freshMemAddrToValue = leader.requestSequenceData(
+							expectedReplicaSequenceNumber, sequenceNumber);
+				} catch (RemoteException r) {
+					System.out.println(r);
+					return false;
+				}
+
+				if (freshMemAddrToValue == null) {
+					// This is how the leader signifies that it was given bad
+					// arguments.
+					System.out
+							.println("leader.requestSequenceData returned null. "
+									+ "Returning false in prepare");
+					return false;
+				}
+				for (Integer freshMemAddr : freshMemAddrToValue.keySet()) {
+
+					if (Replica.debugMode) {
+						System.out.println("Writing value: "
+								+ freshMemAddrToValue.get(freshMemAddr)
+								+ " at memAddr: " + freshMemAddr
+								+ "in replica's dataMap");
+					}
+					dataMap.put(freshMemAddr,
+							freshMemAddrToValue.get(freshMemAddr));
+				}
+
+			} else {
+				// The leader will send the entire dataMap data structure to
+				// replace the local one because this replica is too far behind.
+				try {
+					if (Replica.debugMode) {
+						System.out
+								.println("Replacing replica's dataMap with leader's because it is out of date.");
+					}
+
+					this.dataMap = leader.requestSequenceData(
+							expectedReplicaSequenceNumber, sequenceNumber);
+					// requests data from the specified argument up to sn (this
+					// includes the new value)!
+				} catch (RemoteException r) {
+					System.out.println(r);
+					return false;
+				}
+			}
+		}
+
+		// If we fell through we decide whether or not to inject a network
+		// failure
+		if (paxosFailRate < Math.random()) {
+			// Inject a network failure
+			return false;
+		} else {
+			return true;
+		}
+		
+		
+		//return false;
+	}
+	
+	public boolean paxosPrepare(Long sequenceNumber) throws RemoteException {
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
-		
+
 		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
 			if (Replica.debugMode) {
 				System.out.println("expectedReplicaSequenceNumber "
@@ -319,10 +468,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
 
-		
 		if (!((leaderNewSequenceNumber - replicaExpectedSn) >= 1)) {
 			System.out
-					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber" + leaderNewSequenceNumber + " replicaExpectedSn " + replicaExpectedSn);
+					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber"
+							+ leaderNewSequenceNumber
+							+ " replicaExpectedSn "
+							+ replicaExpectedSn);
 			System.out.println("Returning null");
 			return null;
 		}
@@ -355,12 +506,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Integer value, Instant timestamp) throws RemoteException {
 
 		this.setReplicaSequenceNumber(sequenceNumber);
-		
+
 		if (Replica.debugMode) {
 			System.out.println("Writing value: "
-					+ new ValueAndTimestamp(value, timestamp)
-					+ " at memAddr: " + memAddr
-					+ "in replica's dataMap");
+					+ new ValueAndTimestamp(value, timestamp) + " at memAddr: "
+					+ memAddr + "in replica's dataMap");
 		}
 		this.dataMap.put(memAddr, new ValueAndTimestamp(value, timestamp));
 		return true;
@@ -399,7 +549,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			return dataMap.get(databaseKey).getValue();
 		} else {
 			// If this value is not in the database, return 0. The responder
-			// should check for null returns, but we are evidently missing this somewhere
+			// should check for null returns, but we are evidently missing this
+			// somewhere
 			// because without a 0 return we get a bug.
 			return 0;
 		}

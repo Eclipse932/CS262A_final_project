@@ -25,6 +25,9 @@ public interface ResponderIntf extends Remote {
 
 	public String LPRWTransaction(List<String> Actions) throws RemoteException, BadTransactionRequestException;
 	
+	public String LBRWTransaction(List<String> Actions) throws RemoteException, BadTransactionRequestException;
+
+	
 	//added by Jane; we need a method to get reference to the leader replica(s) from the remote registry
 	//public Set<Replica> getLeaderReplica();
 }
