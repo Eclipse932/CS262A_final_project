@@ -487,7 +487,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// transaction failed.
 	// If the list of actions given to this function is ill formed it throws a
 	// BadTransactionRequestException
-	public String PRWTransaction(List<String> actions)
+	public String LPRWTransaction(List<String> actions)
 			throws BadTransactionRequestException, RemoteException {
 
 		// Get this transaction's GUID transactionID
