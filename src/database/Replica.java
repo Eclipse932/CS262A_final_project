@@ -327,6 +327,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							.add(remoteObjectForContactReplica);
 				}
 			}
+			this.otherReplicasFoundForByz = true;
 		}
 
 		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
