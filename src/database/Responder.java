@@ -20,6 +20,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
 	private static ReplicaIntf leader;
+	private static ReplicaIntf nearestReplica;
 	private static TransactionIdNamerIntf TIdNamer;
 
 	// TODO figure out where this server is running
@@ -36,12 +37,24 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		this.leader = newLeader;
 	}
 
+	private ReplicaIntf getNearestReplica() {
+		return nearestReplica;
+	}
+
+	private void setNearestReplica(ReplicaIntf nearestReplica) {
+		Responder.nearestReplica = nearestReplica;
+	}
+
 	private String processActions(List<String> actions,
-			Transaction meTransaction, String replicationMode) throws BadTransactionRequestException {
+			Transaction meTransaction, String replicationMode,
+			String controlMode) throws BadTransactionRequestException {
 
 		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 		HashMap<Integer, Integer> writeCache = new HashMap<Integer, Integer>();
 		HashMap<Integer, Integer> readCache = new HashMap<Integer, Integer>();
+
+		// Only used if in optimistic concurrency mode
+		ArrayList<KeyAndTimestamp> readSet = new ArrayList<KeyAndTimestamp>();
 
 		if (actions == null) {
 			BadTransactionRequestException b = new BadTransactionRequestException(
@@ -113,6 +126,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 				String variableName = elements[1];
 				Integer memAddr = null;
+				Integer valueAtMemAddr = null;
+
 				try {
 					memAddr = Integer.parseInt(elements[2]);
 				} catch (NumberFormatException n) {
@@ -121,34 +136,76 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					throw b;
 				}
 
-				// Use this to check if we already have a read or write lock on
-				// the value
-				HashMap<Integer, LeaseLock> copiedLocks = meTransaction
-						.deepCopyMyLocks();
+				HashMap<Integer, LeaseLock> copiedLocks = null;
+				if (controlMode.equals("lock")) {
+					// Use this to check if we already have a read or write lock
+					// on
+					// the value
+					copiedLocks = meTransaction.deepCopyMyLocks();
+				}
 
 				// First check if we already have this memAddr in the
 				// writeBuffer
 				if (writeCache.containsKey(memAddr)) {
 					variableTable.put(variableName, writeCache.get(memAddr));
 				}
+
 				// Next check if we already have this memAddr in the readCache
 				// Note that this must happen after we check the writeCache.
 				else if (readCache.containsKey(memAddr)) {
 					variableTable.put(variableName, readCache.get(memAddr));
-				} else if (!copiedLocks.containsKey(memAddr)) {
+				}
 
-					// Attempt to acquire lock. Note that this may take a long
-					// time
-					// Also the expiration time for the lock created here is
-					// given as null and must
-					// be set by the leader.
+				// Otherwise we need to get it from a replica. Check for
+				// optimistic first because it has the fewest subcases
+				else if (controlMode.equals("opt")) {
+
+					ValueAndTimestamp valueAndTimestampAtMemAddr = null;
+
+					try {
+						valueAndTimestampAtMemAddr = nearestReplica
+								.optimisticRead(memAddr, replicationMode);
+					} catch (Exception r) {
+						System.out.println("Exception while trying to read "
+								+ memAddr + " in"
+								+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					// If this memAddr has not been written before by any
+					// transaction, default to reading a zero
+					if (valueAndTimestampAtMemAddr == null
+							|| valueAndTimestampAtMemAddr.getValue() == null
+							|| valueAndTimestampAtMemAddr.getTimestamp() == null) {
+						variableTable.put(variableName, 0);
+					} else {
+						variableTable.put(variableName,
+								valueAndTimestampAtMemAddr.getValue());
+					}
+
+					KeyAndTimestamp memAddrAndTimestamp = new KeyAndTimestamp(
+							memAddr, valueAndTimestampAtMemAddr.getTimestamp());
+					readSet.add(memAddrAndTimestamp);
+					readCache.put(memAddr,
+							valueAndTimestampAtMemAddr.getValue());
+
+				}
+
+				// Attempt to acquire lock. Note that this may take a
+				// long time
+				// Also the expiration time for the lock created here is
+				// given as null and must
+				// be set by the leader.
+				else if (!copiedLocks.containsKey(memAddr)) {
 					LeaseLock lockForRead = new LeaseLock(
 							meTransaction.getTransactionID(), AccessMode.READ,
 							null, memAddr);
 					Instant leaseLockExpiration = null;
 					try {
-						leaseLockExpiration = leader
-								.getReplicaLock(lockForRead, replicationMode);
+						leaseLockExpiration = leader.getReplicaLock(
+								lockForRead, replicationMode);
 					} catch (Exception r) {
 						System.out
 								.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
@@ -173,15 +230,14 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// variable
 					// Note that I don't require that this variable already be
 					// declared
-					Integer valueAtMemAddr = null;
+
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+						valueAtMemAddr = leader.RWTread(memAddr,
+								replicationMode);
 					} catch (Exception r) {
-						System.out
-								.println("Exception while trying to read "
-										+ memAddr
-										+ " in"
-										+ meTransaction.getTransactionID());
+						System.out.println("Exception while trying to read "
+								+ memAddr + " in"
+								+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
 						return "abort";
@@ -207,9 +263,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// variable
 					// Note that I don't require that this variable already be
 					// declared
-					Integer valueAtMemAddr = null;
+					valueAtMemAddr = null;
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+						valueAtMemAddr = leader.RWTread(memAddr,
+								replicationMode);
 					} catch (Exception r) {
 						System.out
 								.println("Remote Exception while trying to read "
@@ -274,7 +331,42 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				// Note that we acquire write locks and commit this structure
 				// at the end of the transaction.
 
-				// add <variable name sum> <variable name addend> <variable name
+				// sub <variable name difference> <variable name minuend> <variable name subtrahend>
+				// FOR CLARIFICATION: difference = minuend - subtrahend
+			} else if (command.equals("sub")) {
+				if (elements.length != 4) {
+					BadTransactionRequestException b = new BadTransactionRequestException(
+							"sub has the wrong number of arguments\n"
+									+ "correct form: <variable name difference> <variable name minuend> <variable name subtrahend>");
+					throw b;
+				}
+
+				String differenceName = elements[1];
+				String minuendName = elements[2];
+				String subtrahendName = elements[3];
+
+
+				if(Responder.debugMode){
+					System.out.println("Starting debug of sub");
+					System.out.println("command parses as: " + "sub space " + differenceName + " space " + subtrahendName + " space " + minuendName);
+				}
+				
+				// Get the terms from the variableTable and write their difference to
+				// the table
+				if (variableTable.containsKey(differenceName)
+						&& variableTable.containsKey(minuendName)
+						&& variableTable.containsKey(subtrahendName)) {
+					Integer difference = variableTable.get(minuendName)
+							- variableTable.get(subtrahendName);
+					variableTable.put(differenceName, difference);
+				} else {
+					BadTransactionRequestException b = new BadTransactionRequestException(
+							"One of the arguments to sub has not already been declared.");
+					throw b;
+				}
+				
+				
+				// add <variable name sum> <variable name addend> <variable name addend>
 				// addend>
 			} else if (command.equals("add")) {
 				if (elements.length != 4) {
@@ -397,94 +489,142 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		// Acquire write locks for these memory addresses and add them to the
 		// transaction
-		ArrayList<LeaseLock> addThisLockList = new ArrayList<LeaseLock>();
-		HashMap<Integer, LeaseLock> localCopyOfLocks = meTransaction
-				.deepCopyMyLocks();
+		ArrayList<LeaseLock> addThisLockList;
+		String commitStatus = "abort";
 
-		for (Integer lockKey : addrToVariableValue.keySet()) {
-			if (localCopyOfLocks.containsKey(lockKey)
-					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.READ) {
+		if (controlMode.equals("lock")) {
+			addThisLockList = new ArrayList<LeaseLock>();
+			HashMap<Integer, LeaseLock> localCopyOfLocks = meTransaction
+					.deepCopyMyLocks();
 
-				// Note that this is a copy, not the actual lock held in this
-				// transaction
-				LeaseLock ll = localCopyOfLocks.get(lockKey);
-				ll.setMode(AccessMode.WRITE);
+			for (Integer lockKey : addrToVariableValue.keySet()) {
+				if (localCopyOfLocks.containsKey(lockKey)
+						&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.READ) {
 
-				Instant expirationTime = null;
+					// Note that this is a copy, not the actual lock held in
+					// this
+					// transaction
+					LeaseLock ll = localCopyOfLocks.get(lockKey);
+					ll.setMode(AccessMode.WRITE);
+
+					Instant expirationTime = null;
+					try {
+						expirationTime = leader.getReplicaLock(ll,
+								replicationMode); // upgrade
+					} catch (Exception r) {
+						System.out
+								.println("Remote Exception or Interrupted Exception while trying to acquire (upgrading) Write lock in Transaction "
+										+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					// Check to see if the transaction has been aborted
+					if (expirationTime == null) {
+						return "abort";
+					}
+
+					ll.setExpirationTime(expirationTime);
+
+					// Upgrade the lock in this transaction's list to a Write
+					// lock
+					meTransaction.upgradeReadLockToWrite(lockKey);
+
+				} else if (localCopyOfLocks.containsKey(lockKey)
+						&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.WRITE) {
+					// do nothing, most certainly don't get a new lock
+					// Although it's hard to think of a case where this would
+					// happen
+				} else if (!localCopyOfLocks.containsKey(lockKey)) {
+					LeaseLock ll = new LeaseLock(
+							meTransaction.getTransactionID(), AccessMode.WRITE,
+							null, lockKey);
+					Instant expirationTime = null;
+					try {
+						expirationTime = leader.getReplicaLock(ll,
+								replicationMode);
+					} catch (Exception r) {
+						System.out
+								.println("Remote Exception or Interrupted Exception while trying to acquire Write lock in Transaction "
+										+ meTransaction.getTransactionID());
+						System.out.println("Returning \"abort\"");
+						System.out.println(r);
+						return "abort";
+					}
+
+					// Check to see if the transaction has been aborted
+					if (expirationTime == null) {
+						return "abort";
+					}
+
+					ll.setExpirationTime(expirationTime);
+					addThisLockList.add(ll); // batch the write locks we'll be
+												// getting
+				}
+			}
+			meTransaction.addLocks(addThisLockList);
+			// Add the batched write locks to this transaction's list of locks
+			// Note that this MUST happen after we already acquire the write
+			// locks
+
+			// TODO check to make sure I didn't miss anything in this method
+			ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(
+					meTransaction.deepCopyMyLocks().values());
+
+			if (meTransaction.isAlive()) {
 				try {
-					expirationTime = leader.getReplicaLock(ll, replicationMode); // upgrade
+					commitStatus = leader.RWTcommit(
+							meTransaction.getTransactionID(), listOfLocks,
+							addrToVariableValue, replicationMode);
 				} catch (Exception r) {
 					System.out
-							.println("Remote Exception or Interrupted Exception while trying to acquire (upgrading) Write lock in Transaction "
+							.println("Remote Exception while trying to commit Transaction "
 									+ meTransaction.getTransactionID());
 					System.out.println("Returning \"abort\"");
 					System.out.println(r);
 					return "abort";
 				}
-
-				// Check to see if the transaction has been aborted
-				if (expirationTime == null) {
-					return "abort";
-				}
-
-				ll.setExpirationTime(expirationTime);
-
-				// Upgrade the lock in this transaction's list to a Write lock
-				meTransaction.upgradeReadLockToWrite(lockKey);
-
-			} else if (localCopyOfLocks.containsKey(lockKey)
-					&& localCopyOfLocks.get(lockKey).getMode() == AccessMode.WRITE) {
-				// do nothing, most certainly don't get a new lock
-				// Although it's hard to think of a case where this would happen
-			} else if (!localCopyOfLocks.containsKey(lockKey)) {
-				LeaseLock ll = new LeaseLock(meTransaction.getTransactionID(),
-						AccessMode.WRITE, null, lockKey);
-				Instant expirationTime = null;
-				try {
-					expirationTime = leader.getReplicaLock(ll, replicationMode);
-				} catch (Exception r) {
-					System.out
-							.println("Remote Exception or Interrupted Exception while trying to acquire Write lock in Transaction "
-									+ meTransaction.getTransactionID());
-					System.out.println("Returning \"abort\"");
-					System.out.println(r);
-					return "abort";
-				}
-
-				// Check to see if the transaction has been aborted
-				if (expirationTime == null) {
-					return "abort";
-				}
-
-				ll.setExpirationTime(expirationTime);
-				addThisLockList.add(ll); // batch the write locks we'll be
-											// getting
 			}
 		}
-		meTransaction.addLocks(addThisLockList);
-		// Add the batched write locks to this transaction's list of locks
-		// Note that this MUST happen after we already acquire the write locks
 
-		// TODO check to make sure I didn't miss anything in this method
-		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(
-				meTransaction.deepCopyMyLocks().values());
-
-		String commitStatus = "abort";
-		if (meTransaction.isAlive()) {
+		// Control mode is opt
+		else {
 			try {
-				commitStatus = leader.RWTcommit(
-						meTransaction.getTransactionID(), listOfLocks,
+				commitStatus = nearestReplica.optimisticCommit(
+						meTransaction.getTransactionID(), readSet,
 						addrToVariableValue, replicationMode);
-			} catch (RemoteException r) {
-				System.out
-						.println("Remote Exception while trying to commit Transaction "
-								+ meTransaction.getTransactionID());
-				System.out.println("Returning \"abort\"");
+			} catch(Exception r){
 				System.out.println(r);
 				return "abort";
 			}
 		}
+
 		return commitStatus;
+	}
+
+	public String OBRWTransaction(List<String> actions)
+			throws BadTransactionRequestException, RemoteException {
+
+		String transactionStatus = null;
+		try {
+			transactionStatus = doOptimisticTransaction(actions, "byz");
+		} catch (Exception e) {
+			throw e;
+		}
+		return transactionStatus;
+	}
+	
+	public String OPRWTransaction(List<String> actions)
+			throws BadTransactionRequestException, RemoteException {
+
+		String transactionStatus = null;
+		try {
+			transactionStatus = doOptimisticTransaction(actions, "pax");
+		} catch (Exception e) {
+			throw e;
+		}
+		return transactionStatus;
 	}
 
 	public String LPRWTransaction(List<String> actions)
@@ -492,7 +632,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		String transactionStatus = null;
 		try {
-			transactionStatus = paxosTransaction(actions, "pax");
+			transactionStatus = doLockingTransaction(actions, "pax");
 		} catch (Exception e) {
 			throw e;
 		}
@@ -504,21 +644,53 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		String transactionStatus = null;
 		try {
-			transactionStatus = paxosTransaction(actions, "byz");
+			transactionStatus = doLockingTransaction(actions, "byz");
 		} catch (Exception e) {
 			throw e;
 		}
 		return transactionStatus;
 	}
 
-	// Paxos Read Write Transaction
+	// Optimistic Read Write Transaction
 	// Returns "commit" if the transaction is successful and "abort" if the
 	// transaction failed.
 	// If the list of actions given to this function is ill formed it throws a
 	// BadTransactionRequestException
 
-	private String paxosTransaction(List<String> actions, String replicationMode)
-			throws BadTransactionRequestException, RemoteException {
+	private String doOptimisticTransaction(List<String> actions,
+			String replicationMode) throws BadTransactionRequestException,
+			RemoteException {
+
+		// Get this transaction's GUID transactionID
+		Long myTransactionID = TIdNamer.createNewGUID();
+
+		Instant birthdateOnResponder = Instant.now();
+
+		Transaction meTransaction = new Transaction(myTransactionID, this,
+				birthdateOnResponder);
+
+		// Don't start a transactionHeart for this transaction
+
+		String transactionReturnStatus;
+		try {
+			transactionReturnStatus = processActions(actions, meTransaction,
+					replicationMode, "opt");
+		} catch (BadTransactionRequestException b) {
+			throw b;
+		}
+
+		return transactionReturnStatus;
+	}
+
+	// Locking Read Write Transaction
+	// Returns "commit" if the transaction is successful and "abort" if the
+	// transaction failed.
+	// If the list of actions given to this function is ill formed it throws a
+	// BadTransactionRequestException
+
+	private String doLockingTransaction(List<String> actions,
+			String replicationMode) throws BadTransactionRequestException,
+			RemoteException {
 		// Get this transaction's GUID transactionID
 		Long myTransactionID = TIdNamer.createNewGUID();
 
@@ -541,7 +713,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		String transactionReturnStatus;
 		try {
-			transactionReturnStatus = processActions(actions, meTransaction, replicationMode);
+			transactionReturnStatus = processActions(actions, meTransaction,
+					replicationMode, "lock");
 		} catch (BadTransactionRequestException b) {
 			meTransaction.setAlive(false);
 			throw b;
@@ -556,11 +729,16 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// arg0 = this computer's ip address
 	// arg1 = the remoteName of this Responder process (e.g. responder6)
 	// arg2 = debug mode true or false
+	// arg3 = remoteName of neareastReplica
+
 	public static void main(String[] args) {
 
 		if (args.length != 4) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: IPaddress myRemoteName debug(True | False)");
+
+			System.out
+					.println("Correct form: IPaddress myRemoteName debugMode(True | False) remoteNameOfNearestReplica");
+
 			System.exit(1);
 		}
 		String myIP = args[0];
@@ -574,6 +752,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					.println("type in isLeader is wrong argument! Default initialization is non-leader replica");
 			Responder.debugMode = false;
 		}
+
+		String remoteNameOfNearestReplica = args[3];
 
 		// TODO Fix the bug where if this exits after registering itself with
 		// the
@@ -654,6 +834,44 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			me.setLeader((ReplicaIntf) Naming.lookup(leaderNetworkName));
 		} catch (Exception e) {
 			System.out.println("Unable to acquire the leader's remote object");
+			System.out.println(e);
+			System.exit(1);
+		}
+
+		// Use the remoteRegistry to lookup the nearestReplica's networkname
+		String nearestReplicaNetworkName = null;
+		firstIteration = true;
+
+		do {
+			if (!firstIteration) {
+				// Give the nearest replica a chance to register itself and try
+				// again
+				System.out
+						.println("Waiting for nearestReplica to be registered...");
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException i) {
+					System.out.println("Thread sleep has been interupted");
+				}
+			}
+			try {
+				nearestReplicaNetworkName = terraTestRemoteRegistry
+						.getNetworkName(remoteNameOfNearestReplica);
+			} catch (Exception e) {
+				System.out
+						.println("Unable to connect to RemoteRegistry during lookup of nearestReplicaNetworkName ");
+				System.exit(1);
+			}
+			firstIteration = false;
+		} while (nearestReplicaNetworkName == null);
+
+		// Use the nearestReplica's networkname to get its remote object
+		try {
+			me.setNearestReplica((ReplicaIntf) Naming
+					.lookup(nearestReplicaNetworkName));
+		} catch (Exception e) {
+			System.out
+					.println("Unable to acquire the nearest replica's remote object");
 			System.out.println(e);
 			System.exit(1);
 		}

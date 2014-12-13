@@ -15,6 +15,10 @@ import java.time.Instant;
 import java.time.Duration;
 
 public class Replica extends UnicastRemoteObject implements ReplicaIntf {
+	/**
+	 * Default
+	 */
+	private static final long serialVersionUID = 1L;
 	public static boolean debugMode = false;
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static RemoteRegistryIntf terraTestRemoteRegistry = null;
@@ -109,7 +113,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
 			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
-			throws RemoteException {
+			throws Exception {
 		/*
 		 * commit needs to : 1. validate the heldLocks against locks in
 		 * LockTable： if not all valid, return false and abort; else add the
@@ -119,6 +123,16 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		 * lockTable, remove TransactionBirthDate and remove the entry in
 		 * committingWrites through releaseLockss
 		 */
+
+		if (heldLocks == null) {
+			throw new NullDataException(
+					"The readSet of validateOptimisticTransaction is null");
+		}
+		if (memaddrToValue == null) {
+			throw new NullDataException(
+					"the memaddrToValue of RWTcommit is null.");
+		}
+
 		synchronized (serializedCommitLock) {
 			boolean result = lockTable.validateTableLock(heldLocks,
 					transactionID);
@@ -462,16 +476,15 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return transactionBirthDate;
 	}
 
-
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
 			throws RemoteException, InterruptedException, Exception {
 
 		if (replicationMode.equals("byz")) {
-			try{
+			try {
 				emulateLeaderByzReplicateState();
-			} catch (Exception e){
+			} catch (Exception e) {
 				throw e;
 			}
 		}
@@ -494,8 +507,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// It is the calling Responder's responsibility to have acquired the read
 	// lock for this databasekey
-	public Integer RWTread(Integer databaseKey, String replicationMode) throws Exception {
-		
+	public Integer RWTread(Integer databaseKey, String replicationMode)
+			throws Exception {
+
 		if (replicationMode.equals("byz")) {
 			try {
 				emulateLeaderByzReplicateState();
@@ -503,7 +517,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				throw e;
 			}
 		}
-		
+
 		if (dataMap.contains(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {
@@ -512,6 +526,153 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			// somewhere
 			// because without a 0 return we get a bug.
 			return 0;
+		}
+	}
+
+	private boolean validateOptimisticTransaction(
+			ArrayList<KeyAndTimestamp> readSet,
+			HashMap<Integer, Integer> memaddrToValue) throws NullDataException {
+
+		if (readSet == null) {
+			throw new NullDataException(
+					"The readSet of validateOptimisticTransaction is null");
+		}
+		if (memaddrToValue == null) {
+			throw new NullDataException(
+					"the memaddrToValue of validateOptimisticTransaction is null.");
+		}
+
+		for (KeyAndTimestamp kandt : readSet) {
+			Integer k = kandt.getKey();
+			Instant t = kandt.getTimestamp();
+			if (kandt.getKey() == null) {
+				throw new NullDataException(
+						"A Key in validateOptimisticTransaction is null.");
+			}
+			if (!dataMap.contains(k)) {
+				// This key in the datamap has never been written so
+				// this key and timestamp is safe
+				if (t != null) {
+					throw new NullDataException(
+							"Somehow a member of the read set has a more up-to-date"
+									+ " timestamp than the dataMap. This ought to be impossible.");
+				} else {
+					continue;
+				}
+			} else {
+				if (t == null) {
+					// this key is out of date because the associated value was
+					// null during the read
+					// but now is contained in the dataMap
+					return false;
+				} else {
+					// All other cases involve non-null data and readset entries that have
+					// been written before and possess a timestamp
+					Instant dataMapTimestamp = dataMap.get(k).getTimestamp();
+					if(dataMapTimestamp.equals(t)){
+						//The readset timestamp is current so we are safe to continue
+						continue;
+					} else{
+						return false;
+					}
+
+				}
+			}
+
+		}
+
+		// If we fall through and never have a mismatched key and value, the
+		// transaction is valid.
+		return true;
+
+	}
+
+	@Override
+	public String optimisticCommit(Long transactionID,
+			ArrayList<KeyAndTimestamp> readSet,
+			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
+			throws Exception {
+
+		synchronized (dataMap) {
+
+			// TODO this only validates at the leader, which violates the
+			// byzantine assumption
+			// We do the simulated byzantine consensus which should mimic the
+			// performance of
+			// doing the check on each replica as well, but this implementation
+			// so far is incomplete
+
+			if (readSet == null) {
+				throw new NullDataException(
+						"The readSet of optimisticCommit is null");
+			}
+			if (memaddrToValue == null) {
+				throw new NullDataException(
+						"the memaddrToValue of optimisticCommit is null.");
+			}
+
+			boolean goodTransaction;
+			try {
+				goodTransaction = validateOptimisticTransaction(readSet,
+						memaddrToValue);
+			} catch (NullDataException n) {
+				throw n;
+			}
+
+			if (goodTransaction) {
+				// perform writes
+				boolean writeStatus;
+				for (Integer memAddr : memaddrToValue.keySet()) {
+					try {
+						writeStatus = replicateWrite(memAddr,
+								memaddrToValue.get(memAddr), Instant.now(),
+								replicationMode);
+					} catch (RemoteException r) {
+						throw r;
+					}
+					if (writeStatus == false) {
+						return "abort";
+					}
+				}
+				return "commit";
+			} else {
+				return "abort";
+			}
+		}
+	}
+
+	@Override
+	public ValueAndTimestamp optimisticRead(Integer databaseKey,
+			String replicationMode) throws Exception {
+		synchronized (dataMap) {
+
+			if (replicationMode.equals("byz")) {
+				try {
+					emulateLeaderByzReplicateState();
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+
+			if (dataMap.contains(databaseKey)) {
+				ValueAndTimestamp vAndT = dataMap.get(databaseKey);
+				if (vAndT.getValue() == null) {
+					throw new NullDataException(
+							"The dataMap contains a null valued Value and Timestamp");
+				}
+				return vAndT;
+			} else {
+				// If this value is not in the database, return a 0 valued
+				// ValueAndTimestamp. The responder
+				// should check for null returns, but we are evidently missing
+				// this
+				// somewhere because without a 0 return we get a bug.
+
+				// The timestamp is set to null though.
+
+				ValueAndTimestamp output = new ValueAndTimestamp(0, null);
+				return output;
+			}
 		}
 	}
 
