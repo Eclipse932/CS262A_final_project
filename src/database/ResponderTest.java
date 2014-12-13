@@ -66,7 +66,7 @@ public class ResponderTest {
 		String commandReturn = null;
 
 		try {
-			commandReturn = this.obj.PRWTransaction(commands);
+			commandReturn = this.obj.LPRWTransaction(commands);
 			System.out.println(commandReturn);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -81,7 +81,7 @@ public class ResponderTest {
 		List<String> commands = null;
 		boolean BTRE = false;
 		try{
-			this.obj.PRWTransaction(commands);
+			this.obj.LPRWTransaction(commands);
 		} catch (RemoteException r) {
 			System.out.println(r);
 			fail("Remote Exception in testNullTransaction");
@@ -97,7 +97,7 @@ public class ResponderTest {
 		commands.add("");
 		boolean BTRE = false;
 		try{
-			this.obj.PRWTransaction(commands);
+			this.obj.LPRWTransaction(commands);
 		} catch (RemoteException r) {
 			System.out.println(r);
 			fail("Remote Exception in testNullTransaction");
@@ -120,7 +120,7 @@ public class ResponderTest {
 		String commandReturn = null;
 
 		try {
-			commandReturn = this.obj.PRWTransaction(commands);
+			commandReturn = this.obj.LPRWTransaction(commands);
 			System.out.println(commandReturn);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -140,7 +140,7 @@ public class ResponderTest {
 		String commandReturn = null;
 
 		try {
-			commandReturn = this.obj.PRWTransaction(commands);
+			commandReturn = this.obj.LPRWTransaction(commands);
 			System.out.println(commandReturn);
 		} catch (Exception e) {
 			System.out.println(e);

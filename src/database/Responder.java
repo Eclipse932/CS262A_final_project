@@ -14,7 +14,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// private ArrayList<Transaction> Transactions;
 	// private ArrayList<TransactionHeart> TransactionHearts
 	public static boolean debugMode = false;
-	
+
 	private static String REMOTEREGISTRYIP = "128.32.48.222";
 	private static String TRANSACTIONIDNAMERIP = "128.32.48.222";
 
@@ -37,7 +37,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	}
 
 	private String processActions(List<String> actions,
-			Transaction meTransaction) throws BadTransactionRequestException {
+			Transaction meTransaction, String replicationMode) throws BadTransactionRequestException {
 
 		HashMap<String, Integer> variableTable = new HashMap<String, Integer>();
 		HashMap<Integer, Integer> writeCache = new HashMap<Integer, Integer>();
@@ -51,10 +51,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		for (String action : actions) {
 
-			if(Responder.debugMode){
+			if (Responder.debugMode) {
 				System.out.println(action);
 			}
-			
+
 			if (!meTransaction.isAlive()) {
 				return "abort";
 			}
@@ -97,10 +97,11 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					variableTable.put(variableName, initialValue);
 				}
 
-				//TODO read is unable to handle the case where the replica returns null for an uninitialized variable
-				//TODO refactor this section. This could probably help the above TODO
-				
-				
+				// TODO read is unable to handle the case where the replica
+				// returns null for an uninitialized variable
+				// TODO refactor this section. This could probably help the
+				// above TODO
+
 				// read <variable name> <memory address to be read from>
 			} else if (command.equals("read")) {
 				if (elements.length != 3) {
@@ -129,13 +130,12 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				// writeBuffer
 				if (writeCache.containsKey(memAddr)) {
 					variableTable.put(variableName, writeCache.get(memAddr));
-				} 
+				}
 				// Next check if we already have this memAddr in the readCache
 				// Note that this must happen after we check the writeCache.
-				else if(readCache.containsKey(memAddr)){
+				else if (readCache.containsKey(memAddr)) {
 					variableTable.put(variableName, readCache.get(memAddr));
-				}
-				else if (!copiedLocks.containsKey(memAddr)) {
+				} else if (!copiedLocks.containsKey(memAddr)) {
 
 					// Attempt to acquire lock. Note that this may take a long
 					// time
@@ -148,8 +148,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					Instant leaseLockExpiration = null;
 					try {
 						leaseLockExpiration = leader
-								.getReplicaLock(lockForRead);
-					} catch (RemoteException | InterruptedException r) {
+								.getReplicaLock(lockForRead, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Remote Exception or Interrupted Exception while trying to acquire LeaseLock in"
 										+ meTransaction.getTransactionID());
@@ -157,9 +157,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
-					
-					//Check to see if the transaction has been aborted
-					if(leaseLockExpiration == null) {
+
+					// Check to see if the transaction has been aborted
+					if (leaseLockExpiration == null) {
 						return "abort";
 					}
 
@@ -175,10 +175,10 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// declared
 					Integer valueAtMemAddr = null;
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr);
-					} catch (RemoteException r) {
+						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+					} catch (Exception r) {
 						System.out
-								.println("Remote Exception while trying to read "
+								.println("Exception while trying to read "
 										+ memAddr
 										+ " in"
 										+ meTransaction.getTransactionID());
@@ -187,14 +187,15 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						return "abort";
 					}
 
-					//If this memAddr has not been written before by any transaction, default to reading a zero
-					if(valueAtMemAddr == null){
+					// If this memAddr has not been written before by any
+					// transaction, default to reading a zero
+					if (valueAtMemAddr == null) {
 						variableTable.put(variableName, 0);
 					} else {
 						variableTable.put(variableName, valueAtMemAddr);
 					}
 					readCache.put(memAddr, valueAtMemAddr);
-					
+
 				} else if (copiedLocks.containsKey(memAddr)
 						&& copiedLocks.get(memAddr).getMode() == AccessMode.READ) {
 
@@ -208,8 +209,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					// declared
 					Integer valueAtMemAddr = null;
 					try {
-						valueAtMemAddr = leader.RWTread(memAddr);
-					} catch (RemoteException r) {
+						valueAtMemAddr = leader.RWTread(memAddr, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Remote Exception while trying to read "
 										+ memAddr
@@ -219,15 +220,15 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						System.out.println(r);
 						return "abort";
 					}
-					
-					//If this memAddr has not been written before by any transaction, default to reading a zero
-					if(valueAtMemAddr == null){
+
+					// If this memAddr has not been written before by any
+					// transaction, default to reading a zero
+					if (valueAtMemAddr == null) {
 						variableTable.put(variableName, 0);
 					} else {
 						variableTable.put(variableName, valueAtMemAddr);
 					}
-					
-					
+
 					readCache.put(memAddr, valueAtMemAddr);
 
 				} else if ((copiedLocks.containsKey(memAddr) && copiedLocks
@@ -287,12 +288,13 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String addendOneName = elements[2];
 				String addendTwoName = elements[3];
 
-
-				if(Responder.debugMode){
+				if (Responder.debugMode) {
 					System.out.println("Starting debug of add");
-					System.out.println("command parses as: " + "add space " + sumName + " space " + addendOneName + " space " + addendTwoName);
+					System.out.println("command parses as: " + "add space "
+							+ sumName + " space " + addendOneName + " space "
+							+ addendTwoName);
 				}
-				
+
 				// Get the addends from the variableTable and write their sum to
 				// the table
 				if (variableTable.containsKey(sumName)
@@ -320,7 +322,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 				String sumName = elements[1];
 				String addendOneName = elements[2];
 				Integer addendTwo = null;
-				
 
 				try {
 					addendTwo = Integer.parseInt(elements[3]);
@@ -328,17 +329,20 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					BadTransactionRequestException b = new BadTransactionRequestException(
 							"Argument 3 of addc does not parse as an integer");
 					throw b;
-				} catch (Exception e){
+				} catch (Exception e) {
 					throw e;
 				}
 
-				if(Responder.debugMode){
+				if (Responder.debugMode) {
 					System.out.println("Starting debug of addc");
-					System.out.println("command parses as: " + "addc space " + sumName + " space " + addendOneName + " space " + addendTwo);
-					System.out.println("also variableTable.get(addendOneName) gives" + variableTable.get(addendOneName));
+					System.out.println("command parses as: " + "addc space "
+							+ sumName + " space " + addendOneName + " space "
+							+ addendTwo);
+					System.out
+							.println("also variableTable.get(addendOneName) gives"
+									+ variableTable.get(addendOneName));
 				}
-				
-				
+
 				if (variableTable.containsKey(sumName)
 						&& variableTable.containsKey(addendOneName)) {
 					Integer sum = variableTable.get(addendOneName) + addendTwo;
@@ -366,7 +370,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 							"Argument 1 of wait does not parse as an integer");
 					throw b;
 				}
-				if( waitTime > 0){
+				if (waitTime > 0) {
 					try {
 						Thread.sleep(waitTime);
 					} catch (InterruptedException i) {
@@ -385,8 +389,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		}
 
-		//Perform buffered writes
-				
+		// Perform buffered writes
+
 		// Unecessary line, but this name is more informative for the role of
 		// the map from here on
 		HashMap<Integer, Integer> addrToVariableValue = writeCache;
@@ -408,8 +412,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 				Instant expirationTime = null;
 				try {
-					expirationTime = leader.getReplicaLock(ll); //upgrade
-				} catch (RemoteException | InterruptedException r) {
+					expirationTime = leader.getReplicaLock(ll, replicationMode); // upgrade
+				} catch (Exception r) {
 					System.out
 							.println("Remote Exception or Interrupted Exception while trying to acquire (upgrading) Write lock in Transaction "
 									+ meTransaction.getTransactionID());
@@ -418,13 +422,13 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					return "abort";
 				}
 
-				//Check to see if the transaction has been aborted
-				if(expirationTime == null) {
+				// Check to see if the transaction has been aborted
+				if (expirationTime == null) {
 					return "abort";
 				}
-				
+
 				ll.setExpirationTime(expirationTime);
-				
+
 				// Upgrade the lock in this transaction's list to a Write lock
 				meTransaction.upgradeReadLockToWrite(lockKey);
 
@@ -437,8 +441,8 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						AccessMode.WRITE, null, lockKey);
 				Instant expirationTime = null;
 				try {
-					expirationTime = leader.getReplicaLock(ll);
-				} catch (RemoteException | InterruptedException r) {
+					expirationTime = leader.getReplicaLock(ll, replicationMode);
+				} catch (Exception r) {
 					System.out
 							.println("Remote Exception or Interrupted Exception while trying to acquire Write lock in Transaction "
 									+ meTransaction.getTransactionID());
@@ -446,19 +450,20 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 					System.out.println(r);
 					return "abort";
 				}
-				
-				//Check to see if the transaction has been aborted
-				if(expirationTime == null) {
+
+				// Check to see if the transaction has been aborted
+				if (expirationTime == null) {
 					return "abort";
 				}
-				
+
 				ll.setExpirationTime(expirationTime);
-				addThisLockList.add(ll);  //batch the write locks we'll be getting
+				addThisLockList.add(ll); // batch the write locks we'll be
+											// getting
 			}
 		}
 		meTransaction.addLocks(addThisLockList);
-		//Add the batched write locks to this transaction's list of locks
-		//Note that this MUST happen after we already acquire the write locks
+		// Add the batched write locks to this transaction's list of locks
+		// Note that this MUST happen after we already acquire the write locks
 
 		// TODO check to make sure I didn't miss anything in this method
 		ArrayList<LeaseLock> listOfLocks = new ArrayList<LeaseLock>(
@@ -469,7 +474,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			try {
 				commitStatus = leader.RWTcommit(
 						meTransaction.getTransactionID(), listOfLocks,
-						addrToVariableValue);
+						addrToVariableValue, replicationMode);
 			} catch (RemoteException r) {
 				System.out
 						.println("Remote Exception while trying to commit Transaction "
@@ -482,14 +487,38 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		return commitStatus;
 	}
 
+	public String LPRWTransaction(List<String> actions)
+			throws BadTransactionRequestException, RemoteException {
+
+		String transactionStatus = null;
+		try {
+			transactionStatus = paxosTransaction(actions, "pax");
+		} catch (Exception e) {
+			throw e;
+		}
+		return transactionStatus;
+	}
+
+	public String LBRWTransaction(List<String> actions)
+			throws BadTransactionRequestException, RemoteException {
+
+		String transactionStatus = null;
+		try {
+			transactionStatus = paxosTransaction(actions, "byz");
+		} catch (Exception e) {
+			throw e;
+		}
+		return transactionStatus;
+	}
+
 	// Paxos Read Write Transaction
 	// Returns "commit" if the transaction is successful and "abort" if the
 	// transaction failed.
 	// If the list of actions given to this function is ill formed it throws a
 	// BadTransactionRequestException
-	public String PRWTransaction(List<String> actions)
-			throws BadTransactionRequestException, RemoteException {
 
+	private String paxosTransaction(List<String> actions, String replicationMode)
+			throws BadTransactionRequestException, RemoteException {
 		// Get this transaction's GUID transactionID
 		Long myTransactionID = TIdNamer.createNewGUID();
 
@@ -512,7 +541,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 
 		String transactionReturnStatus;
 		try {
-			transactionReturnStatus = processActions(actions, meTransaction);
+			transactionReturnStatus = processActions(actions, meTransaction, replicationMode);
 		} catch (BadTransactionRequestException b) {
 			meTransaction.setAlive(false);
 			throw b;
@@ -520,8 +549,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			// Kills the transactionHeart
 			meTransaction.setAlive(false);
 		}
-
-		
 
 		return transactionReturnStatus;
 	}
@@ -531,9 +558,9 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 	// arg2 = debug mode true or false
 	public static void main(String[] args) {
 
-		if (args.length != 3) {
+		if (args.length != 4) {
 			System.out.println("Incorrect number of command line arguments.");
-			System.out.println("Correct form: IPaddress myRemoteName debugMode");
+			System.out.println("Correct form: IPaddress myRemoteName debug(True | False)");
 			System.exit(1);
 		}
 		String myIP = args[0];
@@ -630,12 +657,13 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println(e);
 			System.exit(1);
 		}
-		
+
 		// Acquire the TransactionIdNamer on terratest
-		System.out.println("Trying to contact terratest.eecs.berkeley.edu for TransactionIdNamer");
+		System.out
+				.println("Trying to contact terratest.eecs.berkeley.edu for TransactionIdNamer");
 		try {
 			TIdNamer = (TransactionIdNamerIntf) Naming.lookup("//"
-					+ TRANSACTIONIDNAMERIP+ "/TransactionIdNamer");
+					+ TRANSACTIONIDNAMERIP + "/TransactionIdNamer");
 		} catch (Exception e) {
 			System.out.println("Error, terratest.eecs.berkeley.edu.");
 			System.out
@@ -643,7 +671,6 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out.println(e);
 			System.exit(1);
 		}
-		
 
 		// Register this Responder with the RemoteRegistry
 		// Note that this must be done last, only after the Responder server is

@@ -30,15 +30,19 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	String ipAddress;
 	int numOfReplicas;
 
+	boolean otherReplicasFoundForByz;
+
 	Log dataLog;
 	ReplicaIntf leader;
 	ArrayList<ReplicaIntf> replicas = null; // Only initialized to something
 											// other than null in main if this
 											// is the leader
 
+	ArrayList<ReplicaIntf> replicasForByzCommunication = new ArrayList<ReplicaIntf>();
+
 	// Start both sequence numbers at -1 so they will be incremented to zero for
 	// the first sequence use.
-	Long paxosSequenceNumber = new Long(-1); // This value should only be used
+	Long leaderSequenceNumber = new Long(-1); // This value should only be used
 												// by
 												// the leader
 
@@ -56,12 +60,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	private static double paxosFailRate = 0.01; // Default value. Set this in
 												// main.
 
-	private Long getPaxosSequenceNumber() {
-		return paxosSequenceNumber;
+	private Long getLeaderSequenceNumber() {
+		return leaderSequenceNumber;
 	}
 
-	private Long incrementPaxosSequenceNumber() {
-		return ++this.paxosSequenceNumber;
+	private Long incrementLeaderSequenceNumber() {
+		return ++this.leaderSequenceNumber;
 	}
 
 	private Long getReplicaSequenceNumber() {
@@ -76,7 +80,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
 
 	public Replica(boolean isLeader, String remoteName, int numOfReplicas,
-			String ipAddress) throws RemoteException {
+			String ipAddress, String replicationMode) throws RemoteException {
 		super();
 		this.dataMap = new ConcurrentHashMap<Integer, ValueAndTimestamp>();
 		this.sequenceToMemAddr = new Integer[SEQUENCETRACKINGRANGE];
@@ -90,7 +94,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		if (this.isLeader == true) {
 			leader = this;
 			this.replicas = new ArrayList<ReplicaIntf>();
-			this.lockTable = new LockTable();
+			this.lockTable = new LockTable(replicationMode, this);
 			this.serializedCommitLock = new Object();
 			this.leaseKiller = new Thread(new LeaseKiller(lockTable));
 			leaseKiller.start();
@@ -104,7 +108,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
-			HashMap<Integer, Integer> memaddrToValue) throws RemoteException {
+			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
+			throws RemoteException {
 		/*
 		 * commit needs to : 1. validate the heldLocks against locks in
 		 * LockTable： if not all valid, return false and abort; else add the
@@ -123,12 +128,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			} else {
 
 				Instant timestamp = Instant.now();
-				String returnStatus = "";
 
 				for (Integer memAddr : memaddrToValue.keySet()) {
 					try {
-						result = paxosWrite(memAddr,
-								memaddrToValue.get(memAddr), timestamp);
+						result = replicateWrite(memAddr,
+								memaddrToValue.get(memAddr), timestamp,
+								replicationMode);
 					} catch (RemoteException r) {
 						System.out
 								.println("Unable to perform paxosWrite on timestamp: "
@@ -168,20 +173,48 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	}
 
-	private boolean paxosWrite(Integer memAddr, Integer value, Instant timestamp)
-			throws RemoteException {
-		synchronized (paxosSequenceNumber) {
-			Long sn = this.getPaxosSequenceNumber() + 1;
+	// Note that this is almost exactly like replicateWrite, except we don't
+	// want to bother with
+	// actually sending the data. Also we (incorrectly) don't bother checking to
+	// see if we have a majority. This means the emulation is a bit of an
+	// under-effort.
+	public void emulateLeaderByzReplicateState() throws Exception {
+		synchronized (leaderSequenceNumber) {
+
+			for (ReplicaIntf contactReplica : replicas) {
+				try {
+					contactReplica.byzSlaveTalkToEveryone(this.numOfReplicas);
+				} catch (Exception e) {
+					throw e;
+				}
+			}
+		}
+	}
+
+	private boolean replicateWrite(Integer memAddr, Integer value,
+			Instant timestamp, String replicationMode) throws RemoteException {
+
+		synchronized (leaderSequenceNumber) {
+			Long sn = this.getLeaderSequenceNumber() + 1;
 			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
 			boolean hasPromised = false;
-			int majority = (this.replicas.size() / 2) + 1;
+			int paxosMajority = (this.replicas.size() / 2) + 1;
+			int byzMajority = ((this.replicas.size() * 2) / 3) + 1;
+			int majority;
+
+			if (replicationMode.equals("pax")) {
+				majority = paxosMajority;
+			} else {
+				majority = byzMajority;
+			}
 
 			while (quorum.size() < majority) {
 				quorum.clear();
 				for (ReplicaIntf contactReplica : replicas) {
 					try {
-						hasPromised = contactReplica.prepare(sn);
-					} catch (RemoteException r) {
+						hasPromised = contactReplica.prepare(sn,
+								this.numOfReplicas, replicationMode);
+					} catch (Exception r) {
 						System.out
 								.println("Aborting - unable to prepare Replica "
 										+ contactReplica);
@@ -219,7 +252,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			}
 
 			// Make the increment in sequence number official
-			this.incrementPaxosSequenceNumber();
+			this.incrementLeaderSequenceNumber();
 
 			// Update the local dataMap.
 			ValueAndTimestamp vat = new ValueAndTimestamp(value, timestamp);
@@ -237,10 +270,66 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return true;
 	}
 
-	public boolean prepare(Long sequenceNumber) throws RemoteException {
+	public void emulateByzCommunication() throws RemoteException {
+		// Do some busy work
+		int j = 0;
+		for (int i = 0; i < 1000; i++) {
+			j = j % 7;
+		}
+	}
+
+	public void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
+			throws Exception {
+		// First emulate the byzantine communication between all replicas
+
+		if (!this.otherReplicasFoundForByz) {
+
+			RemoteRegistryIntf terraTestRemoteRegistry = null;
+
+			// Acquire remoteRegistry to lookup the other replicas.
+			System.out
+					.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
+			System.out.println("You should see this message once!");
+			try {
+				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
+						.lookup("//" + REMOTEREGISTRYIP + "/RemoteRegistry");
+			} catch (Exception e) {
+				throw e;
+			}
+
+			for (int i = 1; i <= (numOfReplicasFromLeader - 1); i++) {
+				String contactReplicaRemoteName = "replica" + i;
+				String networkNameForContactReplica = "";
+				ReplicaIntf remoteObjectForContactReplica = null;
+
+				if (contactReplicaRemoteName.equals(this.remoteName)) {
+					continue;
+				} else {
+					networkNameForContactReplica = terraTestRemoteRegistry
+							.getNetworkName(contactReplicaRemoteName);
+					remoteObjectForContactReplica = (ReplicaIntf) Naming
+							.lookup(networkNameForContactReplica);
+					this.replicasForByzCommunication
+							.add(remoteObjectForContactReplica);
+				}
+			}
+		}
+
+		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
+			contactReplica.emulateByzCommunication();
+		}
+
+	}
+
+	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader,
+			String replicationMode) throws Exception {
+
+		if (replicationMode.equals("byz")) {
+			byzSlaveTalkToEveryone(numOfReplicasFromLeader);
+		}
 
 		Long expectedReplicaSequenceNumber = this.getReplicaSequenceNumber() + 1;
-		
+
 		if (sequenceNumber.equals(expectedReplicaSequenceNumber)) {
 			if (Replica.debugMode) {
 				System.out.println("expectedReplicaSequenceNumber "
@@ -319,10 +408,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Long replicaExpectedSn, Long leaderNewSequenceNumber)
 			throws RemoteException {
 
-		
 		if (!((leaderNewSequenceNumber - replicaExpectedSn) >= 1)) {
 			System.out
-					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber" + leaderNewSequenceNumber + " replicaExpectedSn " + replicaExpectedSn);
+					.println("Incorrect arguments given to requestSequenceData leaderNewSequnceNumber"
+							+ leaderNewSequenceNumber
+							+ " replicaExpectedSn "
+							+ replicaExpectedSn);
 			System.out.println("Returning null");
 			return null;
 		}
@@ -355,12 +446,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Integer value, Instant timestamp) throws RemoteException {
 
 		this.setReplicaSequenceNumber(sequenceNumber);
-		
+
 		if (Replica.debugMode) {
 			System.out.println("Writing value: "
-					+ new ValueAndTimestamp(value, timestamp)
-					+ " at memAddr: " + memAddr
-					+ "in replica's dataMap");
+					+ new ValueAndTimestamp(value, timestamp) + " at memAddr: "
+					+ memAddr + "in replica's dataMap");
 		}
 		this.dataMap.put(memAddr, new ValueAndTimestamp(value, timestamp));
 		return true;
@@ -372,10 +462,20 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		return transactionBirthDate;
 	}
 
+
 	// A true return value indicates that the locks have been acquired, false
 	// means that this transaction must abort
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
-			InterruptedException {
+	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
+			throws RemoteException, InterruptedException, Exception {
+
+		if (replicationMode.equals("byz")) {
+			try{
+				emulateLeaderByzReplicateState();
+			} catch (Exception e){
+				throw e;
+			}
+		}
+
 		Object leaseLockCondition = new Object();
 		synchronized (leaseLockCondition) {
 			Instant transactionBirthDate = lockTable
@@ -394,25 +494,34 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 	// It is the calling Responder's responsibility to have acquired the read
 	// lock for this databasekey
-	public Integer RWTread(Integer databaseKey) throws RemoteException {
+	public Integer RWTread(Integer databaseKey, String replicationMode) throws Exception {
+		
+		if (replicationMode.equals("byz")) {
+			try {
+				emulateLeaderByzReplicateState();
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		
 		if (dataMap.contains(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {
 			// If this value is not in the database, return 0. The responder
-			// should check for null returns, but we are evidently missing this somewhere
+			// should check for null returns, but we are evidently missing this
+			// somewhere
 			// because without a 0 return we get a bug.
 			return 0;
 		}
-
 	}
 
 	public static void main(String[] args) {
 		// set the paxos fail rate as a probability between 0 and 1
 		Replica.paxosFailRate = Math.random();
-		if (args.length != 5) {
+		if (args.length != 6) {
 			System.out.println("Incorrect number of command line arguments.");
 			System.out
-					.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode");
+					.println("Correct form: isLeader, remoteName, numOfReplicas, ipAddress, debugMode, replicationMode(byz | pax)");
 			System.exit(1);
 		}
 		String myRemoteName = args[1];
@@ -452,7 +561,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		Replica me = null;
 		try {
 			me = new Replica(leaderOrNot, myRemoteName,
-					Integer.parseInt(args[2]), myIpAddress);
+					Integer.parseInt(args[2]), myIpAddress, args[5]);
 		} catch (RemoteException r) {
 			System.out.println("Unable to start local server");
 			System.out.println(r);

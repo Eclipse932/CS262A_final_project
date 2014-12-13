@@ -13,19 +13,24 @@ public interface ReplicaIntf extends Remote {
 			throws RemoteException;
 
 	public String RWTcommit(Long transactionID, List<LeaseLock> heldLocks,
-			HashMap<Integer, Integer> memaddrToValue) throws RemoteException;
+			HashMap<Integer, Integer> memaddrToValue, String replicationMode) throws RemoteException;
 
-	public Instant getReplicaLock(LeaseLock lock) throws RemoteException,
-			InterruptedException;
-
-	public Integer RWTread(Integer databaseKey) throws RemoteException;
+	public Instant getReplicaLock(LeaseLock lock, String replicationMode) throws RemoteException,
+			InterruptedException, Exception;
+	
+	public Integer RWTread(Integer databaseKey, String replicationMode) throws Exception;
 
 	public Instant beginTransaction(long transactionID) throws RemoteException;
+	
+	public void emulateByzCommunication() throws RemoteException;
 
+	public void byzSlaveTalkToEveryone(int numOfReplicasFromLeader)
+			throws Exception; 
+	
 	// called by leader, served by replica
 	// returns true if the replica was simulated as responsive
-	public boolean prepare(Long sequenceNumber)
-			throws RemoteException;
+	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader, String replicationMode)
+			throws Exception;
 
 	// called by leader, served by replica
 	// returns true if the replica updated it's local dataMap
