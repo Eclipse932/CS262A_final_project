@@ -599,6 +599,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
 			throws Exception {
 
+		
 		synchronized (dataMap) {
 
 			// TODO this only validates at the leader, which violates the
@@ -652,14 +653,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			String replicationMode) throws Exception {
 		synchronized (dataMap) {
 
-			if (replicationMode.equals("byz")) {
-				try {
-					emulateLeaderByzReplicateState();
-				} catch (Exception e) {
-					e.printStackTrace();
-					throw e;
-				}
-			}
+
 
 			if (dataMap.contains(databaseKey)) {
 				ValueAndTimestamp vAndT = dataMap.get(databaseKey);
