@@ -199,9 +199,16 @@ public class LockTable {
 										+ sameKeyLock.ownerTransactionID + " : " + sameKeyLock.lockedKey + " : " + sameKeyLock.mode +
 										 " already aborted in wound wait one write multiple read");
 							}
-							if (!sameKeyLock.equals(toBeUpgrade))
+							if (!sameKeyLock.equals(toBeUpgrade)) {
 								transactionBirthdates
 										.remove(sameKeyLock.ownerTransactionID);
+							} else {
+								if (Replica.debugMode) {
+									System.out.println("transaction "
+											+ toBeUpgrade.ownerTransactionID + " : " + toBeUpgrade.lockedKey + " : " + toBeUpgrade.mode +
+											 " already aborted in wound wait one write multiple read");
+								}
+							}
 						}
 						
 						sameKeyLocks.clear();
