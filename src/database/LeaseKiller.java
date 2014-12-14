@@ -3,7 +3,7 @@ package database;
 
 public class LeaseKiller implements Runnable {
 	LockTable lockTable;
-	long cleanUpInterval = 400000000;
+	long cleanUpInterval = 2000;
 	
 	public LeaseKiller(LockTable lockTable) {
 		this.lockTable = lockTable;
