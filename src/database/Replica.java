@@ -536,17 +536,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	private boolean validateOptimisticTransaction(
-			ArrayList<KeyAndTimestamp> readSet,
-			HashMap<Integer, Integer> memaddrToValue) throws NullDataException {
+			ArrayList<KeyAndTimestamp> readSet) throws NullDataException {
 
 		if (readSet == null) {
 			throw new NullDataException(
 					"The readSet of validateOptimisticTransaction is null");
 		}
-		if (memaddrToValue == null) {
-			throw new NullDataException(
-					"the memaddrToValue of validateOptimisticTransaction is null.");
-		}
+		
 
 		for (KeyAndTimestamp kandt : readSet) {
 			Integer k = kandt.getKey();
@@ -563,10 +559,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							"Somehow a member of the read set has a more up-to-date"
 									+ " timestamp than the dataMap. This ought to be impossible.");
 				} else {
+					System.out.println( "!dataMap.contains(k)  and t == null for " + kandt);
+					System.out.println("continuing");
 					continue;
 				}
 			} else {
 				if (t == null) {
+					System.out.println( "dataMap.contains(k)  and t == null for " + kandt);
+					System.out.println("returning false");
 					// this key is out of date because the associated value was
 					// null during the read
 					// but now is contained in the dataMap
@@ -576,15 +576,17 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					// been written before and possess a timestamp
 					Instant dataMapTimestamp = dataMap.get(k).getTimestamp();
 					if(dataMapTimestamp.equals(t)){
+						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
+						System.out.println("continuing");
 						//The readset timestamp is current so we are safe to continue
 						continue;
 					} else{
+						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
+						System.out.println("continuing");
 						return false;
 					}
-
 				}
 			}
-
 		}
 
 		// If we fall through and never have a mismatched key and value, the
@@ -620,8 +622,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 			boolean goodTransaction;
 			try {
-				goodTransaction = validateOptimisticTransaction(readSet,
-						memaddrToValue);
+				goodTransaction = validateOptimisticTransaction(readSet);
 			} catch (NullDataException n) {
 				throw n;
 			}

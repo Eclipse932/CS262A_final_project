@@ -5,6 +5,10 @@ import java.time.Instant;
 
 public class KeyAndTimestamp implements Serializable {
 
+	@Override
+	public String toString() {
+		return "KeyAndTimestamp [key=" + key + ", timestamp=" + timestamp + "]";
+	}
 	/**
 	 * Default serialization id
 	 */
