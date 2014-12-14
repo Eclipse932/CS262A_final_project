@@ -304,7 +304,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 
 			// Acquire remoteRegistry to lookup the other replicas.
 			System.out
-					.println("Trying to contact terratest.eecs.berkeley.edu in byzPrepare");
+					.println("Trying to contact terratest.eecs.berkeley.edu in byzSlaveTalkToEveryone");
 			System.out.println("You should see this message once!");
 			try {
 				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming

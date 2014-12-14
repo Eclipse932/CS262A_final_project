@@ -23,6 +23,7 @@ public class LockTable {
 		this.committingWrites = new HashMap<Long, List<LeaseLock>>();
 		this.replicationMode = replicationMode;
 		this.owner = owner;
+		System.out.println("replicationMode is: " + replicationMode);
 	}
 
 	synchronized Instant extendLockLeases(List<LeaseLock> locks) {
