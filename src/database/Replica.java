@@ -486,9 +486,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
 			throws RemoteException, InterruptedException, Exception {
 
-		
-		if(debugMode){
-			System.out.println(" replication mode in getReplicaLock is: " + replicationMode);
+		if (debugMode) {
+			System.out.println(" replication mode in getReplicaLock is: "
+					+ replicationMode);
 		}
 		if (replicationMode.equals("byz")) {
 			try {
@@ -520,8 +520,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public Integer RWTread(Integer databaseKey, String replicationMode)
 			throws Exception {
 
-		if(debugMode){
-			System.out.println("replication mode in RWTread is: " + replicationMode);
+		if (debugMode) {
+			System.out.println("replication mode in RWTread is: "
+					+ replicationMode);
 		}
 		if (replicationMode.equals("byz")) {
 			try {
@@ -550,7 +551,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			throw new NullDataException(
 					"The readSet of validateOptimisticTransaction is null");
 		}
-		
 
 		for (KeyAndTimestamp kandt : readSet) {
 			Integer k = kandt.getKey();
@@ -559,9 +559,12 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				throw new NullDataException(
 						"A Key in validateOptimisticTransaction is null.");
 			}
-			//System.out.println("Asking datamap to print the value at k: " + k);
-			//System.out.println(dataMap.get(k));
-			
+			if (debugMode) {
+				System.out.println("Asking datamap to print the value at k: "
+						+ k);
+				System.out.println(dataMap.get(k));
+			}
+
 			if (!dataMap.containsKey(k)) {
 				// This key in the datamap has never been written so
 				// this key and timestamp is safe
@@ -570,30 +573,48 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							"Somehow a member of the read set has a more up-to-date"
 									+ " timestamp than the dataMap. This ought to be impossible.");
 				} else {
-				//	System.out.println( "!dataMap.contains(k)  and t == null for " + kandt);
-				//	System.out.println("continuing");
+					if (debugMode) {
+						System.out
+								.println("!dataMap.contains(k)  and t == null for "
+										+ kandt);
+						System.out.println("continuing");
+					}
 					continue;
 				}
 			} else {
 				if (t == null) {
-//					System.out.println( "dataMap.contains(k)  and t == null for " + kandt);
-//					System.out.println("returning false");
+					if (debugMode) {
+						System.out
+								.println("dataMap.contains(k)  and t == null for "
+										+ kandt);
+						System.out.println("returning false");
+					}
 					// this key is out of date because the associated value was
 					// null during the read
 					// but now is contained in the dataMap
 					return false;
 				} else {
-					// All other cases involve non-null data and readset entries that have
+					// All other cases involve non-null data and readset entries
+					// that have
 					// been written before and possess a timestamp
 					Instant dataMapTimestamp = dataMap.get(k).getTimestamp();
-					if(dataMapTimestamp.equals(t)){
-//						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
-//						System.out.println("continuing");
-						//The readset timestamp is current so we are safe to continue
+					if (dataMapTimestamp.equals(t)) {
+						if (debugMode) {
+							System.out.println("dataMap has " + dataMap.get(k)
+									+ " at " + k + " and the keytimestamp is "
+									+ kandt);
+							System.out.println("continuing");
+						}
+						// The readset timestamp is current so we are safe to
+						// continue
 						continue;
-					} else{
-//						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
-//						System.out.println("continuing");
+					} else {
+						if (debugMode) {
+							System.out.println("dataMap has " + dataMap.get(k)
+									+ " at " + k + " and the keytimestamp is "
+									+ kandt);
+							System.out.println("continuing");
+						}
 						return false;
 					}
 				}
@@ -612,7 +633,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			HashMap<Integer, Integer> memaddrToValue, String replicationMode)
 			throws Exception {
 
-		
 		synchronized (dataMap) {
 
 			// TODO this only validates at the leader, which violates the
@@ -650,11 +670,19 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						throw r;
 					}
 					if (writeStatus == false) {
+						if(debugMode){
+							System.out.println("Aborting transaction because writeStatus is false. Transaction failed in replicateWrite");
+						}
+						
 						return "abort";
 					}
 				}
 				return "commit";
 			} else {
+				
+				if(debugMode){
+					System.out.println("Aborting transaction because validateOptimisticTransaction returns false");
+				}
 				return "abort";
 			}
 		}
@@ -664,8 +692,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public ValueAndTimestamp optimisticRead(Integer databaseKey,
 			String replicationMode) throws Exception {
 		synchronized (dataMap) {
-
-
 
 			if (dataMap.contains(databaseKey)) {
 				ValueAndTimestamp vAndT = dataMap.get(databaseKey);
