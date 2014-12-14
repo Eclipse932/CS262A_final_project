@@ -385,11 +385,6 @@ public class LockTable {
 					}
 				}
 				if (toBeRemovedLock != null) {
-					if (Replica.debugMode) {
-						System.out.println("transaction "
-								+ toBeRemovedLock.ownerTransactionID + " : " + toBeRemovedLock.lockedKey 
-								+ " already aborted in releaseTableLock");
-					}
 					sameKeyLocks.remove(toBeRemovedLock);
 					wakeUpNextLock(toBeRemovedLock.lockedKey);
 				}
@@ -404,6 +399,9 @@ public class LockTable {
 		// if transactionBirthDate is no longer found, it shows the transaction
 		// is already aborted
 		if (!transactionBirthdates.containsKey(ownerTransactionID)) {
+			if (Replica.debugMode) {
+				System.out.println("transaction birth date not valid in validateTableLock");
+			}
 			return false;
 		}
 		Instant validateStartTime = Instant.now();
@@ -412,6 +410,7 @@ public class LockTable {
 			// if no entry, it shows the lock has already been removed by
 			// LeaseKiller so no longer valid
 			if (sameKeyLocks == null) {
+				System.out.println("sameKeyLocks null in validateTableLock");
 				return false;
 			} else {
 				boolean isFound = false;
@@ -420,12 +419,18 @@ public class LockTable {
 						isFound = true;
 						if (sameKeyLock.expirationTime
 								.isBefore(validateStartTime)) {
+							if (Replica.debugMode) {
+								System.out.println("transaction "
+										+ sameKeyLock.ownerTransactionID + " : " + sameKeyLock.lockedKey 
+										+ " already aborted in validateTableLock");
+							}
 							return false;
 						}
 						break;
 					}
 				}
 				if (!isFound) {
+					System.out.println("lock not found in validateTableLock");
 					return false;
 				}
 			}
