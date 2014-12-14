@@ -206,7 +206,7 @@ public class LockTable {
 								if (Replica.debugMode) {
 									System.out.println("transaction "
 											+ toBeUpgrade.ownerTransactionID + " : " + toBeUpgrade.lockedKey + " : " + toBeUpgrade.mode +
-											 " already aborted in wound wait one write multiple read");
+											 " already aborted in wound wait one write multiple read upgrade");
 								}
 							}
 						}
