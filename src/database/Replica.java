@@ -703,7 +703,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				if (debugMode) {
 					System.out.println("optimisticRead at time "
-							+ Instant.now() + " is returning: " + vAndT);
+							+ Instant.now() + " is returning: " + vAndT + " for key " + databaseKey);
 				}
 
 				return vAndT;
