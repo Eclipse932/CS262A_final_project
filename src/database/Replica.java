@@ -342,7 +342,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public boolean prepare(Long sequenceNumber, int numOfReplicasFromLeader,
 			String replicationMode) throws Exception {
 
-		System.out.println("replciationMode is: " + replicationMode);
+		if (debugMode) {
+			System.out.println("replciationMode is: " + replicationMode);
+		}
 		if (replicationMode.equals("byz")) {
 			byzSlaveTalkToEveryone(numOfReplicasFromLeader);
 		}
@@ -703,7 +705,8 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				}
 				if (debugMode) {
 					System.out.println("optimisticRead at time "
-							+ Instant.now() + " is returning: " + vAndT + " for key " + databaseKey);
+							+ Instant.now() + " is returning: " + vAndT
+							+ " for key " + databaseKey);
 				}
 
 				return vAndT;
