@@ -604,6 +604,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 						addrToVariableValue, replicationMode);
 			} catch(Exception r){
 				System.out.println(r);
+				r.printStackTrace();
 				return "abort";
 			}
 		}
