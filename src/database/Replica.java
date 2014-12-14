@@ -551,10 +551,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				throw new NullDataException(
 						"A Key in validateOptimisticTransaction is null.");
 			}
-			System.out.println("Asking datamap to print the value at k: " + k);
-			System.out.println(dataMap.get(k));
+			//System.out.println("Asking datamap to print the value at k: " + k);
+			//System.out.println(dataMap.get(k));
 			
-			if (!dataMap.contains(k)) {
+			if (!dataMap.containsKey(k)) {
 				// This key in the datamap has never been written so
 				// this key and timestamp is safe
 				if (t != null) {
@@ -562,14 +562,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							"Somehow a member of the read set has a more up-to-date"
 									+ " timestamp than the dataMap. This ought to be impossible.");
 				} else {
-					System.out.println( "!dataMap.contains(k)  and t == null for " + kandt);
-					System.out.println("continuing");
+				//	System.out.println( "!dataMap.contains(k)  and t == null for " + kandt);
+				//	System.out.println("continuing");
 					continue;
 				}
 			} else {
 				if (t == null) {
-					System.out.println( "dataMap.contains(k)  and t == null for " + kandt);
-					System.out.println("returning false");
+//					System.out.println( "dataMap.contains(k)  and t == null for " + kandt);
+//					System.out.println("returning false");
 					// this key is out of date because the associated value was
 					// null during the read
 					// but now is contained in the dataMap
@@ -579,13 +579,13 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					// been written before and possess a timestamp
 					Instant dataMapTimestamp = dataMap.get(k).getTimestamp();
 					if(dataMapTimestamp.equals(t)){
-						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
-						System.out.println("continuing");
+//						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
+//						System.out.println("continuing");
 						//The readset timestamp is current so we are safe to continue
 						continue;
 					} else{
-						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
-						System.out.println("continuing");
+//						System.out.println("dataMap has " + dataMap.get(k) + " at " + k + " and the keytimestamp is " + kandt);
+//						System.out.println("continuing");
 						return false;
 					}
 				}
