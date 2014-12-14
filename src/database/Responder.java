@@ -599,7 +599,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		// Control mode is opt
 		else {
 			try {
-				commitStatus = nearestReplica.optimisticCommit(
+				commitStatus = leader.optimisticCommit(
 						meTransaction.getTransactionID(), readSet,
 						addrToVariableValue, replicationMode);
 			} catch(Exception r){

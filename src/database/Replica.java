@@ -213,9 +213,6 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			Long sn = this.getLeaderSequenceNumber() + 1;
 			ArrayList<ReplicaIntf> quorum = new ArrayList<ReplicaIntf>();
 			boolean hasPromised = false;
-			if(this.replicas == null){
-				System.out.println("THIS IS RIDICULOUS!!");
-			}
 			int paxosMajority = (this.replicas.size() / 2) + 1;
 			int byzMajority = ((this.replicas.size() * 2) / 3) + 1;
 			int majority;
