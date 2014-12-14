@@ -670,18 +670,20 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 						throw r;
 					}
 					if (writeStatus == false) {
-						if(debugMode){
-							System.out.println("Aborting transaction because writeStatus is false. Transaction failed in replicateWrite");
+						if (debugMode) {
+							System.out
+									.println("Aborting transaction because writeStatus is false. Transaction failed in replicateWrite");
 						}
-						
+
 						return "abort";
 					}
 				}
 				return "commit";
 			} else {
-				
-				if(debugMode){
-					System.out.println("Aborting transaction because validateOptimisticTransaction returns false");
+
+				if (debugMode) {
+					System.out
+							.println("Aborting transaction because validateOptimisticTransaction returns false");
 				}
 				return "abort";
 			}
@@ -699,6 +701,11 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 					throw new NullDataException(
 							"The dataMap contains a null valued Value and Timestamp");
 				}
+				if (debugMode) {
+					System.out.println("optimisticRead at time "
+							+ Instant.now() + " is returning: " + vAndT);
+				}
+
 				return vAndT;
 			} else {
 				// If this value is not in the database, return a 0 valued
