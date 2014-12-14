@@ -180,6 +180,11 @@ public class LockTable {
 						}
 					}
 					for (LeaseLock toBeRemovedLock : toBeRemovedLocks) {
+						if (Replica.debugMode) {
+							System.out.println("transaction "
+									+ toBeRemovedLock.ownerTransactionID + " : " + toBeRemovedLock.lockedKey + 
+									 " already aborted in wound wait one write multiple read and transaction birth date not valid");
+						}
 						sameKeyLocks.remove(toBeRemovedLock);
 					}
 
@@ -189,10 +194,16 @@ public class LockTable {
 					}
 					if (finalCompareResult >= 0) {
 						for (LeaseLock sameKeyLock : sameKeyLocks) {
+							if (Replica.debugMode) {
+								System.out.println("transaction "
+										+ sameKeyLock.ownerTransactionID + " : " + sameKeyLock.lockedKey + " : " + sameKeyLock.mode +
+										 " already aborted in wound wait one write multiple read");
+							}
 							if (!sameKeyLock.equals(toBeUpgrade))
 								transactionBirthdates
 										.remove(sameKeyLock.ownerTransactionID);
 						}
+						
 						sameKeyLocks.clear();
 						wakeUpNextLockHelper(queue, sameKeyLocks, key);
 					} else
@@ -212,6 +223,12 @@ public class LockTable {
 		if (!transactionBirthdates
 				.containsKey(currentLockHolder.ownerTransactionID)) {
 			sameKeyLocks.remove(currentLockHolder);
+			if (Replica.debugMode) {
+				System.out.println("transaction "
+						+ currentLockHolder.ownerTransactionID + " : " + currentLockHolder.lockedKey + 
+						 " already aborted in wound wait on one current lock holder case and transaction birth date not valid");
+			
+		}
 			wakeUpNextLockHelper(queue, sameKeyLocks, key);
 		} else {
 			int compareResult = wakeUpNextLockCompareHelper(currentLockHolder,
@@ -222,6 +239,12 @@ public class LockTable {
 				if (!committingWrites
 						.containsKey(currentLockHolder.ownerTransactionID)) {
 					// kill currentLockHolder
+					if (Replica.debugMode) {
+							System.out.println("transaction "
+									+ currentLockHolder.ownerTransactionID + " : " + currentLockHolder.lockedKey + 
+									 " already aborted in wound wait on one current lock holder case");
+						
+					}
 					sameKeyLocks.remove(currentLockHolder);
 					transactionBirthdates
 							.remove(currentLockHolder.ownerTransactionID);
@@ -296,6 +319,11 @@ public class LockTable {
 					if (!transactionBirthdates
 							.containsKey(sameKeyLock.ownerTransactionID)) {
 						toBeRemovedLocks.add(sameKeyLock);
+						if (Replica.debugMode) {
+							System.out.println("transaction "
+									+ sameKeyLock.ownerTransactionID + " : " + sameKeyLock.lockedKey 
+									+ " already aborted in lease killer and transaction birth date not valid");
+						}
 					} else if (sameKeyLock.expirationTime
 							.isBefore(cleanUpStartTime)
 							&& !committingWrites
@@ -303,15 +331,15 @@ public class LockTable {
 						toBeRemovedLocks.add(sameKeyLock);
 						transactionBirthdates
 								.remove(sameKeyLock.ownerTransactionID);
+						if (Replica.debugMode) {
+							System.out.println("transaction "
+									+ sameKeyLock.ownerTransactionID + " : " + sameKeyLock.lockedKey 
+									+ " already aborted in lease killer");
+						}
 					}
 				}
 				for (LeaseLock toBeRemovedLock : toBeRemovedLocks) {
 					sameKeyLocks.remove(toBeRemovedLock);
-					if (Replica.debugMode) {
-						System.out.println("transaction "
-								+ toBeRemovedLock.ownerTransactionID
-								+ " already aborted in lease killer");
-					}
 				}
 				if (toBeRemovedLocks.size() > 0)
 					wakeUpNextLock(lockedKey);
@@ -350,6 +378,11 @@ public class LockTable {
 					}
 				}
 				if (toBeRemovedLock != null) {
+					if (Replica.debugMode) {
+						System.out.println("transaction "
+								+ toBeRemovedLock.ownerTransactionID + " : " + toBeRemovedLock.lockedKey 
+								+ " already aborted in releaseTableLock");
+					}
 					sameKeyLocks.remove(toBeRemovedLock);
 					wakeUpNextLock(toBeRemovedLock.lockedKey);
 				}
