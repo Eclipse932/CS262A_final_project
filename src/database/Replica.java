@@ -551,6 +551,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				throw new NullDataException(
 						"A Key in validateOptimisticTransaction is null.");
 			}
+			System.out.println("Asking datamap to print the value at k: " + k);
+			System.out.println(dataMap.get(k));
+			
 			if (!dataMap.contains(k)) {
 				// This key in the datamap has never been written so
 				// this key and timestamp is safe
