@@ -486,6 +486,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public Instant getReplicaLock(LeaseLock lock, String replicationMode)
 			throws RemoteException, InterruptedException, Exception {
 
+		
+		if(debugMode){
+			System.out.println(" replication mode in getReplicaLock is: " + replicationMode);
+		}
 		if (replicationMode.equals("byz")) {
 			try {
 				emulateLeaderByzReplicateState();
@@ -516,6 +520,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public Integer RWTread(Integer databaseKey, String replicationMode)
 			throws Exception {
 
+		if(debugMode){
+			System.out.println("replication mode in RWTread is: " + replicationMode);
+		}
 		if (replicationMode.equals("byz")) {
 			try {
 				emulateLeaderByzReplicateState();
