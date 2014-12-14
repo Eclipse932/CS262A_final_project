@@ -533,7 +533,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			}
 		}
 
-		if (dataMap.contains(databaseKey)) {
+		if (dataMap.containsKey(databaseKey)) {
 			return dataMap.get(databaseKey).getValue();
 		} else {
 			// If this value is not in the database, return 0. The responder
@@ -575,7 +575,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				} else {
 					if (debugMode) {
 						System.out
-								.println("!dataMap.contains(k)  and t == null for "
+								.println("!dataMap.containsKey(k)  and t == null for "
 										+ kandt);
 						System.out.println("continuing");
 					}
@@ -585,7 +585,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				if (t == null) {
 					if (debugMode) {
 						System.out
-								.println("dataMap.contains(k)  and t == null for "
+								.println("dataMap.containsKey(k)  and t == null for "
 										+ kandt);
 						System.out.println("returning false");
 					}
@@ -695,7 +695,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			String replicationMode) throws Exception {
 		synchronized (dataMap) {
 
-			if (dataMap.contains(databaseKey)) {
+			if (dataMap.containsKey(databaseKey)) {
 				ValueAndTimestamp vAndT = dataMap.get(databaseKey);
 				if (vAndT.getValue() == null) {
 					throw new NullDataException(
