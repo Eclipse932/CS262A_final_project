@@ -171,6 +171,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 								+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -212,6 +213,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 										+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -240,6 +242,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 								+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -275,6 +278,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 										+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -422,6 +426,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 							"Argument 3 of addc does not parse as an integer");
 					throw b;
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw e;
 				}
 
@@ -517,6 +522,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 										+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -550,6 +556,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 										+ meTransaction.getTransactionID());
 						System.out.println("Returning \"abort\"");
 						System.out.println(r);
+						r.printStackTrace();
 						return "abort";
 					}
 
@@ -583,6 +590,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 									+ meTransaction.getTransactionID());
 					System.out.println("Returning \"abort\"");
 					System.out.println(r);
+					r.printStackTrace();
 					return "abort";
 				}
 			}
@@ -610,6 +618,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		try {
 			transactionStatus = doOptimisticTransaction(actions, "byz");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
 		return transactionStatus;
@@ -622,6 +631,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		try {
 			transactionStatus = doOptimisticTransaction(actions, "pax");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
 		return transactionStatus;
@@ -634,6 +644,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		try {
 			transactionStatus = doLockingTransaction(actions, "pax");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
 		return transactionStatus;
@@ -646,6 +657,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		try {
 			transactionStatus = doLockingTransaction(actions, "byz");
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw e;
 		}
 		return transactionStatus;
@@ -785,6 +797,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		} catch (Exception e) {
 			System.out.println("Unable to bind this Responder to local server");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 		System.out.println(myRemoteName
@@ -801,6 +814,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out
 					.println("Please check to make sure you're connected to the internet.");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 
@@ -824,6 +838,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			} catch (Exception e) {
 				System.out
 						.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");
+				e.printStackTrace();
 				System.exit(1);
 			}
 			firstIteration = false;
@@ -835,6 +850,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 		} catch (Exception e) {
 			System.out.println("Unable to acquire the leader's remote object");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 
@@ -860,6 +876,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			} catch (Exception e) {
 				System.out
 						.println("Unable to connect to RemoteRegistry during lookup of nearestReplicaNetworkName ");
+				e.printStackTrace();
 				System.exit(1);
 			}
 			firstIteration = false;
@@ -873,6 +890,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out
 					.println("Unable to acquire the nearest replica's remote object");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 
@@ -887,6 +905,7 @@ public class Responder extends UnicastRemoteObject implements ResponderIntf {
 			System.out
 					.println("Please check to make sure you're connected to the internet.");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 

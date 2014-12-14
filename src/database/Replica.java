@@ -199,6 +199,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				try {
 					contactReplica.byzSlaveTalkToEveryone(this.numOfReplicas);
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw e;
 				}
 			}
@@ -233,6 +234,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 								.println("Aborting - unable to prepare Replica "
 										+ contactReplica);
 						System.out.println(r);
+						r.printStackTrace();
 						return false;
 					}
 					if (hasPromised) {
@@ -308,6 +310,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				terraTestRemoteRegistry = (RemoteRegistryIntf) Naming
 						.lookup("//" + REMOTEREGISTRYIP + "/RemoteRegistry");
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw e;
 			}
 
@@ -486,6 +489,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			try {
 				emulateLeaderByzReplicateState();
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw e;
 			}
 		}
@@ -515,6 +519,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			try {
 				emulateLeaderByzReplicateState();
 			} catch (Exception e) {
+				e.printStackTrace();
 				throw e;
 			}
 		}
@@ -651,6 +656,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				try {
 					emulateLeaderByzReplicateState();
 				} catch (Exception e) {
+					e.printStackTrace();
 					throw e;
 				}
 			}
@@ -736,6 +742,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		} catch (Exception e) {
 			System.out.println("Unable to bind this Replica to local server");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 		System.out.println(myRemoteName
@@ -752,6 +759,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			System.out
 					.println("Please check to make sure you're connected to the internet.");
 			System.out.println(e);
+			e.printStackTrace();
 			System.exit(1);
 		}
 		if (me.isLeader == true) {
@@ -797,6 +805,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							System.out
 									.println("Unable to connect to RemoteRegistry during lookup of replica"
 											+ i + " NetworkName");
+							e.printStackTrace();
 							System.exit(1);
 						}
 						try {
@@ -811,6 +820,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 							System.out.println("Unable to acquire replica" + i
 									+ " remote object");
 							System.out.println(e);
+							e.printStackTrace();
 							System.exit(1);
 						}
 					}
@@ -860,6 +870,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				} catch (Exception e) {
 					System.out
 							.println("Unable to connect to RemoteRegistry during lookup of leaderNetworkName");
+					e.printStackTrace();
 					System.exit(1);
 				}
 				firstIteration = false;
@@ -871,6 +882,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				System.out
 						.println("Unable to acquire the leader's remote object");
 				System.out.println(e);
+				e.printStackTrace();
 				System.exit(1);
 			}
 
