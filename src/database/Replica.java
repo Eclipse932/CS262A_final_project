@@ -81,7 +81,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	// the lock lease interval is 1000 milliseconds across replicas.
-	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(1000);
+	static Duration LOCK_LEASE_INTERVAL = Duration.ofMillis(400000000);
 
 	public Replica(boolean isLeader, String remoteName, int numOfReplicas,
 			String ipAddress, String replicationMode) throws RemoteException {
