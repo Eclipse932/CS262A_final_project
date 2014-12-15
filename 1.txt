@@ -1,0 +1,2857 @@
+Trying to reset terratest.eecs.berkeley.edu
+Reset was successful!
+deadTime: 0 low address: 1000 high address: 100000 length: 50 totalVariable: 10
+readRatio: 0.198397 writeRatio: 0.127767 addRatio: 0.226591 addcRatio: 0.040446 waitRatio: 0.40679900000000013
+
+
+test-file/client1/filename.txt
+test-file/client2/filename.txt
+test-file/client3/filename.txt
+test-file/client4/filename.txt
+test-file/client5/filename.txt
+test-file/client6/filename.txt
+test-file/client7/filename.txt
+test-file/client8/filename.txt
+test-file/client9/filename.txt
+test-file/client10/filename.txt
+1
+2
+3
+4
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Attempting to start local RMI Server for responder0 at 128.32.44.161
+java RMI registry already exists.
+responder0 successfully bound in local registry
+Trying to contact terratest.eecs.berkeley.edu
+Waiting for leader to be registered...
+Waiting for leader to be registered...
+Trying to contact terratest.eecs.berkeley.edu for TransactionIdNamer
+declare x1 212
+Transaction Heart alive in thread Thread[Thread-1,5,RMI Runtime]
+declare x2 4463
+declare x3 5016
+declare x4 5647
+declare x5 1073
+declare x6 459
+declare x7 4094
+declare x8 2542
+declare x9 4578
+declare x10 3637
+read x6 38294
+wait 0
+read x6 94530
+wait 0
+wait 0
+read x5 16296
+read x4 77978
+read x6 36258
+wait 0
+wait 0
+read x10 59910
+wait 0
+write x10 93628
+wait 0
+wait 0
+wait 0
+wait 0
+read x10 68361
+read x5 24354
+wait 0
+add x2 x1 x5
+Starting debug of add
+command parses as: add space x2 space x1 space x5
+wait 0
+addc x7 x7 1730
+Starting debug of addc
+command parses as: addc space x7 space x7 space 1730
+also variableTable.get(addendOneName) gives4094
+write x3 23943
+write x5 6291
+add x8 x7 x2
+Starting debug of add
+command parses as: add space x8 space x7 space x2
+write x6 77208
+add x5 x2 x6
+Starting debug of add
+command parses as: add space x5 space x2 space x6
+wait 0
+write x7 17563
+add x7 x5 x4
+Starting debug of add
+command parses as: add space x7 space x5 space x4
+read x3 81454
+declare x1 2960
+declare x2 2055
+Transaction Heart alive in thread Thread[Thread-2,5,RMI Runtime]
+declare x3 4373
+declare x4 5635
+declare x5 6596
+declare x6 5090
+declare x7 1026
+declare x8 8219
+declare x9 2469
+declare x10 6677
+read x7 88584
+read x3 4277
+wait 0
+read x6 41877
+wait 0
+wait 0
+add x6 x5 x4
+add x4 x7 x7
+declare x1 7276
+Starting debug of add
+declare x2 7071
+command parses as: add space x6 space x5 space x4
+Transaction Heart alive in thread Thread[Thread-3,5,RMI Runtime]
+Starting debug of add
+read x4 53106
+declare x3 2366
+declare x4 2296
+declare x5 6303
+declare x6 8295
+command parses as: add space x4 space x7 space x7
+declare x7 76
+declare x8 9452
+declare x9 6307
+declare x10 7195
+write x3 75310
+wait 0
+write x4 58817
+add x8 x1 x10
+Starting debug of add
+command parses as: add space x8 space x1 space x10
+read x2 11860
+declare x1 7896
+Transaction Heart alive in thread Thread[Thread-4,5,RMI Runtime]
+read x1 48791
+declare x2 6147
+declare x3 4094
+addc x2 x5 7398
+declare x4 7789
+declare x5 4938
+declare x6 9337
+declare x7 7855
+declare x8 8775
+declare x9 4408
+declare x10 3007
+read x7 23307
+read x8 6378
+Starting debug of addc
+command parses as: addc space x2 space x5 space 7398
+also variableTable.get(addendOneName) gives6303
+write x6 59548
+wait 0
+read x1 8732
+wait 0
+declare x1 2408
+Transaction Heart alive in thread Thread[Thread-5,5,RMI Runtime]
+declare x2 3629
+read x5 18068
+declare x3 8885
+addc x5 x2 8559
+read x9 82915
+Starting debug of addc
+command parses as: addc space x5 space x2 space 8559
+also variableTable.get(addendOneName) gives6147
+read x8 5380
+write x1 81478
+declare x4 2064
+wait 0
+declare x5 185
+declare x6 1257
+declare x7 7992
+declare x8 5578
+declare x9 5672
+declare x10 4962
+wait 0
+write x10 20973
+read x5 15242
+declare x1 3427
+declare x2 5110
+Transaction Heart alive in thread Thread[Thread-6,5,RMI Runtime]
+declare x3 4774
+write x9 18342
+declare x4 6331
+wait 0
+declare x5 7953
+declare x6 858
+declare x7 9748
+declare x8 4665
+read x7 53318
+declare x9 9681
+declare x10 5886
+read x8 1395
+wait 0
+wait 0
+addc x3 x4 5205
+wait 0
+Starting debug of addc
+command parses as: addc space x3 space x4 space 5205
+also variableTable.get(addendOneName) gives2064
+write x5 30212
+write x2 95104
+wait 0
+read x2 72437
+wait 0
+wait 0
+write x3 26371
+write x2 22093
+read x2 6377
+add x8 x7 x8
+Starting debug of add
+command parses as: add space x8 space x7 space x8
+wait 0
+read x5 79848
+write x8 43875
+add x9 x3 x5
+add x2 x7 x8
+Starting debug of add
+command parses as: add space x9 space x3 space x5
+Starting debug of add
+command parses as: add space x2 space x7 space x8
+addc x10 x8 7565
+wait 0
+addc x1 x6 9647
+Starting debug of addc
+Starting debug of addc
+command parses as: addc space x10 space x8 space 7565
+also variableTable.get(addendOneName) gives9452
+command parses as: addc space x1 space x6 space 9647
+wait 0
+also variableTable.get(addendOneName) gives9337
+write x9 37464
+addc x5 x3 4094
+Starting debug of addc
+read x9 98639
+command parses as: addc space x5 space x3 space 4094
+also variableTable.get(addendOneName) gives4373
+write x8 88864
+read x1 58850
+read x9 49026
+read x3 8290
+add x4 x1 x1
+read x4 62181
+Starting debug of add
+command parses as: add space x4 space x1 space x1
+addc x7 x9 6053
+Starting debug of addc
+command parses as: addc space x7 space x9 space 6053
+also variableTable.get(addendOneName) gives0
+add x1 x1 x4
+Starting debug of add
+command parses as: add space x1 space x1 space x4
+add x6 x2 x4
+Starting debug of add
+command parses as: add space x6 space x2 space x4
+wait 0
+read x1 8578
+write x1 53408
+read x7 87526
+read x3 79529
+wait 0
+read x1 66500
+wait 0
+addc x8 x9 6448
+Starting debug of addc
+command parses as: addc space x8 space x9 space 6448
+also variableTable.get(addendOneName) gives2469
+addc x5 x4 5484
+Starting debug of addc
+command parses as: addc space x5 space x4 space 5484
+also variableTable.get(addendOneName) gives0
+write x2 69401
+read x9 8089
+write x10 37380
+wait 0
+addc x3 x7 5440
+Starting debug of addc
+command parses as: addc space x3 space x7 space 5440
+also variableTable.get(addendOneName) gives7992
+read x6 32058
+read x2 46990
+addc x1 x9 4453
+Starting debug of addc
+command parses as: addc space x1 space x9 space 4453
+also variableTable.get(addendOneName) gives5672
+wait 0
+add x1 x6 x1
+Starting debug of add
+command parses as: add space x1 space x6 space x1
+wait 0
+read x8 59477
+read x1 60351
+write x6 11749
+wait 0
+read x2 6644
+addc x9 x5 8154
+Starting debug of addc
+command parses as: addc space x9 space x5 space 8154
+also variableTable.get(addendOneName) gives5484
+wait 0
+read x7 36597
+read x6 26998
+addc x9 x5 867
+Starting debug of addc
+command parses as: addc space x9 space x5 space 867
+also variableTable.get(addendOneName) gives6303
+read x4 18927
+wait 0
+write x10 18892
+add x4 x8 x1
+Starting debug of add
+command parses as: add space x4 space x8 space x1
+wait 0
+wait 0
+wait 0
+read x4 27010
+add x7 x5 x6
+Starting debug of add
+command parses as: add space x7 space x5 space x6
+write x4 84481
+read x6 76573
+declare x1 287
+declare x2 7323
+declare x3 2434
+Transaction Heart alive in thread Thread[Thread-7,5,RMI Runtime]
+declare x4 1038
+declare x5 846
+read x2 90877
+write x9 44525
+read x8 16988
+add x3 x9 x7
+Starting debug of add
+declare x6 3202
+command parses as: add space x3 space x9 space x7
+write x6 81745
+read x4 51421
+declare x7 8127
+declare x8 6770
+declare x9 7092
+declare x10 6835
+wait 0
+add x1 x7 x2
+Starting debug of add
+command parses as: add space x1 space x7 space x2
+addc x6 x6 1728
+Starting debug of addc
+command parses as: addc space x6 space x6 space 1728
+also variableTable.get(addendOneName) gives0
+read x5 5081
+read x6 49852
+wait 0
+read x7 34029
+wait 0
+add x3 x3 x1
+Starting debug of add
+command parses as: add space x3 space x3 space x1
+read x2 68799
+wait 0
+read x2 39218
+read x10 98809
+read x8 98485
+addc x4 x7 2306
+Starting debug of addc
+command parses as: addc space x4 space x7 space 2306
+also variableTable.get(addendOneName) gives0
+read x8 4754
+write x4 61105
+write x4 73989
+addc x7 x1 2338
+Starting debug of addc
+command parses as: addc space x7 space x1 space 2338
+also variableTable.get(addendOneName) gives0
+write x5 49755
+add x7 x3 x8
+Starting debug of add
+command parses as: add space x7 space x3 space x8
+read x3 4001
+read x3 36000
+read x3 23374
+addc x10 x7 9843
+Starting debug of addc
+command parses as: addc space x10 space x7 space 9843
+also variableTable.get(addendOneName) gives8127
+wait 0
+addc x7 x1 964
+Starting debug of addc
+command parses as: addc space x7 space x1 space 964
+also variableTable.get(addendOneName) gives26773
+write x3 18422
+add x10 x10 x7
+Starting debug of add
+command parses as: add space x10 space x10 space x7
+write x2 77174
+wait 0
+addc x4 x4 6421
+Starting debug of addc
+command parses as: addc space x4 space x4 space 6421
+write x8 26442
+also variableTable.get(addendOneName) gives6331
+wait 0
+wait 0
+add x6 x6 x4
+Starting debug of add
+command parses as: add space x6 space x6 space x4
+wait 0
+write x10 93899
+wait 0
+wait 0
+write x10 64574
+wait 0
+add x6 x5 x6
+wait 0
+wait 0
+Starting debug of add
+addc x8 x1 6038
+declare x1 8914
+command parses as: add space x6 space x5 space x6
+Transaction Heart alive in thread Thread[Thread-8,5,RMI Runtime]
+declare x2 6238
+Starting debug of addc
+declare x3 8802
+declare x4 6225
+declare x5 1863
+declare x6 2816
+declare x7 4201
+addc x7 x9 5720
+add x10 x1 x9
+add x7 x6 x10
+read x6 42839
+wait 0
+Starting debug of add
+command parses as: add space x7 space x6 space x10
+Starting debug of add
+command parses as: add space x10 space x1 space x9
+wait 0
+Starting debug of addc
+declare x8 3360
+command parses as: addc space x8 space x1 space 6038
+also variableTable.get(addendOneName) gives287
+declare x9 3527
+declare x10 6960
+wait 0
+command parses as: addc space x7 space x9 space 5720
+wait 0
+also variableTable.get(addendOneName) gives13638
+add x10 x2 x5
+wait 0
+Starting debug of add
+command parses as: add space x10 space x2 space x5
+write x5 31729
+read x2 79898
+addc x10 x4 768
+Starting debug of addc
+command parses as: addc space x10 space x4 space 768
+also variableTable.get(addendOneName) gives26773
+write x4 99202
+read x6 61337
+add x1 x10 x6
+Starting debug of add
+command parses as: add space x1 space x10 space x6
+write x6 22423
+write x10 68619
+read x1 65607
+wait 0
+read x7 95515
+write x3 96822
+read x2 53832
+write x2 31050
+wait 0
+wait 0
+read x1 85437
+write x4 25675
+read x7 78838
+read x4 21319
+add x2 x2 x10
+Starting debug of add
+command parses as: add space x2 space x2 space x10
+add x8 x4 x10
+Starting debug of add
+command parses as: add space x8 space x4 space x10
+read x10 11483
+add x2 x9 x10
+Starting debug of add
+command parses as: add space x2 space x9 space x10
+write x9 92480
+addc x5 x4 2763
+read x10 25624
+Starting debug of addc
+command parses as: addc space x5 space x4 space 2763
+also variableTable.get(addendOneName) gives0
+addc x9 x10 6818
+Starting debug of addc
+command parses as: addc space x9 space x10 space 6818
+also variableTable.get(addendOneName) gives17017
+wait 0
+read x9 55046
+wait 0
+read x7 26481
+addc x4 x6 4872
+Starting debug of addc
+command parses as: addc space x4 space x6 space 4872
+also variableTable.get(addendOneName) gives1728
+wait 0
+write x3 37310
+read x2 74475
+wait 0
+read x2 89510
+addc x6 x7 3328
+write x9 91285
+Starting debug of addc
+read x5 1161
+read x9 44240
+command parses as: addc space x6 space x7 space 3328
+also variableTable.get(addendOneName) gives0
+addc x7 x8 8940
+Starting debug of addc
+command parses as: addc space x7 space x8 space 8940
+also variableTable.get(addendOneName) gives0
+add x3 x8 x1
+Starting debug of add
+command parses as: add space x3 space x8 space x1
+read x10 86993
+wait 0
+addc x10 x3 9896
+write x9 72423
+read x4 55808
+Starting debug of addc
+command parses as: addc space x10 space x3 space 9896
+also variableTable.get(addendOneName) gives0
+write x1 28924
+read x8 61302
+wait 0
+wait 0
+add x7 x8 x4
+Starting debug of add
+command parses as: add space x7 space x8 space x4
+wait 0
+read x5 43433
+add x3 x6 x2
+Starting debug of add
+command parses as: add space x3 space x6 space x2
+wait 0
+read x3 74692
+read x7 62306
+wait 0
+read x10 82311
+read x6 72359
+read x7 97928
+write x4 48732
+wait 0
+wait 0
+write x6 85710
+wait 0
+read x10 1826
+read x8 23407
+declare x1 60
+declare x2 5444
+declare x3 1295
+Transaction Heart alive in thread Thread[Thread-9,5,RMI Runtime]
+declare x4 7766
+declare x5 5416
+declare x6 3424
+declare x7 8617
+declare x8 7230
+declare x9 6742
+declare x10 5973
+write x1 73912
+wait 0
+addc x9 x9 6043
+read x10 82017
+addc x1 x5 6220
+Starting debug of addc
+command parses as: addc space x1 space x5 space 6220
+also variableTable.get(addendOneName) gives1863
+wait 0
+wait 0
+Starting debug of addc
+command parses as: addc space x9 space x9 space 6043
+read x6 61094
+also variableTable.get(addendOneName) gives0
+wait 0
+wait 0
+addc x10 x8 2671
+Starting debug of addc
+command parses as: addc space x10 space x8 space 2671
+also variableTable.get(addendOneName) gives0
+read x2 8835
+add x7 x5 x8
+addc x4 x7 5267
+Starting debug of add
+command parses as: add space x7 space x5 space x8
+Starting debug of addc
+wait 0
+command parses as: addc space x4 space x7 space 5267
+also variableTable.get(addendOneName) gives8617
+wait 0
+wait 0
+read x10 75793
+addc x7 x3 3117
+Starting debug of addc
+command parses as: addc space x7 space x3 space 3117
+also variableTable.get(addendOneName) gives0
+wait 0
+read x2 70587
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+add x8 x2 x1
+Starting debug of add
+command parses as: add space x8 space x2 space x1
+read x7 99684
+wait 0
+wait 0
+read x2 73540
+wait 0
+read x1 59804
+read x3 14174
+read x8 46064
+wait 0
+write x10 46269
+wait 0
+wait 0
+read x4 6506
+wait 0
+wait 0
+add x7 x3 x5
+Starting debug of add
+command parses as: add space x7 space x3 space x5
+add x6 x6 x3
+Starting debug of add
+command parses as: add space x6 space x6 space x3
+addc x8 x2 8946
+Starting debug of addc
+command parses as: addc space x8 space x2 space 8946
+also variableTable.get(addendOneName) gives13570
+wait 0
+add x8 x4 x6
+Starting debug of add
+write x9 33317
+command parses as: add space x8 space x4 space x6
+read x1 19531
+read x8 71984
+write x6 48068
+wait 0
+read x10 7804
+read x3 8546
+add x5 x10 x10
+wait 0
+read x2 65139
+wait 0
+wait 0
+Starting debug of add
+command parses as: add space x5 space x10 space x10
+read x9 41431
+write x8 90168
+wait 0
+wait 0
+wait 0
+read x1 99235
+read x3 2448
+read x8 20050
+read x2 83740
+wait 0
+wait 0
+read x10 63417
+wait 0
+read x6 41040
+read x6 39738
+read x1 10700
+write x1 28884
+read x10 73840
+add x8 x7 x9
+write x6 15079
+Starting debug of add
+command parses as: add space x8 space x7 space x9
+write x9 65031
+read x7 41318
+wait 0
+read x7 98410
+wait 0
+write x7 93892
+write x7 60202
+write x3 95359
+read x9 50302
+wait 0
+read x8 68429
+wait 0
+read x2 78906
+wait 0
+write x10 67895
+wait 0
+add x2 x3 x5
+Starting debug of add
+command parses as: add space x2 space x3 space x5
+wait 0
+read x3 24728
+write x3 83189
+wait 0
+read x3 4450
+read x7 95940
+read x9 38605
+read x3 1084
+wait 0
+addc x3 x8 4566
+Starting debug of addc
+command parses as: addc space x3 space x8 space 4566
+also variableTable.get(addendOneName) gives6043
+read x7 72512
+addc x5 x7 3859
+Starting debug of addc
+command parses as: addc space x5 space x7 space 3859
+also variableTable.get(addendOneName) gives0
+read x2 59033
+wait 0
+wait 0
+wait 0
+wait 0
+write x6 32145
+read x2 80651
+read x6 37808
+add x2 x5 x5
+Starting debug of add
+command parses as: add space x2 space x5 space x5
+read x10 93491
+wait 0
+write x6 23398
+write x10 45427
+write x4 80678
+wait 0
+addc x3 x6 8979
+Starting debug of addc
+command parses as: addc space x3 space x6 space 8979
+read x7 30496
+write x9 11063
+also variableTable.get(addendOneName) gives0
+read x9 80244
+wait 0
+add x3 x4 x1
+Starting debug of add
+command parses as: add space x3 space x4 space x1
+read x3 13162
+wait 0
+wait 0
+read x4 84671
+write x9 29349
+read x9 26841
+wait 0
+declare x1 7201
+declare x2 3825
+declare x3 7588
+Transaction Heart alive in thread Thread[Thread-10,5,RMI Runtime]
+declare x4 7948
+wait 0
+declare x5 3177
+declare x6 6463
+declare x7 975
+declare x8 2857
+declare x9 9613
+declare x10 5518
+wait 0
+read x1 50590
+wait 0
+read x10 8723
+wait 0
+write x1 37511
+read x1 33942
+read x5 34301
+wait 0
+read x9 86295
+write x1 38535
+wait 0
+write x1 8934
+write x8 5429
+read x8 88504
+write x3 60021
+read x2 43482
+write x2 5611
+add x6 x1 x3
+Starting debug of add
+command parses as: add space x6 space x1 space x3
+read x10 63560
+wait 0
+read x9 78517
+read x3 7209
+write x3 53329
+addc x4 x10 1825
+Starting debug of addc
+command parses as: addc space x4 space x10 space 1825
+also variableTable.get(addendOneName) gives0
+read x5 34186
+read x7 6851
+add x5 x5 x9
+write x9 29620
+Starting debug of add
+command parses as: add space x5 space x5 space x9
+read x5 99122
+wait 0
+read x10 32804
+wait 0
+write x1 97376
+read x2 11612
+read x3 49461
+write x5 49667
+wait 0
+wait 0
+add x1 x10 x10
+Starting debug of add
+command parses as: add space x1 space x10 space x10
+wait 0
+add x2 x5 x3
+Starting debug of add
+command parses as: add space x2 space x5 space x3
+read x10 53013
+wait 0
+read x8 12805
+write x6 28891
+wait 0
+wait 0
+add x1 x9 x2
+Starting debug of add
+command parses as: add space x1 space x9 space x2
+wait 0
+addc x2 x2 5493
+read x6 43043
+Starting debug of addc
+command parses as: addc space x2 space x2 space 5493
+also variableTable.get(addendOneName) gives0
+addc x1 x8 7801
+write x8 26233
+Starting debug of addc
+command parses as: addc space x1 space x8 space 7801
+read x8 1151
+also variableTable.get(addendOneName) gives0
+addc x3 x9 2336
+Starting debug of addc
+command parses as: addc space x3 space x9 space 2336
+also variableTable.get(addendOneName) gives0
+read x3 14382
+read x10 71570
+write x2 2432
+addc x10 x5 2594
+addc x1 x1 9135
+Starting debug of addc
+Starting debug of addc
+command parses as: addc space x1 space x1 space 9135
+command parses as: addc space x10 space x5 space 2594
+also variableTable.get(addendOneName) gives7801
+add x10 x8 x4
+also variableTable.get(addendOneName) gives0
+Starting debug of add
+command parses as: add space x10 space x8 space x4
+write x9 77152
+write x7 50082
+read x10 34925
+read x3 58898
+add x9 x8 x5
+Starting debug of add
+command parses as: add space x9 space x8 space x5
+add x2 x3 x2
+Starting debug of add
+command parses as: add space x2 space x3 space x2
+read x3 85004
+wait 0
+wait 0
+read x10 86874
+wait 0
+add x5 x6 x9
+Starting debug of add
+command parses as: add space x5 space x6 space x9
+add x5 x1 x1
+Starting debug of add
+command parses as: add space x5 space x1 space x1
+addc x9 x5 4140
+Starting debug of addc
+command parses as: addc space x9 space x5 space 4140
+also variableTable.get(addendOneName) gives15176
+wait 0
+read x8 82514
+write x10 96794
+read x8 77023
+read x6 80797
+read x10 9131
+wait 0
+wait 0
+addc x6 x4 5958
+Starting debug of addc
+command parses as: addc space x6 space x4 space 5958
+also variableTable.get(addendOneName) gives1825
+wait 0
+write x5 84185
+wait 0
+add x5 x2 x7
+Starting debug of add
+command parses as: add space x5 space x2 space x7
+wait 0
+write x2 57067
+read x6 26909
+write x5 94679
+wait 0
+Transaction Heart in thread Thread[Thread-1,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-2,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-3,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-4,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-5,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-6,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-7,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-8,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-9,5,RMI Runtime]should be renewing its transaction now
+declare x1 25
+declare x2 6258
+Transaction Heart alive in thread Thread[Thread-11,5,RMI Runtime]
+declare x3 17
+declare x4 396
+declare x5 920
+declare x6 2931
+declare x7 7521
+declare x8 7007
+declare x9 5418
+declare x10 4124
+write x7 79670
+addc x2 x4 443
+Starting debug of addc
+command parses as: addc space x2 space x4 space 443
+also variableTable.get(addendOneName) gives396
+wait 0
+wait 0
+read x4 53314
+wait 0
+wait 0
+wait 0
+read x5 41548
+read x1 94259
+add x3 x1 x8
+Starting debug of add
+command parses as: add space x3 space x1 space x8
+add x6 x7 x7
+Starting debug of add
+command parses as: add space x6 space x7 space x7
+add x10 x6 x4
+Starting debug of add
+command parses as: add space x10 space x6 space x4
+add x9 x6 x9
+Starting debug of add
+command parses as: add space x9 space x6 space x9
+addc x9 x2 2172
+Starting debug of addc
+command parses as: addc space x9 space x2 space 2172
+also variableTable.get(addendOneName) gives839
+write x3 25990
+add x4 x3 x3
+Starting debug of add
+command parses as: add space x4 space x3 space x3
+add x5 x3 x6
+Starting debug of add
+command parses as: add space x5 space x3 space x6
+write x3 36250
+wait 0
+write x3 9037
+wait 0
+wait 0
+write x4 1678
+add x10 x4 x1
+Starting debug of add
+command parses as: add space x10 space x4 space x1
+read x3 43352
+addc x7 x7 8553
+Starting debug of addc
+command parses as: addc space x7 space x7 space 8553
+also variableTable.get(addendOneName) gives7521
+add x3 x4 x2
+Starting debug of add
+command parses as: add space x3 space x4 space x2
+add x6 x10 x2
+Starting debug of add
+command parses as: add space x6 space x10 space x2
+wait 0
+read x9 65770
+write x4 51135
+write x5 32512
+addc x6 x6 1100
+Starting debug of addc
+command parses as: addc space x6 space x6 space 1100
+also variableTable.get(addendOneName) gives14853
+write x5 1591
+write x8 36638
+wait 0
+read x1 40111
+addc x8 x5 9758
+Starting debug of addc
+command parses as: addc space x8 space x5 space 9758
+also variableTable.get(addendOneName) gives22049
+addc x3 x2 1708
+Starting debug of addc
+command parses as: addc space x3 space x2 space 1708
+also variableTable.get(addendOneName) gives839
+write x1 75696
+write x8 92305
+read x2 88909
+read x10 93815
+add x9 x8 x8
+Starting debug of add
+command parses as: add space x9 space x8 space x8
+write x9 69850
+read x9 98647
+addc x2 x3 9668
+Starting debug of addc
+command parses as: addc space x2 space x3 space 9668
+also variableTable.get(addendOneName) gives2547
+write x2 81147
+add x9 x1 x5
+Starting debug of add
+command parses as: add space x9 space x1 space x5
+add x1 x1 x1
+Starting debug of add
+command parses as: add space x1 space x1 space x1
+Transaction Heart in thread Thread[Thread-10,5,RMI Runtime]should be renewing its transaction now
+declare x1 1105
+Transaction Heart alive in thread Thread[Thread-12,5,RMI Runtime]
+declare x2 3955
+declare x3 5125
+declare x4 2265
+declare x5 1676
+declare x6 8564
+declare x7 6091
+declare x8 5585
+declare x9 1213
+declare x10 964
+add x10 x6 x5
+Starting debug of add
+command parses as: add space x10 space x6 space x5
+read x3 70801
+add x9 x5 x10
+Starting debug of add
+command parses as: add space x9 space x5 space x10
+addc x1 x10 5228
+Starting debug of addc
+command parses as: addc space x1 space x10 space 5228
+also variableTable.get(addendOneName) gives10240
+add x9 x2 x1
+Starting debug of add
+command parses as: add space x9 space x2 space x1
+read x6 2438
+addc x2 x10 5570
+Starting debug of addc
+command parses as: addc space x2 space x10 space 5570
+also variableTable.get(addendOneName) gives10240
+read x2 32362
+wait 0
+read x6 28535
+wait 0
+wait 0
+write x4 94272
+read x4 80517
+write x6 47259
+addc x8 x7 6643
+Starting debug of addc
+command parses as: addc space x8 space x7 space 6643
+also variableTable.get(addendOneName) gives6091
+read x3 53888
+addc x2 x3 2234
+Starting debug of addc
+command parses as: addc space x2 space x3 space 2234
+also variableTable.get(addendOneName) gives0
+wait 0
+write x2 20596
+wait 0
+wait 0
+wait 0
+add x9 x3 x4
+Starting debug of add
+command parses as: add space x9 space x3 space x4
+wait 0
+read x1 96325
+add x3 x1 x6
+Starting debug of add
+command parses as: add space x3 space x1 space x6
+write x3 96689
+read x3 53565
+wait 0
+wait 0
+read x9 2668
+wait 0
+write x2 38588
+addc x10 x10 4971
+Starting debug of addc
+command parses as: addc space x10 space x10 space 4971
+also variableTable.get(addendOneName) gives10240
+addc x4 x5 6161
+Starting debug of addc
+command parses as: addc space x4 space x5 space 6161
+also variableTable.get(addendOneName) gives1676
+read x6 49220
+addc x4 x6 2101
+Starting debug of addc
+command parses as: addc space x4 space x6 space 2101
+also variableTable.get(addendOneName) gives0
+read x5 94973
+wait 0
+wait 0
+read x6 9403
+wait 0
+read x4 60850
+read x1 42465
+write x3 93008
+read x2 67073
+addc x7 x4 2473
+Starting debug of addc
+command parses as: addc space x7 space x4 space 2473
+also variableTable.get(addendOneName) gives0
+add x5 x1 x9
+Starting debug of add
+command parses as: add space x5 space x1 space x9
+add x4 x8 x4
+Starting debug of add
+command parses as: add space x4 space x8 space x4
+wait 0
+Transaction Heart in thread Thread[Thread-1,5,RMI Runtime]should be renewing its transaction now
+declare x1 4577
+declare x2 7574
+declare x3 9617
+declare x4 2546
+declare x5 9267
+declare x6 7327
+declare x7 4027
+declare x8 8406
+declare x9 1173
+declare x10 8108
+addc x5 x9 4217
+Starting debug of addc
+command parses as: addc space x5 space x9 space 4217
+also variableTable.get(addendOneName) gives1173
+addc x9 x7 3628
+Starting debug of addc
+command parses as: addc space x9 space x7 space 3628
+also variableTable.get(addendOneName) gives4027
+write x5 57944
+wait 0
+Transaction Heart alive in thread Thread[Thread-13,5,RMI Runtime]
+addc x8 x9 7428
+Starting debug of addc
+command parses as: addc space x8 space x9 space 7428
+also variableTable.get(addendOneName) gives7655
+wait 0
+wait 0
+addc x6 x5 1480
+Starting debug of addc
+command parses as: addc space x6 space x5 space 1480
+also variableTable.get(addendOneName) gives5390
+write x3 83145
+write x5 91416
+add x10 x4 x8
+Starting debug of add
+command parses as: add space x10 space x4 space x8
+wait 0
+read x10 89996
+write x4 86028
+write x8 5053
+read x5 84884
+wait 0
+read x6 97957
+addc x8 x8 1765
+Starting debug of addc
+command parses as: addc space x8 space x8 space 1765
+also variableTable.get(addendOneName) gives15083
+read x2 65805
+wait 0
+Transaction Heart in thread Thread[Thread-2,5,RMI Runtime]should be renewing its transaction now
+read x3 55761
+wait 0
+read x9 73233
+addc x4 x10 3688
+Starting debug of addc
+command parses as: addc space x4 space x10 space 3688
+also variableTable.get(addendOneName) gives0
+read x1 95916
+read x3 12962
+add x1 x9 x9
+Transaction Heart in thread Thread[Thread-3,5,RMI Runtime]should be renewing its transaction now
+Starting debug of add
+command parses as: add space x1 space x9 space x9
+read x5 67072
+write x9 73301
+wait 0
+read x3 74082
+read x5 10504
+wait 0
+read x6 42782
+write x4 94430
+wait 0
+add x1 x1 x2
+Starting debug of add
+command parses as: add space x1 space x1 space x2
+wait 0
+write x10 46594
+read x3 45720
+Transaction Heart in thread Thread[Thread-4,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-5,5,RMI Runtime]should be renewing its transaction now
+read x8 63346
+write x9 89234
+addc x7 x8 8771
+Starting debug of addc
+command parses as: addc space x7 space x8 space 8771
+also variableTable.get(addendOneName) gives0
+wait 0
+write x9 58930
+wait 0
+addc x7 x3 1505
+Starting debug of addc
+command parses as: addc space x7 space x3 space 1505
+also variableTable.get(addendOneName) gives0
+write x7 69780
+wait 0
+wait 0
+Transaction Heart in thread Thread[Thread-6,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-7,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-8,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-11,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-9,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-10,5,RMI Runtime]should be renewing its transaction now
+declare x1 750
+declare x2 6262
+Transaction Heart alive in thread Thread[Thread-14,5,RMI Runtime]
+declare x3 934
+declare x4 8176
+declare x5 1994
+declare x6 7738
+declare x7 24
+declare x8 9403
+declare x9 364
+declare x10 4105
+wait 0
+read x1 82178
+addc x4 x1 2904
+Starting debug of addc
+command parses as: addc space x4 space x1 space 2904
+also variableTable.get(addendOneName) gives0
+wait 0
+read x7 12407
+add x8 x4 x5
+Starting debug of add
+command parses as: add space x8 space x4 space x5
+read x7 77123
+write x9 68891
+write x10 30100
+wait 0
+read x4 38775
+wait 0
+read x4 58640
+write x6 25251
+read x10 41097
+wait 0
+addc x10 x6 8762
+Starting debug of addc
+command parses as: addc space x10 space x6 space 8762
+also variableTable.get(addendOneName) gives7738
+addc x10 x8 676
+Starting debug of addc
+command parses as: addc space x10 space x8 space 676
+also variableTable.get(addendOneName) gives4898
+wait 0
+addc x5 x3 8605
+Starting debug of addc
+command parses as: addc space x5 space x3 space 8605
+also variableTable.get(addendOneName) gives934
+addc x1 x8 5416
+Starting debug of addc
+command parses as: addc space x1 space x8 space 5416
+also variableTable.get(addendOneName) gives4898
+add x3 x7 x4
+Starting debug of add
+command parses as: add space x3 space x7 space x4
+write x7 56845
+read x2 47428
+read x7 30339
+read x7 18004
+wait 0
+wait 0
+wait 0
+addc x10 x9 7141
+Starting debug of addc
+command parses as: addc space x10 space x9 space 7141
+also variableTable.get(addendOneName) gives364
+write x2 77398
+add x4 x2 x5
+Starting debug of add
+command parses as: add space x4 space x2 space x5
+read x6 15562
+wait 0
+wait 0
+wait 0
+read x3 18572
+write x8 21515
+addc x9 x2 4971
+Starting debug of addc
+command parses as: addc space x9 space x2 space 4971
+also variableTable.get(addendOneName) gives0
+add x5 x2 x10
+Starting debug of add
+command parses as: add space x5 space x2 space x10
+read x9 71798
+read x8 66985
+read x9 76146
+wait 0
+add x8 x3 x8
+Starting debug of add
+command parses as: add space x8 space x3 space x8
+add x4 x3 x7
+Starting debug of add
+command parses as: add space x4 space x3 space x7
+write x4 33180
+addc x9 x10 1045
+Starting debug of addc
+command parses as: addc space x9 space x10 space 1045
+also variableTable.get(addendOneName) gives7505
+wait 0
+add x9 x4 x8
+Starting debug of add
+command parses as: add space x9 space x4 space x8
+wait 0
+Transaction Heart in thread Thread[Thread-12,5,RMI Runtime]should be renewing its transaction now
+declare x1 8364
+declare x2 2338
+declare x3 674
+declare x4 4074
+declare x5 4533
+Transaction Heart alive in thread Thread[Thread-15,5,RMI Runtime]
+declare x6 3104
+declare x7 8372
+declare x8 2135
+declare x9 9583
+declare x10 7018
+write x1 83739
+read x6 13991
+add x10 x2 x4
+Starting debug of add
+command parses as: add space x10 space x2 space x4
+wait 0
+read x10 1253
+read x4 95767
+write x7 44445
+write x7 38598
+read x5 88674
+read x1 2471
+add x5 x3 x2
+Starting debug of add
+command parses as: add space x5 space x3 space x2
+read x7 10711
+add x5 x9 x5
+Starting debug of add
+command parses as: add space x5 space x9 space x5
+read x8 55547
+add x10 x7 x7
+Starting debug of add
+command parses as: add space x10 space x7 space x7
+wait 0
+read x5 14296
+read x1 58516
+wait 0
+add x3 x5 x5
+Starting debug of add
+command parses as: add space x3 space x5 space x5
+add x5 x10 x5
+Starting debug of add
+command parses as: add space x5 space x10 space x5
+write x9 16886
+read x4 96203
+wait 0
+read x10 75279
+read x1 51828
+wait 0
+wait 0
+read x6 65851
+read x6 66020
+wait 0
+read x4 36028
+add x8 x6 x7
+Starting debug of add
+command parses as: add space x8 space x6 space x7
+read x7 44701
+wait 0
+wait 0
+write x1 74102
+addc x5 x7 6943
+Starting debug of addc
+command parses as: addc space x5 space x7 space 6943
+also variableTable.get(addendOneName) gives0
+wait 0
+wait 0
+read x8 61208
+read x1 23023
+addc x9 x3 1065
+Starting debug of addc
+command parses as: addc space x9 space x3 space 1065
+also variableTable.get(addendOneName) gives0
+add x1 x9 x5
+Starting debug of add
+command parses as: add space x1 space x9 space x5
+add x2 x9 x10
+Starting debug of add
+command parses as: add space x2 space x9 space x10
+add x4 x6 x4
+Starting debug of add
+command parses as: add space x4 space x6 space x4
+read x2 42311
+addc x2 x5 5863
+Starting debug of addc
+command parses as: addc space x2 space x5 space 5863
+also variableTable.get(addendOneName) gives6943
+add x4 x4 x4
+Starting debug of add
+command parses as: add space x4 space x4 space x4
+read x8 62237
+read x8 83174
+declare x1 7554
+declare x2 955
+declare x3 192
+Transaction Heart alive in thread Thread[Thread-16,5,RMI Runtime]
+declare x4 6264
+declare x5 5988
+declare x6 9913
+declare x7 2696
+declare x8 3071
+declare x9 4275
+declare x10 2483
+read x7 36002
+wait 0
+read x8 59787
+write x10 66604
+wait 0
+read x9 35904
+wait 0
+addc x10 x3 8248
+Starting debug of addc
+command parses as: addc space x10 space x3 space 8248
+also variableTable.get(addendOneName) gives192
+wait 0
+read x2 96457
+read x10 29923
+read x3 66112
+read x3 53823
+read x5 19858
+wait 0
+read x3 98282
+write x6 76300
+wait 0
+wait 0
+wait 0
+add x2 x9 x4
+Starting debug of add
+command parses as: add space x2 space x9 space x4
+read x9 63297
+wait 0
+addc x5 x4 4139
+Starting debug of addc
+command parses as: addc space x5 space x4 space 4139
+also variableTable.get(addendOneName) gives6264
+wait 0
+write x4 35934
+add x10 x7 x9
+Starting debug of add
+command parses as: add space x10 space x7 space x9
+add x1 x7 x8
+Starting debug of add
+command parses as: add space x1 space x7 space x8
+add x10 x9 x7
+Starting debug of add
+command parses as: add space x10 space x9 space x7
+write x9 80774
+wait 0
+addc x5 x10 7707
+Starting debug of addc
+command parses as: addc space x5 space x10 space 7707
+also variableTable.get(addendOneName) gives0
+add x9 x2 x1
+Starting debug of add
+command parses as: add space x9 space x2 space x1
+add x4 x9 x2
+Starting debug of add
+command parses as: add space x4 space x9 space x2
+wait 0
+addc x1 x6 7695
+Starting debug of addc
+command parses as: addc space x1 space x6 space 7695
+also variableTable.get(addendOneName) gives9913
+addc x7 x10 6709
+Starting debug of addc
+command parses as: addc space x7 space x10 space 6709
+also variableTable.get(addendOneName) gives0
+addc x3 x1 277
+Starting debug of addc
+command parses as: addc space x3 space x1 space 277
+also variableTable.get(addendOneName) gives17608
+addc x6 x4 9218
+Starting debug of addc
+command parses as: addc space x6 space x4 space 9218
+also variableTable.get(addendOneName) gives12528
+write x7 69753
+write x3 45001
+wait 0
+wait 0
+read x6 31187
+wait 0
+addc x3 x5 4499
+Starting debug of addc
+command parses as: addc space x3 space x5 space 4499
+also variableTable.get(addendOneName) gives7707
+read x7 43597
+read x4 89029
+wait 0
+write x9 29013
+wait 0
+Transaction Heart in thread Thread[Thread-13,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-2,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-3,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-4,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-5,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-6,5,RMI Runtime]should be renewing its transaction now
+declare x1 9443
+declare x2 8387
+declare x3 1467
+Transaction Heart alive in thread Thread[Thread-17,5,RMI Runtime]
+declare x4 7340
+declare x5 1918
+declare x6 444
+declare x7 2815
+declare x8 3744
+declare x9 1467
+declare x10 805
+write x1 44350
+read x1 14665
+wait 0
+write x7 25101
+read x4 94581
+read x1 6841
+read x6 78542
+wait 0
+wait 0
+addc x4 x8 4477
+Starting debug of addc
+command parses as: addc space x4 space x8 space 4477
+also variableTable.get(addendOneName) gives3744
+write x4 95833
+wait 0
+read x3 96916
+wait 0
+add x8 x8 x1
+Starting debug of add
+command parses as: add space x8 space x8 space x1
+add x10 x9 x3
+Starting debug of add
+command parses as: add space x10 space x9 space x3
+read x7 37397
+write x10 75637
+read x2 51525
+Transaction Heart in thread Thread[Thread-7,5,RMI Runtime]should be renewing its transaction now
+write x9 31221
+read x10 97416
+wait 0
+write x2 55768
+read x4 80854
+add x7 x8 x3
+Starting debug of add
+command parses as: add space x7 space x8 space x3
+read x1 65496
+addc x6 x4 7272
+Starting debug of addc
+command parses as: addc space x6 space x4 space 7272
+also variableTable.get(addendOneName) gives0
+write x6 5636
+wait 0
+wait 0
+wait 0
+write x7 61402
+read x6 72614
+wait 0
+wait 0
+read x8 18315
+write x1 48023
+addc x10 x3 1447
+Starting debug of addc
+command parses as: addc space x10 space x3 space 1447
+also variableTable.get(addendOneName) gives0
+wait 0
+wait 0
+wait 0
+read x10 43743
+read x3 56238
+read x3 48270
+wait 0
+add x3 x9 x10
+Starting debug of add
+command parses as: add space x3 space x9 space x10
+write x4 55034
+wait 0
+add x8 x9 x6
+Starting debug of add
+command parses as: add space x8 space x9 space x6
+write x8 19156
+addc x5 x9 1726
+Starting debug of addc
+command parses as: addc space x5 space x9 space 1726
+also variableTable.get(addendOneName) gives1467
+Transaction Heart in thread Thread[Thread-11,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-9,5,RMI Runtime]should be renewing its transaction now
+declare x1 3054
+declare x2 320
+Transaction Heart alive in thread Thread[Thread-18,5,RMI Runtime]
+declare x3 4886
+declare x4 3406
+declare x5 7327
+declare x6 3788
+declare x7 9733
+declare x8 6434
+declare x9 8644
+declare x10 2039
+read x9 63596
+read x1 7872
+write x3 28391
+wait 0
+read x4 63732
+addc x2 x6 615
+Starting debug of addc
+command parses as: addc space x2 space x6 space 615
+also variableTable.get(addendOneName) gives3788
+read x6 49524
+read x2 44772
+wait 0
+wait 0
+add x4 x7 x10
+Starting debug of add
+command parses as: add space x4 space x7 space x10
+addc x5 x9 6428
+Starting debug of addc
+command parses as: addc space x5 space x9 space 6428
+also variableTable.get(addendOneName) gives0
+addc x2 x3 2031
+Starting debug of addc
+command parses as: addc space x2 space x3 space 2031
+also variableTable.get(addendOneName) gives4886
+read x8 36563
+read x2 44641
+read x5 7158
+read x4 87319
+add x5 x5 x5
+Starting debug of add
+command parses as: add space x5 space x5 space x5
+addc x8 x1 6239
+Starting debug of addc
+command parses as: addc space x8 space x1 space 6239
+also variableTable.get(addendOneName) gives0
+wait 0
+add x2 x10 x2
+Starting debug of add
+command parses as: add space x2 space x10 space x2
+wait 0
+wait 0
+wait 0
+wait 0
+addc x4 x1 2517
+Starting debug of addc
+command parses as: addc space x4 space x1 space 2517
+also variableTable.get(addendOneName) gives0
+read x10 57476
+read x2 97877
+wait 0
+add x9 x5 x3
+Starting debug of add
+command parses as: add space x9 space x5 space x3
+read x10 23830
+add x1 x6 x9
+Starting debug of add
+command parses as: add space x1 space x6 space x9
+addc x3 x1 8256
+Starting debug of addc
+command parses as: addc space x3 space x1 space 8256
+also variableTable.get(addendOneName) gives4886
+write x9 85140
+addc x6 x4 1782
+Starting debug of addc
+command parses as: addc space x6 space x4 space 1782
+also variableTable.get(addendOneName) gives2517
+wait 0
+write x3 77516
+write x3 76614
+read x7 86038
+add x7 x4 x7
+Starting debug of add
+command parses as: add space x7 space x4 space x7
+read x5 31730
+Transaction Heart in thread Thread[Thread-14,5,RMI Runtime]should be renewing its transaction now
+write x8 68752
+read x5 98886
+wait 0
+write x4 82017
+write x6 65373
+wait 0
+wait 0
+read x8 87943
+read x6 62137
+addc x2 x9 5497
+Starting debug of addc
+command parses as: addc space x2 space x9 space 5497
+also variableTable.get(addendOneName) gives4886
+Transaction Heart in thread Thread[Thread-12,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-15,5,RMI Runtime]should be renewing its transaction now
+declare x1 2164
+declare x2 5874
+declare x3 3669
+declare x4 1
+declare x5 4831
+declare x6 3640
+Transaction Heart alive in thread Thread[Thread-19,5,RMI Runtime]
+declare x7 6473
+declare x8 3519
+declare x9 88
+declare x10 905
+write x9 44446
+write x6 57377
+read x9 24260
+wait 0
+wait 0
+wait 0
+read x6 64539
+read x10 76948
+wait 0
+read x9 8606
+wait 0
+wait 0
+add x3 x5 x7
+Starting debug of add
+command parses as: add space x3 space x5 space x7
+write x5 28452
+addc x10 x4 441
+Starting debug of addc
+command parses as: addc space x10 space x4 space 441
+also variableTable.get(addendOneName) gives1
+wait 0
+write x7 70195
+write x2 97032
+write x8 2441
+wait 0
+write x8 3677
+read x10 24297
+read x3 43819
+addc x4 x9 8738
+Starting debug of addc
+command parses as: addc space x4 space x9 space 8738
+also variableTable.get(addendOneName) gives0
+wait 0
+read x7 41790
+wait 0
+read x7 63234
+write x6 41164
+write x5 50469
+read x2 23637
+write x7 88509
+wait 0
+read x4 97391
+write x5 20621
+write x1 50464
+read x2 42424
+read x4 88389
+addc x8 x10 681
+Starting debug of addc
+command parses as: addc space x8 space x10 space 681
+also variableTable.get(addendOneName) gives0
+write x7 38161
+add x9 x4 x8
+Starting debug of add
+command parses as: add space x9 space x4 space x8
+addc x7 x8 6833
+Starting debug of addc
+command parses as: addc space x7 space x8 space 6833
+also variableTable.get(addendOneName) gives681
+read x2 34530
+read x1 46224
+addc x5 x4 7981
+Starting debug of addc
+command parses as: addc space x5 space x4 space 7981
+also variableTable.get(addendOneName) gives0
+read x8 5425
+read x7 60785
+wait 0
+wait 0
+wait 0
+read x1 30648
+declare x1 3869
+declare x2 6398
+declare x3 6046
+declare x4 4791
+declare x5 5719
+declare x6 7639
+declare x7 2070
+declare x8 8005
+declare x9 2618
+declare x10 5678
+wait 0
+Transaction Heart alive in thread Thread[Thread-20,5,RMI Runtime]
+add x6 x9 x10
+Starting debug of add
+command parses as: add space x6 space x9 space x10
+read x1 42114
+wait 0
+Transaction Heart in thread Thread[Thread-16,5,RMI Runtime]should be renewing its transaction now
+add x8 x4 x4
+Starting debug of add
+command parses as: add space x8 space x4 space x4
+addc x3 x10 4166
+Starting debug of addc
+command parses as: addc space x3 space x10 space 4166
+also variableTable.get(addendOneName) gives5678
+read x1 61695
+read x6 76336
+write x4 21671
+wait 0
+read x8 58434
+addc x10 x6 6090
+Starting debug of addc
+command parses as: addc space x10 space x6 space 6090
+also variableTable.get(addendOneName) gives0
+read x8 30065
+wait 0
+read x7 13563
+read x7 38760
+read x7 12011
+add x10 x2 x5
+Starting debug of add
+command parses as: add space x10 space x2 space x5
+read x6 94247
+addc x8 x1 9509
+Starting debug of addc
+command parses as: addc space x8 space x1 space 9509
+also variableTable.get(addendOneName) gives0
+addc x2 x1 6362
+Starting debug of addc
+command parses as: addc space x2 space x1 space 6362
+also variableTable.get(addendOneName) gives0
+write x4 33876
+read x3 96865
+addc x10 x2 7624
+Starting debug of addc
+command parses as: addc space x10 space x2 space 7624
+also variableTable.get(addendOneName) gives6362
+addc x1 x9 7264
+Starting debug of addc
+command parses as: addc space x1 space x9 space 7264
+also variableTable.get(addendOneName) gives2618
+wait 0
+Transaction Heart in thread Thread[Thread-13,5,RMI Runtime]should be renewing its transaction now
+write x2 72650
+read x9 21274
+read x6 58006
+write x7 23416
+write x4 73893
+add x10 x10 x6
+Starting debug of add
+command parses as: add space x10 space x10 space x6
+addc x4 x10 1026
+Starting debug of addc
+command parses as: addc space x4 space x10 space 1026
+also variableTable.get(addendOneName) gives13986
+read x8 94916
+addc x10 x10 1351
+Starting debug of addc
+command parses as: addc space x10 space x10 space 1351
+also variableTable.get(addendOneName) gives13986
+read x3 93064
+read x6 63848
+addc x2 x10 4366
+Starting debug of addc
+command parses as: addc space x2 space x10 space 4366
+also variableTable.get(addendOneName) gives15337
+wait 0
+read x3 39056
+addc x9 x1 3548
+Starting debug of addc
+command parses as: addc space x9 space x1 space 3548
+also variableTable.get(addendOneName) gives9882
+read x1 13434
+read x6 17358
+Transaction Heart in thread Thread[Thread-2,5,RMI Runtime]should be renewing its transaction now
+write x7 2545
+wait 0
+add x10 x8 x7
+Starting debug of add
+command parses as: add space x10 space x8 space x7
+read x9 83096
+wait 0
+wait 0
+read x4 71213
+write x8 9278
+Transaction Heart in thread Thread[Thread-3,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-4,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-5,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-17,5,RMI Runtime]should be renewing its transaction now
+declare x1 3898
+declare x2 473
+declare x3 1590
+declare x4 8224
+Transaction Heart alive in thread Thread[Thread-21,5,RMI Runtime]
+declare x5 3458
+declare x6 3991
+declare x7 7583
+declare x8 8283
+declare x9 3015
+declare x10 8399
+wait 0
+wait 0
+wait 0
+addc x5 x3 1178
+Starting debug of addc
+command parses as: addc space x5 space x3 space 1178
+also variableTable.get(addendOneName) gives1590
+write x6 59006
+wait 0
+addc x8 x8 2946
+Starting debug of addc
+command parses as: addc space x8 space x8 space 2946
+also variableTable.get(addendOneName) gives8283
+wait 0
+read x1 17374
+wait 0
+wait 0
+add x3 x4 x9
+Starting debug of add
+command parses as: add space x3 space x4 space x9
+wait 0
+wait 0
+read x10 65167
+read x1 14282
+wait 0
+wait 0
+read x2 90613
+read x4 57104
+read x4 37575
+wait 0
+read x1 47082
+read x8 33020
+add x6 x3 x7
+Starting debug of add
+command parses as: add space x6 space x3 space x7
+write x8 95189
+wait 0
+read x7 43398
+read x10 11301
+addc x3 x5 98
+Starting debug of addc
+command parses as: addc space x3 space x5 space 98
+also variableTable.get(addendOneName) gives2768
+write x7 14224
+write x10 75100
+wait 0
+read x1 14501
+read x9 78000
+Transaction Heart in thread Thread[Thread-11,5,RMI Runtime]should be renewing its transaction now
+wait 0
+addc x9 x9 3831
+Starting debug of addc
+command parses as: addc space x9 space x9 space 3831
+also variableTable.get(addendOneName) gives0
+read x9 35887
+read x10 48304
+wait 0
+write x9 7937
+add x6 x4 x7
+Starting debug of add
+command parses as: add space x6 space x4 space x7
+add x7 x2 x3
+Starting debug of add
+command parses as: add space x7 space x2 space x3
+read x7 47244
+wait 0
+read x8 18859
+read x1 51106
+addc x4 x4 9188
+Starting debug of addc
+command parses as: addc space x4 space x4 space 9188
+also variableTable.get(addendOneName) gives0
+read x5 77372
+read x1 91586
+read x4 92486
+Transaction Heart in thread Thread[Thread-18,5,RMI Runtime]should be renewing its transaction now
+declare x1 7152
+declare x2 4597
+Transaction Heart alive in thread Thread[Thread-22,5,RMI Runtime]
+declare x3 8500
+declare x4 6679
+declare x5 8050
+declare x6 1675
+declare x7 7862
+declare x8 4323
+declare x9 6439
+declare x10 2735
+addc x5 x1 1157
+Starting debug of addc
+command parses as: addc space x5 space x1 space 1157
+also variableTable.get(addendOneName) gives7152
+wait 0
+read x2 54661
+read x10 86518
+wait 0
+write x5 78417
+read x1 21168
+wait 0
+read x3 40406
+wait 0
+wait 0
+wait 0
+add x8 x7 x5
+Starting debug of add
+command parses as: add space x8 space x7 space x5
+wait 0
+read x10 44599
+read x6 85815
+add x2 x6 x3
+Starting debug of add
+command parses as: add space x2 space x6 space x3
+write x5 30912
+addc x8 x10 6336
+Starting debug of addc
+command parses as: addc space x8 space x10 space 6336
+also variableTable.get(addendOneName) gives0
+wait 0
+read x3 27408
+Transaction Heart in thread Thread[Thread-14,5,RMI Runtime]should be renewing its transaction now
+wait 0
+wait 0
+wait 0
+read x7 69179
+write x1 43689
+read x2 35307
+write x2 16911
+wait 0
+addc x9 x4 6856
+Starting debug of addc
+command parses as: addc space x9 space x4 space 6856
+also variableTable.get(addendOneName) gives6679
+add x7 x6 x8
+Starting debug of add
+command parses as: add space x7 space x6 space x8
+write x2 90131
+wait 0
+read x4 20225
+add x8 x8 x2
+Starting debug of add
+command parses as: add space x8 space x8 space x2
+addc x3 x2 5693
+Starting debug of addc
+command parses as: addc space x3 space x2 space 5693
+also variableTable.get(addendOneName) gives0
+wait 0
+wait 0
+write x9 36218
+addc x1 x10 1216
+Starting debug of addc
+command parses as: addc space x1 space x10 space 1216
+also variableTable.get(addendOneName) gives0
+read x8 53584
+wait 0
+addc x4 x4 3687
+Starting debug of addc
+command parses as: addc space x4 space x4 space 3687
+also variableTable.get(addendOneName) gives0
+read x5 33326
+read x2 59796
+wait 0
+read x2 86821
+add x2 x10 x3
+Starting debug of add
+command parses as: add space x2 space x10 space x3
+add x10 x7 x6
+Starting debug of add
+command parses as: add space x10 space x7 space x6
+write x5 63807
+add x1 x10 x9
+Starting debug of add
+command parses as: add space x1 space x10 space x9
+Transaction Heart in thread Thread[Thread-12,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-15,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-19,5,RMI Runtime]should be renewing its transaction now
+declare x1 1504
+declare x2 8178
+declare x3 881
+Transaction Heart alive in thread Thread[Thread-23,5,RMI Runtime]
+declare x4 2454
+declare x5 8244
+declare x6 8812
+declare x7 158
+declare x8 6610
+declare x9 2669
+declare x10 365
+addc x9 x8 1664
+Starting debug of addc
+command parses as: addc space x9 space x8 space 1664
+also variableTable.get(addendOneName) gives6610
+read x3 41587
+add x6 x8 x10
+Starting debug of add
+command parses as: add space x6 space x8 space x10
+write x9 25752
+wait 0
+read x7 25758
+wait 0
+wait 0
+wait 0
+write x4 13971
+addc x7 x6 8867
+Starting debug of addc
+command parses as: addc space x7 space x6 space 8867
+also variableTable.get(addendOneName) gives6975
+read x4 51439
+wait 0
+read x7 51636
+read x1 7765
+wait 0
+addc x1 x1 1896
+Starting debug of addc
+command parses as: addc space x1 space x1 space 1896
+also variableTable.get(addendOneName) gives0
+add x1 x3 x10
+Starting debug of add
+command parses as: add space x1 space x3 space x10
+read x6 52655
+write x10 52509
+add x7 x7 x4
+Starting debug of add
+command parses as: add space x7 space x7 space x4
+read x4 80850
+read x3 51276
+read x5 71512
+read x6 92982
+wait 0
+read x5 54622
+add x9 x5 x7
+Starting debug of add
+command parses as: add space x9 space x5 space x7
+add x2 x9 x1
+Starting debug of add
+command parses as: add space x2 space x9 space x1
+read x8 72972
+addc x9 x10 3406
+Starting debug of addc
+command parses as: addc space x9 space x10 space 3406
+also variableTable.get(addendOneName) gives365
+write x1 4074
+read x5 72085
+read x9 15790
+add x10 x10 x8
+Starting debug of add
+command parses as: add space x10 space x10 space x8
+write x7 10106
+wait 0
+write x4 35744
+write x9 87389
+wait 0
+wait 0
+read x2 87057
+read x7 49419
+wait 0
+write x4 40611
+write x8 11154
+read x3 27719
+add x7 x5 x1
+Starting debug of add
+command parses as: add space x7 space x5 space x1
+read x10 2140
+wait 0
+write x3 41694
+Transaction Heart in thread Thread[Thread-20,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-16,5,RMI Runtime]should be renewing its transaction now
+declare x1 6443
+declare x2 8174
+declare x3 5651
+Transaction Heart alive in thread Thread[Thread-24,5,RMI Runtime]
+declare x4 5468
+declare x5 8772
+declare x6 2111
+declare x7 3378
+declare x8 8600
+declare x9 918
+declare x10 9423
+addc x2 x1 7307
+Starting debug of addc
+command parses as: addc space x2 space x1 space 7307
+also variableTable.get(addendOneName) gives6443
+add x3 x8 x7
+Starting debug of add
+command parses as: add space x3 space x8 space x7
+read x9 25449
+read x6 61186
+write x8 80619
+addc x7 x4 7273
+Starting debug of addc
+command parses as: addc space x7 space x4 space 7273
+also variableTable.get(addendOneName) gives5468
+wait 0
+wait 0
+wait 0
+read x1 4314
+wait 0
+read x6 3341
+write x7 90879
+addc x5 x2 1289
+Starting debug of addc
+command parses as: addc space x5 space x2 space 1289
+also variableTable.get(addendOneName) gives13750
+wait 0
+Transaction Heart in thread Thread[Thread-13,5,RMI Runtime]should be renewing its transaction now
+wait 0
+write x2 64739
+wait 0
+wait 0
+read x6 92032
+add x2 x6 x2
+Starting debug of add
+command parses as: add space x2 space x6 space x2
+wait 0
+read x5 31806
+read x5 5815
+add x7 x5 x3
+Starting debug of add
+command parses as: add space x7 space x5 space x3
+wait 0
+read x8 81774
+add x10 x3 x4
+Starting debug of add
+command parses as: add space x10 space x3 space x4
+wait 0
+write x9 5119
+wait 0
+read x10 60459
+write x9 91978
+add x8 x1 x8
+Starting debug of add
+command parses as: add space x8 space x1 space x8
+write x5 3056
+addc x7 x8 7308
+Starting debug of addc
+command parses as: addc space x7 space x8 space 7308
+also variableTable.get(addendOneName) gives0
+wait 0
+read x10 8210
+write x9 95142
+addc x2 x9 7642
+Starting debug of addc
+command parses as: addc space x2 space x9 space 7642
+also variableTable.get(addendOneName) gives0
+add x2 x1 x8
+Starting debug of add
+command parses as: add space x2 space x1 space x8
+add x4 x2 x6
+Starting debug of add
+command parses as: add space x4 space x2 space x6
+read x3 60198
+write x1 70635
+read x1 50104
+add x9 x4 x7
+Starting debug of add
+command parses as: add space x9 space x4 space x7
+addc x7 x8 6753
+Starting debug of addc
+command parses as: addc space x7 space x8 space 6753
+also variableTable.get(addendOneName) gives0
+read x10 42743
+read x2 48541
+read x4 62657
+wait 0
+declare x1 9234
+declare x2 7887
+declare x3 9874
+declare x4 6986
+Transaction Heart alive in thread Thread[Thread-25,5,RMI Runtime]
+declare x5 9735
+declare x6 6853
+declare x7 2851
+declare x8 8327
+declare x9 5649
+declare x10 621
+wait 0
+wait 0
+add x3 x3 x6
+Starting debug of add
+command parses as: add space x3 space x3 space x6
+wait 0
+write x5 64973
+addc x10 x3 9493
+Starting debug of addc
+command parses as: addc space x10 space x3 space 9493
+also variableTable.get(addendOneName) gives16727
+write x9 40289
+addc x5 x1 5008
+Starting debug of addc
+command parses as: addc space x5 space x1 space 5008
+also variableTable.get(addendOneName) gives9234
+read x5 30810
+read x8 58738
+wait 0
+write x2 75001
+read x1 55088
+addc x2 x2 6333
+Starting debug of addc
+command parses as: addc space x2 space x2 space 6333
+also variableTable.get(addendOneName) gives7887
+write x3 14592
+read x8 60918
+addc x6 x1 1573
+Starting debug of addc
+command parses as: addc space x6 space x1 space 1573
+also variableTable.get(addendOneName) gives0
+read x3 56688
+addc x5 x1 1393
+Starting debug of addc
+command parses as: addc space x5 space x1 space 1393
+also variableTable.get(addendOneName) gives0
+add x6 x8 x3
+Starting debug of add
+command parses as: add space x6 space x8 space x3
+wait 0
+read x2 52133
+read x8 44920
+addc x5 x10 4627
+Starting debug of addc
+command parses as: addc space x5 space x10 space 4627
+also variableTable.get(addendOneName) gives26220
+read x3 31797
+wait 0
+wait 0
+wait 0
+read x7 89523
+read x4 6116
+read x6 70118
+read x8 65287
+read x9 28890
+Transaction Heart in thread Thread[Thread-17,5,RMI Runtime]should be renewing its transaction now
+wait 0
+read x7 84011
+add x5 x9 x2
+Starting debug of add
+command parses as: add space x5 space x9 space x2
+wait 0
+read x4 32278
+addc x2 x4 9480
+Starting debug of addc
+command parses as: addc space x2 space x4 space 9480
+also variableTable.get(addendOneName) gives0
+wait 0
+read x9 35756
+wait 0
+wait 0
+wait 0
+addc x2 x2 1004
+Starting debug of addc
+command parses as: addc space x2 space x2 space 1004
+also variableTable.get(addendOneName) gives9480
+read x7 94491
+write x3 92253
+write x4 30178
+read x1 94035
+write x8 77156
+add x6 x4 x10
+Starting debug of add
+command parses as: add space x6 space x4 space x10
+Transaction Heart in thread Thread[Thread-21,5,RMI Runtime]should be renewing its transaction now
+declare x1 2644
+declare x2 2537
+declare x3 6573
+Transaction Heart alive in thread Thread[Thread-26,5,RMI Runtime]
+declare x4 2642
+declare x5 5359
+declare x6 1330
+declare x7 7994
+declare x8 392
+declare x9 2962
+declare x10 3375
+wait 0
+Transaction Heart in thread Thread[Thread-11,5,RMI Runtime]should be renewing its transaction now
+read x8 61639
+read x4 80040
+write x1 54516
+wait 0
+add x5 x9 x3
+Starting debug of add
+command parses as: add space x5 space x9 space x3
+wait 0
+read x9 74979
+wait 0
+addc x9 x8 2158
+Starting debug of addc
+command parses as: addc space x9 space x8 space 2158
+also variableTable.get(addendOneName) gives0
+wait 0
+Transaction Heart in thread Thread[Thread-22,5,RMI Runtime]should be renewing its transaction now
+wait 0
+wait 0
+read x7 78917
+wait 0
+Transaction Heart in thread Thread[Thread-14,5,RMI Runtime]should be renewing its transaction now
+read x7 39028
+wait 0
+read x1 57521
+wait 0
+write x1 54180
+addc x8 x3 667
+Starting debug of addc
+command parses as: addc space x8 space x3 space 667
+also variableTable.get(addendOneName) gives6573
+read x4 25333
+wait 0
+wait 0
+read x3 11273
+write x8 11977
+read x1 75481
+read x9 82069
+add x2 x4 x10
+Starting debug of add
+command parses as: add space x2 space x4 space x10
+read x4 64668
+add x10 x4 x8
+Starting debug of add
+command parses as: add space x10 space x4 space x8
+write x4 42808
+read x6 37340
+write x5 99310
+wait 0
+wait 0
+read x5 50782
+read x9 49843
+read x6 95808
+write x8 99228
+wait 0
+declare x1 9361
+Transaction Heart alive in thread Thread[Thread-27,5,RMI Runtime]
+declare x2 2155
+add x5 x7 x7
+Starting debug of add
+command parses as: add space x5 space x7 space x7
+declare x3 7026
+read x4 11408
+declare x4 7382
+declare x5 114
+declare x6 4076
+declare x7 8380
+declare x8 4909
+declare x9 8279
+declare x10 2139
+add x5 x4 x4
+Starting debug of add
+command parses as: add space x5 space x4 space x4
+read x3 53025
+addc x3 x5 5120
+add x7 x8 x1
+Starting debug of add
+Starting debug of addc
+command parses as: add space x7 space x8 space x1
+command parses as: addc space x3 space x5 space 5120
+also variableTable.get(addendOneName) gives0
+add x5 x3 x6
+Starting debug of add
+command parses as: add space x5 space x3 space x6
+wait 0
+wait 0
+read x2 6730
+addc x10 x10 4759
+Starting debug of addc
+command parses as: addc space x10 space x10 space 4759
+also variableTable.get(addendOneName) gives7240
+write x8 85430
+Transaction Heart in thread Thread[Thread-12,5,RMI Runtime]should be renewing its transaction now
+read x3 71599
+addc x8 x2 2407
+Starting debug of addc
+command parses as: addc space x8 space x2 space 2407
+also variableTable.get(addendOneName) gives0
+read x5 82738
+read x5 50433
+add x9 x3 x1
+wait 0
+Starting debug of add
+command parses as: add space x9 space x3 space x1
+read x10 12131
+wait 0
+write x2 63637
+read x7 49696
+read x4 94106
+wait 0
+write x10 58617
+add x6 x5 x4
+Starting debug of add
+command parses as: add space x6 space x5 space x4
+write x2 5754
+addc x6 x8 9536
+Starting debug of addc
+command parses as: addc space x6 space x8 space 9536
+also variableTable.get(addendOneName) gives2407
+read x1 16290
+addc x1 x7 2951
+Starting debug of addc
+command parses as: addc space x1 space x7 space 2951
+also variableTable.get(addendOneName) gives0
+add x6 x10 x1
+Starting debug of add
+command parses as: add space x6 space x10 space x1
+write x7 19947
+write x2 61469
+wait 0
+read x7 80749
+write x7 87652
+write x9 57991
+write x6 55136
+add x2 x10 x8
+Starting debug of add
+command parses as: add space x2 space x10 space x8
+wait 0
+read x10 29312
+read x9 82065
+wait 0
+wait 0
+wait 0
+declare x1 2492
+declare x2 690
+declare x3 8010
+declare x4 9626
+declare x5 5201
+Transaction Heart alive in thread Thread[Thread-28,5,RMI Runtime]
+declare x6 8613
+read x2 7227
+declare x7 6074
+declare x8 5210
+declare x9 5780
+declare x10 2566
+wait 0
+read x6 70704
+wait 0
+Transaction Heart in thread Thread[Thread-15,5,RMI Runtime]should be renewing its transaction now
+read x3 66104
+read x2 92669
+addc x1 x6 7413
+Starting debug of addc
+command parses as: addc space x1 space x6 space 7413
+also variableTable.get(addendOneName) gives0
+addc x3 x2 9312
+Starting debug of addc
+command parses as: addc space x3 space x2 space 9312
+also variableTable.get(addendOneName) gives0
+wait 0
+write x10 37462
+wait 0
+wait 0
+addc x2 x8 1957
+Starting debug of addc
+command parses as: addc space x2 space x8 space 1957
+also variableTable.get(addendOneName) gives5210
+addc x7 x3 3665
+Starting debug of addc
+command parses as: addc space x7 space x3 space 3665
+also variableTable.get(addendOneName) gives0
+addc x3 x4 8048
+Starting debug of addc
+command parses as: addc space x3 space x4 space 8048
+also variableTable.get(addendOneName) gives9626
+addc x8 x7 7636
+Starting debug of addc
+command parses as: addc space x8 space x7 space 7636
+also variableTable.get(addendOneName) gives3665
+read x5 67835
+read x8 46321
+read x1 30779
+addc x7 x8 7659
+Starting debug of addc
+command parses as: addc space x7 space x8 space 7659
+also variableTable.get(addendOneName) gives0
+read x5 53018
+addc x6 x2 6639
+Starting debug of addc
+command parses as: addc space x6 space x2 space 6639
+also variableTable.get(addendOneName) gives7167
+write x4 7102
+write x6 21938
+wait 0
+wait 0
+wait 0
+read x5 15724
+Transaction Heart in thread Thread[Thread-23,5,RMI Runtime]should be renewing its transaction now
+add x2 x6 x10
+Starting debug of add
+command parses as: add space x2 space x6 space x10
+add x10 x3 x1
+Starting debug of add
+command parses as: add space x10 space x3 space x1
+wait 0
+add x7 x2 x7
+Starting debug of add
+command parses as: add space x7 space x2 space x7
+write x9 6136
+wait 0
+read x8 78647
+write x3 17806
+read x8 63981
+wait 0
+addc x6 x2 9841
+Starting debug of addc
+command parses as: addc space x6 space x2 space 9841
+also variableTable.get(addendOneName) gives0
+addc x9 x3 9969
+Starting debug of addc
+command parses as: addc space x9 space x3 space 9969
+also variableTable.get(addendOneName) gives17674
+read x5 74771
+read x2 38403
+add x4 x5 x4
+Starting debug of add
+command parses as: add space x4 space x5 space x4
+wait 0
+read x2 17989
+read x9 61829
+read x6 16089
+addc x1 x3 4856
+Starting debug of addc
+command parses as: addc space x1 space x3 space 4856
+also variableTable.get(addendOneName) gives17674
+read x6 10977
+addc x8 x6 5793
+Starting debug of addc
+command parses as: addc space x8 space x6 space 5793
+also variableTable.get(addendOneName) gives0
+addc x6 x8 2661
+Starting debug of addc
+command parses as: addc space x6 space x8 space 2661
+also variableTable.get(addendOneName) gives5793
+read x1 96469
+wait 0
+wait 0
+write x3 54310
+add x7 x4 x2
+Starting debug of add
+command parses as: add space x7 space x4 space x2
+write x5 70486
+read x8 69969
+read x6 87488
+add x8 x1 x10
+Starting debug of add
+command parses as: add space x8 space x1 space x10
+wait 0
+read x10 98483
+read x8 99759
+read x10 88456
+write x5 24592
+addc x8 x7 5824
+Starting debug of addc
+command parses as: addc space x8 space x7 space 5824
+also variableTable.get(addendOneName) gives9626
+wait 0
+Transaction Heart in thread Thread[Thread-20,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-24,5,RMI Runtime]should be renewing its transaction now
+declare x1 3775
+declare x2 4698
+declare x3 417
+Transaction Heart alive in thread Thread[Thread-29,5,RMI Runtime]
+declare x4 6071
+declare x5 5463
+declare x6 86
+declare x7 9424
+declare x8 9025
+declare x9 942
+declare x10 4881
+addc x6 x1 2217
+Starting debug of addc
+command parses as: addc space x6 space x1 space 2217
+also variableTable.get(addendOneName) gives3775
+wait 0
+add x10 x9 x7
+Starting debug of add
+command parses as: add space x10 space x9 space x7
+wait 0
+wait 0
+read x3 49811
+read x2 32811
+read x4 27274
+read x7 53657
+wait 0
+wait 0
+addc x9 x6 3392
+Starting debug of addc
+command parses as: addc space x9 space x6 space 3392
+also variableTable.get(addendOneName) gives5992
+add x7 x6 x3
+Starting debug of add
+command parses as: add space x7 space x6 space x3
+write x3 27067
+add x8 x10 x4
+Starting debug of add
+command parses as: add space x8 space x10 space x4
+read x1 3974
+wait 0
+read x1 36645
+wait 0
+wait 0
+read x10 15219
+write x4 14947
+wait 0
+read x6 96558
+wait 0
+read x8 16381
+read x6 31449
+wait 0
+read x6 18394
+addc x4 x1 4314
+Starting debug of addc
+command parses as: addc space x4 space x1 space 4314
+also variableTable.get(addendOneName) gives0
+wait 0
+wait 0
+wait 0
+write x5 28963
+read x1 65311
+read x5 37284
+read x3 75959
+read x10 13603
+add x7 x7 x7
+Starting debug of add
+command parses as: add space x7 space x7 space x7
+write x1 14352
+read x10 89091
+read x5 76076
+addc x6 x6 7917
+Starting debug of addc
+command parses as: addc space x6 space x6 space 7917
+also variableTable.get(addendOneName) gives0
+wait 0
+write x9 50860
+add x6 x5 x2
+Starting debug of add
+command parses as: add space x6 space x5 space x2
+read x4 72429
+wait 0
+read x9 72569
+write x10 26277
+write x5 59003
+Transaction Heart in thread Thread[Thread-13,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-25,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-21,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-26,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-11,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-22,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-27,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-12,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-28,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-23,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-20,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-24,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-29,5,RMI Runtime]should be renewing its transaction now
+declare x1 6382
+declare x2 3801
+declare x3 677
+declare x4 5733
+declare x5 2645
+declare x6 7024
+declare x7 3085
+Transaction Heart alive in thread Thread[Thread-30,5,RMI Runtime]
+declare x8 6725
+declare x9 7584
+declare x10 9445
+read x5 44514
+add x5 x8 x10
+Starting debug of add
+command parses as: add space x5 space x8 space x10
+read x6 89039
+wait 0
+write x7 68367
+read x8 49687
+read x5 97964
+read x4 4516
+wait 0
+add x3 x8 x7
+Starting debug of add
+command parses as: add space x3 space x8 space x7
+read x4 97719
+read x3 23200
+read x7 80590
+addc x9 x9 6906
+Starting debug of addc
+command parses as: addc space x9 space x9 space 6906
+also variableTable.get(addendOneName) gives7584
+wait 0
+read x9 84161
+wait 0
+read x3 44510
+addc x3 x10 6586
+Starting debug of addc
+command parses as: addc space x3 space x10 space 6586
+also variableTable.get(addendOneName) gives9445
+wait 0
+add x4 x10 x5
+Starting debug of add
+command parses as: add space x4 space x10 space x5
+read x9 50247
+read x4 73008
+write x10 84348
+read x9 71151
+add x6 x6 x1
+Starting debug of add
+command parses as: add space x6 space x6 space x1
+add x1 x5 x1
+Starting debug of add
+command parses as: add space x1 space x5 space x1
+write x7 6580
+read x7 67443
+write x5 40527
+read x9 78589
+write x6 19742
+wait 0
+addc x7 x8 4340
+Starting debug of addc
+command parses as: addc space x7 space x8 space 4340
+also variableTable.get(addendOneName) gives0
+wait 0
+read x4 48543
+addc x5 x4 3204
+Starting debug of addc
+command parses as: addc space x5 space x4 space 3204
+also variableTable.get(addendOneName) gives0
+read x10 52753
+write x8 29162
+add x6 x3 x4
+Starting debug of add
+command parses as: add space x6 space x3 space x4
+addc x6 x7 5473
+Starting debug of addc
+command parses as: addc space x6 space x7 space 5473
+also variableTable.get(addendOneName) gives4340
+addc x3 x7 9730
+Starting debug of addc
+command parses as: addc space x3 space x7 space 9730
+also variableTable.get(addendOneName) gives4340
+add x9 x8 x4
+Starting debug of add
+command parses as: add space x9 space x8 space x4
+read x8 35338
+write x8 33634
+read x2 59634
+read x3 56099
+write x2 15339
+write x7 4459
+wait 0
+read x5 75664
+Transaction Heart in thread Thread[Thread-25,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-21,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-26,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-22,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-23,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-20,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-29,5,RMI Runtime]should be renewing its transaction now
+Transaction Heart in thread Thread[Thread-30,5,RMI Runtime]should be renewing its transaction now

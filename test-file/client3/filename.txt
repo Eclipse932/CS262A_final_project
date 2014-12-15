@@ -1,2560 +1,10120 @@
-declare x1 3388
-declare x2 957
-declare x3 4802
-declare x4 3901
-declare x5 5273
-declare x6 5574
-declare x7 9236
-declare x8 3298
-declare x9 3666
-declare x10 6535
+declare x1 3289
+declare x2 4177
+declare x3 2967
+declare x4 7983
+declare x5 4434
+declare x6 7032
+declare x7 4295
+declare x8 6660
+declare x9 6116
+declare x10 6392
+add x9 x9 x3
+add x6 x7 x3
+add x1 x4 x4
+wait 0
+wait 0
+addc x6 x8 7279
+addc x7 x6 8044
+addc x10 x8 6088
+read x1 66154
+wait 0
+read x8 9368
+addc x3 x5 8411
+addc x2 x1 6309
+addc x8 x2 4255
+addc x5 x3 8615
+add x1 x6 x5
+write x9 88296
+read x10 82608
+addc x5 x7 9581
+wait 0
+addc x4 x6 5638
+read x9 74420
+read x9 67499
+read x8 33927
+addc x10 x7 3418
+read x9 56034
+wait 0
+addc x2 x5 66
+read x3 18283
+addc x4 x4 9299
+read x6 53804
+read x5 59186
+wait 0
+wait 0
+read x3 25288
+write x9 70367
+addc x2 x8 5766
+read x1 6648
+read x10 59605
+wait 0
+addc x5 x4 1179
+read x1 83895
+read x7 87712
+addc x1 x2 5624
+wait 0
+read x4 41531
+wait 0
+wait 0
+write x5 21716
+read x8 52150
+wait 0
+read x8 83065
+wait 0
+write x1 81740
+addc x8 x10 1606
+addc x2 x8 7831
+addc x10 x6 5844
+wait 0
+addc x2 x5 5590
+read x6 44586
+addc x8 x10 2559
+add x10 x2 x2
+read x10 9084
+wait 0
+read x7 99396
+wait 0
+write x10 58830
+wait 0
+wait 0
+wait 0
+write x10 26145
+addc x9 x6 5822
+addc x4 x10 6209
+read x5 97379
+wait 0
+read x9 70362
+wait 0
+write x2 46263
+add x2 x1 x4
+wait 0
+write x1 55523
+wait 0
+write x8 43312
+read x9 39211
+addc x4 x7 4882
+wait 0
+add x1 x8 x9
+add x3 x1 x6
+read x1 53706
+wait 0
+addc x10 x9 3885
+read x3 98667
+wait 0
+wait 0
+addc x3 x4 4339
+write x3 19720
+wait 0
+wait 0
+wait 0
+read x10 4099
+wait 0
+addc x4 x9 6880
+read x2 30932
+wait 0
+read x3 57733
+wait 0
+add x5 x6 x4
+read x6 19820
+addc x3 x1 1810
+add x4 x1 x1
+write x7 91643
+read x2 11182
+read x8 63903
+add x5 x1 x8
+read x5 62011
+write x2 7400
+wait 0
+read x4 22231
+write x4 34398
+wait 0
+read x4 74258
+wait 0
+wait 0
+read x10 53938
+addc x1 x6 4006
+wait 0
+read x5 48806
+read x8 58943
+read x4 80093
+wait 0
+read x2 57769
+read x6 12709
+addc x2 x9 4648
+read x5 36071
+write x8 86225
+wait 0
+read x10 60337
+wait 0
+read x5 79285
+read x6 89672
+read x5 5095
+read x6 87626
+add x9 x7 x1
+read x6 87585
+wait 0
+wait 0
+read x4 68017
+write x3 92690
+addc x7 x5 9349
+addc x7 x3 955
+read x7 7551
+wait 0
+read x9 91972
+read x2 61535
+read x2 48163
+read x3 39955
+read x7 40827
+read x10 40587
+wait 0
+write x4 8741
+read x10 57573
+write x10 18393
+read x4 80316
+add x9 x3 x1
+read x9 8999
+read x2 75002
+wait 0
+read x1 93106
+write x10 98175
+wait 0
+addc x10 x8 42
+wait 0
+add x3 x2 x10
+read x6 46881
+read x3 11994
+read x3 74329
+wait 0
+read x1 63735
+addc x9 x3 221
+read x8 16754
+write x10 37819
+read x8 40099
+write x8 10312
+read x10 2691
+addc x7 x6 5780
+read x1 85245
+add x4 x9 x6
+read x6 17774
+add x2 x4 x10
+read x9 60934
+wait 0
+read x7 30945
+write x10 63980
+addc x8 x1 4021
+read x9 32043
+wait 0
+add x7 x6 x4
+read x6 11629
+read x5 65023
+add x5 x7 x4
+wait 0
+read x7 93737
+read x4 10795
+addc x2 x5 3614
+addc x6 x9 2704
+read x5 82184
+read x8 43550
+wait 0
+addc x5 x5 51
+add x6 x8 x6
+wait 0
+wait 0
+wait 0
+wait 0
+add x3 x4 x8
+addc x3 x4 7055
+wait 0
+read x10 19645
+addc x3 x9 6156
+addc x10 x7 5455
+wait 0
+read x3 88214
+addc x5 x2 4864
+addc x7 x7 3486
+wait 0
+write x8 38945
+write x2 81671
+wait 0
+read x7 3416
+wait 0
+wait 0
+write x1 44867
+read x4 65210
+read x9 40992
+add x7 x4 x1
+read x10 21324
+write x2 98168
+wait 0
+read x9 9612
+read x9 87859
+wait 0
+read x4 34695
+wait 0
+read x8 40170
+read x8 5648
+write x9 21639
+read x1 74860
+read x3 38904
+read x6 51892
+write x8 59397
+add x10 x9 x8
+wait 0
+read x5 2655
+write x2 65889
+read x2 81981
+read x6 73511
+wait 0
+read x9 37368
+addc x6 x4 7785
+read x9 66829
+addc x2 x2 192
+add x4 x3 x6
+wait 0
+write x4 34826
+wait 0
+read x7 41002
+wait 0
+addc x6 x6 4690
+addc x5 x9 3683
+addc x2 x9 4284
+wait 0
+read x2 70609
+wait 0
+addc x10 x1 8970
+write x9 3732
+add x1 x4 x5
+read x2 28031
+wait 0
+addc x3 x1 8204
+write x8 15414
+addc x3 x4 34
+add x3 x2 x1
+wait 0
+addc x9 x1 9200
+read x6 39025
+wait 0
+addc x10 x1 3525
+add x6 x10 x5
+wait 0
+add x6 x2 x1
+read x1 67356
+add x9 x3 x3
+read x10 6376
+addc x3 x10 4411
+addc x3 x3 324
+wait 0
+wait 0
+read x1 67293
+read x8 28872
+read x2 13850
+addc x4 x9 7285
+read x3 40815
+addc x8 x2 2954
+read x7 2637
+addc x3 x4 3839
+wait 0
+read x7 65886
+addc x1 x4 2498
+read x10 51174
+wait 0
+addc x2 x3 5029
+addc x8 x3 6
+add x7 x8 x7
+wait 0
+write x9 58956
+addc x1 x9 4705
+addc x4 x7 7103
+addc x10 x7 6834
+read x6 37603
+add x7 x9 x10
+wait 0
+addc x4 x9 2871
+read x9 31301
+read x8 15733
+read x8 78714
+addc x10 x9 2100
+read x3 82216
+read x2 61941
+read x10 49550
+read x2 20223
+write x1 98365
+read x3 78890
+addc x9 x6 5351
+addc x5 x5 2242
+wait 0
+addc x2 x2 9275
+add x9 x1 x3
+read x8 40760
+add x2 x6 x7
+read x3 15174
+wait 0
+wait 0
+wait 0
+wait 0
+read x3 36059
+write x7 85560
+write x10 65399
+read x8 85067
+write x4 78009
+write x6 62163
+write x2 82053
+read x2 45216
+add x8 x10 x1
+addc x4 x8 5582
+write x5 55954
+addc x4 x6 5058
+write x6 15294
+write x7 70737
+read x9 63751
+wait 0
+read x2 14896
+read x5 83543
+read x7 90546
+read x2 67607
+read x8 37423
+write x8 49745
+write x3 8848
+read x10 8226
+wait 0
+read x4 73348
+add x10 x10 x6
+read x1 42665
+write x1 12121
+read x5 83707
+wait 0
+addc x2 x4 9609
+wait 0
+write x10 23897
+addc x1 x4 1517
+addc x6 x8 6613
+add x4 x1 x7
+add x1 x9 x4
+write x4 18506
+addc x10 x4 5095
+read x9 64486
+wait 0
+write x3 86608
+addc x4 x4 4103
+write x3 98020
+read x10 83311
+read x1 83419
+wait 0
+addc x10 x6 2113
+add x10 x3 x9
+read x3 71124
+read x6 20002
+addc x8 x8 4537
+wait 0
+addc x8 x2 5590
+addc x2 x7 8901
+read x10 90751
+write x7 70504
+read x10 22504
+read x8 57828
+read x4 36864
+add x1 x1 x9
+wait 0
+wait 0
+addc x5 x8 8441
+addc x2 x3 8011
+read x10 70048
+write x10 52527
+write x2 66150
+read x4 68862
+read x7 48904
+read x9 59073
+wait 0
+write x4 10123
+read x9 1981
+read x3 37329
+read x5 97992
+add x6 x1 x9
+addc x1 x7 6149
+read x5 98568
+wait 0
+addc x7 x1 5341
+wait 0
+add x9 x5 x2
+read x3 48438
+write x4 66151
+wait 0
+read x10 37061
+wait 0
+write x10 9520
+addc x8 x7 3185
+wait 0
+read x6 47751
+addc x7 x9 1869
+read x8 86209
+add x4 x10 x6
+read x9 2672
+addc x4 x6 6401
+read x1 68920
+read x4 24049
+read x9 47008
+read x3 47083
+read x10 1223
+add x1 x2 x10
+wait 0
+wait 0
+write x10 80398
+wait 0
+read x1 65167
+read x7 30817
+addc x4 x4 6630
+write x10 97461
+write x6 42226
+read x6 7467
+wait 0
+wait 0
+write x6 58532
+read x8 75055
+read x1 86055
+wait 0
+addc x4 x1 824
+addc x3 x3 8577
+addc x7 x10 2322
+write x6 51554
+wait 0
+write x2 69576
+addc x2 x9 3572
+addc x8 x8 7000
+read x9 88957
+addc x9 x9 9824
+wait 0
+read x2 63205
+add x6 x1 x4
+read x7 70316
+add x4 x7 x7
+read x8 36174
+wait 0
+read x5 63987
+wait 0
+write x7 49998
+read x1 33038
+read x8 22078
+write x4 16831
+addc x4 x1 5758
+read x1 12409
+wait 0
+wait 0
+write x6 24613
+addc x3 x9 1891
+wait 0
+wait 0
+wait 0
+write x3 34645
+wait 0
+add x3 x7 x5
+write x10 86665
+read x10 69344
+read x3 70665
+add x3 x9 x10
+wait 0
+add x5 x10 x1
+write x4 74568
+wait 0
+addc x6 x9 3571
+read x8 49233
+add x7 x8 x8
+read x1 61731
+wait 0
+read x6 2722
+wait 0
+read x4 50094
+wait 0
+read x3 96871
+wait 0
+wait 0
+wait 0
+wait 0
+read x4 57463
+read x4 89743
+read x5 55137
+read x8 63296
+write x8 23375
+addc x1 x4 552
+write x7 2086
+wait 0
+read x2 76094
+addc x1 x6 4731
+read x3 76918
+read x4 83824
+wait 0
+wait 0
+add x1 x2 x5
+read x2 20556
+wait 0
+add x3 x7 x1
+read x4 93682
+wait 0
+read x9 78405
+wait 0
+add x2 x5 x4
+write x6 46839
+add x6 x7 x2
+read x4 15267
+addc x5 x8 48
+wait 0
+wait 0
+write x4 79889
+read x8 19466
+add x4 x2 x1
+addc x10 x1 3891
+read x1 29987
+read x4 93757
+read x3 4681
+write x8 64256
+read x5 2981
+wait 0
+read x8 66516
+addc x7 x3 4618
+wait 0
+read x8 21714
+wait 0
+read x3 87933
+read x10 69048
+addc x8 x1 5548
+add x1 x8 x9
+read x10 26585
+wait 0
+read x6 10705
+addc x6 x3 6429
+read x6 32761
+addc x7 x1 9410
+write x10 58862
+addc x9 x3 7502
+add x10 x10 x4
+add x9 x10 x2
+addc x9 x6 5915
+addc x8 x4 6636
+wait 0
+wait 0
+wait 0
+add x5 x8 x9
+add x2 x9 x1
+addc x10 x5 9436
+add x8 x3 x1
+write x5 19451
+read x4 15170
+wait 0
+read x1 84324
+addc x10 x4 4352
+addc x4 x10 5815
+add x1 x3 x1
+wait 0
+write x4 70612
+addc x4 x5 9927
+add x1 x1 x8
+addc x2 x4 5428
+read x7 67652
+wait 0
+read x3 69787
+write x1 23522
+write x4 64679
+read x2 10082
+read x10 29479
+wait 0
+read x10 71086
+wait 0
+wait 0
+wait 0
+write x7 77369
+read x6 86713
+read x6 47096
+write x6 37845
+read x7 76054
+read x6 23705
+wait 0
+read x10 30912
+write x2 76285
+write x10 61555
+read x9 65841
+addc x7 x5 2206
+add x6 x9 x1
+wait 0
+read x10 86664
+read x10 88965
+addc x10 x2 3130
+wait 0
+read x2 44696
+wait 0
+read x7 94747
+read x2 57743
+write x10 94162
+add x7 x6 x1
+wait 0
+read x2 82477
+add x5 x6 x5
+read x8 36998
+add x2 x2 x10
+wait 0
+wait 0
+read x5 91796
+write x5 98830
+read x1 2267
+write x3 66067
+read x5 73136
+addc x6 x3 3774
+addc x5 x4 8902
+wait 0
+write x2 90982
+read x9 45950
+addc x8 x7 3988
+addc x6 x2 5984
+read x5 24340
+add x4 x2 x3
+wait 0
+addc x4 x5 4693
+write x3 49908
+addc x9 x2 4349
+addc x3 x5 8539
+read x4 95854
+wait 0
+addc x1 x1 7679
+read x5 51527
+read x2 18953
+write x4 62900
+addc x2 x3 630
+write x1 55841
+addc x9 x10 4923
+wait 0
+write x5 25958
+wait 0
+wait 0
+write x2 46290
+addc x2 x6 893
+read x8 21974
+wait 0
+read x3 22769
+write x3 39991
+write x5 42362
+addc x4 x10 3946
+wait 0
+addc x7 x7 8532
+wait 0
+wait 0
+wait 0
+addc x7 x3 8051
+write x7 51773
+write x9 71621
+add x2 x4 x4
+addc x5 x3 3024
+add x4 x8 x7
+wait 0
+addc x5 x8 2444
+add x1 x8 x2
+wait 0
+read x4 36911
+wait 0
+read x2 45627
+read x10 93888
+read x2 94901
+read x1 49275
+addc x1 x10 4445
+addc x2 x9 4611
+read x6 51978
+wait 0
+wait 0
+wait 0
+wait 0
+addc x6 x1 2829
+add x9 x6 x10
+addc x3 x8 4489
+read x4 11256
+wait 0
+wait 0
+write x10 3145
+write x8 76485
+addc x2 x6 5801
+wait 0
+wait 0
+addc x9 x2 4178
+wait 0
+addc x9 x9 2947
+wait 0
+wait 0
+wait 0
+read x7 92570
+read x7 38100
+wait 0
+read x9 34531
+addc x1 x9 5130
+addc x8 x6 9672
+wait 0
+wait 0
+add x8 x10 x3
+read x4 13015
+add x1 x9 x1
+write x9 9696
+wait 0
+read x4 95016
+addc x3 x3 5074
+write x1 7834
+write x2 75968
+read x4 42416
+read x8 14291
+read x3 38172
+read x9 10081
+read x8 99777
+addc x7 x6 4913
+wait 0
+wait 0
+addc x8 x8 1067
+wait 0
+add x7 x1 x1
+wait 0
+wait 0
+read x4 33697
+read x5 33563
+add x10 x3 x9
+wait 0
+wait 0
+wait 0
+addc x9 x6 2126
+write x8 75812
+write x6 10783
+wait 0
+read x4 79702
+wait 0
+read x9 48131
+wait 0
+read x7 8750
+addc x1 x9 3378
+wait 0
+wait 0
+read x3 58376
+read x5 72242
+write x2 73042
+wait 0
+wait 0
+read x1 99949
+read x5 64170
+write x9 22433
+wait 0
+write x4 53035
+wait 0
+addc x10 x9 5366
+addc x5 x3 8518
+write x9 38371
+wait 0
+wait 0
+read x2 59977
+wait 0
+addc x5 x4 2171
+read x8 46463
+add x9 x5 x6
+addc x6 x9 5088
+wait 0
+read x2 73956
+addc x3 x3 6471
+read x4 66389
+wait 0
+read x5 93063
+add x8 x9 x8
+addc x3 x3 4539
+read x3 37355
+read x7 48944
+add x5 x5 x1
+write x3 71409
+write x4 57708
+wait 0
+addc x7 x6 2370
+read x1 36082
+addc x10 x10 4658
+read x10 96718
+addc x1 x10 9304
+write x10 89838
+add x6 x6 x9
+read x6 35014
+wait 0
+read x10 62274
+wait 0
+read x2 49860
+add x2 x10 x5
+write x4 38289
+wait 0
+read x9 18401
+add x6 x6 x9
+wait 0
+wait 0
+wait 0
+read x7 51384
+wait 0
+addc x1 x9 5130
+read x1 15606
+read x2 56470
+addc x2 x6 1623
+read x10 17334
+wait 0
+write x5 99549
+read x7 36814
+read x8 23614
+write x6 12623
+read x3 50165
+read x2 30782
+write x9 14335
+read x2 98856
+wait 0
+wait 0
+write x8 53989
+add x10 x9 x2
+wait 0
+read x3 87035
+read x1 28023
+add x6 x7 x10
+wait 0
+addc x10 x9 7446
+read x1 60950
+addc x1 x3 1448
+read x1 32941
+read x10 16886
+wait 0
+wait 0
+write x5 62754
+wait 0
+wait 0
+addc x3 x3 5655
+add x2 x2 x4
+wait 0
+read x7 19353
+wait 0
+read x3 61495
+addc x7 x8 147
+write x1 13400
+wait 0
+read x1 77390
+wait 0
+add x10 x6 x10
+add x4 x6 x4
+wait 0
+write x3 56200
+wait 0
+addc x5 x6 7702
+read x9 79693
+addc x2 x5 136
+write x1 18673
+read x10 85560
+addc x7 x9 3518
+wait 0
+wait 0
+wait 0
+read x1 31499
+wait 0
+wait 0
+wait 0
+read x8 61187
+addc x9 x6 9780
+read x7 54117
+wait 0
+read x2 99355
+add x2 x10 x10
+read x3 79516
+write x7 74204
+add x4 x9 x7
+addc x2 x5 1430
+addc x1 x10 5726
+read x7 16551
+wait 0
+write x2 17927
+read x7 84087
+addc x1 x6 8210
+write x1 43932
+read x7 9785
+write x2 81276
+wait 0
+addc x8 x8 6105
+write x9 36184
+read x6 43865
+read x9 27391
+write x8 40724
+addc x5 x9 3043
+addc x6 x1 1295
+add x10 x5 x2
+read x1 51646
+addc x7 x10 116
+wait 0
+write x10 3079
+write x1 61858
+read x7 53644
+add x10 x5 x6
+wait 0
+wait 0
+add x7 x6 x6
+wait 0
+addc x8 x4 8909
+read x2 89646
+wait 0
+read x1 13786
+wait 0
+read x3 50193
+read x8 39224
+read x10 83921
+add x7 x5 x7
+addc x1 x3 7047
+write x8 10491
+wait 0
+read x4 85711
+addc x3 x5 4584
+read x5 70596
+wait 0
+wait 0
+wait 0
+read x6 14810
+addc x6 x4 6013
+read x8 67292
+wait 0
+write x7 16961
+write x7 61455
+read x8 7242
+read x1 48395
+add x2 x6 x2
+read x7 67051
+read x3 2045
+wait 0
+read x8 99453
+write x4 1351
+wait 0
+write x8 93566
+read x8 7858
+wait 0
+addc x5 x4 7217
+add x1 x3 x2
+add x1 x10 x5
+read x10 27043
+read x8 81980
+addc x7 x6 6125
+read x10 11538
+read x6 20087
+addc x5 x3 5989
+read x1 52259
+read x8 81868
+addc x3 x3 8337
+addc x4 x8 8144
+read x8 58891
+addc x2 x9 9584
+wait 0
+addc x4 x2 7383
+read x4 68326
+read x3 91352
+write x3 95987
+wait 0
+addc x1 x7 1012
+write x9 75398
+read x6 86267
+read x5 81395
+addc x8 x9 8103
+write x4 44051
+wait 0
+read x3 83921
+add x9 x1 x4
+ENDING TRANSACTION
+declare x1 6094
+declare x2 808
+declare x3 9509
+declare x4 7071
+declare x5 3550
+declare x6 4211
+declare x7 4902
+declare x8 7175
+declare x9 5106
+declare x10 5770
+add x10 x4 x8
+write x4 52914
+addc x4 x2 4746
+write x5 99695
+read x1 7940
+addc x4 x4 8040
+wait 0
+wait 0
+wait 0
+read x9 61179
+addc x6 x5 6482
+addc x3 x6 3187
+write x5 74036
+read x6 5917
+wait 0
+addc x3 x9 6150
+read x4 1464
+read x4 82537
+add x3 x10 x9
+add x9 x4 x9
+write x8 88461
+write x2 14360
+wait 0
+wait 0
+wait 0
+add x7 x6 x10
+write x9 22452
+wait 0
+read x8 5065
+write x7 37033
+wait 0
+addc x5 x4 7733
+wait 0
+read x6 83318
+wait 0
+read x3 67683
+read x7 30054
+wait 0
+write x1 46108
+write x10 57246
+add x9 x7 x1
+read x3 36695
+read x3 39290
+read x10 67671
+read x4 79169
+read x4 65126
+addc x10 x7 7059
+read x3 89319
+add x5 x3 x10
+read x4 14234
+addc x8 x1 2081
+write x7 95045
+write x3 62320
+read x8 74194
+write x10 25199
+addc x8 x4 7929
+write x9 52941
+wait 0
+read x10 87681
+addc x6 x10 9509
+write x4 75844
+add x8 x3 x2
+add x4 x9 x5
+write x4 52197
+read x10 3214
+read x8 96593
+wait 0
+read x7 39129
+read x4 7530
+wait 0
+wait 0
+read x3 77171
+read x10 27978
+read x2 51962
+wait 0
+addc x9 x1 6696
+wait 0
+add x2 x2 x1
+read x7 14122
+read x3 63873
+read x2 49371
+read x8 94106
+addc x9 x1 7179
+write x4 58435
+write x1 38841
+add x8 x8 x3
+read x8 32270
+addc x4 x4 6193
+wait 0
+wait 0
+addc x8 x5 6196
+read x8 64222
+read x7 36945
+read x7 71007
+addc x8 x8 8961
+read x10 70394
+read x2 94839
+add x5 x6 x10
+wait 0
+read x8 51561
+addc x1 x10 7207
+add x4 x7 x10
+add x9 x4 x7
+write x5 47861
+add x4 x9 x9
+read x8 1027
+read x4 15302
+wait 0
+write x4 84436
+wait 0
+read x3 59013
+read x7 53180
+wait 0
+write x4 41001
+read x10 72161
+add x10 x4 x4
+addc x2 x2 2268
+write x9 12955
+read x1 66775
+read x8 19562
+wait 0
+wait 0
+read x1 25570
+wait 0
+write x10 11602
+write x9 32336
+read x8 2040
+add x5 x1 x10
+read x4 94642
+wait 0
+wait 0
+read x6 68438
+addc x5 x10 2889
+read x7 86608
+read x9 81176
+read x3 95352
+addc x7 x1 1780
+addc x7 x10 9810
+wait 0
+addc x10 x10 1004
+add x5 x9 x8
+addc x4 x10 4205
+addc x4 x6 1802
+read x5 17018
+wait 0
+write x5 20996
+read x9 75089
+add x7 x10 x2
+wait 0
+add x7 x8 x8
+addc x6 x1 59
+read x3 14540
+read x4 57072
+wait 0
+wait 0
+add x10 x6 x9
+add x1 x7 x8
+read x8 90780
+write x9 57472
+read x4 90931
+wait 0
+read x8 79400
+addc x1 x8 3887
+wait 0
+addc x10 x8 7463
+read x2 94543
+read x9 47611
+read x6 65597
+addc x4 x9 3824
+write x9 70351
+read x2 90965
+wait 0
+wait 0
+read x4 85680
+read x8 7754
+addc x6 x2 177
+read x6 6432
+write x10 38653
+wait 0
+wait 0
+wait 0
+wait 0
+addc x7 x9 6777
+read x3 16280
+wait 0
+addc x2 x6 2374
+wait 0
+wait 0
+wait 0
+read x6 44653
+addc x2 x2 7731
+addc x1 x3 3296
+add x6 x1 x8
+wait 0
+wait 0
+add x4 x1 x1
+read x6 60647
+addc x7 x8 1838
+wait 0
+read x7 40392
+add x7 x6 x3
+read x6 22209
+wait 0
+read x3 93952
+addc x2 x4 9421
+add x6 x1 x5
+wait 0
+wait 0
+addc x5 x3 2517
+read x1 59106
+write x7 49682
+wait 0
+wait 0
+read x2 42598
+read x7 52740
+addc x6 x6 2991
+write x6 61744
+read x6 60414
+write x3 5782
+read x3 39979
+add x3 x7 x2
+add x1 x8 x9
+read x4 76862
+write x5 64803
+addc x3 x8 4319
+read x1 73214
+addc x4 x1 898
+addc x3 x4 8577
+addc x3 x2 5420
+read x3 91386
+addc x1 x4 8022
+wait 0
+read x4 88653
+write x7 53851
+wait 0
+read x1 63389
+read x10 94163
+read x1 9862
+read x4 78961
+write x3 39599
+addc x2 x7 3066
+addc x10 x1 1807
+add x10 x3 x7
+wait 0
+addc x10 x2 1424
+read x5 56164
+read x1 15922
+wait 0
+wait 0
+read x7 79613
+read x4 36756
+wait 0
+addc x6 x8 3877
+wait 0
+read x5 79203
+read x3 10980
+add x7 x9 x1
+add x5 x1 x1
+add x9 x1 x3
+read x1 35501
+addc x5 x9 291
+addc x9 x8 5190
+read x6 31574
+addc x1 x5 5381
+read x5 53005
+addc x9 x3 6089
+read x10 30965
+add x2 x6 x10
+read x2 5028
+add x3 x1 x4
+read x2 29670
+read x4 37342
+write x3 4123
+wait 0
+add x10 x3 x2
+read x2 88469
+write x6 72759
+read x3 55816
+wait 0
+addc x7 x3 9093
+addc x1 x9 7419
+addc x1 x5 9730
+wait 0
+write x10 88746
+addc x10 x2 37
+add x5 x1 x4
+addc x7 x1 7820
+wait 0
+write x1 86664
+write x2 24139
+read x8 87049
+wait 0
+read x5 43159
+wait 0
+addc x7 x9 5476
+addc x8 x3 8768
+read x3 69804
+read x1 83517
+wait 0
+addc x9 x5 1991
+wait 0
+wait 0
+read x4 60758
+wait 0
+read x10 33543
+read x4 79577
+read x6 51423
+wait 0
+add x7 x7 x9
+wait 0
+read x6 69575
+write x2 27444
+read x8 51156
+wait 0
+wait 0
+wait 0
+read x10 60217
+wait 0
+write x7 19232
+addc x7 x5 4509
+read x7 84826
+wait 0
+read x6 30921
+read x1 35771
+read x1 22827
+addc x3 x1 2237
+read x5 62895
+addc x7 x7 57
+wait 0
+read x10 63455
+wait 0
+write x4 32874
+wait 0
+addc x8 x1 4338
+read x9 15847
+read x6 15747
+write x5 92384
+read x2 33077
+wait 0
+wait 0
+addc x5 x10 7919
+read x4 55428
+write x7 7917
+add x1 x3 x2
+addc x3 x5 3517
+add x2 x5 x2
+wait 0
+read x10 70817
+wait 0
+addc x5 x7 1845
+wait 0
+write x6 52799
+wait 0
+read x5 97233
+write x5 37683
+write x1 72089
+wait 0
+wait 0
+read x10 27745
+wait 0
+add x7 x8 x4
+read x3 15333
+add x7 x5 x9
+addc x2 x1 6146
+read x10 15568
+write x4 63812
+write x7 53615
+wait 0
+read x3 13714
+read x6 89554
+wait 0
+read x8 19303
+add x1 x10 x4
+read x10 35480
+wait 0
+addc x10 x9 3956
+addc x5 x6 2743
+add x8 x7 x3
+wait 0
+read x9 33930
+addc x2 x9 5713
+addc x5 x5 7787
+read x2 44899
+read x6 78481
+read x7 68654
+read x3 35064
+wait 0
+read x10 77895
+wait 0
+read x8 44982
+read x3 16277
+wait 0
+read x2 54456
+wait 0
+wait 0
+add x1 x7 x3
+addc x10 x1 7651
+read x3 1128
+add x9 x2 x1
+wait 0
+add x4 x10 x2
+wait 0
+write x10 69005
+addc x8 x7 6125
+read x8 13547
+read x5 92763
+wait 0
+wait 0
+addc x7 x4 1965
+wait 0
+addc x5 x9 3412
+wait 0
+read x7 92180
+read x7 44090
+read x3 19877
+addc x10 x4 5920
+read x6 78224
+add x1 x1 x10
+addc x10 x8 4466
+wait 0
+write x5 12637
+wait 0
+read x9 20931
+read x1 83686
+write x1 3275
+read x6 87498
+read x4 44627
+read x6 25384
+wait 0
+write x4 38105
+wait 0
+addc x8 x4 4514
+read x8 95509
+addc x2 x9 9256
+write x8 96494
+wait 0
+read x2 44161
+read x6 87203
+addc x10 x10 383
+read x6 50332
+wait 0
+write x6 25578
+addc x9 x10 971
+wait 0
+wait 0
+wait 0
+add x6 x1 x6
+wait 0
+addc x6 x6 4862
+wait 0
+addc x5 x10 6189
+wait 0
+addc x4 x7 941
+wait 0
+read x10 39642
+write x5 97562
+write x4 39956
+write x4 84665
+addc x1 x5 7887
+wait 0
+wait 0
+addc x5 x2 4513
+wait 0
+wait 0
+wait 0
+read x3 15958
+wait 0
+addc x10 x1 1013
+addc x3 x10 7641
+addc x3 x1 4249
+wait 0
+write x4 48032
+read x3 91286
+addc x9 x9 3112
+read x6 83318
+wait 0
+read x8 57805
+read x5 21131
+read x6 68366
+addc x5 x5 1510
+wait 0
+write x5 11374
+wait 0
+addc x2 x1 3612
+read x9 48360
+write x5 6477
+addc x5 x3 9177
+add x4 x1 x10
+addc x2 x7 7959
+read x9 67667
+write x8 64422
+addc x4 x2 343
+add x6 x3 x2
+wait 0
+wait 0
+addc x1 x8 8165
+read x6 58788
+addc x9 x1 5221
+read x4 11220
+write x9 42934
+addc x5 x1 8387
+write x10 12178
+add x1 x4 x6
+wait 0
+write x3 20596
+write x10 52219
+addc x10 x2 9946
+write x9 67672
+read x3 6290
+wait 0
+wait 0
+wait 0
+read x6 63505
+wait 0
+wait 0
+wait 0
+read x9 46985
+wait 0
+addc x1 x8 1564
+wait 0
+write x10 6680
+read x3 86551
+read x7 23458
+wait 0
+wait 0
+read x8 31029
+add x7 x6 x5
+wait 0
+wait 0
+wait 0
+addc x9 x6 3352
+wait 0
+read x10 97056
+read x4 55245
+wait 0
+wait 0
+wait 0
+write x2 15145
+wait 0
+add x3 x8 x10
+read x3 16073
+read x2 72538
+addc x10 x3 2701
+write x6 17268
+read x9 97634
+read x9 32207
+read x4 60562
+read x3 44504
+addc x6 x9 6214
+add x5 x4 x4
+wait 0
+wait 0
+addc x10 x10 6602
+write x6 23309
+read x10 67734
+wait 0
+read x6 30999
+read x9 10002
+read x5 32408
+read x5 55982
+addc x10 x1 6516
+wait 0
+read x8 37706
+read x6 90402
+add x2 x3 x10
+read x7 11446
+wait 0
+add x7 x1 x2
+write x5 46907
+addc x2 x1 261
+read x2 31145
+write x9 65544
+read x7 80513
+write x2 50515
+read x8 75660
+read x1 38470
+wait 0
+wait 0
+read x5 8116
+wait 0
+addc x5 x8 3397
+read x1 74306
+add x6 x8 x4
+wait 0
+add x4 x8 x9
+add x5 x9 x8
+add x5 x2 x8
+wait 0
+read x8 46290
+wait 0
+read x10 36343
+write x8 29696
+read x2 64895
+addc x2 x7 5662
+read x8 6056
+read x10 25847
+wait 0
+add x2 x1 x1
+wait 0
+add x8 x4 x9
+read x1 60400
+wait 0
+read x6 51511
+read x1 49172
+wait 0
+wait 0
+addc x4 x1 6274
+read x7 63653
+read x6 98012
+read x3 20869
+write x7 98105
+read x7 28989
+addc x9 x7 6424
+read x8 94366
+write x1 43554
+wait 0
+read x3 46528
+read x2 1194
+addc x4 x8 3754
+wait 0
+read x3 53820
+wait 0
+addc x5 x10 6591
+write x1 16810
+wait 0
+wait 0
 wait 0
 add x8 x10 x4
 wait 0
+read x3 61648
+addc x1 x8 7409
+addc x5 x8 2776
+wait 0
+add x6 x10 x5
+wait 0
+read x6 57143
+wait 0
+write x7 41548
+add x1 x7 x4
+read x8 56716
+wait 0
+write x5 42080
+wait 0
+write x1 62753
+addc x9 x2 3050
+wait 0
+read x6 42230
+read x3 62537
+read x5 54283
+read x4 77812
+read x10 51035
+read x10 48633
+read x8 15567
 wait 0
 wait 0
-read x1 20077
+write x2 98487
+read x1 86295
 wait 0
-add x6 x9 x5
+addc x3 x5 6504
+write x9 2126
 wait 0
-read x5 30399
 wait 0
-add x9 x4 x6
-read x7 65096
+addc x7 x7 3755
+read x7 10547
+read x7 91986
+read x8 86537
+addc x1 x1 5696
+addc x1 x3 481
+add x6 x3 x1
+add x4 x4 x2
+addc x3 x1 10000
+wait 0
+read x9 1537
+add x10 x7 x9
+wait 0
+wait 0
+read x8 11876
+read x1 83369
+add x4 x4 x7
+wait 0
+wait 0
+read x10 24877
+add x4 x10 x8
+wait 0
+addc x9 x1 2858
+addc x8 x9 1531
+wait 0
+read x7 38134
+wait 0
+addc x6 x10 9223
+read x2 80344
+add x5 x5 x3
+read x10 64319
+addc x4 x5 2645
+addc x7 x6 6001
+read x6 90899
+read x10 6886
+read x2 95349
+wait 0
+wait 0
+read x9 41800
+read x8 11474
+add x7 x1 x2
+addc x4 x7 364
+write x9 80540
+write x7 24544
+write x3 8814
+addc x4 x5 1042
+read x10 6751
+read x8 10667
+read x6 22050
+read x2 22110
+read x3 15313
+wait 0
+addc x6 x1 4959
+wait 0
+wait 0
+read x10 73947
+read x6 9131
+read x7 18832
+wait 0
+wait 0
+read x1 16320
+read x2 84282
+addc x10 x10 4121
+wait 0
+addc x2 x8 8712
+addc x9 x3 9968
+add x7 x10 x7
+addc x2 x6 7007
+read x5 14132
+wait 0
+add x2 x4 x8
+addc x5 x9 4463
+read x4 96483
+wait 0
+addc x10 x6 1716
+wait 0
+add x1 x6 x3
+addc x2 x2 6937
+write x2 74150
+read x5 66343
+wait 0
+addc x1 x5 4494
+read x10 31965
+read x8 34520
+write x4 82555
+read x3 51056
+addc x2 x8 5265
+read x5 65187
+write x8 49912
+read x2 90479
+read x10 10614
+write x3 60111
+addc x7 x5 4155
+read x10 15570
+read x3 58168
+addc x5 x2 4050
+read x4 25203
+read x1 12981
+wait 0
+read x4 61891
+wait 0
+addc x2 x6 9009
+read x1 54471
+read x5 53978
+read x3 33465
+read x5 24528
+read x2 1892
+wait 0
+read x6 67821
+wait 0
+wait 0
+read x6 31907
+addc x9 x3 6012
+wait 0
+read x4 92081
+read x7 52057
+read x6 50679
+addc x7 x9 2177
+add x7 x6 x2
+read x9 17462
+add x1 x4 x5
+read x9 86327
+addc x5 x1 5025
+add x1 x7 x1
+add x5 x6 x6
+wait 0
+read x5 54396
+read x5 14411
+wait 0
+wait 0
+add x2 x9 x3
+addc x9 x4 6478
+write x4 88653
+addc x1 x9 3175
+add x4 x3 x4
+add x8 x8 x5
+wait 0
+read x2 4882
+wait 0
+addc x8 x1 7663
+wait 0
+wait 0
+read x10 1499
+write x10 35278
+addc x8 x1 7423
+add x10 x4 x4
+read x7 24929
+addc x10 x7 8084
+read x1 62861
+addc x2 x8 1296
+addc x1 x5 1155
+read x6 1810
+addc x6 x8 1606
+add x9 x6 x4
+addc x4 x5 7623
+read x7 80590
+read x4 38596
+read x8 77291
+read x1 8845
+read x8 77115
+read x1 31476
+addc x5 x10 3887
+wait 0
+read x2 71448
+read x8 23551
+read x9 92051
+addc x2 x6 5682
+addc x4 x3 1321
+read x7 21452
+wait 0
+wait 0
+wait 0
+read x9 21696
+add x1 x1 x3
+read x9 58654
+wait 0
+wait 0
+addc x6 x3 2276
+write x7 49340
+add x5 x8 x10
+write x2 12599
+wait 0
+add x8 x8 x8
+read x6 89813
+read x8 99159
+wait 0
+read x9 3899
+read x3 14884
+add x2 x9 x1
+add x9 x5 x1
+wait 0
+read x3 49316
+read x8 5181
+read x4 49681
+addc x8 x1 937
+wait 0
+wait 0
+read x3 97651
+write x5 7008
+read x8 93428
+add x6 x5 x5
+wait 0
+write x10 22447
+read x3 44575
+read x2 15191
+addc x5 x8 9549
+add x3 x7 x9
+read x5 35397
+addc x8 x8 2371
+wait 0
+read x6 76993
+read x2 21377
+wait 0
+write x2 76375
+wait 0
+add x3 x2 x2
+addc x5 x1 6774
+write x6 48324
+read x8 98693
+read x9 49961
+wait 0
+read x8 47252
+read x9 82922
+read x5 1891
+read x9 97254
+read x6 66600
+read x2 40433
+write x6 81109
+read x9 42142
+add x1 x2 x5
+wait 0
+wait 0
+addc x10 x9 1984
+wait 0
+read x9 43058
+write x6 41694
+addc x9 x6 5943
+read x9 85537
+read x5 67955
+addc x3 x10 1044
+read x8 22726
+wait 0
+wait 0
+read x10 5118
+read x6 76198
+read x9 43715
+read x1 96737
+read x5 14472
+read x3 62061
+read x3 82788
+read x5 18877
+read x5 70284
+addc x6 x10 2574
+add x1 x3 x4
+wait 0
+read x10 46441
+addc x5 x3 6898
+addc x6 x4 7313
+wait 0
+addc x8 x5 5528
+add x2 x5 x2
+add x9 x9 x6
+addc x10 x7 1590
+read x8 54325
+wait 0
+wait 0
+read x3 64780
+wait 0
+wait 0
+add x7 x8 x3
+read x6 53581
+add x8 x2 x1
+read x4 30549
+addc x10 x2 4126
+read x2 45927
+addc x10 x7 5816
+add x1 x10 x5
+addc x4 x9 1331
+addc x9 x1 664
+wait 0
+read x2 41177
+read x5 16240
+read x1 43220
+add x5 x6 x8
+addc x9 x2 7385
+wait 0
+read x3 63139
+read x10 30380
+read x9 4354
+read x5 40848
+read x7 92596
+addc x3 x5 6727
+wait 0
+wait 0
+write x4 65335
+addc x7 x4 8897
+write x1 9691
+wait 0
+addc x8 x7 5340
+write x3 26761
+wait 0
+addc x7 x10 1612
+wait 0
+write x10 57488
+read x7 94398
+wait 0
+add x1 x9 x5
+wait 0
+read x6 57133
+addc x5 x6 3341
+read x9 70317
+add x5 x8 x6
+addc x5 x4 4601
+read x4 97213
+read x10 28724
+write x3 17555
+wait 0
+add x4 x4 x4
+read x8 60278
+write x4 1208
+read x6 26015
+addc x10 x8 385
+addc x4 x6 4421
+read x10 4111
+addc x3 x7 2349
+read x1 42370
+addc x4 x8 8472
+addc x1 x1 8068
+wait 0
+wait 0
+write x7 38264
+wait 0
+wait 0
+read x7 41446
+write x7 31004
+read x4 74491
+wait 0
+read x6 80186
+wait 0
+ENDING TRANSACTION
+declare x1 4391
+declare x2 1322
+declare x3 5174
+declare x4 5061
+declare x5 5912
+declare x6 3831
+declare x7 3123
+declare x8 8154
+declare x9 5867
+declare x10 9512
+addc x6 x3 7877
+read x5 30396
+wait 0
+addc x2 x7 1792
+add x2 x3 x5
+read x6 17149
+read x7 12426
+wait 0
+read x9 32178
+wait 0
+read x9 11923
+addc x4 x9 776
+addc x2 x2 6420
+write x9 18526
+add x3 x3 x8
+read x9 23653
+read x10 21402
+read x6 61287
+wait 0
+read x9 4952
+write x6 97010
+wait 0
+addc x7 x5 1981
+read x2 56296
+read x1 12560
+read x2 84436
+write x8 78532
+read x7 98256
+read x6 92749
+wait 0
+read x10 24573
+read x6 85025
+read x7 1899
+addc x7 x3 5349
+read x9 3034
+addc x3 x1 3
+write x9 17711
+addc x7 x8 3307
+wait 0
+addc x6 x5 2752
+read x4 12743
+addc x10 x9 7585
+addc x6 x2 8774
+read x10 56686
+read x4 16599
+write x10 11295
+read x4 83530
+addc x6 x1 1282
+add x4 x8 x10
+addc x10 x8 515
+wait 0
+addc x1 x3 4508
+wait 0
+write x1 7513
+read x2 11619
+add x1 x9 x5
+read x7 85213
+write x1 92244
+addc x5 x1 6370
+read x4 44369
+read x3 65254
+read x3 26498
+add x3 x4 x8
+read x2 78253
+read x8 77051
+addc x5 x1 4037
+wait 0
+read x6 94761
+add x3 x4 x3
+wait 0
+addc x1 x2 889
+add x7 x4 x9
+read x1 82826
+read x7 73475
+wait 0
+wait 0
+addc x1 x2 3318
+read x1 70268
+addc x8 x5 3935
+wait 0
+read x9 59409
+read x3 20111
+addc x5 x3 1291
+addc x4 x4 2589
+add x8 x3 x2
+addc x8 x8 4172
+read x5 81307
+addc x2 x10 5092
+add x10 x3 x7
+wait 0
+read x4 59149
+write x4 20022
+add x3 x6 x7
+addc x7 x9 2363
+read x4 48741
+add x9 x9 x9
+wait 0
+addc x1 x4 3624
+read x2 39665
+read x3 60999
+wait 0
+add x3 x5 x7
+read x9 10373
+write x10 24785
+wait 0
+read x3 44893
+read x6 25682
+wait 0
+write x3 58669
+read x6 41525
+read x3 99171
+add x3 x3 x5
+read x7 71548
+read x5 49866
+wait 0
+write x4 71798
+read x8 28874
+read x5 61791
+wait 0
+wait 0
+add x10 x10 x5
+read x5 55918
+read x3 93384
+add x6 x6 x1
+read x3 74371
+addc x2 x6 5992
+read x8 81469
+read x7 73988
+read x9 18462
+read x2 79156
+wait 0
+addc x6 x2 5563
+read x5 75765
+read x3 8595
+read x2 92282
+wait 0
+wait 0
+read x3 42232
+addc x6 x4 787
+wait 0
+add x6 x4 x1
+add x9 x10 x1
+wait 0
+write x5 22550
+read x5 90931
+write x6 98490
+read x8 73011
+read x10 36530
+add x4 x6 x1
+write x7 86325
+addc x5 x2 7639
+read x7 41147
+addc x7 x3 6058
+wait 0
+addc x3 x2 5704
+write x9 53377
+read x1 38095
+add x8 x6 x4
+addc x10 x2 5923
+read x10 67962
+read x2 15554
+wait 0
+wait 0
+wait 0
+wait 0
+addc x9 x4 7442
+wait 0
+add x10 x9 x9
+write x2 33095
+add x7 x3 x2
+read x7 54365
+read x1 13339
+addc x9 x1 5728
+wait 0
+wait 0
+read x8 91775
+write x9 35352
+read x9 2643
+read x6 39701
+read x2 5120
+wait 0
+read x9 91696
+addc x7 x3 9321
+read x5 84792
+wait 0
+read x6 96696
+add x10 x5 x5
+read x6 49875
+write x5 61292
+read x10 55507
+wait 0
+addc x7 x3 1592
+add x10 x3 x9
+wait 0
+addc x8 x6 6076
+read x8 70868
+read x2 97879
+read x10 55797
+addc x10 x2 3505
+add x10 x3 x8
+add x10 x9 x4
+add x1 x8 x2
+read x3 96607
+wait 0
+read x5 48136
+wait 0
+read x8 79413
+write x6 83775
+read x9 4980
+read x9 63345
+read x4 41849
+read x2 73095
+addc x1 x3 7803
+read x6 84110
+add x1 x5 x4
+add x7 x1 x10
+wait 0
+read x9 46786
+addc x2 x10 1481
+read x6 92966
+read x2 68381
+wait 0
+wait 0
+addc x8 x8 1357
+add x2 x2 x2
+read x10 12237
+read x2 53806
+wait 0
+addc x8 x3 6161
+add x8 x8 x6
+write x6 48570
+read x3 83861
+addc x8 x9 7735
+addc x2 x1 3185
+wait 0
+addc x1 x4 5585
+read x2 80280
+add x7 x3 x5
+write x10 47840
+wait 0
+read x7 84733
+read x7 44646
+read x4 11596
+read x4 60475
+read x9 56104
+add x5 x3 x7
+add x3 x4 x6
+add x7 x5 x9
+add x1 x6 x10
+read x5 51123
+wait 0
+wait 0
+read x8 5230
+add x9 x10 x10
+read x5 68974
+add x5 x10 x1
+write x10 2379
+read x4 71158
+add x8 x10 x6
+read x1 88533
+wait 0
+read x6 5432
+read x3 79687
+read x9 65884
+read x3 31503
+write x7 16969
+addc x6 x2 638
+wait 0
+add x7 x4 x8
+read x10 21433
+write x7 16930
+addc x2 x6 3152
+read x6 78063
+wait 0
+addc x3 x1 9748
+write x2 46390
+wait 0
+read x6 65599
+addc x6 x9 6131
+add x8 x3 x10
+addc x4 x4 4897
+write x4 32151
+read x5 16870
+read x6 36218
+read x1 37533
+addc x4 x8 3276
+addc x2 x7 7312
+wait 0
+wait 0
+wait 0
+wait 0
+read x2 95604
+read x4 32164
+read x4 4608
+wait 0
+read x1 75725
+addc x9 x5 1249
+wait 0
+add x1 x9 x8
+wait 0
+read x2 40305
+addc x1 x5 8361
+read x10 47267
+read x8 35906
+wait 0
+add x6 x6 x1
+addc x10 x6 3738
+wait 0
+read x2 85267
+write x6 87915
+addc x4 x10 857
+read x8 30195
+read x2 3879
+addc x10 x1 8052
+addc x2 x6 8484
+wait 0
+read x6 86949
+write x5 41233
+addc x10 x7 9950
+read x7 84940
+addc x7 x3 2393
+read x9 17244
+read x8 82233
+read x9 63141
+read x10 44483
+read x2 53256
+addc x7 x3 9566
+addc x7 x3 9173
+addc x3 x2 6899
+read x6 79552
+write x2 24631
+write x7 12525
+write x6 67220
+read x10 93144
+read x5 28779
+addc x5 x5 7531
+add x8 x9 x7
+addc x2 x6 3658
+read x7 92713
+wait 0
+write x9 5045
+wait 0
+read x9 90808
+addc x4 x7 5171
+wait 0
+addc x1 x7 9833
+add x4 x3 x5
+write x8 57443
+wait 0
+wait 0
+read x3 80834
+write x2 67621
+read x5 25958
+read x5 67892
+write x7 36290
+wait 0
+addc x10 x1 4744
+add x7 x9 x1
+write x2 7707
+wait 0
+addc x9 x4 5369
+read x8 21898
+read x4 99889
+read x8 13895
+write x7 50469
+wait 0
+addc x3 x7 8347
+wait 0
+read x5 40372
+wait 0
+add x1 x6 x6
+read x6 40122
+wait 0
+addc x2 x4 5025
+addc x7 x10 591
+write x2 18137
+read x5 78398
+wait 0
+add x1 x9 x6
+wait 0
+addc x8 x6 2784
+read x8 72404
+wait 0
+write x10 46706
+write x3 77953
+read x2 54404
+read x8 67023
+read x6 87094
+write x5 62810
+write x4 52171
+addc x5 x9 1717
+add x3 x7 x1
+read x6 76717
+wait 0
+addc x1 x7 6893
+write x10 90644
+read x7 19142
+wait 0
+wait 0
+read x3 50373
+wait 0
+add x8 x4 x10
+read x8 76200
+wait 0
+add x9 x3 x9
+read x7 30810
+read x5 74199
+read x4 22833
+wait 0
+write x3 85210
+write x1 72293
+write x1 81259
+add x9 x9 x1
+wait 0
+wait 0
+wait 0
+wait 0
+read x6 11645
+wait 0
+wait 0
+addc x10 x8 9417
+addc x3 x6 6972
+wait 0
+read x6 38697
+read x2 17022
+read x5 77114
+addc x10 x4 9010
+wait 0
+write x1 24883
+read x9 22425
+read x4 50450
+addc x4 x3 5240
+wait 0
+addc x3 x1 3363
+wait 0
+read x3 19953
+read x6 53448
+read x5 62656
+read x6 49519
+wait 0
+add x7 x8 x7
+add x7 x3 x4
+read x8 93246
+add x10 x1 x5
+write x2 76282
+read x8 26306
+write x3 22553
+wait 0
+add x4 x6 x7
+wait 0
+write x2 15398
+read x9 62199
+read x3 33497
+write x4 54666
+read x10 34835
+addc x5 x2 1557
+write x7 17140
+read x2 47694
+read x3 94063
+wait 0
+add x9 x10 x7
+read x1 76459
+addc x4 x7 6512
+read x2 60012
+read x7 78534
+addc x8 x3 1703
+read x2 63005
+wait 0
+write x8 73616
+read x7 73983
+add x4 x7 x7
+add x5 x6 x6
+read x8 53198
+wait 0
+read x2 70207
+read x9 52724
+read x4 79951
+wait 0
+add x5 x10 x8
+wait 0
+wait 0
+read x1 18838
+read x1 19340
+read x5 40628
+read x9 92936
+write x5 86016
+read x2 67477
+wait 0
+read x7 88741
+add x6 x1 x5
+addc x4 x9 6127
+read x5 68701
+addc x10 x8 43
+read x8 53719
+add x9 x3 x5
+read x7 85870
+addc x5 x7 277
+add x2 x5 x8
+addc x3 x2 1990
+wait 0
+read x3 32847
+addc x8 x6 7974
+read x4 9616
+addc x9 x5 8660
+read x3 96905
+wait 0
+add x7 x3 x1
+read x1 39969
+read x2 81573
+read x9 5919
+read x2 20120
+read x4 86068
+read x3 85591
+write x9 51035
+addc x5 x8 2508
+wait 0
+wait 0
+read x8 5983
+read x5 79977
+add x3 x1 x5
+read x8 45378
+read x1 35339
+read x9 15078
+write x6 93563
+wait 0
+write x1 47713
+write x3 58697
+addc x4 x2 2558
+wait 0
+read x4 6794
+addc x7 x6 1946
+read x5 62215
+write x3 52522
+wait 0
+add x9 x3 x9
+addc x4 x4 2038
+read x6 7711
+add x8 x7 x9
+read x8 30730
+add x10 x6 x5
+read x8 40906
+add x7 x7 x5
+addc x10 x1 4090
+wait 0
+read x3 30113
+addc x10 x1 9762
+wait 0
+wait 0
+addc x3 x3 6377
+addc x3 x10 9486
+read x4 81125
+read x5 38413
+read x9 95967
+read x5 8420
+addc x2 x6 968
+addc x2 x1 4553
+add x9 x7 x1
+read x4 61543
+addc x6 x4 6744
+wait 0
+addc x8 x1 2584
+wait 0
+wait 0
+wait 0
+wait 0
+addc x9 x10 8379
+add x5 x7 x9
+read x10 67368
+read x1 44936
+read x4 16855
+wait 0
+wait 0
+read x8 61974
+addc x6 x5 8571
+add x8 x3 x7
+read x6 30392
+wait 0
+read x8 31451
+wait 0
+wait 0
+read x8 74129
+add x5 x1 x4
+wait 0
+read x10 12624
+add x3 x1 x7
+write x5 43572
+addc x9 x2 6788
+addc x10 x2 6207
+wait 0
+wait 0
+wait 0
+add x7 x1 x5
+add x8 x3 x9
+wait 0
+write x2 8325
+write x10 7816
+read x6 2675
+wait 0
+addc x6 x3 3730
+wait 0
+wait 0
+addc x5 x8 3530
+read x4 64913
+wait 0
+read x2 49107
+read x3 17036
+read x4 7244
+write x8 77231
+read x4 90709
+wait 0
+read x2 98386
+addc x9 x3 4531
+wait 0
+add x8 x6 x8
+read x8 27569
+wait 0
+read x3 59461
+write x1 22843
+add x8 x9 x10
+wait 0
+read x10 90176
+read x7 78212
+read x6 54302
+read x9 38506
+wait 0
+write x7 93903
+wait 0
+wait 0
+write x5 65246
+read x2 60231
+addc x5 x10 3171
+read x4 78550
+write x9 66837
+read x7 28769
+read x5 3632
+write x4 43430
+read x3 83575
+wait 0
+add x3 x7 x9
+wait 0
+wait 0
+addc x5 x9 5418
+addc x2 x9 6245
+write x1 5714
+wait 0
+wait 0
+add x5 x1 x5
+wait 0
+read x2 10339
+write x6 34694
+read x8 2270
+write x6 40160
+read x5 91714
+addc x1 x9 6431
+wait 0
+wait 0
+add x2 x10 x2
+wait 0
+wait 0
+addc x6 x4 9245
+read x4 86231
+read x2 69224
+read x6 49127
+addc x2 x7 4998
+addc x5 x4 7845
+read x8 72873
+write x1 10877
+read x6 74259
+read x8 29674
+read x2 58011
+add x3 x6 x8
+addc x3 x6 5708
+wait 0
+read x10 39291
+wait 0
+read x4 85593
+add x6 x2 x10
+add x6 x2 x5
+read x6 98046
+wait 0
+read x5 53224
+wait 0
+read x3 65472
+write x3 75583
+wait 0
+read x9 48951
+write x1 15793
+read x6 43923
+read x10 26961
+read x9 20369
+read x9 14147
+read x8 69217
+addc x3 x7 1394
+addc x5 x2 3652
+addc x6 x3 1069
+wait 0
+write x2 86302
+write x8 33970
+write x4 71024
+wait 0
+add x9 x5 x4
+read x8 52221
+read x3 28298
+addc x8 x8 1468
+add x10 x1 x1
+wait 0
+addc x9 x9 8372
+wait 0
+read x6 87748
+read x5 38772
+read x5 16631
+wait 0
+read x9 26340
+read x8 22590
+read x2 93579
+write x5 42355
+wait 0
+read x4 64944
+wait 0
+addc x1 x8 1358
+read x2 19971
+read x6 32186
+write x3 44487
+add x3 x3 x10
+read x3 11683
+addc x1 x6 7185
+write x8 70832
+add x7 x3 x1
+wait 0
+addc x2 x4 6111
+addc x1 x6 9261
+write x7 54275
+read x1 92433
+write x7 20441
+read x7 57387
+addc x1 x10 7476
+add x7 x9 x6
+read x10 6497
+wait 0
+write x5 23163
+read x8 83091
+read x6 6391
+read x4 28683
+wait 0
+addc x9 x6 7039
+addc x6 x2 6821
+add x5 x7 x1
+addc x3 x8 9007
+write x8 84834
+read x3 35699
+addc x1 x9 1906
+wait 0
+wait 0
+read x6 16333
+write x6 47835
+addc x10 x8 6835
+read x1 71095
+write x2 55184
+write x3 9698
+add x2 x1 x3
+read x8 58597
+read x5 36571
+read x3 78828
+addc x7 x5 8229
+read x4 56023
+read x1 19937
+wait 0
+read x2 97012
+read x8 39715
+addc x4 x3 6041
+addc x7 x9 8208
+addc x1 x5 6595
+write x2 5905
+read x6 17896
+read x2 45247
+addc x9 x2 8354
+read x10 51948
+read x10 67735
+addc x4 x5 5040
+read x4 96909
+addc x5 x10 6845
+read x10 66174
+add x3 x1 x8
+wait 0
+wait 0
+read x6 2204
+addc x6 x9 2459
+read x2 4728
+read x2 17653
+wait 0
+read x2 51257
+read x3 34989
+read x5 97557
+addc x9 x10 2482
+read x4 21098
+write x1 38508
+wait 0
+read x10 18410
+wait 0
+read x7 43116
+addc x3 x4 1331
+write x10 19576
+add x9 x3 x3
+addc x1 x5 5223
+read x4 95833
+read x3 89184
+wait 0
+read x8 33480
+read x2 65577
+read x3 26408
+add x8 x5 x4
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+write x2 44398
+wait 0
+read x4 8308
+read x6 89710
+read x1 39498
+wait 0
+wait 0
+read x10 36775
+read x6 69657
+wait 0
+read x8 92449
+addc x1 x1 5386
+read x4 95754
+addc x4 x3 6995
+write x2 11465
+read x8 19478
+addc x4 x2 821
+wait 0
+wait 0
+write x7 50173
+wait 0
+add x2 x5 x2
+read x4 8120
+read x9 69160
+wait 0
+wait 0
+write x6 97908
+write x4 70869
+wait 0
+read x6 30941
+read x5 10171
+addc x6 x1 4538
+wait 0
+wait 0
+addc x2 x7 5776
+addc x4 x8 5544
+wait 0
+write x10 91198
+read x2 52819
+read x3 73009
+write x2 53225
+read x8 78526
+wait 0
+wait 0
+wait 0
+addc x2 x8 4230
+wait 0
+read x3 9882
+add x8 x4 x5
+read x8 80336
+wait 0
+read x1 74267
+write x5 18846
+wait 0
+read x6 70528
+wait 0
+read x4 70917
+write x9 64708
+write x5 29521
+addc x7 x2 8233
+addc x2 x8 7017
+add x8 x5 x7
+wait 0
+write x10 73639
+read x3 46180
+addc x5 x4 6023
+add x9 x7 x3
+read x6 21951
+addc x1 x10 7196
+write x10 59429
+write x10 32945
+wait 0
+read x5 19722
+write x2 35932
+addc x5 x8 6831
+wait 0
+addc x7 x7 2026
+read x3 33797
+wait 0
+addc x4 x1 912
+addc x3 x3 5889
+addc x4 x10 8626
+wait 0
+add x2 x7 x4
+addc x3 x3 5095
+read x2 26387
+addc x10 x2 3964
+read x4 62447
+read x8 27253
+add x3 x7 x10
+add x10 x10 x8
+read x10 32605
+read x5 33799
+read x4 77143
+write x8 52546
+read x3 84411
+wait 0
+read x6 8392
+wait 0
+wait 0
+read x7 96612
+wait 0
+addc x10 x3 9888
+write x5 37386
+read x8 57245
+wait 0
+wait 0
+read x6 19408
+write x3 95221
+addc x7 x10 7929
+write x4 98644
+write x3 12944
+wait 0
+read x9 92450
+add x1 x10 x7
+read x5 37818
+write x10 97356
+read x2 20424
+wait 0
+read x9 92042
+read x8 16079
+addc x1 x8 3347
+wait 0
+write x4 63466
+wait 0
+addc x10 x2 5473
+read x7 31221
+wait 0
+write x9 22980
+read x4 41397
+add x7 x1 x8
+add x6 x8 x5
+wait 0
+addc x8 x8 4392
+write x3 83077
+add x7 x6 x5
+addc x7 x8 8949
+wait 0
+write x8 15470
+wait 0
+read x10 78140
+wait 0
+wait 0
+wait 0
+addc x6 x1 1312
+read x9 28169
+addc x6 x7 6717
+addc x7 x2 6957
+read x3 57330
+write x8 72885
+wait 0
+read x1 67158
+addc x3 x9 3346
+wait 0
+wait 0
+wait 0
+addc x4 x2 878
+wait 0
+wait 0
+wait 0
+add x3 x2 x7
+wait 0
+add x3 x2 x2
+read x10 34682
+wait 0
+addc x4 x8 8354
+write x6 39267
 add x8 x4 x1
 wait 0
+read x1 20807
+wait 0
+read x1 45167
+wait 0
+read x7 2111
+read x3 26292
+read x7 87783
+read x3 8486
+wait 0
+addc x2 x5 7531
+read x3 62778
+wait 0
+add x5 x2 x3
+read x1 51052
+read x5 90904
+wait 0
+ENDING TRANSACTION
+declare x1 3819
+declare x2 515
+declare x3 5673
+declare x4 2394
+declare x5 7631
+declare x6 4222
+declare x7 5932
+declare x8 2583
+declare x9 4663
+declare x10 3311
+write x10 23924
+wait 0
+read x3 47163
+addc x5 x4 9519
 wait 0
 wait 0
-add x4 x3 x2
+add x5 x9 x5
+read x10 70355
+add x5 x1 x8
+write x5 38416
+addc x9 x7 2424
+write x8 44383
+addc x3 x3 5172
+add x4 x9 x5
+addc x1 x10 9256
+read x1 83429
+read x1 43509
+write x2 14387
+wait 0
+read x6 99140
+write x1 3894
+addc x9 x6 1062
+wait 0
+addc x3 x10 9620
 wait 0
 wait 0
-write x8 29390
-add x3 x8 x3
+read x9 37855
+read x4 4591
 wait 0
 wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-write x7 6291
-write x2 33021
-wait 0
-read x1 44715
-wait 0
-add x7 x6 x10
-wait 0
-add x6 x10 x3
+addc x2 x5 5058
+addc x8 x8 1010
+write x7 3012
+add x3 x2 x8
+read x9 72141
+read x9 40924
+write x9 75893
+addc x2 x7 7889
 add x4 x1 x3
 wait 0
-add x10 x10 x1
-write x10 84607
-add x10 x8 x8
+addc x4 x3 6593
+read x3 51820
+add x8 x1 x2
+addc x5 x3 219
+write x5 91226
+wait 0
+read x8 32926
+read x9 10417
+addc x6 x5 5622
+read x3 79055
+wait 0
+addc x7 x7 5759
+wait 0
+read x5 1529
+wait 0
+add x8 x4 x8
+wait 0
+wait 0
+read x6 61514
+read x1 67955
+wait 0
+wait 0
+wait 0
+wait 0
+read x9 14610
+wait 0
+wait 0
+add x1 x4 x7
+read x1 65348
+write x3 50255
+add x9 x6 x3
+addc x2 x4 9256
+read x7 75536
+read x10 47220
+read x3 35693
+read x9 30982
+read x4 33652
+addc x1 x5 6804
+wait 0
+read x4 56270
+read x3 58249
+wait 0
+read x1 60000
+read x9 9048
+read x7 46851
+read x3 52063
+read x4 40774
+wait 0
+addc x4 x3 8870
+addc x2 x7 9426
+wait 0
+wait 0
+read x9 53431
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+read x4 51511
+addc x10 x7 9091
+read x10 85529
+write x8 87238
+addc x6 x6 5588
+read x10 44298
+write x4 54444
+write x2 45567
+wait 0
+read x5 6532
+wait 0
+read x1 34193
+read x10 72940
+addc x8 x2 5207
+addc x9 x9 3421
+read x10 35539
+write x7 11347
+wait 0
+read x5 43455
+wait 0
+read x4 31276
+wait 0
+wait 0
+add x2 x1 x9
+wait 0
+wait 0
+read x4 4975
+wait 0
+add x1 x4 x10
+add x2 x5 x4
+wait 0
+read x6 93181
+add x9 x2 x5
+read x10 64322
+read x10 68974
+read x9 61659
+addc x4 x1 8392
+wait 0
+add x1 x9 x9
+wait 0
+read x2 9283
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+read x3 36485
+addc x3 x9 7961
+addc x3 x5 3103
+read x9 32219
+read x4 10560
+add x2 x3 x4
+wait 0
+add x1 x1 x10
+wait 0
+write x2 81113
+read x10 42036
+addc x7 x7 6166
+read x6 95088
+read x4 77260
+addc x3 x3 7329
+wait 0
+write x6 23753
+read x8 58924
+read x1 90611
+read x4 60840
+addc x1 x4 9261
+addc x1 x3 6309
+write x6 62351
+write x5 11335
+wait 0
+write x5 29956
+read x10 6417
+read x5 18016
+read x4 28302
+write x4 75422
+addc x8 x4 1670
+wait 0
+wait 0
+addc x1 x6 2304
+read x7 54786
+wait 0
+read x6 53009
+wait 0
+read x8 85976
+write x3 39212
+wait 0
+add x7 x9 x1
+add x10 x1 x7
+add x7 x5 x9
+wait 0
+read x3 86487
+write x7 81425
+addc x7 x3 7508
+add x7 x5 x6
+wait 0
+write x4 47600
+read x8 34167
+read x8 95726
+wait 0
+wait 0
+wait 0
+addc x2 x3 5139
+write x10 59505
+read x3 83396
+read x3 15303
+read x10 12390
+read x3 34264
+addc x3 x5 3652
+read x9 23062
+read x6 54491
+wait 0
+read x5 4007
+wait 0
+addc x1 x8 8823
+read x1 42319
+add x1 x4 x6
+wait 0
+read x6 55319
+wait 0
+addc x9 x5 6813
+wait 0
+write x3 87352
+wait 0
+wait 0
+read x2 24111
+read x8 87704
+addc x8 x8 2894
+wait 0
 add x6 x7 x4
 wait 0
 wait 0
-add x5 x2 x7
+addc x2 x3 9377
+write x7 48929
+add x8 x10 x3
 wait 0
-read x5 33924
+write x8 80020
 wait 0
-write x6 75305
+addc x9 x2 8576
+addc x9 x3 9388
+read x6 17938
+add x3 x6 x5
+read x10 71266
+read x5 41192
+wait 0
+write x8 85528
+read x5 59307
+wait 0
+read x8 43619
+addc x3 x8 433
+read x10 75341
+wait 0
+wait 0
+read x5 82401
+add x2 x6 x10
+add x6 x3 x8
+wait 0
+addc x1 x2 7296
+read x3 45219
+read x2 9030
+wait 0
+read x1 43901
+addc x1 x9 9538
+addc x1 x9 6490
+addc x1 x9 6112
+write x9 26254
+read x4 42919
+addc x9 x10 1066
+add x2 x10 x4
+read x10 61479
+add x9 x8 x10
+wait 0
+wait 0
+read x6 81981
+read x7 2572
+read x4 8488
+read x4 12534
+write x5 44260
+addc x2 x7 2695
+read x3 60014
+addc x1 x5 4293
+wait 0
+wait 0
+write x6 14300
+wait 0
+read x4 1783
+addc x7 x6 6250
+write x1 1744
+read x2 85882
+read x9 80426
+addc x7 x10 1323
+wait 0
+read x3 97906
+addc x3 x1 3135
+write x3 83528
+wait 0
+add x3 x2 x3
+read x8 41785
+addc x3 x1 7425
+read x9 83899
+wait 0
+read x10 28547
+write x8 23460
+addc x10 x3 4209
+write x2 51855
+addc x2 x5 5071
+wait 0
+read x2 74002
+wait 0
+write x8 39890
+read x3 74690
+wait 0
+write x9 48505
+wait 0
+write x10 70645
+addc x3 x10 5881
+wait 0
+addc x8 x8 3561
+addc x6 x2 1630
+add x4 x10 x1
+read x9 11526
+addc x6 x5 5648
+wait 0
+wait 0
+add x3 x1 x4
+read x7 28741
+wait 0
+read x5 82428
+addc x3 x2 4686
+add x2 x9 x7
+addc x5 x6 1111
 wait 0
 wait 0
 wait 0
-add x1 x8 x9
 wait 0
-read x10 48746
-write x6 52984
+read x4 2837
+add x7 x7 x4
+read x4 95255
+read x10 58397
+read x1 3975
+wait 0
+add x6 x8 x3
+wait 0
+read x3 35870
+wait 0
+write x2 16702
+write x5 52120
+read x9 71625
+read x5 79211
+write x3 85695
+addc x3 x6 6775
+write x4 42544
+write x4 50314
+write x2 97908
+read x5 85921
+write x3 55754
+write x6 3872
+wait 0
+read x6 60558
+wait 0
+read x3 67959
+wait 0
+write x9 89010
+add x7 x3 x6
+wait 0
+read x6 83768
+addc x8 x1 7685
+addc x1 x5 2246
+add x3 x6 x4
+write x1 11506
+wait 0
+addc x5 x5 7759
+wait 0
+wait 0
+addc x2 x4 5484
+addc x2 x1 4999
+write x2 14299
+addc x9 x2 1439
+addc x8 x7 2199
+read x7 9882
+read x1 86308
+add x2 x5 x4
+addc x8 x10 7342
+write x2 54648
+wait 0
+write x1 71006
+read x6 80713
+wait 0
+wait 0
+addc x9 x1 7629
+read x5 46333
+addc x10 x7 4403
+write x8 47821
+addc x9 x7 8950
+wait 0
+read x2 8516
+write x4 39223
 wait 0
 wait 0
 wait 0
-read x1 11023
+add x4 x3 x3
+read x9 95968
+read x2 61486
+read x3 80596
+read x6 43991
+read x4 47533
+write x5 98954
+wait 0
+addc x2 x2 7615
+addc x5 x7 1066
+add x9 x3 x6
+addc x3 x7 9943
+wait 0
+addc x5 x4 9717
+wait 0
+read x5 46419
+write x2 62857
+addc x3 x2 5596
+addc x3 x2 8181
+wait 0
+write x4 64255
+wait 0
+addc x6 x8 6136
+wait 0
+addc x7 x10 1184
+add x7 x1 x3
+wait 0
+read x8 29958
+write x7 17253
+wait 0
+wait 0
+addc x3 x9 8304
+read x7 67177
+addc x2 x3 3137
+wait 0
+read x7 8114
+read x3 67360
+add x7 x10 x7
+addc x3 x7 4717
+add x2 x9 x10
+read x10 83085
+addc x6 x6 6704
+read x10 97960
+read x9 23790
+write x2 27317
+addc x6 x7 5592
+read x8 18274
+write x6 91443
+add x4 x7 x8
+add x2 x1 x3
+read x2 91396
+wait 0
+addc x10 x8 2845
+wait 0
+addc x3 x1 6011
+addc x10 x7 6976
+add x8 x8 x10
+write x2 39769
+read x1 90140
+wait 0
+wait 0
+wait 0
+wait 0
+read x3 17727
+wait 0
+wait 0
+wait 0
+read x7 27178
+wait 0
+write x5 75050
+read x3 98728
+read x3 98931
+addc x4 x5 2236
+addc x8 x9 7344
+wait 0
+wait 0
+add x1 x8 x6
+wait 0
+read x3 76988
+read x4 51826
+add x9 x2 x9
+wait 0
+add x2 x4 x1
+write x5 97193
+wait 0
+read x9 49885
+write x5 73164
+write x2 54192
+addc x2 x10 9095
+read x9 14087
+addc x4 x1 5639
+wait 0
+read x1 43998
+add x5 x2 x9
+write x1 29901
+read x3 46564
+add x6 x10 x5
+add x9 x10 x2
+wait 0
+wait 0
+wait 0
+read x9 17699
+addc x1 x1 4125
+addc x8 x10 3673
+read x5 30040
+wait 0
+read x4 23382
+addc x8 x1 8929
+wait 0
+read x6 61388
+read x10 51532
+write x9 86789
+read x8 87448
+read x4 62273
+read x8 59339
+addc x7 x4 1611
+wait 0
+read x4 75674
+wait 0
+read x6 72712
+write x10 94179
+wait 0
+write x8 99528
+addc x5 x8 4812
+add x5 x3 x3
+read x10 43641
+wait 0
+read x1 46223
+write x10 30588
+addc x2 x9 8506
+read x9 88721
+addc x7 x10 4007
+read x3 98803
+wait 0
+add x7 x1 x7
+read x9 21508
+addc x3 x7 5995
+read x5 4608
+write x6 70274
+wait 0
+read x10 90309
+wait 0
+add x6 x2 x1
+write x10 56160
+add x10 x10 x7
+wait 0
+add x8 x4 x5
+wait 0
+read x3 13452
+wait 0
+wait 0
+read x8 53615
+add x7 x2 x8
+read x1 48235
+add x1 x5 x4
+read x2 92847
+read x1 58616
+read x3 55901
+read x7 5599
+wait 0
+read x4 71323
+wait 0
+wait 0
+read x6 35116
+addc x3 x3 599
+addc x2 x4 6573
+wait 0
+wait 0
+read x5 72720
+wait 0
+read x6 58435
+read x10 50332
+read x10 25150
+wait 0
+addc x9 x2 966
+wait 0
+addc x2 x8 7938
+addc x8 x10 4986
+write x10 9448
+read x1 34264
+add x5 x1 x7
+add x6 x9 x5
+wait 0
+read x2 57583
+read x4 58805
+write x6 90501
+wait 0
+write x6 51100
+read x1 3154
+read x3 73020
+read x10 79046
+read x5 24280
+write x3 77225
+read x7 86210
+wait 0
+write x4 33316
+wait 0
+wait 0
+write x1 91463
+read x7 69613
+write x10 54482
+add x4 x8 x9
+read x10 40068
+wait 0
+wait 0
+read x10 21934
+read x7 98730
+addc x3 x5 7156
+read x6 6025
+addc x6 x1 3035
+add x6 x9 x7
+wait 0
+wait 0
+addc x5 x8 471
+read x7 2662
+addc x7 x5 4291
+addc x9 x5 3688
+wait 0
+read x5 84550
+wait 0
+read x4 96085
+wait 0
+write x2 64886
+add x5 x7 x5
+read x2 37044
+wait 0
+read x1 99366
+addc x4 x5 5053
+addc x8 x4 2313
+wait 0
+read x2 8228
+wait 0
+wait 0
+read x3 1697
+addc x5 x9 4408
+read x4 29099
+addc x10 x8 1083
+read x1 87579
+wait 0
+read x3 53412
+wait 0
+write x5 58370
+wait 0
+addc x7 x6 4519
+read x3 59920
+read x3 72073
+write x9 2098
+read x5 53531
+read x3 78934
+write x8 25790
+read x2 49453
+read x5 56793
+add x9 x1 x10
+wait 0
+read x8 79790
+read x10 93667
+wait 0
+write x4 57299
+addc x8 x10 1927
+wait 0
+read x6 78317
+read x9 95505
+add x9 x9 x9
+addc x1 x6 3754
+addc x8 x6 5204
+wait 0
+read x2 70657
+add x7 x10 x8
+wait 0
+read x2 96362
+wait 0
+wait 0
+addc x8 x2 7978
+addc x6 x4 5373
+add x10 x5 x10
+add x6 x6 x4
+read x6 9824
+addc x6 x6 8660
+read x9 10261
+addc x8 x9 6431
+add x6 x6 x7
+add x10 x3 x6
+write x1 65500
+wait 0
+addc x3 x5 8186
+add x1 x3 x4
+wait 0
+addc x5 x10 894
+addc x7 x7 6434
+read x4 8066
+read x5 78606
+addc x3 x6 5018
+read x3 34014
+read x5 42630
+read x5 2480
+write x5 25833
+addc x8 x10 8460
+addc x2 x2 1873
+read x7 99735
+add x6 x4 x2
+add x2 x7 x10
+write x2 19006
+wait 0
+read x4 95420
+read x10 95837
+wait 0
+wait 0
+read x9 14832
+add x3 x6 x9
+read x9 87814
+addc x8 x3 3697
+write x9 6943
+read x3 67135
+wait 0
+addc x10 x3 5066
+write x6 96757
+read x10 39345
+wait 0
+read x3 87430
+wait 0
+wait 0
+addc x6 x8 3490
+addc x10 x2 4476
+add x2 x6 x10
+write x8 21538
+write x4 17351
+wait 0
+wait 0
+wait 0
+wait 0
+write x8 32531
+read x1 65888
+add x10 x5 x2
+read x8 12774
+add x8 x2 x4
+wait 0
+wait 0
+read x6 93013
+addc x5 x2 6835
+write x4 62554
+write x10 26112
+write x7 16593
+read x9 66361
+read x10 31913
+add x8 x4 x7
+addc x9 x4 5321
+addc x3 x2 3546
+wait 0
+wait 0
+wait 0
+addc x5 x8 7855
+wait 0
+read x7 92194
+read x4 44512
+wait 0
+read x8 78824
+addc x4 x5 1809
+add x7 x1 x7
+read x8 68840
+wait 0
+wait 0
+wait 0
+add x4 x5 x4
+read x2 27661
+write x2 73494
+wait 0
+wait 0
+read x3 12925
+read x6 44783
+addc x5 x4 573
+read x5 57489
+addc x9 x2 8622
+addc x1 x6 7750
+wait 0
+read x9 75493
+add x3 x6 x5
+write x5 23982
+read x6 22756
+wait 0
+wait 0
+add x2 x3 x5
+addc x8 x1 3236
+wait 0
+addc x2 x10 9362
+wait 0
+wait 0
+wait 0
+read x6 88426
+write x5 34969
+write x7 27122
+add x1 x3 x6
+write x8 50996
+wait 0
+read x5 76283
+read x4 54697
+add x1 x7 x1
+wait 0
+write x9 7352
+addc x10 x2 3703
+addc x10 x7 1556
+read x6 15338
+read x6 13889
+write x10 82311
+addc x2 x4 2899
+addc x6 x5 3276
+add x6 x2 x5
+wait 0
+wait 0
+addc x7 x3 8927
+read x3 29126
+wait 0
+addc x10 x2 4938
+addc x7 x2 478
+add x7 x8 x4
+wait 0
+wait 0
+wait 0
+add x5 x10 x10
+wait 0
+add x1 x10 x10
+wait 0
+write x10 72068
+wait 0
+wait 0
+write x6 4024
+read x9 81980
+read x1 75956
+write x7 97570
+wait 0
+wait 0
+add x6 x3 x2
+write x2 30440
+read x4 39546
+read x7 64655
+read x4 60091
+read x3 27508
+wait 0
+read x6 74829
+wait 0
+wait 0
+addc x4 x1 7159
+write x3 16703
+wait 0
+read x8 98804
+read x3 62256
+read x8 69668
+read x8 94925
+read x4 44661
+addc x6 x7 898
+addc x7 x7 6504
+read x1 57588
+wait 0
+write x8 18939
+wait 0
+addc x8 x10 7146
+read x4 32675
+addc x8 x5 7992
+read x4 34745
+add x4 x6 x7
+write x8 52159
+read x2 89802
+wait 0
+addc x7 x6 2881
+wait 0
+addc x7 x4 2632
+addc x1 x3 3338
+wait 0
+read x9 49423
+wait 0
+wait 0
+addc x3 x10 9430
+addc x6 x10 574
+wait 0
+write x9 90332
+addc x3 x1 9568
+wait 0
+add x8 x10 x3
+write x10 37958
+add x9 x10 x8
+wait 0
+addc x9 x10 3193
+read x2 35044
+read x1 68806
+read x6 32345
+add x1 x4 x4
+wait 0
+wait 0
+read x1 95529
+addc x5 x2 1507
+wait 0
+wait 0
+read x8 2272
+read x6 62178
+read x8 16116
+addc x9 x7 1117
+read x5 46092
+addc x10 x9 7295
+wait 0
+add x4 x3 x10
+add x7 x10 x10
+read x2 67416
+read x9 18313
+read x10 75530
+read x5 26900
+read x5 60298
+read x9 87252
+read x9 74064
+wait 0
+read x4 49266
+wait 0
+read x8 98527
+write x2 6894
+wait 0
+wait 0
+write x1 61168
+write x10 74040
+write x2 60501
+read x1 84436
+wait 0
+write x5 62898
+add x3 x6 x8
+wait 0
+wait 0
+read x3 9618
+wait 0
+add x3 x8 x7
+wait 0
+wait 0
+write x9 47588
+write x10 78128
+add x6 x6 x4
+addc x8 x7 2247
+read x8 29719
+read x5 22119
+wait 0
+read x4 98682
+addc x4 x6 1934
+wait 0
+wait 0
+read x4 87090
+wait 0
+write x8 29274
+wait 0
+write x1 31043
+wait 0
+read x3 55270
+read x9 7873
+read x10 27866
+addc x8 x1 302
+wait 0
+read x5 11310
+read x8 37329
+read x8 17952
+wait 0
+addc x2 x10 1875
+read x5 21084
+read x3 68625
+addc x1 x5 6632
+wait 0
+wait 0
+read x7 78360
+add x7 x8 x9
+addc x6 x6 7946
+write x8 3189
+addc x10 x9 4973
+read x9 10565
+read x9 41913
+read x5 18700
+read x7 40667
+addc x6 x10 2084
+read x9 50174
+read x1 8926
+read x1 71941
+wait 0
+add x10 x6 x3
+write x10 89510
+add x10 x3 x9
+wait 0
+wait 0
+wait 0
+wait 0
+add x7 x2 x2
+addc x3 x5 2796
+read x1 53231
+read x2 1597
+add x1 x5 x7
+wait 0
+read x9 51839
+read x5 27597
+read x1 45841
+add x5 x1 x2
+wait 0
+wait 0
+read x6 74978
+addc x1 x7 8235
+read x2 40050
+add x9 x2 x6
+wait 0
+read x10 36395
+wait 0
+addc x6 x5 4461
+wait 0
+add x3 x9 x5
+ENDING TRANSACTION
+declare x1 4344
+declare x2 9363
+declare x3 6731
+declare x4 8419
+declare x5 6952
+declare x6 2192
+declare x7 7492
+declare x8 8342
+declare x9 4624
+declare x10 6730
+add x8 x5 x2
+read x5 51003
+wait 0
+wait 0
+add x9 x2 x3
+wait 0
+wait 0
+write x4 40934
+read x4 96756
+read x7 55570
+read x6 7038
+addc x2 x5 1043
+read x3 42025
+write x9 9838
+add x6 x1 x1
+write x5 84144
+wait 0
+addc x9 x2 9513
+wait 0
+wait 0
+read x3 80192
+wait 0
+wait 0
+read x1 85974
+read x1 73867
+read x6 71659
+read x8 40543
+wait 0
+read x2 94855
+read x2 68883
+wait 0
+read x10 99742
+add x1 x7 x2
+read x8 13547
+read x8 64634
+wait 0
+read x2 98899
+read x9 76356
+write x8 90489
+wait 0
+wait 0
+read x3 72334
+read x7 79932
+wait 0
+wait 0
+addc x3 x8 1748
+wait 0
+add x5 x2 x9
+wait 0
+addc x1 x1 7926
+read x3 77609
+read x9 81519
+wait 0
+add x6 x2 x8
+read x1 40274
+addc x1 x3 4342
+wait 0
+wait 0
+add x8 x10 x2
+read x6 15055
+wait 0
+read x9 86162
+wait 0
+read x2 89605
+read x2 93305
+wait 0
+addc x4 x3 6908
+addc x3 x7 2689
+read x8 54814
+read x9 27808
+read x3 80213
+wait 0
+wait 0
+add x1 x4 x5
+wait 0
+write x6 36161
+read x7 25109
+read x7 73411
+read x5 17607
+addc x7 x5 684
+wait 0
+wait 0
+read x9 75809
+add x10 x5 x6
+write x1 7076
+read x7 91143
+read x4 37958
+read x3 98729
+write x5 20458
+write x1 47954
+addc x7 x2 1993
+addc x1 x1 6889
+write x2 6587
+wait 0
+addc x9 x4 7180
+read x9 75260
+addc x3 x1 475
+addc x2 x9 8239
+read x6 70818
+addc x7 x10 1444
+read x10 26008
+wait 0
+addc x8 x9 3622
+wait 0
+read x4 89806
+write x9 76092
+read x6 25224
+write x2 81133
+addc x10 x8 6439
+wait 0
+write x4 12054
+wait 0
+read x8 66729
+read x5 93537
+read x2 20592
+write x1 37144
+wait 0
+wait 0
+add x2 x2 x2
+read x7 92536
+addc x4 x4 7719
+add x8 x10 x9
+wait 0
+read x4 26791
+add x3 x5 x5
+read x10 96619
+wait 0
+addc x1 x7 3109
+addc x2 x10 7171
+write x8 13305
+wait 0
+wait 0
+write x9 74788
+wait 0
+wait 0
+add x5 x8 x5
+wait 0
+read x6 14083
+read x3 9655
+addc x1 x10 4017
+read x3 94459
+addc x4 x4 7740
+write x6 36163
+addc x7 x2 318
+add x8 x1 x5
+wait 0
+addc x9 x9 2306
+read x6 73606
+write x7 91311
+addc x5 x1 9117
+write x5 63331
+write x10 69037
+wait 0
+read x1 71222
+add x4 x6 x9
+addc x1 x10 5945
+addc x5 x6 9042
+read x7 69589
+wait 0
+addc x5 x9 2810
+read x5 80216
+read x9 76190
+write x7 58871
+wait 0
+read x3 62512
+wait 0
+wait 0
+addc x5 x2 4221
+wait 0
+read x9 24059
+wait 0
+read x2 73270
+write x7 5930
+wait 0
+addc x9 x3 4509
+add x1 x6 x4
+write x3 68709
+read x3 11781
+add x1 x1 x3
+write x2 78163
+wait 0
+addc x8 x4 4107
+read x9 97288
+addc x2 x3 1446
+wait 0
+read x10 89812
+wait 0
+write x10 29902
+read x1 37591
+wait 0
+read x3 41282
+addc x6 x7 9103
+read x9 75679
+addc x4 x3 6929
+write x6 50081
+read x4 46492
+addc x4 x9 1390
+write x3 34019
+wait 0
+read x1 10752
+add x3 x3 x3
+read x10 1583
+read x6 62686
+read x5 11621
+addc x4 x3 1592
+addc x7 x2 70
+addc x5 x1 549
+wait 0
+read x3 32783
+write x4 56442
+read x8 74853
+write x8 43138
+add x5 x9 x5
+addc x6 x4 8749
+add x4 x6 x10
+add x8 x1 x1
+write x9 93300
+write x9 6004
+wait 0
+read x7 18741
+add x3 x7 x7
+addc x5 x8 6510
+add x10 x8 x6
+read x10 9412
+addc x1 x6 516
+addc x8 x7 559
+wait 0
+read x9 63347
+read x9 31162
+read x2 49796
+addc x8 x6 7209
+add x7 x8 x4
+write x6 50888
+wait 0
+add x3 x3 x6
+write x2 93464
+read x4 30421
+wait 0
+add x9 x6 x5
+wait 0
+read x2 20153
+wait 0
+addc x8 x10 3002
+read x10 91372
+read x10 15391
+write x3 15371
+add x2 x2 x10
+read x5 22550
+wait 0
+write x4 56734
+read x7 83429
+read x8 2928
+read x9 22997
+add x2 x8 x5
+add x6 x8 x7
+read x3 55396
+read x9 23442
+addc x5 x1 8511
+wait 0
+wait 0
+read x10 95335
+addc x3 x8 3034
+read x9 7721
+wait 0
+add x9 x4 x10
+wait 0
+read x8 26340
+read x7 61969
+add x1 x3 x2
+read x8 99664
+addc x10 x9 8198
+wait 0
+addc x5 x8 8626
+read x6 22041
+read x4 90258
+add x1 x4 x7
+addc x8 x3 8064
+addc x9 x9 1174
+addc x2 x4 1089
+read x5 28271
+read x6 62157
+addc x4 x3 539
+addc x9 x8 4267
+addc x2 x2 160
+read x2 63030
+add x10 x5 x4
+wait 0
+addc x9 x2 3476
+write x10 86178
+wait 0
+wait 0
+wait 0
+add x7 x8 x5
+addc x9 x3 3659
+addc x10 x10 1817
+wait 0
+read x2 56573
+addc x3 x9 6056
+addc x1 x2 4810
+addc x4 x7 6686
+read x10 34220
+add x1 x8 x7
+addc x10 x7 9497
+wait 0
+wait 0
+wait 0
+read x3 60589
+write x5 62922
+read x6 91141
+wait 0
+wait 0
+read x2 70343
+read x10 15967
+wait 0
+add x1 x10 x4
+addc x1 x5 4667
+write x9 84062
+wait 0
+wait 0
+read x4 13413
+write x4 30477
+add x3 x6 x6
+read x2 45158
+read x7 80230
+add x5 x5 x7
+read x1 27202
+read x3 72944
+wait 0
+read x4 55462
+read x4 2882
+wait 0
+read x5 85225
+wait 0
+read x5 47778
+write x2 4347
+addc x6 x10 7110
+addc x1 x2 1843
+addc x5 x2 4228
+read x10 78116
+wait 0
+add x8 x2 x8
+add x2 x4 x5
+wait 0
+write x2 4652
+read x2 54804
+addc x1 x2 8857
+addc x7 x1 7381
+addc x2 x5 2007
+write x3 68518
+wait 0
+write x10 19169
+wait 0
+write x7 71847
+addc x9 x7 7483
+read x2 70407
+add x7 x6 x2
+read x4 64869
+read x2 73774
+read x9 29907
+write x5 47725
+read x9 86836
+wait 0
+write x3 20444
+wait 0
+wait 0
+wait 0
+addc x7 x8 2955
+addc x5 x7 1834
+read x8 77049
+read x2 10839
+read x9 23750
+wait 0
+read x1 25421
+wait 0
+read x3 64852
+addc x4 x5 6366
+write x1 92903
+addc x10 x8 2202
+read x7 46951
+wait 0
+addc x9 x10 662
+addc x8 x7 206
+read x7 18501
+wait 0
+wait 0
+read x9 27128
+wait 0
+write x1 45167
+wait 0
+write x4 20520
+add x5 x6 x8
+wait 0
+wait 0
+addc x3 x2 4724
+add x7 x4 x2
+addc x10 x10 661
+add x9 x4 x1
+read x9 94724
+write x1 28061
+write x4 15190
+addc x9 x5 5825
+wait 0
+wait 0
+write x5 8652
+addc x6 x9 4171
+read x10 30006
+wait 0
+read x2 46462
+read x10 36993
+wait 0
+read x6 77340
+wait 0
+addc x1 x9 8561
+wait 0
+wait 0
+read x2 5068
+read x5 61857
+wait 0
+read x9 8237
+addc x10 x5 1263
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+write x9 35102
+add x5 x10 x6
+wait 0
+wait 0
+wait 0
+addc x8 x4 56
+add x9 x1 x9
+wait 0
+wait 0
 wait 0
 wait 0
 add x10 x5 x4
 wait 0
 wait 0
-read x10 2035
-write x5 64079
-add x1 x3 x5
 wait 0
-read x3 74196
+read x5 43889
+write x1 21701
 wait 0
 wait 0
 wait 0
-read x7 1055
+addc x7 x4 9823
 wait 0
-read x6 5862
 wait 0
-write x8 66763
-add x9 x5 x5
 wait 0
-write x4 62701
-read x4 33966
 wait 0
-read x3 62043
+read x1 30026
+read x6 53091
+addc x1 x8 1160
+read x2 16622
+addc x2 x2 1960
 wait 0
+write x10 7536
+addc x5 x1 9234
+read x3 92126
+read x9 68745
+write x7 21215
+read x2 76150
+add x10 x7 x2
+read x5 34358
+add x2 x6 x6
+write x1 59568
+add x2 x4 x7
+add x4 x4 x2
+read x10 40090
+read x3 34014
+read x8 54913
+addc x6 x7 6705
 wait 0
+add x9 x9 x6
+addc x9 x1 3150
+read x10 62325
+addc x8 x4 4582
+read x6 99786
+read x10 97169
 wait 0
-add x2 x2 x3
+read x2 60376
+addc x6 x3 9327
 wait 0
+read x2 21862
+read x9 50106
 wait 0
-add x8 x6 x3
+read x4 30523
 wait 0
 wait 0
-add x10 x10 x8
-write x9 13991
+read x3 40379
 wait 0
-add x5 x3 x9
+read x5 35344
+addc x7 x10 3478
 wait 0
-read x4 14418
-addc x5 x5 6932
-wait 0
-wait 0
-read x6 19043
-add x8 x1 x5
-read x3 29083
-wait 0
-wait 0
-wait 0
-add x8 x7 x7
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x1 77717
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x8 90517
-wait 0
-wait 0
-wait 0
-wait 0
-add x3 x1 x10
-add x7 x2 x8
-read x1 97884
-wait 0
-wait 0
-read x2 91391
-wait 0
-read x2 16331
-read x2 73152
-read x2 75412
-wait 0
-write x3 52433
-add x9 x2 x2
-wait 0
-write x9 92969
-write x6 84378
-add x3 x7 x7
-add x7 x7 x10
-wait 0
-add x9 x1 x2
-wait 0
-wait 0
-wait 0
-add x7 x7 x2
-read x6 7804
-add x8 x8 x3
-wait 0
-read x9 42510
-add x8 x10 x4
-add x3 x8 x6
-add x5 x5 x3
-wait 0
-wait 0
-wait 0
-add x7 x8 x1
-wait 0
-wait 0
-wait 0
-wait 0
-read x9 80407
-add x2 x9 x5
-add x8 x8 x7
-add x10 x3 x3
-add x5 x2 x8
-read x2 16578
-wait 0
-write x4 28697
-wait 0
-add x7 x9 x2
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x9 x9 x3
-read x6 88146
-wait 0
-read x10 46041
-wait 0
-add x6 x9 x6
-wait 0
-write x6 75838
-add x4 x7 x6
-wait 0
-add x6 x9 x1
-wait 0
-read x4 20534
+read x1 47491
+read x3 78336
+addc x7 x3 5489
 add x1 x5 x9
-add x2 x1 x8
-wait 0
-wait 0
-wait 0
-add x4 x3 x4
-add x6 x10 x1
-wait 0
-add x5 x7 x1
-wait 0
-wait 0
-add x3 x10 x9
-read x8 82981
-read x3 97014
-read x6 47397
-read x9 27320
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x2 x10 x3
-wait 0
-add x3 x9 x2
-add x7 x2 x7
-add x8 x6 x4
-wait 0
-read x8 13561
-write x3 36125
-read x1 63726
-wait 0
-read x8 95430
-wait 0
-wait 0
-add x4 x10 x8
-add x5 x10 x9
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 25938
-wait 0
-wait 0
-add x8 x5 x10
-wait 0
-add x7 x2 x3
-wait 0
-read x8 28533
-read x6 41543
-wait 0
-wait 0
-add x2 x10 x1
-add x2 x9 x6
-write x1 13947
-add x10 x10 x9
-add x3 x5 x9
-add x2 x1 x6
-wait 0
-read x8 60368
-read x5 29777
-wait 0
-read x6 15531
-wait 0
-read x7 61782
-wait 0
-write x10 47389
-read x3 32248
-read x7 88589
-wait 0
-read x6 12696
-add x9 x4 x9
-add x9 x4 x2
-wait 0
-read x2 7841
-add x3 x3 x4
-add x6 x10 x10
-wait 0
-wait 0
-add x2 x2 x1
-wait 0
-wait 0
-read x8 23127
-add x3 x5 x2
-add x9 x6 x3
-add x9 x2 x5
-wait 0
-write x1 67376
-wait 0
-read x3 39897
-wait 0
-read x4 74259
-write x8 19296
-wait 0
-wait 0
-read x7 78562
-wait 0
-add x6 x5 x6
-add x6 x1 x9
-wait 0
-read x2 8245
-wait 0
-write x8 86399
-read x8 16969
-wait 0
-read x7 80761
-read x4 25042
-add x8 x1 x1
-wait 0
-wait 0
-write x6 53222
-wait 0
-wait 0
-wait 0
-read x2 5997
-wait 0
-write x8 24216
-add x1 x10 x3
-read x2 53185
-read x10 27257
-write x9 58889
-addc x8 x6 8165
-wait 0
-read x8 99156
-wait 0
-add x10 x5 x7
-write x8 90139
-wait 0
-wait 0
-wait 0
-add x2 x6 x4
-add x3 x4 x4
-wait 0
-wait 0
-wait 0
-add x9 x6 x8
-wait 0
-add x4 x6 x4
-wait 0
-wait 0
-write x8 24574
-wait 0
-add x9 x8 x9
-wait 0
-read x9 60008
-wait 0
-wait 0
-read x9 47993
-wait 0
-read x7 26443
-read x5 97337
-add x6 x8 x1
-add x4 x4 x4
-add x7 x5 x10
-wait 0
-wait 0
-add x5 x10 x9
-wait 0
-add x7 x7 x6
-wait 0
-add x3 x2 x9
-wait 0
-wait 0
-add x7 x5 x2
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x8 30930
-wait 0
-read x2 92753
-wait 0
-add x5 x1 x2
-wait 0
-read x5 20260
-read x4 75470
-add x5 x6 x6
-wait 0
-wait 0
-add x10 x7 x6
-wait 0
-wait 0
-add x2 x2 x5
-write x7 35773
-wait 0
-read x6 20004
-wait 0
-wait 0
-wait 0
-add x10 x3 x10
-wait 0
-add x10 x2 x10
-wait 0
-wait 0
-add x10 x8 x7
-wait 0
-wait 0
-read x5 62978
-read x1 96227
-read x10 59176
-wait 0
-wait 0
-read x10 56914
-wait 0
-wait 0
-wait 0
-read x5 33594
-read x2 35115
-read x10 50597
-read x3 36106
-read x3 53383
-read x5 12781
-add x8 x6 x9
-wait 0
-read x9 6168
-wait 0
-read x8 96024
-wait 0
-wait 0
-add x9 x10 x6
-read x10 93734
-wait 0
-wait 0
-read x5 17060
-add x3 x1 x7
-add x6 x1 x6
-write x7 38114
-read x3 78860
-read x5 89265
-add x1 x2 x5
-wait 0
-read x10 26278
-wait 0
-add x3 x3 x7
-wait 0
-read x5 36632
-addc x3 x5 3085
-wait 0
-wait 0
+addc x6 x5 7926
+read x5 95144
+read x1 84040
+read x6 58068
+read x4 9347
+read x9 96110
+read x2 71539
+write x1 48241
+addc x10 x6 6194
+wait 0
+read x6 48213
+write x9 71204
+wait 0
+write x10 88005
+add x6 x5 x9
+read x3 5249
+wait 0
+write x5 8884
+read x6 90162
+wait 0
+read x1 65111
+wait 0
+read x9 39577
+wait 0
+addc x3 x7 2932
+read x3 46835
+write x7 53967
+read x9 10480
+read x9 18534
+read x3 94120
+wait 0
+addc x8 x6 2316
+read x1 3254
+add x7 x7 x1
+write x5 41081
+read x6 60706
+write x1 42790
+read x4 82971
 wait 0
 add x3 x5 x10
-read x4 97813
 wait 0
+read x5 81265
+write x8 39140
 wait 0
-add x8 x2 x6
-add x9 x2 x4
+read x5 8418
+read x9 50903
+addc x2 x4 5206
+write x10 35469
 wait 0
+addc x10 x2 6167
+addc x7 x7 833
+read x2 65699
+addc x1 x8 9665
 wait 0
-add x10 x2 x9
 wait 0
+read x6 25596
+add x6 x9 x5
+addc x9 x8 7455
+addc x3 x5 6129
 wait 0
+write x10 95698
+addc x9 x5 7779
+read x8 18949
+add x9 x5 x4
+read x5 25782
 wait 0
-read x9 93012
+add x2 x6 x6
+write x2 82294
+write x3 11696
+addc x3 x5 7422
+addc x6 x3 4899
+read x7 39113
+addc x4 x10 2984
 wait 0
-add x1 x6 x8
 wait 0
-read x4 15322
 wait 0
-read x3 37116
-add x2 x8 x7
-add x3 x6 x3
 wait 0
-read x4 16875
 wait 0
+add x3 x1 x8
+read x9 87918
 wait 0
+read x5 47217
 wait 0
+write x7 60421
+read x9 61381
+read x3 52777
+addc x6 x5 3456
+read x5 12955
+addc x1 x9 7365
 wait 0
-add x6 x6 x9
+read x5 62902
+read x7 31822
+read x3 63553
+read x7 70196
+add x4 x5 x10
+write x4 2152
 wait 0
-read x9 90192
-add x9 x5 x8
+read x7 56905
+add x8 x8 x3
 wait 0
-read x10 39870
 wait 0
+write x8 76577
 wait 0
-addc x10 x6 492
+read x5 66048
+write x3 3181
+write x7 86312
+read x9 1533
+addc x10 x1 2298
+addc x1 x8 7764
+read x6 13925
+add x1 x5 x7
 wait 0
+write x3 69942
+read x5 61308
+addc x9 x8 6890
 wait 0
+read x6 96819
+read x3 63567
+addc x4 x7 3734
+read x9 64369
 wait 0
+read x8 35148
 wait 0
 wait 0
+read x7 52642
+read x5 28530
 wait 0
-add x3 x6 x8
-add x7 x9 x9
-add x3 x3 x10
-read x10 96356
-add x6 x2 x1
+addc x3 x5 4458
+read x3 8267
 wait 0
-write x7 70184
-wait 0
-wait 0
-read x10 7858
-wait 0
-wait 0
-wait 0
-read x7 91608
-wait 0
-add x4 x7 x5
-wait 0
-wait 0
-read x10 52663
-wait 0
-add x7 x9 x6
-ENDING TRANSACTION
-declare x1 5947
-declare x2 2906
-declare x3 7419
-declare x4 5777
-declare x5 8323
-declare x6 4535
-declare x7 2343
-declare x8 2015
-declare x9 6637
-declare x10 635
-add x7 x4 x8
-read x9 20491
-read x3 24210
-add x2 x7 x4
-wait 0
-wait 0
-add x8 x8 x5
-add x5 x8 x6
-wait 0
-add x4 x7 x9
-wait 0
-add x9 x8 x5
-wait 0
-read x10 89446
-write x3 24611
-wait 0
-add x8 x1 x3
-wait 0
-wait 0
-wait 0
-add x7 x7 x1
-add x4 x2 x5
-add x7 x10 x4
-wait 0
-add x9 x6 x10
-add x8 x4 x2
-read x10 88106
-wait 0
-read x7 53266
-wait 0
-wait 0
-add x2 x6 x10
-wait 0
-wait 0
-wait 0
-add x8 x1 x5
-add x4 x9 x4
-wait 0
-wait 0
-read x2 33268
-wait 0
-wait 0
-wait 0
-read x7 5778
-add x3 x8 x3
-wait 0
-add x2 x3 x6
-wait 0
-wait 0
-wait 0
-wait 0
-add x2 x4 x3
-wait 0
-add x7 x9 x6
-add x1 x6 x6
-wait 0
-read x6 44496
-wait 0
-add x5 x5 x2
-read x4 83516
-wait 0
-read x5 91827
-wait 0
-wait 0
-wait 0
-add x2 x8 x3
-add x5 x8 x8
-wait 0
-wait 0
-add x7 x3 x3
-add x7 x2 x10
-wait 0
-write x7 22124
-wait 0
-wait 0
-wait 0
-add x9 x8 x6
-write x7 21913
-read x4 68934
-read x9 5920
-wait 0
-wait 0
-add x1 x9 x2
-add x5 x2 x9
-wait 0
-read x3 93038
-read x4 74949
-wait 0
-wait 0
-wait 0
-read x10 8424
-write x7 34621
-wait 0
-add x7 x4 x8
-wait 0
-wait 0
-write x8 48214
-read x5 42272
-wait 0
-wait 0
-wait 0
-add x10 x9 x10
-add x5 x1 x6
-read x3 25493
-wait 0
-wait 0
-add x7 x3 x7
-read x10 66309
-wait 0
-wait 0
-add x4 x10 x8
-wait 0
-wait 0
-wait 0
-write x2 89382
-add x2 x3 x3
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x2 x5 x5
-read x5 55408
-wait 0
-wait 0
-add x7 x5 x4
-read x2 78630
-read x6 85662
-wait 0
-wait 0
-write x8 76080
-wait 0
-add x8 x7 x6
-wait 0
-read x10 94876
-read x9 12906
-write x7 28074
-add x4 x9 x10
-read x3 7509
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 88694
-add x8 x3 x8
-read x1 5425
-read x8 37549
-wait 0
-wait 0
-wait 0
-wait 0
-add x7 x5 x5
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x9 5778
-write x3 63439
-write x9 43982
-read x4 49565
-write x3 83899
-add x7 x7 x9
-wait 0
-wait 0
-write x1 18251
-read x4 88251
-read x7 55188
-wait 0
-read x10 56207
-add x6 x2 x3
-wait 0
-add x1 x4 x7
-wait 0
-wait 0
-wait 0
-wait 0
-add x7 x10 x3
-add x7 x8 x4
-add x2 x1 x7
-write x5 49375
-wait 0
-wait 0
+write x10 76645
+write x4 19083
 add x6 x1 x1
 wait 0
-wait 0
-add x5 x1 x2
-add x7 x5 x8
-read x7 13120
-wait 0
-add x2 x2 x9
-wait 0
-wait 0
-add x1 x8 x7
-read x6 32194
-wait 0
-wait 0
-add x5 x1 x3
-add x2 x10 x1
-add x6 x8 x5
-wait 0
-wait 0
-add x10 x7 x10
-add x3 x6 x9
-add x3 x9 x6
-read x3 6111
-wait 0
-wait 0
-add x1 x3 x10
-write x6 29016
-wait 0
-add x7 x6 x8
-read x4 86770
-wait 0
-add x1 x3 x4
-wait 0
-add x9 x2 x8
-wait 0
-wait 0
-wait 0
-wait 0
-read x9 41080
-add x6 x3 x6
-wait 0
-read x1 76583
-wait 0
-write x6 3372
-addc x8 x5 8645
-add x8 x8 x8
-read x9 53258
-add x3 x2 x9
-wait 0
-wait 0
-add x9 x3 x2
-wait 0
-wait 0
-read x10 49206
-read x6 32846
-add x1 x5 x1
-add x2 x2 x7
-wait 0
-read x6 96195
-wait 0
-wait 0
-add x5 x1 x8
-add x8 x1 x2
-add x10 x7 x7
-wait 0
-read x5 85214
-write x9 77358
-wait 0
-wait 0
-read x4 89509
-wait 0
-add x6 x3 x10
-wait 0
-wait 0
-wait 0
-add x1 x10 x6
-add x6 x3 x3
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 41719
-wait 0
-wait 0
-wait 0
-wait 0
-read x1 24786
-wait 0
-add x7 x2 x8
-wait 0
-add x4 x4 x2
-read x4 91158
-wait 0
-add x2 x6 x4
-wait 0
-read x7 1579
-wait 0
-add x10 x5 x8
-add x2 x10 x1
-add x7 x4 x7
-wait 0
-wait 0
-add x3 x6 x10
-wait 0
-add x1 x3 x7
-read x2 10194
-add x6 x3 x2
-wait 0
-wait 0
-wait 0
-read x9 49830
-wait 0
-read x6 1334
-add x10 x10 x5
-read x8 8640
-add x1 x2 x4
-wait 0
-write x5 47105
-wait 0
-add x8 x10 x7
-add x10 x2 x5
-add x3 x7 x6
-add x9 x4 x5
-wait 0
-wait 0
-read x7 19032
-write x5 83886
-add x2 x4 x8
-read x7 8133
-wait 0
-add x4 x2 x7
-wait 0
-wait 0
-wait 0
-write x5 17694
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x5 x7 x4
-add x9 x2 x7
-wait 0
-read x3 93437
-wait 0
-write x10 79392
-read x9 78990
-add x8 x8 x7
-add x3 x3 x3
-write x1 56462
-wait 0
-read x8 4836
-wait 0
-write x3 81983
-wait 0
-read x6 29031
-wait 0
-read x5 63411
-wait 0
-wait 0
-read x6 5837
-add x5 x10 x2
-wait 0
-add x3 x7 x7
-wait 0
-wait 0
-add x9 x5 x6
-add x3 x8 x9
-wait 0
-add x7 x3 x10
-wait 0
-read x8 19455
-wait 0
-read x10 18959
-wait 0
-add x9 x2 x1
-wait 0
-wait 0
-wait 0
-add x8 x6 x8
-read x5 35315
-wait 0
-wait 0
-wait 0
-read x10 92685
-add x3 x8 x4
-wait 0
-read x4 79993
-wait 0
-wait 0
-wait 0
-wait 0
-add x3 x9 x7
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x8 55745
-add x7 x9 x6
-add x5 x10 x6
-wait 0
-wait 0
-add x9 x9 x5
-write x3 58402
-wait 0
-read x9 83710
-wait 0
-add x2 x1 x8
-read x4 4111
-wait 0
-wait 0
-wait 0
-add x9 x9 x7
-add x4 x7 x2
-read x8 25029
-read x4 61318
-add x1 x1 x10
-wait 0
-wait 0
-add x8 x6 x5
-add x6 x7 x4
-wait 0
-add x9 x1 x8
-add x1 x2 x2
-wait 0
-read x9 46960
-read x3 8433
-wait 0
-read x4 84480
-wait 0
-wait 0
-add x2 x9 x10
-wait 0
-wait 0
-wait 0
-add x7 x5 x9
-wait 0
-read x5 70667
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-write x10 35316
-add x6 x4 x2
-add x2 x10 x10
-wait 0
-wait 0
-wait 0
-wait 0
-add x10 x2 x8
-add x7 x2 x2
-read x7 82862
-wait 0
-add x9 x10 x4
-add x4 x1 x10
-add x8 x3 x2
-write x7 16440
-read x7 71173
-read x9 4322
-addc x2 x8 6359
-wait 0
-wait 0
-add x3 x9 x2
-wait 0
-addc x4 x9 1098
-write x2 45368
-wait 0
-wait 0
-wait 0
-add x5 x1 x1
-read x8 61059
-add x3 x2 x3
-add x2 x1 x6
-write x1 68775
-wait 0
-wait 0
-add x7 x1 x1
-addc x5 x2 2939
-read x1 89423
-add x7 x9 x5
-wait 0
-read x10 56862
-read x1 51324
-wait 0
-wait 0
-add x9 x5 x7
-read x1 69979
-wait 0
-read x9 55915
-wait 0
-wait 0
-wait 0
-wait 0
-write x1 76623
-add x4 x5 x2
-read x3 99879
-wait 0
-wait 0
-wait 0
-write x2 20172
-read x2 62727
-write x4 34681
-wait 0
-wait 0
-read x8 51403
-wait 0
+addc x2 x10 6078
+read x2 72381
+read x1 23773
+read x4 63324
+read x2 20953
+read x5 84109
+addc x10 x10 3380
+read x7 32185
+read x7 71156
+wait 0
+write x2 79537
+wait 0
+addc x5 x10 5308
+write x3 2147
+read x2 11445
+addc x9 x9 2959
+wait 0
+read x6 87516
+wait 0
+read x1 13814
+addc x9 x6 5782
+read x9 23710
+addc x10 x9 603
+wait 0
+read x3 8975
+read x6 61096
+add x8 x1 x3
+write x1 16287
+read x5 32925
+wait 0
+wait 0
+addc x10 x3 1360
+read x5 89495
+addc x8 x2 6292
+read x10 69045
+read x9 95123
+addc x5 x9 2125
+addc x3 x2 44
+wait 0
+addc x5 x8 1321
+write x9 80752
+addc x5 x6 1457
+read x9 85329
+addc x9 x5 6638
+wait 0
+add x4 x6 x6
+read x5 79902
+wait 0
+read x9 12574
+wait 0
+addc x3 x10 5493
+addc x5 x2 4140
+wait 0
+write x2 57528
+wait 0
+read x6 16898
+addc x10 x4 6319
+write x9 95128
+read x2 88397
+add x1 x6 x9
+write x10 82963
+wait 0
+addc x2 x9 1391
+read x9 42797
+addc x10 x10 3508
+addc x3 x1 8310
 add x5 x8 x8
-ENDING TRANSACTION
-declare x1 8679
-declare x2 483
-declare x3 4539
-declare x4 9248
-declare x5 3220
-declare x6 896
-declare x7 8746
-declare x8 9898
-declare x9 8917
-declare x10 4364
 wait 0
 wait 0
+write x2 22581
+read x10 13435
+write x1 94276
 wait 0
-read x6 48819
+read x2 49876
 wait 0
-add x2 x7 x1
+addc x3 x5 5289
+addc x4 x1 1549
 wait 0
+addc x4 x4 3886
+read x9 99630
+addc x4 x4 8664
+read x4 43776
+read x6 38858
+read x7 47104
+addc x3 x1 880
+read x1 8207
+read x10 39280
+write x3 50577
+read x6 29584
 wait 0
-wait 0
-wait 0
-add x8 x6 x4
-wait 0
-wait 0
-read x6 33676
-wait 0
-add x8 x3 x5
-wait 0
-wait 0
-wait 0
-addc x1 x3 7617
-read x9 11941
-wait 0
-wait 0
-add x4 x8 x1
-read x9 78054
-read x7 32542
-wait 0
-wait 0
-read x7 18507
-wait 0
-wait 0
-add x4 x5 x9
-add x8 x7 x4
-wait 0
-add x8 x10 x2
-wait 0
-wait 0
-wait 0
-wait 0
-read x8 40730
-read x2 69966
-read x5 41599
-write x6 13537
-write x2 58791
-wait 0
-add x1 x7 x2
-wait 0
-wait 0
-add x8 x1 x5
-read x1 26098
-read x6 35370
-wait 0
-wait 0
-read x1 45347
-write x6 6647
-read x5 95889
-read x3 54998
-add x6 x5 x3
-wait 0
-wait 0
-read x8 79700
-wait 0
-wait 0
-add x7 x4 x10
-wait 0
-add x10 x7 x7
-add x4 x7 x2
-read x8 76655
-write x10 18741
-add x9 x7 x5
-wait 0
-add x6 x10 x10
-wait 0
-wait 0
-wait 0
-add x3 x6 x3
-wait 0
-wait 0
-wait 0
-write x10 48682
-add x2 x7 x6
-write x6 46600
-read x8 14005
-add x5 x5 x1
-add x6 x1 x2
-read x10 69239
-wait 0
-wait 0
-wait 0
-wait 0
-add x10 x1 x7
-wait 0
-wait 0
-read x3 62039
-wait 0
-add x2 x5 x7
-wait 0
-add x6 x1 x7
-read x10 42042
-wait 0
-wait 0
-wait 0
-wait 0
-read x1 14747
-wait 0
-wait 0
-add x4 x8 x8
-wait 0
-read x2 39185
-add x3 x1 x8
-add x3 x7 x1
-read x9 86866
-add x10 x6 x10
-read x5 2183
-addc x2 x2 1098
-wait 0
-wait 0
-read x9 44935
-add x9 x1 x1
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-addc x3 x4 1730
-wait 0
-wait 0
-add x2 x5 x9
-read x9 91113
-wait 0
-add x9 x2 x6
-wait 0
-wait 0
-wait 0
-wait 0
-read x5 76678
-wait 0
-add x7 x6 x5
-wait 0
-wait 0
-add x7 x5 x1
-wait 0
-wait 0
-wait 0
-write x8 5647
-wait 0
-add x2 x7 x1
-read x3 91171
-wait 0
-read x3 25368
-add x4 x8 x10
-wait 0
-read x9 73820
-read x5 48426
 add x9 x3 x6
-read x3 12387
-read x10 88026
+addc x10 x9 3498
+add x5 x2 x10
+addc x4 x10 5945
+read x3 14412
 wait 0
+read x5 46787
+write x4 42188
 wait 0
-add x9 x1 x7
 wait 0
-read x1 71206
+read x4 3666
 wait 0
-add x3 x8 x10
+addc x3 x9 7568
 wait 0
-read x8 85253
-add x5 x10 x10
-add x4 x5 x4
-read x3 91309
 wait 0
+write x10 6901
 wait 0
-read x8 26268
-read x2 41754
-add x6 x2 x10
+read x1 90748
+addc x3 x4 3491
+read x1 66934
+addc x1 x4 4187
+addc x2 x8 2165
 wait 0
 wait 0
+read x7 57121
+write x1 77101
 wait 0
+read x5 61188
+read x1 85085
+read x2 32325
 wait 0
-read x5 75547
-write x10 31187
 wait 0
+read x7 26922
+addc x10 x9 2041
+write x6 46280
 wait 0
+addc x2 x8 7476
 wait 0
-write x5 39710
-add x10 x2 x8
-read x6 39506
-read x4 49020
-add x7 x4 x8
 wait 0
-read x5 10447
+read x7 74024
+add x2 x3 x5
 wait 0
+write x4 60395
+read x8 84410
+read x1 65761
 wait 0
+addc x3 x9 82
+read x5 84253
+addc x6 x3 4721
 wait 0
 wait 0
-add x3 x3 x5
+write x6 69438
+addc x5 x6 758
 wait 0
+read x10 81986
 wait 0
-add x2 x10 x9
+read x9 63276
+read x4 33988
+write x8 76953
+read x3 21947
+write x6 58758
+addc x3 x8 6675
+addc x8 x4 8683
+read x6 72392
+write x6 67380
+read x5 46357
 wait 0
+addc x2 x1 1869
+read x3 44001
+addc x10 x10 3826
 wait 0
 wait 0
+add x10 x3 x5
+write x3 21964
 wait 0
+read x3 79263
 wait 0
-add x4 x10 x1
 wait 0
+read x10 6191
+addc x1 x4 4666
+read x8 31167
+read x7 80736
+write x6 92366
+addc x9 x7 747
 wait 0
+write x9 54310
 wait 0
-add x8 x7 x7
+write x1 15477
+read x5 18578
+read x9 1111
 wait 0
+read x9 21081
+read x4 22387
 wait 0
+write x6 17275
+addc x2 x8 5586
 wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x5 85497
-add x9 x9 x5
-read x7 84050
-wait 0
-wait 0
-wait 0
-read x2 16499
-wait 0
-read x1 65666
-read x10 60645
-wait 0
-read x8 6944
-wait 0
-wait 0
-wait 0
-read x4 45093
-wait 0
-add x1 x5 x8
-wait 0
-wait 0
-wait 0
-wait 0
-write x3 83092
-read x9 39289
-read x3 6437
-wait 0
-read x1 58134
-read x10 64890
-add x4 x3 x10
-wait 0
-wait 0
-add x1 x10 x9
-add x9 x3 x1
-read x2 8792
-add x9 x6 x5
-wait 0
-add x10 x4 x6
-read x10 66847
-wait 0
-read x2 54942
-wait 0
-wait 0
-add x7 x2 x5
-wait 0
-add x8 x8 x9
-read x4 96901
-wait 0
-add x10 x8 x2
-write x7 52210
-wait 0
-wait 0
-wait 0
-wait 0
-add x4 x2 x1
-write x2 69397
-read x2 89085
-wait 0
-add x2 x5 x5
-wait 0
-read x5 92645
-read x9 84022
-read x4 17260
-add x3 x10 x4
-wait 0
-read x10 55344
-add x1 x10 x8
-read x1 26222
-wait 0
-add x8 x3 x5
-wait 0
+addc x1 x1 4332
+addc x7 x4 7843
+addc x2 x8 9216
+read x2 97018
+read x5 11311
+wait 0
+add x5 x6 x3
+write x8 45767
+read x10 39849
+read x4 92245
+read x1 88903
+addc x8 x2 1525
+read x4 42091
+addc x4 x1 4265
+wait 0
+read x9 57891
+write x2 33132
+addc x9 x2 4318
+addc x3 x3 6316
+write x8 50767
+wait 0
+add x7 x4 x2
+add x1 x6 x4
+write x7 76611
+read x4 62300
+add x7 x4 x4
+read x7 47447
+read x7 78543
+wait 0
+wait 0
+read x6 56152
+write x2 61316
+wait 0
+read x8 68715
+wait 0
+write x6 37239
+read x8 2433
+read x5 90307
+read x5 64341
+read x1 9881
+add x4 x3 x2
+read x4 2945
+read x3 80826
+read x7 46125
+write x2 66179
+wait 0
+wait 0
+add x3 x3 x2
+wait 0
+read x3 77161
+read x5 49473
+add x2 x10 x2
+read x4 99920
+addc x1 x3 4164
+read x1 96348
+read x6 43763
+wait 0
+addc x5 x6 8615
+read x6 69859
+read x8 21190
+read x2 35185
+read x3 47830
+read x1 64422
+write x6 16440
+addc x7 x2 9271
+read x7 70446
+wait 0
+add x6 x5 x4
+read x8 10176
+read x8 17050
+wait 0
+wait 0
+read x2 30300
+add x4 x7 x1
+read x10 47185
+write x5 29685
+write x5 12912
+read x8 71403
+wait 0
+write x10 24772
+add x8 x5 x6
+read x6 11602
+wait 0
+addc x9 x8 8710
+write x1 31417
+wait 0
+add x5 x3 x3
+wait 0
+wait 0
+write x2 25176
+read x6 32312
 wait 0
 wait 0
 add x3 x6 x7
-wait 0
-read x3 15979
-add x9 x3 x5
-write x6 88399
-wait 0
-read x4 49386
-read x9 52855
-add x8 x6 x3
-wait 0
-read x2 59130
-add x6 x4 x9
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x9 x7 x6
-wait 0
-wait 0
-read x9 7033
-wait 0
-wait 0
-wait 0
-wait 0
-add x3 x3 x9
-wait 0
-wait 0
-wait 0
-wait 0
-read x2 10818
-wait 0
-wait 0
-wait 0
-wait 0
-read x8 36911
-addc x7 x1 814
-add x10 x6 x10
-add x8 x1 x5
-write x2 23638
-add x7 x10 x9
-wait 0
-add x10 x5 x2
-wait 0
-wait 0
-wait 0
-wait 0
-read x9 76360
-read x1 45826
-add x1 x9 x7
-wait 0
-read x7 73640
-wait 0
-add x7 x6 x1
-wait 0
-wait 0
-wait 0
-add x8 x1 x8
-wait 0
-wait 0
-add x2 x4 x6
-read x3 96680
-write x5 75601
-wait 0
-wait 0
-read x4 76519
-write x6 42360
-read x7 43319
-wait 0
-wait 0
-wait 0
-read x7 55370
-add x8 x2 x2
-add x8 x9 x7
-wait 0
-add x9 x10 x2
-add x1 x7 x7
-wait 0
-wait 0
-wait 0
-wait 0
-read x3 56769
-add x4 x9 x4
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x8 x8 x10
-read x9 3940
-add x3 x3 x2
-read x5 90145
-read x4 76570
-wait 0
-wait 0
-write x6 97618
-wait 0
-write x2 86227
-wait 0
-add x1 x1 x3
-wait 0
-read x6 4939
-wait 0
-wait 0
-add x10 x7 x7
-add x10 x4 x3
-wait 0
-read x3 22178
-read x9 68928
-add x7 x1 x7
-wait 0
-read x3 79539
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x1 9563
-wait 0
-wait 0
-add x9 x1 x5
-add x6 x6 x3
-read x4 56167
-read x3 97482
-wait 0
-add x10 x5 x5
-wait 0
-read x5 92788
-wait 0
-wait 0
-wait 0
-read x2 84270
-wait 0
-read x9 69608
-write x1 74825
-wait 0
-wait 0
-add x2 x9 x6
-wait 0
-wait 0
-read x1 90165
-wait 0
-add x2 x7 x2
-wait 0
-read x7 57625
-add x4 x9 x1
-read x7 73416
-write x4 90068
-wait 0
-add x8 x1 x8
-add x5 x6 x1
-add x9 x10 x7
-add x4 x8 x10
-add x8 x2 x9
-read x5 31075
-read x2 67753
-add x10 x10 x7
-add x4 x4 x2
-add x4 x1 x4
-read x3 53929
-read x3 90857
-wait 0
-wait 0
-read x3 90901
-wait 0
-wait 0
-add x9 x9 x1
-read x6 86301
-read x3 50390
-wait 0
-add x1 x4 x3
-wait 0
-wait 0
-wait 0
-add x8 x1 x3
-add x5 x2 x9
-read x5 1971
-read x3 12657
-read x10 55937
-wait 0
-add x1 x10 x9
-read x10 38746
-read x8 7103
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-addc x8 x7 3350
-add x7 x2 x8
-wait 0
-read x4 61114
-wait 0
-wait 0
-read x8 58231
-add x3 x1 x6
-wait 0
-add x7 x7 x3
-wait 0
-wait 0
-read x10 92934
-add x3 x1 x9
-wait 0
-read x7 76652
-add x5 x8 x4
-wait 0
-add x4 x1 x4
+read x8 1915
+read x3 93373
+wait 0
+read x5 53632
+addc x5 x2 9766
+wait 0
+read x8 39836
+read x6 12192
+addc x9 x4 9344
+wait 0
+write x7 3096
+write x2 2900
+read x3 82847
+addc x8 x8 1069
+addc x9 x3 3280
+addc x6 x4 6698
+add x7 x1 x2
+addc x3 x5 9248
+write x4 7665
+read x6 64389
+read x3 60001
+read x9 83171
+addc x10 x4 5148
+add x8 x4 x3
+read x7 12757
+wait 0
+write x7 99952
+addc x5 x1 5840
+wait 0
+wait 0
+add x10 x2 x6
+addc x9 x3 5268
+add x1 x5 x5
+write x4 3229
+write x4 68645
+read x6 26362
+write x3 47569
+addc x7 x6 4343
+addc x8 x10 564
+write x1 25345
+wait 0
+addc x9 x2 2302
+wait 0
+addc x8 x9 4379
+read x1 54271
+write x1 4801
+write x1 33935
+read x3 25540
+wait 0
+write x4 65976
+wait 0
+wait 0
+wait 0
+write x1 26565
+addc x6 x9 4859
+addc x8 x3 5022
+read x1 91747
+wait 0
+write x8 60136
+read x4 41974
+read x4 35825
+read x4 98362
+read x4 94700
+wait 0
+wait 0
+write x3 54624
+read x6 33711
+read x9 36634
+wait 0
+wait 0
+add x9 x6 x10
+wait 0
+addc x1 x10 3509
+read x2 40466
+read x1 88368
+wait 0
+add x5 x6 x9
+addc x10 x8 7713
+write x6 98935
+read x6 66665
+read x2 7935
+write x5 15001
+read x2 70703
+wait 0
+read x9 74560
+addc x4 x6 5975
 ENDING TRANSACTION
-declare x1 5662
-declare x2 2150
-declare x3 4800
-declare x4 9135
-declare x5 6748
-declare x6 1284
-declare x7 5932
-declare x8 767
-declare x9 9109
-declare x10 1626
-add x7 x6 x5
+declare x1 3576
+declare x2 2189
+declare x3 8104
+declare x4 5684
+declare x5 746
+declare x6 2622
+declare x7 7832
+declare x8 1490
+declare x9 6572
+declare x10 2900
+read x4 50053
+read x3 20126
+read x1 69192
+addc x4 x2 9610
+add x8 x3 x7
 wait 0
-read x7 72186
-add x8 x10 x7
-read x7 9168
 wait 0
-read x6 66546
 wait 0
-add x1 x8 x1
 wait 0
+add x2 x5 x8
+read x7 44673
+read x10 95797
+addc x7 x6 4584
+add x1 x3 x4
 wait 0
-add x6 x1 x3
 wait 0
+read x10 61710
+read x3 22793
+read x3 8976
+read x5 22982
 wait 0
+read x5 41926
 wait 0
 wait 0
-write x8 33090
-add x8 x5 x6
-add x3 x6 x10
-add x7 x9 x5
-add x4 x7 x2
-add x7 x8 x4
-add x5 x8 x8
-read x1 13063
 wait 0
-add x8 x4 x5
-read x6 57621
+addc x7 x8 1957
 wait 0
-write x9 94995
-add x3 x5 x1
 wait 0
 wait 0
+write x3 44016
 wait 0
-write x7 20491
+read x2 12677
+addc x8 x6 8056
+read x4 85092
 wait 0
-wait 0
-add x10 x6 x8
-read x7 22184
-add x6 x1 x6
-wait 0
-read x6 34254
-wait 0
-read x10 9299
-wait 0
-wait 0
-wait 0
-read x7 19009
-read x10 54625
-wait 0
-wait 0
-read x2 30883
-wait 0
-addc x9 x3 2373
-read x4 51091
-read x4 39768
-add x1 x10 x1
-add x6 x8 x7
-read x10 3343
-read x6 8994
-wait 0
-wait 0
-add x9 x6 x5
-read x1 48723
-read x1 57224
-add x6 x6 x9
-add x1 x9 x4
-add x8 x8 x6
-read x1 73956
-read x2 26293
-read x2 45874
-read x9 45275
-read x4 23614
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x1 66870
-wait 0
-wait 0
-add x9 x8 x7
-add x4 x1 x1
-read x7 25576
-add x1 x1 x4
-add x1 x5 x10
-add x5 x1 x1
-wait 0
-addc x6 x9 561
-add x9 x9 x2
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 41370
-read x7 65527
-wait 0
-wait 0
-read x1 23972
-wait 0
-add x9 x10 x2
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x2 x9 x2
-wait 0
-wait 0
-wait 0
-add x6 x10 x8
-add x2 x1 x2
-wait 0
-wait 0
-wait 0
-read x2 78400
-addc x2 x1 3807
-read x8 39550
-addc x7 x4 3772
-read x3 47485
-wait 0
-read x10 69178
-wait 0
-wait 0
-add x8 x4 x10
-wait 0
-wait 0
-read x10 48920
-add x1 x3 x10
-wait 0
-wait 0
-wait 0
-wait 0
-write x8 95556
-wait 0
-read x3 34404
-wait 0
-wait 0
-read x7 21693
-write x7 70975
-wait 0
-wait 0
-wait 0
-read x4 27974
-wait 0
-add x7 x5 x1
-add x9 x10 x4
-wait 0
-read x6 87074
-read x9 67519
-wait 0
-wait 0
-wait 0
-write x9 27192
-add x10 x7 x10
-wait 0
-add x1 x4 x7
-wait 0
-wait 0
-add x2 x5 x10
-add x1 x10 x5
-addc x10 x9 9344
-wait 0
-add x9 x7 x6
-wait 0
-wait 0
-wait 0
-wait 0
-read x3 88622
-wait 0
-wait 0
-read x10 70940
-wait 0
-read x9 28885
-wait 0
-wait 0
-read x10 51686
-wait 0
-wait 0
-read x5 84264
-wait 0
-add x9 x3 x10
-add x5 x6 x6
-add x7 x5 x3
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 42524
-wait 0
-wait 0
-read x1 76831
-wait 0
-add x2 x5 x3
-wait 0
-add x7 x3 x3
-read x9 66752
-wait 0
-wait 0
-wait 0
-write x7 38841
-wait 0
-wait 0
-wait 0
-add x5 x7 x2
-wait 0
-add x4 x2 x9
-wait 0
-read x10 32660
-add x9 x7 x4
-wait 0
-add x5 x4 x6
-wait 0
-wait 0
-wait 0
-read x4 38973
-wait 0
-wait 0
-wait 0
-wait 0
-read x4 23601
-add x4 x3 x6
-read x8 59000
-wait 0
-wait 0
-read x10 86085
-wait 0
-wait 0
-wait 0
-add x8 x4 x7
-add x7 x5 x1
-add x6 x3 x3
-wait 0
-wait 0
-read x7 11040
-read x2 77107
-add x10 x4 x7
-wait 0
-wait 0
-wait 0
-wait 0
-add x6 x10 x1
-read x9 22478
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x9 x1 x3
-wait 0
-wait 0
-wait 0
-wait 0
-add x9 x7 x8
-wait 0
-wait 0
-wait 0
-read x2 77350
-wait 0
+read x6 29901
+addc x9 x8 4713
 add x8 x10 x1
-wait 0
-read x1 23501
-add x2 x1 x3
-add x8 x5 x5
-addc x3 x3 4051
-read x1 23183
-wait 0
-wait 0
-wait 0
-add x7 x8 x10
-wait 0
-add x7 x7 x3
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-read x6 71556
-wait 0
-read x5 15109
-read x4 96671
-add x7 x1 x6
-read x8 51030
-wait 0
-wait 0
-read x1 39982
-wait 0
-read x5 56125
-wait 0
-read x8 52392
-read x10 72220
-add x3 x4 x3
-addc x10 x6 2945
-add x7 x8 x7
-wait 0
-add x6 x9 x10
-read x2 2119
-wait 0
-write x6 73533
-wait 0
-wait 0
-wait 0
-wait 0
-write x2 95739
-wait 0
-wait 0
-add x1 x1 x4
-wait 0
-wait 0
-wait 0
-read x4 19754
-read x9 49848
-wait 0
-read x2 10254
-wait 0
-wait 0
-wait 0
-add x3 x2 x8
-add x4 x2 x6
-add x3 x1 x6
-read x9 15520
-write x9 22290
-wait 0
-read x10 78321
-add x5 x7 x7
-add x7 x6 x7
-wait 0
-wait 0
-read x1 44909
-read x7 82044
-wait 0
-wait 0
-add x9 x10 x9
-wait 0
-wait 0
-read x9 57532
-wait 0
-read x3 2367
-add x1 x7 x5
-wait 0
-add x6 x1 x7
-wait 0
-write x3 83108
-read x9 7632
-wait 0
-read x9 51204
-read x2 75005
-wait 0
-read x10 21436
-read x4 37050
-wait 0
-wait 0
-write x5 2134
-wait 0
-add x4 x3 x2
-add x4 x8 x1
-wait 0
-wait 0
-add x7 x4 x9
-wait 0
-add x3 x2 x4
-wait 0
-add x2 x3 x7
-wait 0
-write x2 80063
-read x2 24740
-read x10 80379
-add x7 x5 x4
-wait 0
-add x10 x2 x4
-wait 0
-add x3 x6 x8
-wait 0
-read x5 80390
-add x1 x10 x7
-wait 0
-wait 0
-wait 0
-wait 0
-add x1 x7 x3
-add x4 x2 x5
-wait 0
-read x10 26571
-wait 0
-wait 0
-read x2 77024
-wait 0
-add x2 x1 x3
-add x7 x4 x7
-wait 0
-read x1 98703
-read x7 9028
-wait 0
-wait 0
-wait 0
-add x2 x1 x4
-write x3 98988
-add x1 x1 x5
-wait 0
-wait 0
-wait 0
-wait 0
-add x8 x7 x4
-wait 0
-wait 0
-read x5 78870
-add x2 x4 x7
-wait 0
-read x4 8891
-wait 0
-wait 0
-wait 0
-add x6 x6 x5
-wait 0
-wait 0
-wait 0
-add x9 x6 x1
-wait 0
-wait 0
-wait 0
-add x1 x9 x7
-wait 0
-wait 0
-wait 0
-add x7 x3 x7
-wait 0
-wait 0
-read x2 59664
-read x10 4947
-read x2 42104
-wait 0
-add x7 x3 x5
-wait 0
-wait 0
-add x9 x5 x6
-wait 0
-read x4 60042
-add x7 x7 x2
-add x4 x6 x5
-read x9 90114
-wait 0
-wait 0
-add x2 x5 x1
-wait 0
-read x8 37482
-wait 0
-add x5 x5 x5
-wait 0
-add x4 x2 x10
-wait 0
-read x1 95096
-wait 0
-wait 0
-add x2 x1 x5
-wait 0
-wait 0
-wait 0
-wait 0
-add x1 x10 x6
-add x10 x5 x10
-wait 0
-wait 0
-wait 0
-read x6 33705
-wait 0
-wait 0
-add x7 x5 x7
-wait 0
+write x9 57501
+addc x5 x4 1018
+write x1 73948
+write x8 48984
+write x7 83506
+wait 0
+read x5 87079
+read x2 12610
+read x1 44006
+write x9 47284
+read x6 98796
 add x10 x1 x3
 wait 0
+addc x2 x8 2859
+read x8 51482
 wait 0
-write x1 47283
-add x9 x4 x5
+read x6 70191
+read x8 82840
+addc x7 x1 9800
+write x5 54974
+addc x2 x6 2264
+read x8 3182
+wait 0
+read x4 62368
+addc x5 x10 7368
+addc x5 x3 1340
+read x9 41808
+add x8 x7 x6
+write x4 79803
+read x4 88029
 wait 0
 wait 0
-add x10 x6 x3
-addc x2 x9 270
-add x8 x8 x1
-wait 0
-add x3 x2 x1
-wait 0
-write x2 66101
-add x10 x9 x4
-read x8 78964
+addc x1 x7 5616
+read x7 20807
+read x8 99712
 wait 0
 wait 0
-add x1 x9 x3
-read x3 94183
-add x3 x8 x7
+wait 0
+wait 0
+wait 0
+addc x5 x9 6931
+read x7 73550
+read x6 85446
+wait 0
+read x10 84138
+write x5 89059
+wait 0
+read x4 95285
+write x7 3611
+wait 0
+read x3 5951
+addc x8 x8 2243
+addc x3 x1 6243
+write x6 80571
+addc x7 x2 2572
+wait 0
+addc x5 x6 4993
+wait 0
+write x3 2745
+read x10 26917
+read x10 56787
+add x2 x2 x7
+read x3 54246
+add x7 x7 x8
+write x1 41799
+write x7 46202
+add x5 x2 x6
+addc x3 x8 9172
+read x7 40001
+read x9 88704
+read x3 37486
+addc x6 x2 8390
+read x2 22044
+read x5 75565
+read x2 85914
+write x6 75027
+write x1 74702
+addc x9 x2 7558
+read x2 64367
+read x3 66342
+addc x6 x3 6161
+read x6 65699
+read x10 30976
+wait 0
+read x8 14893
+read x8 91536
+add x9 x4 x8
+wait 0
+addc x10 x6 7560
+wait 0
+read x9 43355
+read x6 15902
+wait 0
+add x8 x3 x7
+addc x5 x1 4928
+read x2 1261
+read x3 26676
+read x1 44423
+write x6 26781
+read x10 55420
+wait 0
+wait 0
+wait 0
+read x5 91992
+wait 0
+write x8 6407
+addc x2 x6 1757
+addc x4 x7 569
+addc x3 x9 2351
+wait 0
+read x8 87795
+read x7 20013
+read x2 37992
+read x6 3062
+add x7 x8 x3
+add x3 x1 x1
+wait 0
+addc x9 x8 9470
+read x1 12066
+addc x10 x2 573
+wait 0
+wait 0
+read x5 53179
+read x1 12555
+read x10 58619
+wait 0
+wait 0
+read x7 57809
+wait 0
+read x5 99972
+wait 0
+write x4 80230
+write x7 64813
+addc x1 x6 4633
+add x7 x6 x8
+wait 0
+add x1 x3 x2
+addc x8 x10 5362
+wait 0
+wait 0
+read x5 97740
+add x2 x8 x2
+read x5 40649
+wait 0
+read x4 68419
+wait 0
+add x2 x6 x2
+write x3 5726
+addc x7 x1 1032
+read x4 96681
+add x6 x8 x9
+read x2 6860
+write x5 86597
+write x7 49342
+addc x9 x6 6276
+read x7 70681
+read x2 68096
+wait 0
+read x8 24692
+read x1 25805
+addc x9 x3 6584
+read x2 8782
+read x3 8368
+read x6 85099
+add x4 x7 x5
+read x1 88826
+addc x7 x2 6785
+read x1 10410
+read x3 48007
+read x6 44880
+write x2 15085
+addc x7 x9 8839
+wait 0
+wait 0
+wait 0
+addc x3 x10 3903
+wait 0
+read x4 1040
+addc x10 x3 121
+write x10 35922
+add x6 x4 x6
+read x3 44540
+add x4 x4 x1
+read x10 17371
+read x10 97741
+read x9 8295
+add x10 x1 x10
+wait 0
+addc x3 x6 1252
+addc x1 x4 1654
+wait 0
+addc x4 x4 6667
+add x3 x7 x4
+read x4 73221
+wait 0
+read x2 18399
+wait 0
+wait 0
+addc x5 x3 4990
+wait 0
+add x7 x10 x4
+read x3 80392
+read x6 81188
+add x2 x6 x7
+wait 0
+read x9 45252
+wait 0
+addc x5 x6 3721
+read x3 15911
+add x8 x10 x4
+write x10 54802
+add x9 x1 x5
+write x4 95945
+read x9 91068
+wait 0
+wait 0
+wait 0
+read x2 41356
+wait 0
+read x5 38120
+addc x7 x6 1972
+read x10 80426
+add x7 x10 x7
+write x6 53628
+wait 0
+read x7 57996
+read x4 87882
+wait 0
+add x1 x1 x8
+read x1 41245
+wait 0
+read x4 52867
+add x5 x3 x10
+add x5 x7 x4
+addc x6 x9 4772
+add x3 x2 x2
+add x10 x5 x4
+addc x4 x1 6843
+addc x2 x2 6532
+write x7 52282
+add x5 x4 x5
+addc x6 x2 5438
+read x8 68577
+add x4 x3 x10
+read x8 89844
+write x4 22446
+wait 0
+add x3 x2 x8
+addc x8 x4 3440
+wait 0
+read x10 60797
+wait 0
+read x3 78321
+wait 0
+wait 0
+wait 0
+read x1 95376
+addc x2 x1 4469
+addc x9 x8 4916
+addc x8 x3 5885
+wait 0
+addc x6 x2 754
+read x4 73494
+addc x7 x3 3427
+wait 0
+read x6 29923
+write x8 34593
+wait 0
+write x6 46219
+write x9 13060
+wait 0
+read x4 41578
+wait 0
+read x9 83168
+read x10 48904
+read x2 10754
+read x1 28939
+read x8 6723
+read x9 41187
+read x1 22880
+add x2 x3 x5
+wait 0
+read x3 85599
+wait 0
+read x5 96787
+wait 0
+wait 0
+add x8 x3 x8
+write x4 95170
+addc x5 x7 2273
+read x8 25599
+read x1 64532
+add x7 x4 x2
+read x3 73367
+wait 0
+add x10 x9 x9
+write x10 55718
+read x9 3379
+read x3 29553
+read x5 41430
+addc x5 x4 7204
+add x7 x3 x5
+read x6 19222
+wait 0
+addc x6 x9 4734
+read x1 76011
+wait 0
+read x3 45980
+wait 0
+add x7 x1 x7
+write x2 17300
+addc x9 x10 9796
+read x6 90454
+read x2 13930
+read x6 76043
+read x1 74305
+wait 0
+wait 0
+read x9 67256
+wait 0
+read x2 25671
+wait 0
+add x2 x2 x6
+read x7 90596
+read x9 29862
+read x8 18373
+wait 0
+wait 0
+addc x9 x2 1370
+wait 0
+wait 0
+wait 0
+wait 0
+read x2 75612
+read x7 37755
+wait 0
+write x1 87543
+read x8 54254
+wait 0
+add x6 x7 x5
+read x2 4536
+read x3 41863
+wait 0
+wait 0
+read x1 18783
+read x2 49899
+wait 0
+wait 0
+read x8 12429
+add x1 x1 x4
+read x4 69924
+wait 0
+read x3 38627
+wait 0
+wait 0
+add x9 x4 x6
+wait 0
+write x3 69545
+add x9 x2 x5
+addc x10 x4 7617
+read x6 70652
+add x3 x2 x9
+write x10 61661
+wait 0
+read x3 55107
+write x7 89079
+read x9 41995
+read x10 46630
+read x10 19283
+read x8 13637
+add x8 x10 x8
+addc x4 x7 5322
+read x5 17698
+read x7 41137
+wait 0
+read x10 12377
+write x2 8330
+read x2 76302
+read x5 22208
+read x6 72494
+write x8 67231
+addc x7 x4 7292
+wait 0
+wait 0
+addc x4 x6 9779
+wait 0
+write x7 13993
+wait 0
 add x3 x8 x9
-read x4 87872
-read x9 23658
-read x5 74974
+add x6 x10 x3
+addc x8 x7 7141
+addc x2 x5 8603
+write x8 16236
+write x5 19878
+add x7 x9 x5
+read x1 9901
+addc x2 x8 9846
+read x1 19455
+add x6 x8 x8
+read x7 2785
+read x2 89795
+read x1 31860
+read x2 10843
+add x4 x7 x4
+addc x2 x6 7971
+addc x10 x9 1321
+read x10 48199
+wait 0
+addc x2 x4 9858
+write x10 55206
+addc x8 x6 9829
+add x4 x5 x5
+read x7 32886
+wait 0
+read x3 99338
+add x3 x10 x2
+write x6 58998
+add x5 x8 x4
+read x4 11786
+addc x9 x2 2446
 wait 0
 wait 0
-add x5 x9 x5
 wait 0
-read x8 69885
+read x5 51802
 wait 0
+read x8 32569
+read x2 21728
+addc x9 x8 4300
+addc x5 x6 7755
+read x10 11082
+read x7 99726
+read x10 45450
+addc x2 x4 3919
+wait 0
+wait 0
+read x1 38963
+read x6 25716
+write x7 74941
+addc x3 x6 490
+read x8 53740
+write x10 62198
+wait 0
+read x2 52633
+add x4 x8 x2
+wait 0
+wait 0
+read x10 72788
+write x3 57626
+read x2 75743
+write x3 5733
+addc x9 x5 8992
+wait 0
+write x7 38327
+wait 0
+add x8 x2 x3
+write x2 34675
+addc x7 x5 2152
+wait 0
+add x7 x8 x3
+addc x2 x4 3339
+wait 0
+addc x10 x5 1003
+wait 0
+write x7 29430
+read x3 83689
+wait 0
+read x8 81630
+write x1 19727
+add x5 x5 x7
+add x3 x1 x5
+wait 0
+addc x3 x8 7472
+wait 0
+wait 0
+read x10 63547
+wait 0
+addc x9 x7 7807
+addc x2 x1 456
+wait 0
+read x3 71085
+wait 0
+read x7 68728
+read x2 3363
+read x4 91240
+write x8 14402
+addc x9 x10 5768
+addc x10 x9 9394
+addc x2 x9 8108
+add x9 x2 x2
+read x1 85438
+wait 0
+wait 0
+write x10 81705
+addc x10 x10 6297
+wait 0
+addc x5 x7 5993
+wait 0
+addc x3 x1 9950
+wait 0
+wait 0
+add x9 x9 x9
+addc x8 x2 6406
+add x6 x1 x4
+wait 0
+read x3 81537
+read x7 90365
+read x3 70897
+addc x5 x10 1364
+wait 0
+wait 0
+write x4 57781
+add x7 x8 x7
+read x9 32499
+write x8 10328
+write x7 11878
+addc x3 x4 9604
+addc x9 x1 1897
+read x3 31854
+read x8 92070
+wait 0
+addc x7 x2 1709
+write x8 32852
+write x9 53527
+wait 0
+read x8 30373
+read x2 2977
+read x4 79180
+read x7 17536
+write x10 73193
+read x7 77902
+addc x10 x8 7685
+write x4 69779
+wait 0
+wait 0
+addc x5 x2 6004
+write x2 10525
+wait 0
+add x8 x2 x10
+addc x2 x1 7150
+read x4 77419
+wait 0
+wait 0
+add x1 x5 x2
+wait 0
+wait 0
+addc x3 x1 8605
+read x4 48180
+read x10 41265
+addc x9 x1 1324
+wait 0
+read x8 26583
+read x6 9935
+read x1 34069
+addc x2 x1 5326
+read x8 19402
+add x2 x10 x6
+read x10 7403
+read x3 88216
+add x8 x2 x4
+wait 0
+wait 0
+add x3 x8 x3
+read x9 4711
+write x3 28237
+addc x7 x3 2156
+wait 0
+write x8 9296
+read x9 20470
+write x3 47625
+wait 0
+wait 0
+addc x2 x3 2349
+wait 0
+add x10 x1 x1
+wait 0
+add x1 x3 x8
+add x4 x8 x3
+write x10 14836
+addc x4 x8 2417
+add x8 x6 x9
+read x6 28859
+read x7 71276
+addc x2 x6 1035
+wait 0
+wait 0
+wait 0
+wait 0
+addc x5 x6 2860
+addc x5 x6 8200
+read x8 19459
+read x10 21389
+wait 0
+read x9 75422
+read x8 78666
+addc x6 x8 5645
+addc x2 x6 7016
+addc x4 x10 7903
+wait 0
+add x4 x2 x9
+read x3 20230
+wait 0
+wait 0
+addc x8 x4 9976
+addc x8 x9 9038
+addc x8 x10 5983
+add x6 x10 x1
+read x3 31955
+read x10 72954
+wait 0
+wait 0
+read x5 7566
+add x4 x8 x8
+wait 0
+wait 0
+write x4 97736
+write x10 85131
+addc x1 x10 4899
+read x10 37587
+wait 0
+addc x4 x3 4656
+wait 0
+read x4 52148
+read x4 8014
+wait 0
+wait 0
+add x5 x4 x4
+wait 0
+read x8 45747
+read x5 47282
+addc x7 x5 3240
+write x7 16743
+write x3 48331
+write x2 99298
+write x3 59450
+addc x2 x2 310
+wait 0
+write x10 14758
+read x8 6327
+add x2 x4 x5
+read x8 77053
+read x3 86327
+write x3 94854
+wait 0
+read x1 33300
+read x4 31358
+write x2 81052
+addc x7 x6 869
+write x4 24704
+wait 0
+wait 0
+write x4 20682
+wait 0
+addc x4 x4 7056
+read x3 13183
+wait 0
+add x10 x6 x4
+addc x5 x6 371
+addc x2 x5 6234
+write x6 27091
+add x4 x4 x2
+addc x10 x6 7142
+read x10 74978
+read x6 94047
+addc x1 x3 4541
+read x5 22359
+wait 0
+write x2 71667
+read x10 62871
+write x2 59415
+wait 0
+add x8 x3 x9
+add x9 x6 x9
+write x6 27973
+write x10 69347
+wait 0
+addc x4 x5 2206
+read x8 74644
+read x8 6649
+read x10 84392
+add x1 x10 x7
+wait 0
+read x9 68398
+read x5 99101
+addc x3 x5 6620
+read x9 39180
+addc x7 x3 1310
+read x5 33254
+wait 0
+read x5 6564
+wait 0
+write x1 84316
+wait 0
+write x6 43487
+read x4 69038
+addc x6 x3 6280
+add x8 x8 x3
+addc x9 x2 5556
+read x6 72341
+read x9 29650
+wait 0
+addc x1 x9 5460
+wait 0
+addc x10 x3 3264
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+addc x5 x9 8443
+read x6 87606
+write x3 75275
+add x7 x5 x1
+addc x7 x4 3417
+read x5 85820
+write x3 44602
+addc x10 x4 1799
+wait 0
+wait 0
+wait 0
+wait 0
+addc x6 x10 2378
+read x6 77109
+read x6 76246
+write x7 29884
+wait 0
+read x3 61783
+add x6 x5 x2
+add x5 x1 x7
+add x6 x3 x4
+wait 0
+addc x3 x4 4368
+read x6 33922
+read x3 3794
+addc x3 x1 5866
+wait 0
+read x9 22782
+read x10 91455
+read x4 42849
+read x9 39622
+read x5 91495
+wait 0
+write x4 96235
+wait 0
+wait 0
+wait 0
+read x3 15470
+addc x8 x7 1146
+add x10 x3 x10
+read x5 96916
+wait 0
+wait 0
+write x2 28732
+add x6 x8 x10
+read x4 71423
+addc x2 x5 4134
+write x5 31989
+wait 0
+addc x5 x6 344
+wait 0
+wait 0
+addc x3 x4 9548
+read x9 3758
+addc x9 x2 2238
+wait 0
+read x4 40212
+read x7 33757
+addc x7 x8 102
+write x2 5616
+wait 0
+addc x8 x6 1585
+addc x10 x5 8086
+read x1 22692
+wait 0
+addc x6 x8 1135
+addc x6 x3 6111
+read x7 77550
+wait 0
+add x5 x9 x1
+read x3 36555
+read x2 41652
+addc x4 x5 9881
+wait 0
+read x1 21800
+addc x7 x9 2119
+read x5 83579
+wait 0
+add x2 x10 x6
+write x8 66279
+add x2 x2 x10
+add x2 x3 x7
+add x5 x6 x7
+read x10 50748
+addc x4 x2 7932
+read x1 68462
+wait 0
+read x4 50677
+read x9 60746
+add x3 x7 x4
+read x10 77830
+write x6 6088
+read x8 3656
+write x6 62461
+wait 0
+addc x2 x1 5043
+read x6 96287
+wait 0
+read x9 25329
+wait 0
+add x6 x4 x8
+addc x9 x9 8469
+read x2 89403
+write x10 15886
+wait 0
+read x5 61318
+read x3 58098
+write x9 67591
+add x9 x10 x1
+read x4 75586
+read x1 10866
+wait 0
+addc x7 x1 2395
+read x2 38043
+wait 0
+addc x5 x8 4259
+addc x3 x9 9496
+read x9 48829
+wait 0
+read x5 98008
+wait 0
+addc x8 x2 1543
+addc x6 x6 3942
+read x4 32224
+addc x3 x9 5664
+add x5 x4 x6
+addc x1 x3 5872
+read x4 40729
+addc x3 x8 7795
+add x2 x2 x6
+write x4 64494
+add x8 x7 x9
+wait 0
+read x3 93074
+read x5 64434
+write x2 65783
+wait 0
+wait 0
+wait 0
+wait 0
+addc x10 x6 5729
+write x9 27141
+write x3 37346
+wait 0
+write x1 13396
+read x10 76919
+write x7 52602
+addc x6 x7 2147
+write x5 2619
+addc x7 x6 1469
+add x1 x5 x9
+write x3 44198
+read x6 87572
+add x7 x5 x8
+add x3 x8 x3
+read x1 24879
+write x7 61943
+write x7 38235
+read x7 72002
+addc x5 x4 5012
+addc x6 x10 7225
+wait 0
+addc x8 x8 3231
+wait 0
+wait 0
+read x7 89877
+read x8 84528
+add x2 x7 x10
+addc x4 x5 88
+read x3 66537
+read x7 92648
+addc x4 x9 2475
+write x7 37776
+add x4 x1 x7
+wait 0
+wait 0
+read x6 73999
+wait 0
+read x3 82319
+add x8 x5 x8
+add x9 x2 x4
+wait 0
+addc x7 x7 719
+wait 0
+add x3 x1 x5
+wait 0
+read x3 70363
+write x2 86042
+wait 0
+add x9 x7 x8
+read x8 13888
+read x7 80876
+write x9 14008
+addc x5 x10 2035
+addc x10 x5 4589
+read x9 99072
+read x1 76732
+add x4 x1 x8
+add x7 x9 x4
+wait 0
+add x6 x3 x10
+write x7 91049
+read x10 73028
+wait 0
+wait 0
+read x2 84803
+addc x2 x4 1806
+addc x5 x3 9486
+wait 0
+wait 0
+addc x3 x9 334
+read x7 61160
+read x3 29634
+addc x6 x2 8179
+addc x6 x5 8090
+write x4 24895
+read x10 67422
+write x5 77491
+wait 0
+write x4 37965
+write x4 46425
+read x1 13162
+add x1 x9 x1
+wait 0
+read x6 55420
+addc x6 x7 129
+read x10 95505
+read x6 5842
+read x6 55166
+read x7 42825
+addc x8 x4 9568
+write x5 12368
+wait 0
+wait 0
+addc x7 x6 8397
+read x6 94017
+addc x4 x2 2557
+addc x5 x4 1066
+wait 0
+wait 0
+addc x7 x8 5005
+wait 0
+wait 0
+read x1 49925
+read x8 45162
+wait 0
+addc x10 x6 7632
+read x2 94015
+add x7 x8 x9
+read x1 90882
+wait 0
+read x8 83620
+wait 0
+read x9 6841
 ENDING TRANSACTION
-declare x1 3388
-declare x2 7964
-declare x3 8516
-declare x4 6082
-declare x5 1195
-declare x6 726
-declare x7 7196
-declare x8 8654
-declare x9 7793
-declare x10 6797
+declare x1 2357
+declare x2 1842
+declare x3 1527
+declare x4 4975
+declare x5 6427
+declare x6 5467
+declare x7 3432
+declare x8 6635
+declare x9 558
+declare x10 1763
+addc x5 x9 4749
+add x10 x2 x8
+write x4 92655
+addc x3 x9 1881
+read x7 95268
+add x8 x9 x6
 wait 0
-add x3 x3 x9
-add x3 x3 x10
-wait 0
-write x2 48128
+add x3 x9 x1
 wait 0
 wait 0
+add x8 x6 x4
+read x10 67739
+read x1 82511
 wait 0
-read x5 12257
+read x10 70369
+write x3 7963
+addc x4 x1 4685
 wait 0
+addc x8 x1 1121
+read x4 51136
+add x9 x7 x8
+read x10 81260
+addc x2 x7 2879
+write x9 51759
+write x10 7492
+addc x8 x5 3556
+wait 0
+write x3 16852
+wait 0
+write x1 81722
+wait 0
+read x10 16180
+read x8 10604
+wait 0
+wait 0
+wait 0
+wait 0
+add x4 x5 x3
+read x9 87786
+read x1 36751
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+read x2 57020
+wait 0
+wait 0
+read x3 1917
+read x4 20150
+read x6 86305
+addc x5 x2 8224
+wait 0
+wait 0
+addc x8 x1 4524
+read x9 95808
+read x10 31423
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+write x2 14960
+addc x2 x3 7997
+wait 0
+add x10 x1 x10
+read x5 40204
+wait 0
+read x4 66844
+wait 0
+wait 0
+read x10 40486
+wait 0
+add x7 x2 x8
+add x3 x10 x3
+wait 0
+read x9 22539
+add x5 x10 x9
+write x5 82280
+add x2 x5 x10
+addc x7 x2 9674
+add x4 x6 x3
+write x7 28756
+wait 0
+add x2 x8 x5
+read x3 95654
+add x4 x10 x1
+write x6 29977
+read x10 9913
+read x5 72517
+write x9 85164
+add x10 x8 x10
+read x10 14807
+write x4 55255
+addc x3 x4 6218
+read x7 25878
+read x9 81010
+add x7 x2 x7
+read x2 53497
+add x6 x5 x5
+wait 0
+wait 0
+add x4 x7 x9
+write x5 26284
+write x9 66646
+read x4 47136
+read x1 1906
+addc x8 x1 5200
+wait 0
+wait 0
+wait 0
+read x10 98951
+write x7 11508
+add x5 x10 x3
+wait 0
+add x5 x9 x4
+wait 0
+wait 0
+addc x9 x3 7559
+wait 0
+read x9 86048
+wait 0
+read x3 50696
+write x5 64972
+addc x2 x8 1572
+read x7 95272
+read x8 79739
+read x7 18188
+add x7 x4 x6
+read x7 23395
+addc x8 x6 5183
+wait 0
+addc x1 x3 2913
+read x3 57973
+addc x9 x7 1972
+wait 0
+read x10 63688
+wait 0
+addc x1 x10 9165
+wait 0
+addc x9 x3 8761
+wait 0
+read x3 54513
+addc x8 x6 8426
+wait 0
+add x4 x7 x5
+read x7 84697
+wait 0
+add x10 x9 x10
+read x2 16996
+read x4 9794
+add x10 x8 x3
+write x2 37967
+add x6 x7 x5
+write x10 16464
+read x8 18566
+read x1 52223
+read x9 55556
+wait 0
+read x7 15629
+add x1 x7 x5
+write x7 3380
+wait 0
+wait 0
+read x3 3641
+read x2 28144
+addc x7 x4 1412
+addc x4 x5 3437
+write x7 66475
+add x6 x10 x2
+write x3 78784
+wait 0
+wait 0
+addc x6 x10 6944
+write x9 15394
+read x2 36101
+addc x5 x1 3985
+add x1 x1 x10
+read x7 93786
+read x6 24915
+read x1 35450
+wait 0
+wait 0
+add x4 x6 x6
+add x4 x5 x8
+add x4 x3 x2
+wait 0
+wait 0
+wait 0
+add x7 x3 x8
+addc x6 x1 3396
+write x7 43870
+wait 0
+wait 0
+read x1 49420
+read x2 18562
+read x7 50830
+wait 0
+wait 0
+wait 0
+wait 0
+read x9 61057
+read x4 63585
+add x1 x3 x8
+add x9 x1 x3
+read x4 93278
+add x1 x6 x1
+read x2 50874
+addc x9 x10 9924
+write x9 26062
+write x2 14248
+wait 0
+wait 0
+read x10 54096
+addc x10 x10 8726
+addc x4 x10 5832
+wait 0
+wait 0
+read x10 13242
+write x9 42047
+read x9 70030
+write x2 46549
+add x4 x4 x8
+wait 0
+addc x1 x4 4050
+read x8 25496
+write x4 84440
+read x4 21653
+wait 0
+write x7 27307
+write x7 3463
+read x4 55471
+read x10 3110
+addc x7 x4 1644
+write x4 83017
+wait 0
+wait 0
+write x4 84227
+addc x6 x4 378
+read x9 42448
+read x1 6632
+add x5 x8 x7
+wait 0
+read x4 79823
+wait 0
+wait 0
+add x4 x10 x2
+read x2 45578
+addc x6 x7 5148
+read x5 56038
+addc x6 x6 1944
+addc x6 x8 9816
+read x9 46578
+wait 0
+wait 0
+write x8 19998
+read x1 7139
+read x10 56127
+read x7 48532
+write x7 74617
+wait 0
+wait 0
+read x10 10246
+read x9 54327
+read x5 47016
+addc x9 x6 3354
+wait 0
+wait 0
+wait 0
+add x4 x6 x1
+wait 0
+addc x10 x8 2124
+write x9 12876
+wait 0
+read x5 86682
+addc x2 x9 3800
+read x8 32693
+wait 0
+write x5 34026
+wait 0
+read x10 10125
+addc x7 x1 4407
+read x6 68757
+read x8 69220
+write x4 36642
+write x10 12770
+wait 0
+read x4 65369
+wait 0
+read x9 14227
+wait 0
+read x1 72791
+write x8 13514
+read x7 67212
+wait 0
+read x3 76593
+wait 0
+wait 0
+addc x9 x2 7363
+add x6 x1 x2
+write x5 83579
+read x3 45996
+wait 0
+read x1 29919
+add x10 x7 x8
+read x6 6466
+wait 0
+write x8 63311
+write x9 54349
+write x8 16953
+add x6 x8 x3
+read x1 70892
+wait 0
+addc x10 x4 8321
+read x8 93202
+addc x10 x10 8289
+addc x9 x2 3022
+addc x10 x10 1202
+read x2 70814
+read x7 52903
+write x5 29583
+write x9 93354
+wait 0
+addc x10 x10 9164
+read x1 83012
+wait 0
+read x6 8848
+read x1 16641
+read x5 51080
+wait 0
+write x5 63018
+wait 0
+read x9 92612
+read x1 59860
+read x10 58620
+addc x5 x9 844
+read x8 17954
+read x7 73303
+addc x10 x2 3693
 add x3 x1 x3
 wait 0
 wait 0
 wait 0
+add x7 x9 x6
+addc x7 x8 2923
+read x9 79393
+wait 0
+add x6 x2 x2
+read x2 82664
+addc x7 x7 9171
+wait 0
+read x9 83762
+add x5 x7 x2
+wait 0
+add x6 x3 x9
+wait 0
+addc x1 x4 664
+addc x10 x6 9570
+read x3 2468
+read x9 65582
+read x2 27025
+write x4 72642
+add x4 x1 x4
+add x2 x6 x4
+wait 0
+read x6 44141
+addc x9 x2 8590
+write x4 78978
+add x1 x8 x8
+wait 0
+write x2 92028
+add x1 x2 x6
+wait 0
+read x3 75838
+wait 0
+write x7 2787
+wait 0
+addc x1 x1 5544
+write x4 13403
+add x2 x4 x3
+add x3 x9 x6
 wait 0
 wait 0
-add x6 x7 x3
+read x9 33210
+add x8 x10 x8
 wait 0
-wait 0
-wait 0
-wait 0
-add x4 x9 x5
-wait 0
-read x1 37518
-wait 0
-wait 0
-read x7 74588
-wait 0
-read x2 14964
-wait 0
-wait 0
-read x7 25848
-wait 0
-wait 0
-wait 0
-wait 0
-add x9 x7 x8
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x10 x5 x8
-add x7 x10 x4
-wait 0
-wait 0
-wait 0
-read x5 73482
-write x4 25252
-read x9 1947
-wait 0
-wait 0
-read x1 46637
-wait 0
-wait 0
-read x3 78046
-wait 0
-add x8 x6 x3
-read x3 89107
-wait 0
-read x6 76648
-wait 0
-add x1 x4 x9
-write x3 11189
-wait 0
-read x2 2200
+add x3 x6 x2
+write x8 86397
+addc x9 x10 4715
+add x4 x6 x4
+read x9 69722
 wait 0
 wait 0
 wait 0
-read x6 11932
-read x4 92561
-read x4 80535
-read x9 77015
-read x10 91911
-add x10 x3 x4
-read x6 49752
-read x2 27336
-add x8 x6 x1
-read x6 69441
-read x8 90721
-read x1 50054
-read x6 93683
-write x7 61553
+read x6 88754
+read x5 22041
+read x3 86231
+add x6 x6 x6
+add x5 x5 x9
+addc x8 x3 984
+read x4 55125
+read x9 6342
+add x5 x4 x3
+wait 0
+addc x2 x10 8472
+read x4 51738
+write x9 21027
+wait 0
+write x3 47729
+read x9 94025
+read x3 23920
+add x1 x2 x1
+read x5 23677
+add x5 x10 x1
+wait 0
+addc x4 x7 7945
 wait 0
 wait 0
-addc x10 x1 8628
-add x6 x5 x2
-add x6 x5 x5
+wait 0
+addc x3 x1 965
+read x6 84533
+wait 0
+add x10 x3 x5
+addc x6 x5 4209
+addc x10 x2 9855
+wait 0
+write x4 22715
+addc x8 x10 2680
+wait 0
+addc x10 x9 6953
+read x7 50757
+wait 0
+read x1 61440
+write x10 50524
+addc x5 x6 933
+addc x6 x10 626
+write x9 86799
+read x1 49390
+wait 0
+addc x9 x6 1996
+addc x8 x8 7379
+write x6 61088
 wait 0
 wait 0
+read x10 26040
+addc x1 x8 79
+read x7 93326
+add x10 x2 x1
+read x1 91185
 wait 0
+read x9 87760
+addc x2 x9 6919
 wait 0
 wait 0
 add x8 x10 x9
-write x3 6818
+read x5 56166
+read x2 39605
+read x9 49111
+wait 0
+add x3 x10 x8
+read x2 96293
+read x2 95860
+add x1 x4 x6
+wait 0
+add x3 x1 x1
+write x2 59907
+write x4 1060
+wait 0
+write x7 78255
+write x10 44102
+addc x3 x1 5419
+read x2 43859
+wait 0
+read x5 42332
+addc x4 x3 9158
+read x6 89096
+addc x3 x9 1641
+add x4 x8 x6
+addc x5 x3 5002
+add x7 x3 x6
+wait 0
+read x7 67113
+wait 0
+read x6 81168
+read x5 9961
+addc x6 x3 7149
+read x2 46170
+read x1 31532
+addc x3 x5 6022
+addc x7 x9 1531
+read x3 97048
+addc x8 x2 6495
 wait 0
 wait 0
-add x7 x4 x10
+read x5 91388
 wait 0
 wait 0
-read x2 95277
-read x10 65450
-wait 0
-read x3 50848
+read x10 88830
+write x6 65017
 wait 0
 wait 0
-add x9 x7 x7
-add x10 x9 x8
+read x10 39901
+read x6 62480
+read x3 39029
+wait 0
+addc x1 x6 9854
+addc x1 x6 1319
+read x1 57521
+add x9 x4 x6
+addc x10 x3 5658
+read x5 15848
+wait 0
+read x8 98307
+read x2 11040
+wait 0
+read x3 58514
+wait 0
+addc x4 x6 7479
+add x2 x9 x5
+read x5 40914
+wait 0
+wait 0
+wait 0
+read x5 97884
+read x5 33410
+read x10 55851
+wait 0
+wait 0
+write x3 77258
+write x1 50194
+write x3 77133
+addc x1 x6 9172
+read x2 82016
+wait 0
+addc x4 x7 535
+addc x2 x9 3914
+addc x1 x6 3609
+wait 0
+addc x7 x8 5154
+add x8 x8 x2
+addc x8 x5 6805
+wait 0
+read x1 75436
+wait 0
+read x6 23329
+read x10 25517
+read x9 25449
+wait 0
+read x3 53256
+addc x5 x2 216
+add x3 x6 x2
+read x7 85525
+write x8 53636
+read x1 74722
+read x8 11894
+read x6 67523
+addc x10 x1 6961
+write x8 57464
+read x4 87404
+addc x1 x9 57
+read x6 88626
+addc x10 x4 4387
+addc x3 x8 2246
+addc x6 x2 8845
+add x5 x2 x6
 add x8 x6 x10
-wait 0
-read x7 43118
-read x9 3143
-read x7 32431
+read x3 31123
 wait 0
 wait 0
+read x4 90829
 wait 0
-add x7 x1 x9
+addc x6 x7 3478
+write x9 72188
+read x6 51679
 wait 0
-write x7 81516
-write x5 29350
-read x10 40547
-add x10 x3 x4
+read x3 47873
+addc x6 x2 5099
+wait 0
+addc x9 x4 5559
+read x7 64391
+read x3 5785
+write x8 25371
+read x7 93301
+read x8 40406
+add x5 x9 x4
+wait 0
+wait 0
+add x4 x2 x10
+read x5 73610
+add x10 x5 x9
+add x3 x3 x3
+read x3 62403
+wait 0
+read x8 41283
+read x2 7060
+add x2 x6 x10
+addc x6 x7 8129
+write x10 10147
+addc x2 x3 9492
+wait 0
+add x2 x6 x1
+wait 0
+write x5 10538
+wait 0
+read x4 75856
+addc x2 x8 5287
+wait 0
+addc x3 x7 7820
+addc x10 x1 942
+addc x7 x10 8285
+read x10 87422
+addc x5 x10 4638
+wait 0
+write x7 63241
+wait 0
+write x9 5056
+read x6 37679
 add x1 x8 x9
-add x5 x2 x10
+read x4 12365
+addc x3 x10 3309
+add x2 x4 x9
+read x3 31539
+read x3 76982
+wait 0
+read x10 70063
+write x6 62296
+wait 0
+read x6 9330
+wait 0
+wait 0
+wait 0
+wait 0
+add x10 x8 x5
+read x7 69346
+wait 0
+wait 0
+read x2 58088
+read x3 88260
+read x10 94554
+write x8 94898
+read x3 62842
+write x7 7062
+wait 0
+addc x1 x10 9194
+add x3 x3 x4
+read x2 97381
+wait 0
+wait 0
+addc x7 x8 4829
+wait 0
+add x5 x2 x3
+write x3 85675
+write x9 94508
+wait 0
+wait 0
+read x9 30583
+add x1 x5 x2
+read x4 99509
+add x9 x3 x10
+wait 0
+write x1 2162
+read x5 38319
+write x5 27613
+write x6 4772
+write x6 36795
+read x8 99647
+write x3 67948
+wait 0
+read x6 63366
+wait 0
+addc x5 x1 1382
+wait 0
+addc x3 x9 371
+read x5 36550
+wait 0
+add x4 x5 x3
+wait 0
+addc x8 x5 9614
+addc x8 x9 6447
+addc x7 x1 5882
+read x1 80296
+add x9 x1 x2
+read x2 7248
+addc x7 x1 9216
+addc x6 x2 1228
+add x1 x9 x8
+addc x2 x8 3873
+read x8 63796
+read x5 2535
+write x3 1321
+wait 0
+wait 0
+read x9 15562
 add x10 x9 x8
+addc x2 x2 160
 wait 0
+read x7 30417
 wait 0
-read x8 80414
-wait 0
-wait 0
-add x3 x2 x7
-wait 0
-wait 0
-read x9 94371
-wait 0
-read x10 27885
-wait 0
-wait 0
-wait 0
-add x3 x5 x9
-read x8 33121
-read x8 99291
-read x5 2847
-add x1 x6 x10
-wait 0
-read x5 73950
-wait 0
-wait 0
-read x2 49920
-add x6 x3 x3
-read x5 17482
-wait 0
-wait 0
-add x10 x10 x2
-add x1 x1 x5
-wait 0
-wait 0
-add x2 x5 x5
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-write x4 47517
-write x1 70462
-add x10 x9 x5
-wait 0
-add x7 x5 x5
-read x9 25411
-wait 0
-wait 0
-wait 0
-read x1 36075
-wait 0
-write x4 82710
-wait 0
-add x6 x1 x9
-add x7 x3 x3
-wait 0
-wait 0
-wait 0
-wait 0
-write x7 54097
-wait 0
-add x7 x5 x6
-read x3 97170
-read x1 79948
-read x1 6629
-wait 0
-write x5 93535
-wait 0
-wait 0
-wait 0
-wait 0
-read x4 32600
-wait 0
-wait 0
-add x3 x3 x5
-wait 0
-read x4 79041
-add x3 x1 x10
-read x1 46738
-read x5 33381
-wait 0
-read x1 8274
-add x10 x10 x7
-add x3 x8 x1
-read x8 16083
-wait 0
-write x5 70212
-wait 0
-add x1 x7 x3
-wait 0
-add x3 x2 x9
-read x1 71893
-wait 0
-read x5 92598
-wait 0
-add x4 x6 x5
-wait 0
-add x1 x4 x3
-write x7 75293
-read x10 67875
-wait 0
-wait 0
-read x2 69708
-wait 0
-wait 0
-add x2 x10 x7
-read x5 29527
-add x5 x9 x2
-addc x6 x7 1219
-wait 0
-add x9 x4 x4
-add x9 x4 x4
-add x3 x2 x10
-read x6 60851
-wait 0
-wait 0
-write x6 67782
-wait 0
-wait 0
-wait 0
-add x5 x4 x1
-wait 0
-add x10 x1 x2
-wait 0
-read x6 63719
-wait 0
-add x2 x1 x5
-read x5 4676
-wait 0
-wait 0
-read x6 74489
-wait 0
-add x2 x7 x9
-wait 0
-add x8 x9 x4
-add x7 x7 x3
-write x6 5330
-wait 0
-add x9 x3 x7
-wait 0
-add x6 x9 x5
-read x5 43558
-wait 0
-wait 0
-add x5 x4 x1
-write x9 1908
-wait 0
-add x10 x3 x1
-read x7 99818
-read x2 64338
-wait 0
-read x10 18805
-read x9 48707
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-wait 0
-add x7 x10 x4
 add x5 x7 x8
-add x5 x8 x6
-addc x4 x8 8781
 wait 0
-write x2 67184
-add x6 x2 x5
-wait 0
+add x2 x5 x7
+add x9 x3 x3
+addc x3 x2 9366
 wait 0
 wait 0
-read x9 55206
-wait 0
-add x3 x2 x8
-wait 0
-wait 0
-wait 0
-add x7 x10 x6
+read x9 31922
+read x10 97772
+addc x9 x10 5079
 wait 0
 wait 0
+addc x2 x1 1965
+read x7 84731
+write x1 50766
+read x7 26383
 wait 0
-add x3 x2 x7
-read x2 22818
+write x5 68785
+add x3 x2 x2
+read x8 63508
+addc x1 x6 639
+read x4 45820
+add x6 x8 x4
+write x6 53637
+wait 0
+read x3 79568
+wait 0
+add x9 x10 x7
+addc x8 x9 300
+write x2 16580
+wait 0
+read x5 12633
+read x10 30711
+add x10 x6 x6
+addc x2 x10 3001
+read x5 62395
+read x6 11066
 wait 0
 wait 0
 wait 0
-read x7 29498
+read x4 89442
+addc x1 x7 5062
+read x10 50388
+wait 0
+addc x1 x10 3099
+read x4 41835
+write x9 88904
+read x7 91258
+read x9 25503
+add x9 x5 x6
+read x4 15343
+add x2 x9 x10
+add x5 x1 x1
+addc x7 x4 1335
+addc x5 x9 3775
+add x5 x5 x2
+add x8 x7 x9
+add x1 x10 x7
+wait 0
+write x3 73825
+addc x2 x5 663
+addc x9 x9 8279
+write x8 73524
+wait 0
+add x3 x9 x9
+wait 0
+wait 0
+write x10 23998
+read x8 21369
+add x4 x8 x5
+read x2 80628
+read x5 51857
+addc x9 x9 5962
+addc x8 x9 4283
+wait 0
+wait 0
+write x4 66735
+add x7 x6 x8
+wait 0
+addc x2 x1 9630
+addc x3 x10 7341
+addc x3 x4 8089
+add x7 x7 x4
+read x5 39989
+wait 0
+wait 0
+wait 0
+add x1 x2 x4
+read x9 59212
+wait 0
+read x6 22242
+write x7 23732
+read x1 42006
+read x9 8454
+wait 0
+wait 0
+add x4 x10 x6
+write x7 16591
+addc x1 x3 7063
+write x9 63102
+wait 0
+read x10 47766
+read x3 38612
+addc x1 x5 1206
+addc x1 x8 9398
+add x8 x10 x2
+wait 0
+read x1 99471
+wait 0
+addc x5 x7 5587
+wait 0
+read x4 13602
+add x3 x6 x2
+write x2 44721
+addc x4 x7 4542
+addc x5 x10 6344
+addc x8 x6 6373
+addc x3 x7 1716
+read x7 46010
+read x6 93239
+addc x1 x6 4249
+addc x9 x10 9340
+addc x8 x2 5428
+read x5 72860
+write x6 65363
+wait 0
+write x8 60451
+read x9 82368
+addc x3 x9 7865
+add x2 x6 x6
+wait 0
+read x7 73894
+wait 0
+read x9 14330
+read x3 46777
+wait 0
+wait 0
+addc x7 x7 4685
+read x5 91410
+write x7 52933
+read x7 38473
+read x9 2965
+add x9 x8 x7
+addc x2 x10 1017
+addc x6 x5 884
+read x4 45688
+read x5 78434
+wait 0
+addc x6 x5 2900
+add x6 x3 x1
+wait 0
+wait 0
+write x1 75107
+read x3 98880
+read x5 81827
+read x10 55016
+addc x3 x1 9001
+addc x5 x1 386
+read x5 50086
+addc x1 x8 1906
+write x3 8134
+wait 0
+read x8 4017
+addc x1 x8 5681
 wait 0
 wait 0
 wait 0
 wait 0
-write x3 3189
+addc x7 x5 4170
+add x6 x5 x8
+addc x1 x10 5954
+addc x2 x9 4197
+addc x5 x10 3607
+add x2 x5 x8
+wait 0
+add x4 x5 x6
+write x10 4596
+wait 0
+read x9 71720
+read x10 32988
+addc x1 x9 3067
+addc x2 x9 2842
+write x9 32835
+wait 0
+add x3 x9 x4
+wait 0
+addc x9 x10 5208
+read x5 81875
+read x10 17920
+wait 0
+read x10 48603
+write x3 9518
+add x2 x2 x1
+add x2 x7 x4
+wait 0
+add x9 x7 x8
+read x1 70454
+write x8 68988
+read x5 40778
+wait 0
+addc x9 x6 3326
+read x2 8383
+read x4 94602
+wait 0
+addc x7 x8 7534
+read x9 25110
+read x10 45503
+read x9 8823
+write x1 55169
+write x7 17885
+add x5 x3 x3
+write x4 82327
+read x10 28920
+write x5 38061
+addc x3 x3 8638
+write x1 99166
 wait 0
 wait 0
+read x8 64811
+wait 0
+read x6 53482
+addc x6 x10 6982
+read x6 97681
+read x7 5937
+add x1 x8 x8
+read x9 16977
+write x3 55861
+read x9 60792
 wait 0
 wait 0
-add x1 x3 x6
-add x9 x7 x2
-add x5 x4 x2
-add x6 x7 x9
+add x2 x8 x1
+read x8 37559
+read x6 84054
+write x7 83327
+addc x7 x3 3007
+write x3 51784
+read x7 83993
+read x1 15797
 wait 0
-add x10 x8 x3
+read x3 78510
 wait 0
-read x1 45063
+addc x5 x8 3554
+addc x10 x2 801
 add x8 x1 x4
-read x3 14925
-read x10 36792
+write x10 57457
+read x3 97227
+write x10 33179
+wait 0
+read x3 17873
+read x8 34896
+wait 0
+read x4 51326
+addc x4 x10 1254
+read x1 69385
+wait 0
+addc x3 x9 782
+read x10 72508
+read x6 81524
+wait 0
+read x4 21332
+addc x6 x6 6332
+wait 0
+read x9 47791
+addc x3 x9 6459
+read x6 3878
+read x2 82336
+add x2 x2 x9
+read x1 10990
+wait 0
+addc x7 x2 3562
+wait 0
+addc x10 x10 6498
+wait 0
+read x3 84562
+read x7 51559
+read x2 59755
+wait 0
+addc x6 x10 4239
+wait 0
+read x6 91061
+read x9 17368
+addc x4 x5 6737
+read x9 83960
+addc x4 x4 113
+read x2 62234
+read x3 23887
+addc x7 x5 8661
+wait 0
+write x4 23036
+add x4 x9 x6
+read x8 18127
+addc x7 x3 6287
+read x7 94935
+read x5 84095
+read x8 56005
+addc x1 x2 828
+write x8 25164
+wait 0
+write x8 65621
+read x6 3905
+ENDING TRANSACTION
+declare x1 4270
+declare x2 1535
+declare x3 4067
+declare x4 1418
+declare x5 8250
+declare x6 1010
+declare x7 9438
+declare x8 1327
+declare x9 3327
+declare x10 270
+read x2 77591
+addc x8 x2 1907
+add x3 x10 x9
+read x7 29705
+wait 0
+add x7 x3 x9
+addc x8 x3 61
+addc x2 x2 1614
+write x6 57429
+wait 0
+read x6 32324
+addc x10 x4 5227
+read x1 87051
+write x5 5422
+read x2 63923
+wait 0
+read x4 49714
+addc x5 x9 889
+wait 0
+read x4 71014
+wait 0
+write x6 21442
+wait 0
+write x8 16561
+addc x2 x5 7941
+write x3 42671
+read x5 29917
+add x9 x8 x4
+addc x7 x5 7399
+wait 0
+read x8 47952
 wait 0
 wait 0
-add x7 x8 x4
+write x1 66514
 wait 0
-write x7 87229
-write x6 42543
-add x8 x3 x10
-add x10 x7 x3
-write x6 96639
+add x9 x2 x2
+read x6 52888
+write x6 32063
 wait 0
-read x5 38457
+addc x8 x4 8542
 wait 0
+addc x2 x2 4993
+add x2 x10 x5
+read x4 43112
+addc x1 x9 8998
 wait 0
+read x8 71177
+read x1 91358
+write x10 43542
+read x4 20306
 wait 0
-read x8 24236
+read x1 51189
+read x10 34065
+add x5 x5 x9
+read x3 92246
+add x2 x2 x6
+read x9 49554
 wait 0
-wait 0
-read x7 74468
-wait 0
-read x8 76820
-add x6 x7 x3
-write x1 5795
-wait 0
-wait 0
-wait 0
-wait 0
-add x10 x3 x10
-wait 0
-wait 0
-wait 0
-read x5 36941
-wait 0
-wait 0
-write x2 9490
-read x9 6725
-wait 0
-wait 0
-read x8 74998
+add x6 x6 x2
 wait 0
 wait 0
 wait 0
+add x3 x1 x1
+read x1 76357
 wait 0
 wait 0
-add x1 x8 x9
-add x10 x2 x3
-read x2 94684
-add x5 x7 x3
+addc x7 x5 9215
+read x2 95880
+add x8 x6 x3
 wait 0
 wait 0
-wait 0
-wait 0
-wait 0
-write x3 6770
-wait 0
-wait 0
-add x4 x1 x5
-add x2 x3 x10
-add x7 x2 x2
-add x4 x5 x7
-write x9 9062
-add x8 x1 x5
+add x4 x1 x4
 wait 0
 wait 0
 wait 0
+add x7 x8 x9
+read x4 37181
+read x8 28087
+wait 0
+wait 0
+add x3 x3 x3
+read x7 11041
+read x2 71176
+write x5 26425
+wait 0
+read x10 9165
+read x4 20617
+addc x1 x8 2839
+wait 0
+read x2 3676
+add x1 x10 x6
+read x6 94545
+read x7 22923
+read x9 12683
+read x10 29225
+addc x1 x2 5251
+add x1 x5 x1
+read x8 81140
+add x2 x6 x5
+addc x10 x2 1736
+write x7 84711
+read x6 80051
+read x5 73722
+addc x5 x7 805
+read x2 18020
+add x1 x9 x8
+write x8 35530
+read x6 50594
+add x5 x10 x6
+addc x6 x5 254
+wait 0
+addc x10 x8 8937
+wait 0
+add x6 x8 x8
+wait 0
+addc x7 x9 2141
+wait 0
+wait 0
+write x5 20264
+wait 0
+add x7 x7 x3
+read x1 76295
+write x1 95817
+add x8 x7 x2
+addc x2 x9 1693
+wait 0
+addc x7 x10 2513
+wait 0
+write x9 68226
+read x7 92126
+add x1 x2 x7
+read x5 52833
+read x7 7978
+wait 0
+write x9 80177
+addc x3 x7 525
+write x2 8493
+read x10 56552
+addc x2 x2 9062
+addc x4 x4 5850
+read x2 84108
+wait 0
+wait 0
+addc x7 x5 9507
+addc x9 x6 1676
+addc x9 x8 9679
+read x1 13812
+addc x8 x8 9035
+add x9 x3 x4
+read x2 36197
+read x2 79894
+read x7 41163
+addc x2 x9 7046
+wait 0
+read x5 99627
+read x7 8916
+wait 0
+read x7 29322
+read x8 81294
+wait 0
+read x8 98134
+write x7 92157
+write x10 15394
+read x2 39010
+read x3 29082
+wait 0
+add x2 x1 x8
+addc x4 x10 3710
+read x9 88607
+read x6 18689
+write x3 10820
+add x2 x4 x9
+addc x9 x9 4614
+addc x9 x4 5392
+wait 0
+read x8 74132
+add x2 x7 x6
+read x5 27177
+wait 0
+read x4 92330
+addc x5 x4 8662
+read x2 30989
 wait 0
 wait 0
 wait 0
-add x2 x6 x7
-read x3 30899
-add x5 x3 x9
+read x2 40764
+wait 0
+write x9 80484
+read x6 49536
+read x3 51434
+addc x1 x9 3658
+read x1 29740
+read x4 87922
+wait 0
+read x1 53140
 wait 0
 wait 0
+addc x5 x8 3345
+wait 0
+add x10 x5 x2
+addc x6 x8 8591
+wait 0
+write x7 46067
+add x8 x7 x3
+wait 0
+add x6 x2 x2
+wait 0
+read x2 39014
+add x6 x4 x7
 wait 0
 wait 0
-add x1 x8 x7
+read x10 9771
+read x3 75713
 wait 0
-add x1 x6 x10
+read x5 65176
+read x7 28722
+write x7 64978
+wait 0
+read x7 71744
+read x3 5293
+wait 0
+wait 0
+add x10 x9 x2
+addc x2 x6 2130
+addc x4 x7 9121
+addc x4 x7 6046
+write x6 28311
+write x2 13513
+write x1 72650
+addc x7 x1 469
+wait 0
+read x5 43307
+addc x6 x10 7235
+write x6 83377
+wait 0
 add x9 x6 x2
 wait 0
-wait 0
-add x6 x9 x4
-add x4 x5 x5
-write x10 84216
-read x1 67598
-wait 0
-wait 0
-wait 0
-read x7 50310
-read x5 13535
+add x2 x10 x8
+addc x9 x5 1021
+read x4 57380
+add x2 x2 x1
+add x2 x8 x5
+addc x1 x6 7802
+add x3 x6 x2
+addc x2 x4 6323
 wait 0
 wait 0
+addc x2 x1 8121
+read x6 56218
+read x6 5062
+wait 0
+addc x1 x2 3219
+read x3 53761
+read x7 86942
+wait 0
+read x8 32861
+wait 0
+write x10 95506
+read x3 71386
+read x3 74753
+add x5 x8 x10
+addc x7 x5 1714
+addc x10 x10 5274
+addc x3 x3 169
+addc x2 x4 1254
+write x4 50972
+read x3 82636
+addc x8 x10 6925
+wait 0
+read x6 82895
+read x2 20270
+write x9 45471
 wait 0
 wait 0
+addc x2 x8 6089
+wait 0
+read x6 50579
+wait 0
+addc x3 x1 5320
+read x5 28691
+wait 0
+addc x1 x6 5962
+read x1 82142
+write x3 12743
+read x2 53631
+write x1 97812
+wait 0
+addc x7 x3 6845
+read x2 23126
+wait 0
+read x4 77500
+wait 0
+read x10 75898
+add x2 x6 x4
+read x9 44011
+addc x5 x5 2718
+wait 0
+wait 0
+read x9 7985
+wait 0
+read x5 69781
+read x10 98920
+read x6 18624
+read x10 42259
+addc x8 x5 2841
+wait 0
+read x1 42970
+wait 0
+wait 0
+read x9 42271
+addc x6 x7 8943
+read x3 81364
+read x4 66137
+add x1 x8 x4
+write x1 71469
+read x1 11329
+read x7 89567
+read x5 55048
+addc x5 x10 1068
+read x4 33434
+read x7 71565
+read x6 27410
+wait 0
+addc x4 x7 7638
+addc x6 x4 9178
+write x9 98165
+wait 0
+add x1 x4 x5
+addc x5 x9 2506
+addc x1 x2 1414
+add x2 x4 x1
+read x2 25094
+read x6 36480
+read x2 32191
+add x2 x3 x4
+add x4 x4 x8
+read x2 16189
+write x2 36860
+wait 0
+read x6 15816
+write x10 94896
+wait 0
+read x4 52326
+wait 0
+addc x4 x10 2756
+read x10 23468
+read x3 5631
+read x3 95552
+write x2 21440
+addc x1 x5 5102
+addc x3 x6 6715
+write x5 34883
+wait 0
+read x5 99004
+wait 0
+add x1 x10 x4
+read x7 92547
+wait 0
+read x8 16335
+wait 0
+wait 0
+wait 0
+read x9 98949
+addc x3 x3 8169
+read x1 30959
+wait 0
+read x5 16105
+add x8 x6 x10
+read x9 37619
+read x6 98100
+read x6 25023
+read x5 44129
+read x6 27397
+wait 0
+read x6 18682
+addc x1 x4 4530
+addc x5 x10 9973
+read x9 1074
+read x8 93177
+addc x3 x3 4512
+wait 0
+read x3 71988
+add x1 x8 x6
+wait 0
+write x5 14386
+write x4 36117
+addc x7 x10 9117
+read x3 29971
+addc x8 x3 3936
+read x6 19620
+read x1 6695
+read x7 22118
+wait 0
+wait 0
+read x2 91719
+read x7 50674
+read x6 37821
+wait 0
+wait 0
+addc x7 x1 4230
+read x9 79748
+wait 0
+wait 0
+read x7 34872
+wait 0
+addc x4 x6 1912
+wait 0
+add x9 x2 x8
+wait 0
+addc x6 x9 528
+wait 0
+write x10 61794
+add x5 x1 x1
+read x2 73738
+addc x8 x4 8111
+addc x6 x8 8841
+write x10 95260
+wait 0
+read x3 47341
+read x1 50985
+wait 0
+read x3 74278
+addc x4 x7 7363
+wait 0
+wait 0
+addc x2 x3 8892
+wait 0
+read x1 74412
+read x9 15454
+wait 0
+addc x5 x10 492
+write x9 48123
+wait 0
+wait 0
+write x9 28572
+read x9 80493
+read x4 36834
+add x2 x1 x9
+read x9 33128
+read x1 61875
+add x10 x8 x9
+wait 0
+write x4 98254
+wait 0
+add x7 x4 x5
+addc x7 x1 8251
+addc x5 x5 5212
+read x2 19571
+read x10 31039
+addc x4 x6 499
+addc x7 x9 5308
+addc x4 x7 321
+addc x5 x1 5994
+write x8 92364
+add x1 x7 x10
+add x5 x1 x7
+write x6 74246
+write x2 16750
+wait 0
+wait 0
+wait 0
+read x3 83502
+add x3 x7 x10
+addc x6 x8 3072
+read x5 99331
+write x6 42641
+read x5 63246
+addc x5 x9 6869
+read x10 93653
+wait 0
+read x6 70473
+read x3 9010
+add x10 x1 x3
+write x2 96023
+wait 0
+write x3 56052
+addc x3 x2 3342
+addc x4 x10 9806
+wait 0
+read x4 45270
+write x9 97923
+wait 0
+read x8 97582
+read x6 88246
+write x6 84824
+wait 0
+read x6 52620
+read x3 7759
+write x3 12158
+read x1 97677
+add x8 x2 x7
+wait 0
+wait 0
+read x5 93026
+wait 0
+addc x2 x5 8815
+add x1 x10 x1
+read x2 29686
+add x2 x9 x9
+addc x6 x4 9677
+addc x9 x6 8315
+read x5 43514
+read x2 65577
+write x2 33439
+addc x8 x1 2291
+read x2 75308
+read x8 20879
+addc x5 x9 7304
+addc x7 x1 9807
+read x2 85606
+wait 0
+wait 0
+wait 0
+addc x7 x3 9624
+add x5 x8 x5
+add x1 x3 x5
+read x9 97629
+write x3 83793
+read x2 42447
+addc x6 x7 1359
+add x7 x4 x6
+wait 0
+wait 0
+wait 0
+write x9 40913
+addc x6 x6 9189
+addc x7 x2 4231
+read x4 13782
+addc x4 x8 518
+addc x5 x6 2956
+read x3 44681
+read x3 63773
+read x3 6251
+read x6 40407
+write x7 64682
+wait 0
+add x9 x2 x4
+write x1 34852
+addc x3 x9 3674
+write x6 17170
+wait 0
+wait 0
+wait 0
+wait 0
+wait 0
+read x8 69726
+wait 0
+wait 0
+wait 0
+wait 0
+read x4 69882
+wait 0
+addc x4 x2 5353
+read x5 84631
+addc x4 x4 8250
+write x9 20261
+addc x2 x4 2168
+read x6 34987
+read x9 52871
+write x7 41539
+read x6 50967
+read x10 6988
+read x3 18754
+addc x3 x1 9464
+wait 0
+wait 0
+write x10 26893
+read x5 59870
+read x4 76312
+wait 0
+addc x4 x5 6103
+write x10 52116
+wait 0
+addc x8 x7 4964
+wait 0
+add x7 x6 x9
+wait 0
+add x6 x6 x5
+read x3 25905
+addc x9 x1 3848
+read x2 66031
+wait 0
+wait 0
+write x4 52171
+wait 0
+read x9 6476
+addc x3 x10 8878
+add x10 x5 x3
+addc x10 x6 4428
+addc x2 x8 9937
+write x7 80819
+read x3 34197
+addc x10 x7 4394
+wait 0
+addc x2 x6 3952
+addc x1 x1 7705
+add x1 x6 x8
+read x7 8775
+read x7 27938
+read x4 19818
+read x7 43486
+read x7 19341
+read x9 87591
+read x10 57444
+read x10 40791
+addc x5 x8 4847
+addc x5 x10 1186
+wait 0
+addc x5 x2 14
+wait 0
+wait 0
+wait 0
+write x1 94417
+wait 0
+addc x8 x7 9503
+read x9 3909
+wait 0
+addc x4 x9 8706
+add x1 x4 x4
+wait 0
+read x10 43542
+add x7 x2 x7
+addc x5 x9 712
+add x10 x2 x3
+read x10 18722
+wait 0
+write x1 7707
+write x6 50466
+add x9 x2 x4
+wait 0
+wait 0
+read x10 58711
+wait 0
+wait 0
+write x9 8893
+addc x2 x3 2952
+addc x4 x3 6888
+addc x4 x7 6144
+wait 0
+wait 0
+write x3 38064
+read x1 17668
+read x4 89086
 add x6 x1 x7
+add x1 x8 x1
+wait 0
+read x6 50262
+write x3 49138
+add x7 x10 x1
+read x1 81512
+addc x3 x10 7362
+wait 0
+wait 0
+addc x10 x8 6064
+addc x3 x4 2559
+read x5 52704
+read x5 97184
+wait 0
+wait 0
+addc x3 x10 9643
+read x10 53585
+wait 0
+addc x4 x1 9249
+read x8 22662
+addc x6 x8 3517
+addc x6 x4 8571
+wait 0
+read x10 96171
+read x8 29242
+addc x9 x8 5633
+read x3 82161
+wait 0
+wait 0
+addc x6 x4 853
+addc x2 x9 8745
+write x8 90174
+addc x3 x2 9189
+read x4 55709
+addc x6 x6 7997
+wait 0
+addc x7 x5 1630
+write x1 19932
+add x5 x9 x4
+read x2 86812
+read x1 33261
+wait 0
+read x6 12549
+wait 0
+write x1 48377
+addc x3 x10 2325
+add x3 x6 x10
+read x3 91476
+wait 0
+addc x7 x7 7126
+add x8 x3 x8
+add x4 x1 x4
+write x3 55428
+write x1 59721
+addc x9 x8 7755
+addc x8 x9 7507
+read x9 96825
+addc x10 x7 9887
+wait 0
+addc x7 x3 3415
+wait 0
+addc x1 x3 8174
+wait 0
+wait 0
+read x5 19774
+read x8 93550
+addc x8 x4 8086
+add x7 x2 x1
+addc x3 x3 1684
+read x7 64553
+addc x10 x5 5904
+read x10 64085
+wait 0
+read x9 61347
+addc x6 x2 4848
+write x9 21581
+addc x9 x7 7163
+wait 0
+read x8 19337
+addc x4 x2 850
+read x9 49820
+wait 0
+read x5 49325
+wait 0
+addc x9 x4 1927
+read x1 34195
+addc x9 x8 210
+wait 0
+read x8 20100
+add x4 x8 x3
+addc x8 x3 417
+wait 0
+read x3 41996
+read x10 16900
+write x6 28565
+read x4 34423
+wait 0
+add x3 x4 x8
+add x10 x8 x10
+wait 0
+wait 0
+write x5 10720
+wait 0
+read x2 27484
+read x7 40383
+read x7 85441
+addc x3 x3 2016
+write x1 32178
+read x7 59796
+addc x7 x6 77
+read x4 88541
+addc x2 x7 7989
+read x9 51508
+write x3 79631
+add x4 x4 x3
+read x5 1066
+addc x5 x5 6992
+wait 0
+wait 0
+read x4 74106
+wait 0
+read x6 59590
+wait 0
+read x2 13679
+add x9 x5 x6
+wait 0
+read x4 30186
+add x9 x3 x8
+addc x9 x7 2874
+read x2 63577
+add x9 x4 x7
+read x1 32688
+add x2 x4 x6
+wait 0
+wait 0
+wait 0
+read x1 23370
+addc x9 x10 8888
+write x3 16731
+read x1 60218
+add x6 x9 x9
+read x2 40972
+addc x9 x9 5306
+addc x6 x10 7496
+read x9 79292
+write x3 18324
+wait 0
+add x2 x2 x6
+wait 0
+add x8 x5 x1
+read x10 32112
+write x4 15231
+write x5 82151
+addc x7 x6 9282
+write x3 73854
+read x10 50296
+read x3 36413
+read x6 32879
+addc x7 x1 4154
+write x6 26645
+write x6 42622
+addc x6 x1 956
+wait 0
+wait 0
+read x6 49775
+read x4 56567
+read x3 28558
+add x1 x2 x2
+addc x8 x6 687
+read x3 76320
+read x6 89664
+add x7 x9 x6
+wait 0
+read x1 17944
+write x4 29954
+read x3 26319
+wait 0
+wait 0
+read x5 25501
+read x6 48992
+wait 0
+add x2 x8 x10
+write x1 5830
+add x3 x1 x5
+wait 0
+read x7 41268
+addc x2 x1 6825
+wait 0
+wait 0
+add x9 x8 x3
+addc x3 x4 4602
+read x6 87911
+wait 0
+wait 0
+wait 0
+read x10 57153
+write x3 73725
+wait 0
+add x3 x6 x7
+write x4 41670
+wait 0
+add x8 x4 x4
+add x2 x8 x2
+wait 0
+addc x3 x5 1653
+add x10 x6 x2
+addc x10 x1 2003
+read x7 65116
+addc x1 x8 3895
+write x2 55669
+wait 0
+read x4 70666
+wait 0
+add x6 x1 x6
+addc x2 x3 554
+read x10 44268
+add x3 x9 x5
+addc x6 x3 7893
+write x3 96332
+read x1 83282
+read x9 31434
+addc x4 x3 4989
+addc x7 x6 6694
+addc x1 x2 8954
+read x4 88381
+read x1 75853
+read x1 18740
+write x10 99008
+addc x9 x4 8184
+wait 0
+wait 0
+read x4 74126
+wait 0
+wait 0
+add x8 x3 x6
+wait 0
+write x6 12590
+add x5 x8 x5
+add x9 x7 x10
+wait 0
+write x10 88559
+read x7 67586
+wait 0
+wait 0
+read x3 27336
+wait 0
+read x3 19313
+addc x10 x9 3680
+read x2 9059
+wait 0
+add x3 x4 x7
+read x6 50991
+write x9 8867
+write x1 74203
+wait 0
+read x1 49148
+addc x9 x8 8859
+add x9 x1 x2
+read x1 32296
+write x7 4613
+wait 0
+wait 0
+addc x7 x3 993
+read x5 10303
+addc x5 x5 3425
+write x2 58114
+addc x3 x3 9873
+write x10 86833
+addc x5 x10 6569
+write x7 83320
+read x4 77233
+addc x3 x2 6454
+wait 0
+read x4 64947
+read x2 44368
+add x7 x1 x8
+write x8 57906
+write x3 90328
+addc x9 x6 9872
+read x6 85366
+read x6 39652
+read x8 27311
+wait 0
+read x5 99300
+wait 0
+add x3 x7 x10
+wait 0
+wait 0
+write x3 70557
+add x5 x2 x8
+read x4 86004
+wait 0
+wait 0
+addc x7 x9 7245
+write x4 2153
+addc x2 x1 6125
+addc x7 x6 3217
+read x2 92278
+wait 0
+wait 0
+read x9 67962
+read x5 98270
+read x1 72626
+read x2 23039
+addc x8 x9 2397
+wait 0
+addc x3 x7 1407
+read x10 37240
+add x9 x3 x1
+wait 0
+wait 0
+addc x2 x3 233
+read x4 88729
+wait 0
+wait 0
+read x9 37910
+wait 0
+addc x5 x9 5909
+wait 0
+read x10 17772
+addc x3 x9 9760
+wait 0
+add x9 x5 x9
+wait 0
+wait 0
+read x6 28438
+wait 0
+write x9 30689
+addc x1 x8 4000
+read x3 6918
+add x6 x1 x10
+wait 0
+write x3 56100
+wait 0
+read x9 60216
+read x4 82644
+wait 0
+wait 0
+write x7 56091
+add x2 x8 x6
+write x2 83605
+wait 0
+addc x2 x10 4112
+wait 0
+read x3 8637
+addc x8 x8 5882
+wait 0
+write x6 19784
+read x1 56149
+read x6 97514
+wait 0
+wait 0
+read x8 30674
+wait 0
+write x7 76477
+read x5 69661
+write x9 5556
+ENDING TRANSACTION
+declare x1 2369
+declare x2 9512
+declare x3 3622
+declare x4 2924
+declare x5 5103
+declare x6 6260
+declare x7 1121
+declare x8 348
+declare x9 3699
+declare x10 3525
+read x4 60824
+wait 0
+wait 0
+read x1 41189
+read x4 90673
+read x5 97882
+wait 0
+write x7 66556
+wait 0
+write x7 63704
+addc x5 x9 3132
+add x8 x4 x5
+wait 0
+add x6 x3 x7
+read x6 85010
+add x2 x6 x9
+read x4 26712
+read x5 20131
+write x8 86024
+addc x4 x9 3474
+wait 0
+read x7 89668
+read x4 99896
+read x6 88972
+add x9 x8 x1
+write x2 36404
+addc x4 x7 40
+addc x6 x2 7694
+read x8 84672
+add x4 x3 x10
+read x1 15137
+wait 0
+read x5 75332
+wait 0
+read x4 63857
+addc x5 x8 155
+addc x1 x10 890
+addc x5 x10 3958
+read x2 88433
+wait 0
+read x2 73458
+read x3 15711
+read x3 39414
+wait 0
+wait 0
+wait 0
+write x4 69756
+read x3 48469
+read x1 22826
+wait 0
+wait 0
+write x2 48485
+wait 0
+wait 0
+read x7 16702
+read x5 70961
+read x8 93667
+wait 0
+addc x5 x8 9092
+read x3 69611
+read x1 91909
+read x3 8307
+addc x2 x10 7082
+wait 0
+write x7 38789
+addc x7 x5 1533
+addc x7 x1 8106
+write x10 22685
+read x8 69189
+read x1 40136
+wait 0
+read x7 60804
+read x5 30742
+wait 0
+add x10 x10 x7
+add x2 x9 x3
+read x1 91253
+addc x9 x5 8824
+read x3 40973
+addc x10 x6 8836
+wait 0
+read x9 16201
+read x9 15999
+addc x10 x5 2905
+addc x6 x10 4308
+wait 0
+read x4 61399
+add x3 x3 x2
+addc x3 x8 3499
+write x2 95226
+wait 0
+add x5 x8 x7
+read x7 71726
+write x9 23230
+addc x4 x7 5968
+write x9 19844
+read x8 58799
+read x10 53783
+wait 0
+read x10 96434
+wait 0
+write x4 80943
+read x10 41115
+read x3 56938
+read x6 58215
+addc x2 x6 2832
+wait 0
+addc x3 x7 6498
+add x1 x8 x7
+wait 0
+add x4 x2 x7
+write x4 30151
+wait 0
+read x6 58837
+add x5 x7 x3
+write x2 90011
+wait 0
+addc x9 x4 5094
+wait 0
+wait 0
+addc x7 x10 9651
+read x6 86372
+addc x1 x4 4933
+read x5 91977
+read x6 35616
+read x4 55421
+add x9 x7 x3
+wait 0
+wait 0
+read x7 60497
+wait 0
+add x2 x2 x4
+write x8 10675
+add x4 x9 x8
+read x7 63537
+write x10 43829
+read x6 7803
+wait 0
+addc x1 x7 8968
+write x6 50718
+wait 0
+wait 0
+addc x8 x9 1086
+addc x3 x1 9039
+read x4 67157
+addc x4 x9 7233
+read x6 67303
+add x2 x5 x3
+read x1 25038
+write x4 57316
+addc x2 x3 8440
+addc x4 x3 7275
+read x10 90238
+read x8 42304
+read x3 48883
+wait 0
+read x10 74862
+add x8 x6 x6
+wait 0
+wait 0
+add x4 x1 x1
+wait 0
+wait 0
+read x9 52468
+addc x9 x2 5241
+write x2 46319
+wait 0
+wait 0
+read x9 77466
+addc x4 x4 7050
+read x1 80052
+addc x1 x2 4236
+read x2 79299
+wait 0
+addc x6 x6 1790
+wait 0
+add x5 x10 x8
+wait 0
+wait 0
+addc x7 x4 1380
+add x9 x10 x2
+wait 0
+wait 0
+wait 0
+write x2 6174
+read x6 5428
+read x5 58916
+write x6 26820
+addc x8 x5 5543
+wait 0
+add x8 x2 x10
+wait 0
+write x3 19681
+write x9 8163
+read x6 51056
+read x2 75994
+read x9 15412
+addc x4 x6 7341
+wait 0
+wait 0
+wait 0
+wait 0
+read x6 49349
+wait 0
+addc x1 x1 9322
+wait 0
+wait 0
+addc x7 x1 2476
+add x9 x8 x4
+read x10 73551
+wait 0
+wait 0
+read x10 48986
+read x4 80985
+read x4 96367
+addc x6 x5 417
+add x4 x2 x9
+wait 0
+read x10 39904
+write x1 63614
+write x2 83625
+wait 0
+add x3 x8 x9
+add x5 x3 x7
+read x3 53514
+write x2 50703
+wait 0
+wait 0
+read x4 42411
+write x4 88557
+read x4 21153
+wait 0
+read x1 23728
+read x9 52328
+addc x7 x2 3753
+wait 0
+read x5 58231
+write x9 67438
+wait 0
+addc x1 x4 4791
+wait 0
+read x3 56890
+wait 0
+wait 0
+read x3 49195
+addc x1 x7 7634
+wait 0
+read x6 3542
+wait 0
+wait 0
+addc x10 x6 6184
+wait 0
+write x3 24088
+addc x1 x8 8843
+read x2 38347
+write x6 61432
+wait 0
+write x8 15325
+addc x10 x7 8931
+wait 0
+wait 0
+add x6 x10 x6
+addc x2 x6 4108
+write x7 96899
+wait 0
+write x1 77238
+write x8 73738
+read x2 98792
+wait 0
+read x1 39475
+addc x3 x9 4192
+wait 0
+read x2 20002
+wait 0
+add x1 x6 x1
+addc x7 x3 911
+write x5 71085
+write x2 79456
+read x10 62342
+wait 0
+wait 0
+read x9 39268
+write x9 38999
+addc x5 x7 8341
+wait 0
+read x9 97101
+addc x6 x8 250
+write x10 75837
+addc x7 x3 8803
+read x7 9521
+read x7 71470
+read x1 47127
+add x3 x9 x4
+add x2 x6 x9
+read x5 77938
+read x3 35066
+wait 0
+addc x10 x6 2113
+addc x3 x7 853
+write x5 8400
+write x4 92702
+addc x6 x9 7665
+add x8 x3 x9
+read x5 58953
+addc x2 x2 4028
+write x8 80022
+add x10 x1 x1
+read x2 16151
+wait 0
+addc x10 x3 9801
+wait 0
+write x8 26747
+read x8 77611
+read x8 4345
+write x3 13818
+addc x3 x2 3693
+add x2 x1 x10
+addc x9 x8 626
+wait 0
+wait 0
+write x2 86260
+wait 0
+wait 0
+wait 0
+add x6 x5 x8
+wait 0
+wait 0
+wait 0
+add x9 x4 x3
+add x5 x5 x9
+add x6 x6 x3
+write x6 83287
+add x9 x6 x6
+read x3 49301
+read x10 83720
+read x8 79841
+add x2 x9 x8
+addc x9 x6 62
+read x10 80918
+addc x4 x9 9249
+write x7 2600
+add x7 x1 x3
+read x2 14100
+write x2 49273
+wait 0
+add x9 x1 x4
+addc x8 x3 2053
+addc x9 x2 2721
+wait 0
+read x5 9575
+wait 0
+addc x1 x8 6630
+read x4 69500
+read x7 91562
+read x10 7707
+read x8 7897
+read x10 23849
+read x8 58229
+read x9 93216
+write x6 63202
+wait 0
+wait 0
+read x4 17199
+read x5 59138
+read x1 52006
+write x6 54493
+wait 0
+read x6 85879
+addc x5 x5 5542
+read x8 75101
+write x1 87493
+wait 0
+read x4 74547
+read x4 1080
+read x2 56210
+add x7 x5 x6
+addc x6 x3 2770
+write x3 57532
+add x1 x1 x2
+wait 0
+write x1 1566
+read x4 93184
+read x9 56569
+read x4 44775
+addc x9 x6 6701
+wait 0
+wait 0
+wait 0
+add x3 x4 x2
+read x8 86487
+read x1 47173
+wait 0
+read x8 54186
+add x2 x6 x2
+wait 0
+wait 0
+write x2 85584
+write x9 96404
+read x2 23188
+addc x9 x3 9747
+add x6 x1 x5
+read x7 5926
+addc x10 x9 7630
+addc x1 x4 9016
+addc x1 x7 7488
+addc x3 x6 6629
+write x7 4687
+add x5 x10 x7
+addc x8 x7 3344
+wait 0
+addc x10 x7 4223
+read x9 75161
+wait 0
+read x2 28296
+add x3 x3 x1
+wait 0
+addc x7 x3 474
+addc x9 x3 5860
+add x1 x1 x8
+read x8 19181
+wait 0
+add x6 x5 x5
+write x9 31081
+addc x1 x9 246
+read x4 46642
+read x1 84876
+read x1 51455
+add x3 x2 x2
+read x2 37363
+wait 0
+wait 0
+read x7 22121
+wait 0
+addc x9 x4 6033
+wait 0
+write x4 32531
+wait 0
+read x1 58896
+wait 0
+write x6 65303
+add x8 x3 x7
+wait 0
+wait 0
+add x10 x2 x8
+wait 0
+wait 0
+read x1 26254
+read x6 95866
+addc x6 x1 6256
+addc x2 x5 897
+wait 0
+wait 0
+read x5 51689
+addc x8 x2 521
+write x3 7925
+addc x7 x1 4020
+addc x9 x8 2740
+read x7 77270
+read x8 48580
+addc x1 x1 6665
+addc x10 x5 7474
+read x1 2399
+wait 0
+read x3 81333
+write x9 66689
+wait 0
+addc x7 x10 6347
+read x7 21132
+addc x2 x10 5122
+wait 0
+read x1 18746
+addc x1 x1 8790
+read x7 51177
+read x8 98402
+read x2 42880
+wait 0
+write x2 79229
+addc x4 x8 6539
+addc x2 x2 9678
+wait 0
+read x4 19620
+wait 0
+addc x7 x6 6543
+write x2 42112
+read x10 19156
+wait 0
+read x2 91135
+wait 0
+wait 0
+wait 0
+wait 0
+addc x9 x10 2673
+add x10 x6 x4
+add x2 x6 x4
+read x9 96982
+read x2 74638
+write x6 86076
+write x1 34235
+read x1 8269
+addc x4 x2 8872
+read x2 93661
+write x2 3583
+wait 0
+wait 0
+addc x3 x10 3140
+write x5 8296
+addc x9 x3 9863
+add x8 x7 x7
+read x2 96565
+read x9 15037
+write x6 29757
+add x7 x4 x2
+read x7 48098
+addc x6 x1 9601
+read x3 19099
+addc x4 x10 2859
+addc x4 x4 6477
+addc x4 x3 7087
+write x6 42979
+read x9 4642
+read x3 95906
+addc x9 x9 2854
+wait 0
+wait 0
+write x5 68306
+read x6 21949
+read x3 26781
+add x5 x2 x1
+write x7 17575
+wait 0
+read x1 47978
+read x7 86131
+addc x1 x3 2486
+read x3 46821
+addc x1 x6 4128
+write x1 19494
+wait 0
+add x6 x9 x9
+read x2 59939
+read x3 93587
+read x7 91270
+read x4 83152
+wait 0
+read x4 83184
+add x7 x6 x2
+read x7 50152
+read x7 4092
+addc x3 x7 6308
+wait 0
+wait 0
+addc x5 x7 1980
+add x3 x4 x7
+read x2 43224
+read x8 9147
+read x5 42049
+read x3 42597
+read x4 61066
+add x7 x7 x10
+wait 0
+addc x10 x5 8342
+read x1 4857
+addc x4 x3 6144
+add x7 x7 x1
+wait 0
+addc x10 x3 566
+read x3 80095
+add x8 x9 x6
+addc x1 x8 6214
+add x6 x5 x9
+read x5 88036
+read x2 17681
+add x1 x6 x5
+addc x8 x8 4448
+wait 0
+read x2 95480
+read x10 35973
+read x2 56032
+write x4 76875
+read x5 2694
+add x6 x7 x6
+read x4 8824
+wait 0
+read x2 61832
+write x10 1582
+wait 0
+read x5 79081
+add x6 x3 x8
+write x1 80809
+write x10 85412
+add x10 x4 x9
+write x1 40815
+wait 0
+write x2 34977
+read x1 29576
+read x1 1415
+wait 0
+read x6 37617
+addc x9 x6 8078
+wait 0
+addc x5 x10 5285
+wait 0
+addc x5 x7 3373
+wait 0
+add x8 x4 x3
+addc x8 x5 2117
+read x10 66353
+read x4 99556
+write x9 96591
+add x3 x8 x9
+read x10 63357
+read x9 61562
+add x8 x2 x4
+wait 0
+add x2 x3 x6
+wait 0
+write x4 68561
+read x5 87022
+read x10 51138
+addc x6 x9 9699
+read x6 84423
+addc x4 x2 4924
+write x9 42920
+wait 0
+read x9 30987
+read x7 33621
+read x8 54206
+add x7 x2 x9
+wait 0
+read x3 45907
+read x9 76341
+add x6 x8 x8
+write x10 71710
+write x3 90947
+add x1 x4 x2
+read x10 56776
+add x3 x7 x10
+write x7 53429
+read x6 20031
+addc x4 x1 3027
+addc x6 x10 8079
+read x3 20662
+addc x1 x2 6104
+read x9 3211
+addc x3 x10 6985
+wait 0
+wait 0
+add x4 x1 x10
+read x9 67597
+wait 0
+wait 0
+read x8 33794
+add x8 x7 x10
+read x2 85961
+addc x5 x10 9408
+addc x8 x3 2876
+addc x2 x4 6619
+read x10 17054
+read x9 88616
+read x9 82755
+read x7 3828
+wait 0
+read x1 6460
+read x2 92190
+addc x10 x8 1038
+write x8 72387
+wait 0
+wait 0
+wait 0
+add x5 x8 x9
+wait 0
+write x7 19187
+addc x7 x5 7815
+wait 0
+read x9 43363
+addc x10 x10 1394
+wait 0
+read x9 20915
+wait 0
+read x4 4700
+read x5 27968
+wait 0
+read x7 52277
+addc x1 x3 2821
+read x5 84207
+wait 0
+read x9 92584
+write x1 49609
+read x2 40219
+wait 0
+wait 0
+wait 0
+read x5 87005
+wait 0
+add x2 x1 x9
+wait 0
+addc x5 x9 1177
+write x2 90389
+read x4 82483
+write x9 13389
+read x10 7257
+read x4 62715
+wait 0
+addc x9 x8 1631
+read x6 23771
+read x9 26267
+read x2 26661
+write x4 14967
+read x1 26899
+read x7 98555
+addc x10 x2 4749
+read x2 67117
+add x9 x6 x3
+read x3 74661
+read x5 88945
+write x7 61870
+add x8 x7 x10
+addc x3 x2 1332
+wait 0
+read x6 88112
+read x9 37178
+read x10 89068
+wait 0
+wait 0
+add x8 x5 x9
+write x1 24058
+read x2 33738
+addc x6 x2 6923
+read x10 64466
+wait 0
+read x1 36682
+write x1 41979
+addc x2 x8 1962
+addc x5 x2 7558
+read x8 88012
+wait 0
+wait 0
+wait 0
+read x10 12733
+addc x7 x7 4862
+addc x2 x3 8136
+addc x6 x6 3166
+wait 0
+add x3 x8 x10
+read x2 27980
+add x9 x8 x3
+read x7 78009
+add x2 x5 x10
+wait 0
+write x4 4010
+read x5 12676
+wait 0
+read x2 52059
+write x10 66441
+read x7 72516
+wait 0
+wait 0
+read x9 8905
+read x6 65017
+wait 0
+read x9 67392
+wait 0
+read x7 16466
+read x2 30237
+addc x8 x5 8973
+wait 0
+wait 0
+wait 0
+wait 0
+addc x1 x2 9618
+write x8 96472
+wait 0
+read x5 64995
+wait 0
+read x3 36423
+write x6 47703
+wait 0
+write x4 31204
+addc x2 x8 223
+wait 0
+wait 0
+read x7 83919
+read x6 4217
+write x5 7362
+write x10 27964
+wait 0
+addc x10 x7 2394
+add x5 x5 x4
+read x6 56137
+wait 0
+read x9 95129
+addc x5 x9 7564
+addc x3 x5 8130
+write x10 95704
+read x2 42140
+read x5 83210
+wait 0
+read x5 82346
+read x7 87826
+add x10 x9 x4
+wait 0
+read x3 79052
+addc x3 x3 2764
+read x4 65634
+read x4 94695
+wait 0
+addc x4 x7 3248
+wait 0
+write x4 94721
+addc x1 x6 4150
+read x3 18288
+wait 0
+read x1 19982
+read x6 24450
+wait 0
+read x1 89868
+read x8 12619
+wait 0
+read x1 47119
+addc x7 x6 2640
+addc x7 x2 3311
+write x4 49688
+wait 0
+read x10 21505
+addc x6 x2 911
+addc x9 x10 5420
+read x2 11766
+read x9 35739
+read x9 70152
+read x4 54886
+wait 0
+wait 0
+wait 0
+read x5 34751
+read x7 63374
+wait 0
+addc x1 x1 7367
+read x4 32611
+addc x3 x4 8146
+wait 0
+wait 0
+write x3 95861
+addc x10 x7 8509
+read x6 49170
+read x9 47328
+addc x5 x4 5069
+read x6 82909
+wait 0
+read x4 98489
+add x2 x10 x6
+write x6 60756
+wait 0
+read x9 35782
+write x8 42166
+wait 0
+write x2 12607
+write x6 80390
+read x7 77228
+addc x5 x8 6451
+write x5 58451
+read x10 56462
+wait 0
+read x1 73519
+read x6 16301
+addc x5 x1 3706
+read x2 96029
+read x5 46511
+wait 0
+write x5 46885
+addc x9 x3 2428
+addc x2 x6 3280
+read x8 4842
+wait 0
+addc x5 x7 6669
+read x9 20363
+addc x7 x7 4960
+wait 0
+write x3 83782
+wait 0
+read x7 92872
+wait 0
+addc x8 x8 886
+wait 0
+write x8 15353
+read x1 15127
+addc x9 x1 6282
+read x10 58099
+wait 0
+addc x8 x5 923
+add x7 x7 x2
+addc x4 x9 5143
+read x3 54455
+read x8 96721
+write x5 4384
+read x10 5822
+addc x7 x7 4737
+wait 0
+read x6 84501
+read x1 29863
+read x3 46640
+addc x10 x7 2426
+read x1 56955
+wait 0
+read x3 73198
+addc x6 x9 6606
+add x2 x3 x7
+read x3 21163
+addc x2 x3 4282
+read x6 34549
+add x3 x8 x5
+read x10 38266
+add x8 x8 x6
+addc x9 x3 2165
+read x2 78816
+addc x2 x5 563
+addc x1 x6 7263
+write x10 28134
+read x10 46159
+write x5 24647
+read x2 36911
+read x5 91410
+addc x10 x5 9319
+add x2 x6 x8
+wait 0
+wait 0
+addc x10 x6 6355
+addc x7 x5 7987
+read x2 90604
+wait 0
+read x2 70709
+wait 0
+read x4 90665
+addc x5 x3 5518
+add x8 x4 x7
+addc x2 x10 4237
+read x3 91905
+wait 0
+read x6 78239
+add x5 x10 x3
+wait 0
+addc x5 x4 6934
+wait 0
+wait 0
+addc x6 x1 148
+wait 0
+wait 0
+wait 0
+read x7 36754
+addc x4 x5 3553
+read x3 9620
+wait 0
+add x8 x5 x9
+write x6 65965
+read x10 69098
+addc x5 x8 5624
+wait 0
+wait 0
+wait 0
+addc x4 x4 2257
+wait 0
+addc x10 x9 420
+wait 0
+read x7 82222
+wait 0
+read x1 79334
+wait 0
+read x1 43026
+read x4 91934
+addc x3 x7 9181
+read x8 72871
+wait 0
+addc x8 x6 9156
+addc x10 x2 6501
+wait 0
+write x7 26419
+read x6 71831
+add x9 x8 x4
+add x6 x8 x9
+read x5 12521
+add x4 x4 x7
+write x7 25162
+wait 0
+write x4 77715
+addc x1 x4 1258
+read x10 85268
+wait 0
+add x5 x2 x6
+addc x10 x8 6364
+addc x6 x3 2909
+addc x1 x4 3164
+add x4 x4 x10
+read x10 11491
+write x5 44535
+addc x6 x10 7557
+read x10 24397
+wait 0
+read x2 28302
+addc x4 x2 2066
+wait 0
+read x5 57785
+read x1 48044
+addc x4 x9 6554
+ENDING TRANSACTION
+declare x1 3521
+declare x2 6792
+declare x3 9653
+declare x4 6694
+declare x5 723
+declare x6 8214
+declare x7 3418
+declare x8 1837
+declare x9 7809
+declare x10 3367
+wait 0
+read x2 93723
+read x9 46826
+read x6 90086
+wait 0
+read x7 91171
+add x3 x1 x3
+write x6 33893
+wait 0
+read x9 79621
+addc x7 x9 1584
+write x7 9670
+add x1 x7 x1
+read x1 89854
+add x7 x6 x2
+write x5 26433
+wait 0
+read x3 93966
+write x10 32270
+addc x2 x9 2044
+addc x5 x5 3714
+wait 0
+read x7 10515
+addc x10 x9 8649
+addc x5 x8 5552
+wait 0
+addc x5 x1 8312
+wait 0
+add x8 x2 x10
+read x9 95554
+add x5 x7 x10
+addc x5 x8 4463
+read x1 30379
+read x5 45128
+read x6 27499
+wait 0
+addc x5 x10 3666
+add x1 x3 x6
+addc x3 x10 4047
 wait 0
 wait 0
 wait 0
 wait 0
 wait 0
+add x4 x3 x9
+addc x10 x1 2724
+addc x9 x6 4387
+read x10 35631
+read x8 29809
+wait 0
+read x10 69888
+read x10 5328
+read x7 53502
+wait 0
+write x8 85958
+wait 0
+add x9 x4 x10
 wait 0
 wait 0
 wait 0
-add x10 x7 x4
+read x3 59333
+read x3 50340
+read x1 33098
 wait 0
-read x2 55948
-add x8 x1 x4
-add x6 x8 x4
+read x10 31569
 wait 0
-read x5 35136
-read x3 60192
-add x3 x1 x1
-add x3 x5 x4
-write x3 97471
+add x1 x9 x6
+read x1 53120
+read x2 85809
+read x9 45493
+read x1 76897
+addc x9 x7 8291
+addc x1 x2 7382
 wait 0
-add x2 x4 x4
 wait 0
-add x3 x4 x1
+read x4 80064
+addc x3 x9 6068
+add x8 x2 x1
+wait 0
+read x8 47541
+read x4 38359
+write x4 22329
+read x3 51035
+wait 0
+read x9 24794
+write x9 18856
+wait 0
+read x8 94506
+read x2 97028
+read x6 29045
+wait 0
+write x3 34639
+addc x4 x5 6468
+read x5 19532
+write x2 48444
+read x2 75266
+wait 0
+read x6 37761
+write x7 89640
+wait 0
+add x3 x10 x9
+read x10 81531
+read x5 77466
+add x4 x1 x6
+add x9 x6 x8
+write x2 29012
+read x4 56871
+read x2 91918
+read x10 72185
+wait 0
+write x1 56662
+wait 0
+add x4 x4 x10
+read x2 5308
+wait 0
+wait 0
+write x6 33571
+read x3 79122
+write x2 53181
+addc x1 x1 4489
+wait 0
+add x2 x3 x3
+read x6 69223
+read x10 18597
+write x8 44094
+add x7 x7 x5
+write x10 26554
+wait 0
+add x2 x3 x7
+read x9 11389
+read x6 33319
+wait 0
+wait 0
+read x3 53879
+wait 0
+add x5 x3 x10
+wait 0
+wait 0
+wait 0
+read x4 38933
+write x9 78737
+read x10 51009
+addc x7 x7 5751
+addc x4 x4 8690
+read x10 13914
+write x6 49370
+wait 0
+read x3 46984
+wait 0
+write x4 43515
+read x3 3424
+write x9 13893
+read x7 28077
+add x9 x3 x6
+wait 0
+addc x8 x8 7852
+addc x1 x7 9589
+wait 0
+addc x8 x9 1594
+wait 0
+wait 0
+read x3 25045
+add x8 x6 x7
+read x3 70438
+addc x9 x3 1187
+read x1 71416
+read x1 14437
+read x9 27857
+write x7 96054
+wait 0
+addc x10 x9 3846
+addc x2 x2 3553
+wait 0
+add x4 x8 x9
+wait 0
+wait 0
+write x7 4659
+wait 0
+wait 0
+read x4 45849
+read x5 87820
+read x7 25674
+addc x1 x6 2183
+read x8 83971
+read x9 68617
+read x10 57755
+wait 0
+wait 0
+read x8 13671
+addc x9 x6 8966
+wait 0
+read x2 63914
+write x10 66143
+wait 0
+wait 0
+add x3 x5 x1
+add x9 x10 x3
+addc x8 x9 9393
+write x5 80614
+add x10 x2 x6
+addc x8 x6 6198
+add x7 x4 x4
+add x5 x3 x2
+addc x1 x2 513
+write x1 48671
+read x8 91259
+wait 0
+add x10 x2 x7
+write x9 29447
+add x4 x10 x8
+read x10 43985
+write x4 51052
+write x3 67338
+read x3 49084
+write x1 58637
+write x7 37435
+read x6 36696
+read x4 23607
+read x1 65165
+wait 0
+wait 0
+addc x4 x10 6763
+wait 0
+wait 0
+wait 0
+addc x6 x2 8221
+wait 0
+read x10 64704
+read x6 37128
+read x4 31657
+write x9 53835
+addc x1 x9 7944
+wait 0
+write x3 11900
+read x10 54733
+write x2 42293
+wait 0
+read x1 70135
+wait 0
+read x7 1944
+read x1 2189
+addc x7 x2 4545
+read x8 84124
+add x1 x3 x3
+addc x10 x9 1042
+wait 0
+read x9 32893
+wait 0
+read x10 74306
+add x4 x10 x6
+write x1 42076
+read x10 1721
+wait 0
+write x4 48843
+wait 0
+read x3 55571
+read x9 72135
+addc x6 x5 4277
+add x7 x1 x3
+read x3 29320
+addc x9 x8 5966
+wait 0
+addc x2 x5 8505
+read x8 53065
+read x2 32202
+read x3 67088
+read x9 93505
+wait 0
+addc x6 x3 7598
+write x8 11919
+wait 0
+write x3 97473
+addc x5 x6 9122
+wait 0
+read x6 6877
+wait 0
+read x10 80848
+wait 0
+read x3 41367
+read x1 12887
+addc x3 x10 5419
+wait 0
+write x6 52003
+write x8 79103
+addc x5 x9 2804
+addc x10 x1 2276
+addc x4 x2 8769
+wait 0
+read x5 83971
+read x7 8551
+write x8 36915
+read x7 10149
+read x5 31698
+read x5 11784
+wait 0
+addc x2 x6 3889
+addc x2 x1 2098
+write x6 43222
+addc x3 x4 6792
+addc x5 x10 1083
+wait 0
+read x5 60821
+read x6 37348
+write x1 40875
+addc x10 x2 7208
+read x5 23499
+wait 0
+write x2 88496
+read x3 36917
+wait 0
+read x8 83483
+addc x5 x4 758
+addc x9 x5 1390
+addc x3 x1 6427
+wait 0
+wait 0
+add x9 x8 x3
+wait 0
+wait 0
+add x4 x8 x9
+read x6 96210
+read x3 6808
+wait 0
+addc x9 x5 7700
+read x9 16792
+read x3 10254
+addc x4 x10 1328
+addc x2 x9 3825
+read x2 53710
+read x9 74371
+add x6 x10 x7
+read x4 25607
+write x8 4483
+wait 0
+read x5 90449
+addc x2 x5 9979
+add x9 x8 x3
+write x8 29381
+wait 0
+wait 0
+write x1 22996
+add x2 x4 x9
+read x10 99180
+write x9 72904
+addc x4 x5 8182
+wait 0
+write x10 28566
+addc x6 x9 5731
+addc x3 x4 377
+wait 0
+addc x5 x7 8243
+addc x7 x8 4407
+read x9 74680
+read x2 6080
+add x4 x2 x7
+write x8 43029
+add x9 x8 x3
+addc x7 x4 6061
+wait 0
+write x1 11371
+wait 0
+read x5 3048
+read x1 21306
+read x10 41558
+wait 0
+wait 0
+read x10 29903
+wait 0
+wait 0
+add x5 x8 x8
+addc x10 x8 1665
+add x1 x4 x7
+addc x4 x6 2670
+read x8 7220
+wait 0
+wait 0
+addc x3 x3 8011
+write x7 72222
+wait 0
+add x6 x8 x1
+read x1 22956
+wait 0
+wait 0
+read x3 69625
+write x7 88004
+read x9 1362
+wait 0
+read x2 39524
+write x4 60475
+wait 0
+addc x7 x5 7321
+wait 0
+write x5 52858
+add x7 x8 x6
+wait 0
+addc x4 x6 1194
+write x2 50253
+addc x1 x8 2370
+wait 0
+read x7 97808
+wait 0
+read x6 44318
+add x4 x9 x6
+read x6 16719
+read x9 9809
+read x4 21540
+addc x5 x6 1611
+write x6 92990
+add x3 x10 x8
+add x4 x9 x1
+wait 0
+addc x1 x5 8997
+write x3 29485
+addc x6 x9 5191
+wait 0
+addc x2 x2 903
+wait 0
+read x3 9853
+write x7 33497
+read x7 76861
+wait 0
+write x6 1147
+write x6 46413
+add x4 x9 x2
+read x10 6661
+wait 0
+wait 0
+wait 0
+wait 0
+read x10 70135
+read x7 77486
+read x7 52073
+add x10 x8 x5
+read x2 77714
+write x8 26496
+addc x9 x6 5974
+wait 0
+read x8 27068
+addc x6 x1 1105
+wait 0
+wait 0
+wait 0
+read x10 62699
+wait 0
+write x8 94483
+read x8 33991
+addc x3 x7 6581
+read x2 63325
+wait 0
+write x6 77745
+addc x7 x5 4021
+wait 0
+addc x6 x2 9944
+wait 0
+add x6 x3 x4
+wait 0
+wait 0
+read x2 92205
+write x5 17944
+wait 0
+read x9 56519
+addc x7 x2 9855
+wait 0
+addc x4 x6 6130
+add x5 x3 x2
+wait 0
+wait 0
+read x6 72011
+add x1 x10 x9
+add x6 x2 x9
+write x4 58463
+read x4 70167
+wait 0
+wait 0
+read x10 59986
+wait 0
+wait 0
+wait 0
+addc x7 x9 9580
+wait 0
+add x3 x9 x4
+addc x7 x4 3525
+wait 0
+read x1 98172
+write x5 4396
+wait 0
+read x5 31206
+addc x7 x6 8022
+addc x1 x8 7648
+add x3 x9 x3
+wait 0
+add x6 x2 x7
+wait 0
+read x4 22589
+wait 0
+wait 0
+add x7 x2 x4
+wait 0
+addc x6 x1 5998
+addc x9 x7 2074
+wait 0
+read x2 80725
+read x10 18573
+read x8 90441
+read x4 18057
+addc x10 x3 2142
+wait 0
+addc x8 x7 4386
+write x4 76786
+addc x7 x7 6994
+addc x7 x4 9171
+wait 0
+wait 0
+write x6 10162
+add x4 x10 x7
+wait 0
+read x4 89258
+addc x2 x10 3076
+addc x2 x5 6772
+wait 0
+addc x2 x10 2698
+wait 0
+read x4 26572
+wait 0
+write x9 89546
+read x10 2595
+read x8 38613
+read x5 60805
+addc x3 x5 3687
+wait 0
+read x2 67487
+read x7 71027
+add x2 x1 x7
+wait 0
+add x8 x9 x7
+wait 0
+wait 0
+write x6 50623
+add x10 x6 x8
+write x5 39162
+addc x3 x9 3653
+add x8 x1 x1
+addc x3 x10 5883
+add x7 x7 x4
+read x5 42177
+read x3 31594
+read x4 81964
+write x6 6681
+write x6 40705
+addc x10 x4 6288
+wait 0
+read x4 14464
+read x10 87775
+read x3 13053
+read x2 94416
+add x7 x3 x5
+read x6 8561
+write x4 80298
+read x2 48759
+wait 0
+wait 0
+read x1 58097
+read x7 38217
+add x1 x4 x9
+add x9 x10 x7
+write x8 97306
+read x2 28221
+read x1 56322
+wait 0
+add x4 x6 x3
+read x5 63852
+add x1 x9 x10
+addc x5 x7 2327
+wait 0
+write x8 12463
+addc x6 x2 3604
+add x9 x3 x3
+read x9 21475
+read x10 24394
+wait 0
+read x4 16155
+add x2 x6 x7
+add x2 x8 x3
+wait 0
+read x8 62717
+read x10 9192
+wait 0
+read x5 75321
+wait 0
+write x1 41836
+read x4 3222
+wait 0
+addc x7 x10 7241
+write x8 78067
+read x9 21992
+wait 0
+wait 0
+write x5 86704
+add x1 x4 x4
+add x10 x2 x4
+write x4 98462
+wait 0
+addc x8 x10 2219
+addc x7 x4 6155
+write x1 19543
+write x6 22454
+wait 0
+read x7 46567
+read x6 23171
+read x4 68354
+write x4 39620
+read x7 87784
+wait 0
+write x3 55085
+read x7 85075
+read x6 31187
+addc x1 x3 9698
+read x10 69461
+wait 0
+read x10 78537
+add x6 x10 x4
+addc x5 x6 5173
+read x3 32112
+wait 0
+read x5 93639
+add x5 x6 x7
+read x2 33559
+read x2 15376
+read x9 33386
+addc x8 x4 6802
+addc x1 x2 9894
+addc x3 x2 6497
+wait 0
+wait 0
+read x10 88722
+read x3 27547
+wait 0
+read x4 31638
+wait 0
+add x8 x3 x2
+addc x10 x7 4822
+addc x7 x3 6539
+wait 0
+write x7 91441
+addc x6 x8 7673
+write x2 85077
+addc x1 x4 3327
+wait 0
+addc x10 x6 7713
+read x3 77944
+addc x10 x10 9277
+wait 0
+read x5 84704
+wait 0
+wait 0
+wait 0
+read x8 59785
+write x3 27292
+wait 0
+wait 0
+add x5 x8 x8
+write x4 28867
+write x10 91684
+add x10 x6 x4
+write x8 6050
+read x4 77222
+add x8 x2 x8
+wait 0
+read x1 85914
+write x10 49152
+read x3 42180
+add x9 x2 x2
+read x1 10556
+read x2 49008
+write x5 6570
+read x8 86162
+wait 0
+add x2 x6 x7
+read x4 4601
+addc x5 x3 4565
+write x5 19161
+wait 0
+wait 0
+read x2 19968
+addc x8 x8 905
+read x3 32787
+addc x5 x9 4126
+read x6 1247
+write x7 5253
+read x10 50180
+wait 0
+addc x3 x6 3759
+read x1 68319
+write x9 18835
+addc x7 x2 476
+wait 0
+wait 0
+wait 0
+read x3 15885
+wait 0
+write x4 37496
+wait 0
+write x7 6475
+addc x5 x8 7300
+read x3 36019
+addc x6 x6 1556
+addc x8 x9 9023
+read x8 35841
+write x10 21495
+wait 0
+read x6 89826
+addc x4 x7 1893
+write x5 62175
+wait 0
+read x7 35437
+add x10 x5 x10
+add x5 x6 x6
+read x6 34595
+read x8 21969
+wait 0
+read x9 91312
+write x4 80525
+addc x3 x9 5060
+wait 0
+add x10 x1 x3
+read x7 16582
+read x2 59485
+write x3 65603
+read x5 44352
+read x1 67243
+addc x2 x5 8633
+add x4 x1 x3
+read x7 4971
+wait 0
+write x10 86590
+addc x5 x5 4577
+read x1 13907
+wait 0
+add x4 x7 x2
+wait 0
+wait 0
+wait 0
+addc x7 x6 2838
+read x3 82222
+addc x9 x8 6784
+add x3 x4 x3
+wait 0
+addc x3 x3 328
+read x6 12961
+addc x3 x5 4758
+read x1 72694
+write x3 91472
+wait 0
+addc x5 x7 4934
+wait 0
+add x9 x6 x3
+read x4 12413
+write x5 4444
+addc x9 x2 7203
+read x7 7981
+addc x9 x5 1361
+wait 0
+add x1 x2 x9
+addc x1 x4 3587
+wait 0
+wait 0
+wait 0
+read x3 83963
+read x9 96614
+read x8 85080
+wait 0
+add x2 x7 x7
+wait 0
+wait 0
+addc x3 x3 4995
+read x1 80121
+wait 0
+addc x6 x2 476
+read x3 23962
+read x2 68687
+addc x7 x4 8732
+addc x4 x1 9854
+add x10 x10 x3
+addc x10 x6 678
+wait 0
+wait 0
+addc x10 x9 9959
+read x8 73698
+write x10 28624
+read x3 10560
+write x7 13993
+read x6 83918
+addc x2 x8 4655
+write x10 78259
+addc x8 x1 2736
+read x8 62821
+add x9 x3 x5
+wait 0
+add x1 x2 x7
+wait 0
+write x5 96823
+read x9 39843
+wait 0
+addc x10 x10 536
+read x9 81044
+read x8 81123
+addc x5 x7 71
+add x6 x1 x1
+write x10 55748
+wait 0
+wait 0
+write x2 92637
+wait 0
+wait 0
+write x6 22630
+read x1 31018
+read x5 9316
+read x4 52582
+write x2 20814
+write x10 41216
+add x4 x1 x1
+read x3 33413
+read x9 67107
+read x8 49445
+add x7 x7 x10
+write x7 83082
+read x4 6775
+add x2 x4 x7
+read x3 13267
+addc x2 x6 638
+add x5 x8 x6
+read x2 59677
+read x8 39495
+read x6 75708
+addc x1 x7 7331
+wait 0
+addc x2 x5 8054
+wait 0
+wait 0
+add x10 x9 x6
+read x10 47049
+wait 0
+read x7 88707
+addc x3 x7 3795
+wait 0
+read x5 9552
+wait 0
+write x8 90259
+add x9 x8 x4
+wait 0
+read x3 58790
+addc x10 x6 5010
+wait 0
+wait 0
+write x3 70705
+addc x4 x1 7685
+read x6 97233
+wait 0
+addc x3 x1 3385
+wait 0
+read x8 11190
+addc x8 x2 2232
+read x4 14770
+read x4 12921
+read x6 86408
+read x7 55412
+read x6 88551
+read x6 36189
+write x3 46105
+read x10 98271
+wait 0
+addc x2 x2 3001
+read x1 2051
+wait 0
+write x7 54488
+read x4 46921
+write x7 46063
+read x4 53176
+read x8 1351
+write x3 32238
+addc x10 x2 5726
+read x4 69817
+wait 0
+wait 0
+add x1 x10 x9
+read x10 23788
+wait 0
+read x1 12502
+read x6 5827
+addc x5 x10 8054
+write x9 92489
+addc x3 x2 7278
+addc x10 x4 9090
+wait 0
+addc x4 x9 838
+addc x6 x10 6767
+write x10 6505
+read x9 8000
+add x2 x6 x6
+write x6 16752
+wait 0
+add x6 x5 x2
+read x8 41037
+read x3 78111
+read x7 33630
+add x10 x7 x2
+read x9 38827
+add x6 x10 x4
+write x8 51524
+read x8 96727
+read x6 81134
+read x8 70461
+read x6 50785
+read x4 93681
+read x5 68566
+write x9 30919
 add x8 x7 x9
-read x3 50309
-wait 0
-add x7 x8 x8
-wait 0
+addc x6 x3 9277
+read x3 98417
 wait 0
 wait 0
+read x5 70253
+add x2 x10 x1
+wait 0
+add x6 x9 x5
+wait 0
+addc x8 x9 7305
+addc x6 x6 3663
+addc x5 x10 2539
+add x4 x5 x8
+write x1 38814
+read x10 92498
+wait 0
+read x2 26793
+addc x1 x10 8662
+read x10 96370
+read x9 66794
+addc x10 x9 8448
+addc x5 x10 7450
+add x9 x8 x4
+read x6 14690
+read x3 20816
+addc x5 x2 6225
 wait 0
 wait 0
+addc x4 x6 5017
+read x5 46939
+add x1 x1 x5
+read x9 74766
+read x5 69240
+read x9 60205
+write x3 92621
+add x5 x8 x10
+add x1 x5 x4
+read x2 30506
+read x2 94771
+read x6 10752
+read x9 99400
 wait 0
+read x8 78790
+read x4 56128
+read x9 26772
 wait 0
+read x1 73213
+read x8 8285
 wait 0
-wait 0
-add x1 x2 x6
-read x9 45565
 wait 0
 add x6 x4 x4
-read x1 39299
-add x5 x9 x4
-wait 0
-add x5 x9 x4
-read x8 44807
-wait 0
-add x10 x5 x5
-wait 0
-write x5 73577
-wait 0
-wait 0
-add x6 x7 x4
-wait 0
-add x10 x5 x7
-wait 0
-add x1 x8 x10
+write x10 35822
+read x7 81862
+addc x4 x8 6129
+addc x9 x3 4307
+addc x5 x2 8278
+read x10 19258
+read x2 68230
+write x7 29509
+addc x6 x9 6410
+read x9 61610
+addc x9 x6 6300
+write x9 72348
+write x6 22184
 wait 0
 wait 0
+addc x1 x1 4770
+read x6 25570
+write x6 99386
+read x8 20775
+wait 0
+addc x7 x10 6148
+write x1 37085
+addc x4 x9 9829
+addc x9 x3 3911
+read x8 68224
+addc x10 x2 2792
+read x9 46383
 wait 0
 wait 0
-read x9 41064
 wait 0
-wait 0
-write x8 56438
-wait 0
-wait 0
-wait 0
-wait 0
-write x8 30214
-wait 0
-wait 0
-read x7 50625
-wait 0
-add x7 x2 x3
-read x2 1297
-add x2 x4 x7
-wait 0
+read x8 81962
+addc x10 x5 1345
 wait 0
 ENDING TRANSACTION

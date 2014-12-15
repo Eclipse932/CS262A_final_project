@@ -1,0 +1,5 @@
+Attempting to start local RMI Server for replica3 at 128.32.44.161
+java RMI registry already exists.
+replica4 successfully bound in local registry
+Trying to contact terratest.eecs.berkeley.edu
+true

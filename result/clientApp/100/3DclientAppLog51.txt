@@ -1,0 +1,51 @@
+Trying to contact terratest.eecs.berkeley.edu
+Inside the getInput
+Beginning Transaction
+2014-12-15T06:46:34.574Z
+Error, unable to startup.
+Beginning Transaction
+2014-12-15T06:46:45.345Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.388Z
+Beginning Transaction
+2014-12-15T06:46:45.388Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.441Z
+Beginning Transaction
+2014-12-15T06:46:45.442Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.495Z
+Beginning Transaction
+2014-12-15T06:46:45.495Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.545Z
+Beginning Transaction
+2014-12-15T06:46:45.545Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.591Z
+Beginning Transaction
+2014-12-15T06:46:45.591Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.639Z
+Beginning Transaction
+2014-12-15T06:46:45.639Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.700Z
+Beginning Transaction
+2014-12-15T06:46:45.700Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.748Z
+Beginning Transaction
+2014-12-15T06:46:45.748Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:46:45.793Z
+IT'S DONE

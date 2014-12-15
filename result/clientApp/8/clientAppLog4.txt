@@ -1,0 +1,94 @@
+Trying to contact terratest.eecs.berkeley.edu
+Inside the getInput
+Beginning Transaction
+2014-12-14T01:27:24.790Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:20.908Z
+Beginning Transaction
+2014-12-14T01:28:20.909Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:26.331Z
+Beginning Transaction
+2014-12-14T01:28:26.332Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:27.899Z
+Beginning Transaction
+2014-12-14T01:28:27.899Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:29.572Z
+Beginning Transaction
+2014-12-14T01:28:29.573Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:31.240Z
+Beginning Transaction
+2014-12-14T01:28:31.241Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:33.957Z
+Beginning Transaction
+2014-12-14T01:28:33.957Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:34.896Z
+Beginning Transaction
+2014-12-14T01:28:34.897Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:35.943Z
+Beginning Transaction
+2014-12-14T01:28:35.944Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:37.508Z
+Beginning Transaction
+2014-12-14T01:28:37.508Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:38.763Z
+Beginning Transaction
+2014-12-14T01:28:38.764Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:40.017Z
+Beginning Transaction
+2014-12-14T01:28:40.017Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:41.267Z
+Beginning Transaction
+2014-12-14T01:28:41.268Z
+Return: 	commit
+Ending Transaction
+2014-12-14T01:28:42.862Z
+Beginning Transaction
+2014-12-14T01:28:42.863Z
+Return: 	abort
+Ending Transaction
+2014-12-14T01:28:44.131Z
+Beginning Transaction
+2014-12-14T01:28:44.131Z
+Return: 	abort
+Ending Transaction
+2014-12-14T01:28:44.285Z
+Beginning Transaction
+2014-12-14T01:28:44.285Z
+Return: 	abort
+Ending Transaction
+2014-12-14T01:28:44.472Z
+Beginning Transaction
+2014-12-14T01:28:44.472Z
+Return: 	abort
+Ending Transaction
+2014-12-14T01:28:44.709Z
+Beginning Transaction
+2014-12-14T01:28:44.710Z
+Return: 	abort
+Ending Transaction
+2014-12-14T01:28:44.904Z
+Beginning Transaction
+2014-12-14T01:28:44.904Z

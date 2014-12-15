@@ -1,0 +1,7 @@
+Attempting to start local RMI Server for replica5 at 128.32.44.161
+java RMI registry created.
+replica5 successfully bound in local registry
+Trying to contact terratest.eecs.berkeley.edu
+true
+Unable to acquire the leader's remote object
+java.rmi.NotBoundException: replica0

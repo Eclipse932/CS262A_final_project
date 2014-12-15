@@ -1,0 +1,407 @@
+declare x1 109674
+write x1 612234
+declare x2 66330
+write x2 621330
+declare x3 34099
+write x3 190467
+declare x4 40588
+write x4 965407
+declare x5 11672
+write x5 785014
+declare x6 28604
+write x6 86676
+declare x7 15322
+write x7 549238
+declare x8 86816
+write x8 269013
+declare x9 94993
+write x9 409050
+declare x10 72289
+write x10 81284
+declare x11 104454
+write x11 803059
+declare x12 71687
+write x12 958665
+declare x13 25094
+write x13 555081
+declare x14 59332
+write x14 515782
+declare x15 42148
+write x15 735376
+declare x16 76544
+write x16 257265
+declare x17 10982
+write x17 872880
+declare x18 65739
+write x18 680067
+declare x19 54091
+write x19 929940
+declare x20 49426
+write x20 915624
+read x3 735376
+addc x3 x3 -67636
+write x3 735376
+read x11 416397
+addc x11 x11 67636
+write x3 416397
+read x20 735376
+addc x8 x18 3771
+write x20 735376
+read x2 803059
+addc x18 x18 3040
+write x2 803059
+read x18 785014
+addc x17 x12 708
+write x18 785014
+read x1 965407
+addc x9 x5 2393
+write x1 965407
+ENDING TRANSACTION
+declare x1 65653
+declare x2 29323
+declare x3 49371
+declare x4 31121
+declare x5 60825
+declare x6 47314
+declare x7 38270
+declare x8 49959
+declare x9 97921
+declare x10 51470
+declare x11 32179
+declare x12 38289
+declare x13 83648
+declare x14 72704
+declare x15 15526
+declare x16 41844
+declare x17 75102
+declare x18 27829
+declare x19 14193
+declare x20 15688
+read x13 929940
+addc x19 x9 3580
+write x13 929940
+read x10 680067
+addc x4 x5 4500
+write x10 680067
+read x13 872880
+addc x8 x16 831
+write x13 872880
+read x20 269013
+addc x20 x20 -66493
+write x20 269013
+read x14 912825
+addc x14 x14 66493
+write x20 912825
+read x13 929940
+addc x13 x6 1484
+write x13 929940
+ENDING TRANSACTION
+declare x1 20820
+declare x2 50592
+declare x3 17786
+declare x4 67734
+declare x5 92228
+declare x6 98883
+declare x7 83048
+declare x8 38641
+declare x9 47273
+declare x10 14261
+declare x11 11862
+declare x12 97710
+declare x13 108992
+declare x14 55659
+declare x15 64134
+declare x16 65966
+declare x17 93734
+declare x18 107915
+declare x19 63419
+declare x20 90830
+read x10 190467
+addc x10 x10 -108761
+write x10 190467
+read x10 847731
+addc x10 x10 108761
+write x10 847731
+read x10 81284
+addc x12 x18 8682
+write x10 81284
+read x6 680067
+addc x13 x6 7568
+write x6 680067
+read x1 785014
+addc x1 x1 -87007
+write x1 785014
+read x16 539553
+addc x16 x16 87007
+write x1 539553
+read x15 621330
+addc x15 x15 -94903
+write x15 621330
+read x18 453487
+addc x18 x18 94903
+write x15 453487
+ENDING TRANSACTION
+declare x1 103405
+declare x2 56946
+declare x3 101446
+declare x4 73178
+declare x5 24440
+declare x6 88066
+declare x7 41679
+declare x8 69940
+declare x9 29586
+declare x10 106898
+declare x11 48648
+declare x12 52033
+declare x13 83731
+declare x14 36036
+declare x15 76616
+declare x16 86763
+declare x17 106598
+declare x18 87438
+declare x19 99479
+declare x20 42126
+read x13 958665
+addc x13 x13 -83779
+write x13 958665
+read x3 187458
+addc x3 x3 83779
+write x13 187458
+read x18 515782
+addc x8 x4 1948
+write x18 515782
+read x7 409050
+addc x5 x11 5826
+write x7 409050
+read x15 735376
+addc x14 x17 4812
+write x15 735376
+read x17 612234
+addc x8 x2 3503
+write x17 612234
+ENDING TRANSACTION
+declare x1 104004
+declare x2 68128
+declare x3 75628
+declare x4 108568
+declare x5 93788
+declare x6 46173
+declare x7 93752
+declare x8 25824
+declare x9 52150
+declare x10 89129
+declare x11 96648
+declare x12 29644
+declare x13 14784
+declare x14 103808
+declare x15 73937
+declare x16 63551
+declare x17 55596
+declare x18 10014
+declare x19 108501
+declare x20 48966
+read x9 515782
+addc x8 x15 6524
+write x9 515782
+read x10 515782
+addc x2 x5 3041
+write x10 515782
+read x3 958665
+addc x9 x7 1877
+write x3 958665
+read x7 929940
+addc x13 x7 5968
+write x7 929940
+read x7 555081
+addc x1 x10 4673
+write x7 555081
+ENDING TRANSACTION
+declare x1 10314
+declare x2 79682
+declare x3 56109
+declare x4 57016
+declare x5 55551
+declare x6 55266
+declare x7 12223
+declare x8 69881
+declare x9 13838
+declare x10 17006
+declare x11 106727
+declare x12 46161
+declare x13 108572
+declare x14 14889
+declare x15 89674
+declare x16 102182
+declare x17 70394
+declare x18 70178
+declare x19 83081
+declare x20 94218
+read x3 735376
+addc x5 x4 2682
+write x3 735376
+read x12 958665
+addc x4 x10 552
+write x12 958665
+read x19 257265
+addc x20 x6 6796
+write x19 257265
+read x4 257265
+addc x6 x17 6796
+write x4 257265
+read x18 785014
+addc x18 x18 -30999
+write x18 785014
+read x9 896350
+addc x9 x9 30999
+write x18 896350
+ENDING TRANSACTION
+declare x1 46970
+declare x2 108728
+declare x3 15928
+declare x4 59029
+declare x5 50479
+declare x6 100129
+declare x7 55117
+declare x8 82354
+declare x9 26194
+declare x10 104868
+declare x11 100886
+declare x12 78181
+declare x13 102184
+declare x14 68041
+declare x15 20260
+declare x16 101129
+declare x17 100636
+declare x18 68136
+declare x19 93055
+declare x20 25033
+read x18 803059
+addc x18 x15 6750
+write x18 803059
+read x20 409050
+addc x20 x20 -25495
+write x20 409050
+read x20 154151
+addc x20 x20 25495
+write x20 154151
+read x14 680067
+addc x18 x2 4175
+write x14 680067
+read x10 958665
+addc x12 x18 3756
+write x10 958665
+read x18 190467
+addc x9 x7 4566
+write x18 190467
+ENDING TRANSACTION
+declare x1 53889
+declare x2 58354
+declare x3 46820
+declare x4 47167
+declare x5 65132
+declare x6 58110
+declare x7 68977
+declare x8 73131
+declare x9 91599
+declare x10 79267
+declare x11 59754
+declare x12 15685
+declare x13 43096
+declare x14 12572
+declare x15 57181
+declare x16 84272
+declare x17 54873
+declare x18 96691
+declare x19 20205
+declare x20 27722
+read x12 86676
+addc x20 x18 5674
+write x12 86676
+read x14 803059
+addc x14 x14 -43156
+write x14 803059
+read x16 268751
+addc x16 x16 43156
+write x14 268751
+read x11 735376
+addc x15 x2 2090
+write x11 735376
+read x13 929940
+addc x3 x5 2183
+write x13 929940
+read x20 549238
+addc x9 x11 4378
+write x20 549238
+ENDING TRANSACTION
+declare x1 67803
+declare x2 17135
+declare x3 73872
+declare x4 107185
+declare x5 30352
+declare x6 53350
+declare x7 93916
+declare x8 63758
+declare x9 72457
+declare x10 36952
+declare x11 30812
+declare x12 104330
+declare x13 95705
+declare x14 14193
+declare x15 32112
+declare x16 84167
+declare x17 35167
+declare x18 79614
+declare x19 83996
+declare x20 66611
+read x14 803059
+addc x17 x11 1092
+write x14 803059
+read x16 735376
+addc x13 x7 8110
+write x16 735376
+read x14 621330
+addc x15 x5 8877
+write x14 621330
+read x14 515782
+addc x17 x18 2925
+write x14 515782
+read x16 515782
+addc x8 x1 8332
+write x16 515782
+ENDING TRANSACTION
+declare x1 51113
+declare x2 68052
+declare x3 16922
+declare x4 71388
+declare x5 19402
+declare x6 36588
+declare x7 103326
+declare x8 90968
+declare x9 83435
+declare x10 29044
+declare x11 104881
+declare x12 45138
+declare x13 60395
+declare x14 37174
+declare x15 21046
+declare x16 59347
+declare x17 101032
+declare x18 101622
+declare x19 40770
+declare x20 36347
+read x7 680067
+addc x1 x17 1972
+write x7 680067
+read x16 929940
+addc x13 x5 1519
+write x16 929940
+read x13 86676
+addc x10 x9 1050
+write x13 86676
+read x20 915624
+addc x7 x12 1723
+write x20 915624
+read x18 269013
+addc x20 x9 6137
+write x18 269013
+ENDING TRANSACTION

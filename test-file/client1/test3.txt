@@ -1,0 +1,6 @@
+declare x1 10
+write x1 54
+ENDING TRANSACTION
+declare x1 10
+read x1 54
+ENDING TRANSACTION

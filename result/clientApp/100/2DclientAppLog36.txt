@@ -1,0 +1,53 @@
+Trying to contact terratest.eecs.berkeley.edu
+Inside the getInput
+Beginning Transaction
+2014-12-15T06:16:13.809Z
+Return: 	abort
+Ending Transaction
+2014-12-15T06:16:28.617Z
+Beginning Transaction
+2014-12-15T06:16:28.617Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:17:05.174Z
+Beginning Transaction
+2014-12-15T06:17:05.174Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:17:20.964Z
+Beginning Transaction
+2014-12-15T06:17:20.964Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:18:05.231Z
+Beginning Transaction
+2014-12-15T06:18:05.232Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:18:21.570Z
+Beginning Transaction
+2014-12-15T06:18:21.571Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:19:08.736Z
+Beginning Transaction
+2014-12-15T06:19:08.736Z
+Return: 	abort
+Ending Transaction
+2014-12-15T06:19:45.690Z
+Beginning Transaction
+2014-12-15T06:19:45.690Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:20:33.288Z
+Beginning Transaction
+2014-12-15T06:20:33.288Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:20:38.144Z
+Beginning Transaction
+2014-12-15T06:20:38.144Z
+Return: 	commit
+Ending Transaction
+2014-12-15T06:21:14.748Z
+IT'S DONE

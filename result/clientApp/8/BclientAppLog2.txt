@@ -1,0 +1,203 @@
+Trying to contact terratest.eecs.berkeley.edu
+Inside the getInput
+Beginning Transaction
+2014-12-14T02:51:17.265Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:21.112Z
+Beginning Transaction
+2014-12-14T02:51:21.113Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:21.166Z
+Beginning Transaction
+2014-12-14T02:51:21.166Z
+Return: 	commit
+Ending Transaction
+2014-12-14T02:51:22.113Z
+Beginning Transaction
+2014-12-14T02:51:22.113Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:23.306Z
+Beginning Transaction
+2014-12-14T02:51:23.306Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:23.361Z
+Beginning Transaction
+2014-12-14T02:51:23.361Z
+Return: 	commit
+Ending Transaction
+2014-12-14T02:51:24.454Z
+Beginning Transaction
+2014-12-14T02:51:24.455Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:25.395Z
+Beginning Transaction
+2014-12-14T02:51:25.395Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:25.442Z
+Beginning Transaction
+2014-12-14T02:51:25.442Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:25.484Z
+Beginning Transaction
+2014-12-14T02:51:25.485Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:25.532Z
+Beginning Transaction
+2014-12-14T02:51:25.533Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:25.580Z
+Beginning Transaction
+2014-12-14T02:51:25.580Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:26.857Z
+Beginning Transaction
+2014-12-14T02:51:26.858Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:26.912Z
+Beginning Transaction
+2014-12-14T02:51:26.912Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:28.842Z
+Beginning Transaction
+2014-12-14T02:51:28.842Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:31.766Z
+Beginning Transaction
+2014-12-14T02:51:31.767Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:31.833Z
+Beginning Transaction
+2014-12-14T02:51:31.833Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:32.798Z
+Beginning Transaction
+2014-12-14T02:51:32.799Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:32.853Z
+Beginning Transaction
+2014-12-14T02:51:32.853Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:32.883Z
+Beginning Transaction
+2014-12-14T02:51:32.884Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:34.584Z
+Beginning Transaction
+2014-12-14T02:51:34.584Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:35.526Z
+Beginning Transaction
+2014-12-14T02:51:35.527Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:35.588Z
+Beginning Transaction
+2014-12-14T02:51:35.588Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:36.675Z
+Beginning Transaction
+2014-12-14T02:51:36.675Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:37.720Z
+Beginning Transaction
+2014-12-14T02:51:37.720Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:37.781Z
+Beginning Transaction
+2014-12-14T02:51:37.781Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:40.101Z
+Beginning Transaction
+2014-12-14T02:51:40.101Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.047Z
+Beginning Transaction
+2014-12-14T02:51:43.047Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.095Z
+Beginning Transaction
+2014-12-14T02:51:43.096Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.135Z
+Beginning Transaction
+2014-12-14T02:51:43.135Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.882Z
+Beginning Transaction
+2014-12-14T02:51:43.882Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.928Z
+Beginning Transaction
+2014-12-14T02:51:43.928Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:43.974Z
+Beginning Transaction
+2014-12-14T02:51:43.975Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.004Z
+Beginning Transaction
+2014-12-14T02:51:44.004Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.039Z
+Beginning Transaction
+2014-12-14T02:51:44.040Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.073Z
+Beginning Transaction
+2014-12-14T02:51:44.074Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.113Z
+Beginning Transaction
+2014-12-14T02:51:44.113Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.146Z
+Beginning Transaction
+2014-12-14T02:51:44.146Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.181Z
+Beginning Transaction
+2014-12-14T02:51:44.182Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.211Z
+Beginning Transaction
+2014-12-14T02:51:44.211Z
+Return: 	abort
+Ending Transaction
+2014-12-14T02:51:44.238Z
+IT'S DONE

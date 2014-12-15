@@ -1,0 +1,20 @@
+Trying to contact terratest.eecs.berkeley.edu
+Waiting for responder to be registered...
+Waiting for responder to be registered...
+Inside the getInput
+Beginning Transaction
+2014-12-11T00:26:15.291Z
+Return: 	abort
+Ending Transaction
+2014-12-11T00:26:18.456Z
+Beginning Transaction
+2014-12-11T00:26:18.456Z
+Return: 	commit
+Ending Transaction
+2014-12-11T00:26:19.730Z
+Beginning Transaction
+2014-12-11T00:26:19.730Z
+Return: 	commit
+Ending Transaction
+2014-12-11T00:26:18.991Z
+IT'S DONE

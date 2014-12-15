@@ -40,7 +40,7 @@ public class ClientApp {
 					try {
 						System.out.println("Beginning Transaction");
 						System.out.println(Instant.now());
-						System.out.println("Return: \t"+entryPoint.LPRWTransaction(commands));
+						System.out.println("Return: \t"+entryPoint.LBRWTransaction(commands));
 						System.out.println("Ending Transaction");
 						System.out.println(Instant.now());
 					} catch (RemoteException e) {

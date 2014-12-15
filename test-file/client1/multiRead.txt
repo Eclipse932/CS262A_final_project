@@ -1,0 +1,4 @@
+declare x1 70
+read x1 56
+wait 20000
+ENDING TRANSACTION
