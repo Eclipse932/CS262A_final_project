@@ -208,6 +208,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 				System.out.println("Calling emulateLeaderByzRepliateState on Replica " + remoteName);
 			}
 			
+			
 			for (ReplicaIntf contactReplica : replicas) {
 				try {
 					contactReplica.byzSlaveTalkToEveryone(this.numOfReplicas);
@@ -300,6 +301,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	}
 
 	public void emulateByzCommunication() throws RemoteException {
+		
+		if(debugMode){
+			System.out.println("emulatingByzCommunication");
+		}
 		// Do some busy work
 		int j = 0;
 		for (int i = 0; i < 1000; i++) {
@@ -347,6 +352,9 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 		}
 
 		for (ReplicaIntf contactReplica : this.replicasForByzCommunication) {
+			if(debugMode){
+				System.out.println("Calling emulateByzCommunication on " + contactReplica);
+			}
 			contactReplica.emulateByzCommunication();
 		}
 
