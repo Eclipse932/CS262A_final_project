@@ -195,6 +195,10 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public void emulateLeaderByzReplicateState() throws Exception {
 		synchronized (leaderSequenceNumber) {
 
+			if(debugMode){
+				System.out.println("Calling emulateLeaderByzRepliateState on Replica " + remoteName);
+			}
+			
 			for (ReplicaIntf contactReplica : replicas) {
 				try {
 					contactReplica.byzSlaveTalkToEveryone(this.numOfReplicas);
