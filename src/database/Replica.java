@@ -35,6 +35,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	int numOfReplicas;
 
 	boolean otherReplicasFoundForByz;
+	static boolean leaderReady = false;
 
 	Log dataLog;
 	ReplicaIntf leader;
@@ -195,6 +196,14 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 	public void emulateLeaderByzReplicateState() throws Exception {
 		synchronized (leaderSequenceNumber) {
 
+			while(! leaderReady){
+				try{
+					Thread.sleep(2000);
+				} catch (Exception e){
+					e.printStackTrace();
+				}
+			}
+			
 			if(debugMode){
 				System.out.println("Calling emulateLeaderByzRepliateState on Replica " + remoteName);
 			}
@@ -875,6 +884,7 @@ public class Replica extends UnicastRemoteObject implements ReplicaIntf {
 			} while (me.replicas.size() < (me.numOfReplicas - 1));
 			System.out
 					.println("Found all non-leader replicas in remote registry.");
+			leaderReady = true;
 
 			registrationStatus = false;
 			try {
